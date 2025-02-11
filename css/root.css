@@ -1,0 +1,15 @@
+:root{
+    --cor-primaria: #f0f0f0;
+    --cor-secundaria: #0a0320;
+    --cor-terciaria: #16db65;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background-color: var(--cor-primaria);
+}
