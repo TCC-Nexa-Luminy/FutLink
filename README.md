@@ -1,6 +1,6 @@
-# 🚀 FutLink
+# :soccer: FutLink
 
-📜 Projetinho de futebol
+📜 Descrição do projeto a ser definido
 
 ## 👥 Integrantes do Grupo
 
@@ -17,6 +17,9 @@
 - 🔧 Visual Studio Code
 - 🔧 Canva
 
+##Link do Manual de identidade do projeto
+[FutLink Canva](https://www.canva.com/design/DAGQfHSZhI8/fClH3R0ciGIFWqaL9sCGLw/view?utm_content=DAGQfHSZhI8&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=UNAVAILABLE)
+
 ## 🛠️ Instalação
 1. 📥 Instale o [GitHub Desktop](https://desktop.github.com/download/) e faça seu login
 2. 📥 No GitHub Desktop, Vá em "Files" -> "Clone repository" e escolha o repositório FutLink
@@ -24,10 +27,13 @@
 
 ## 🚀 Uso (Sessão ainda sendo digitada)
 
-1. 💻 Como iniciar o projeto.
-2. 📈 Exemplos de como usar o projeto.
-3. 📝 Qualquer outra informação relevante.
-
+1. 💻 Como iniciar o projeto? <br>
+   Toda e qualquer modificação deverá ser criado uma 'Branch', que leve o nome do arquivo e a alteração que queira realizar
+2. :warning: Branch main <br>
+   Modificações no projeto nunca deverão ser feitas diretamente no Branch principal
+3. 📝 Envio das alterações. <br>
+   Após que as modificações no código do projeto forem feitas, faça o commit, realize o pull request
+   
 ## 🤝 Contribuição (Sessão ainda sendo digitada)
 
 1. 🛠️ Como contribuir com o projeto.
