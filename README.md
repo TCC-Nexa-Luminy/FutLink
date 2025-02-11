@@ -1,6 +1,6 @@
 # 🚀 FutLink
 
-📜 Projeto que visa facilitar a vida do estudante na ETEC
+📜 Projetinho de futebol
 
 ## 👥 Integrantes do Grupo
 
@@ -13,6 +13,7 @@
 
 ## 📋 Requisitos
 
+- 🔧 GitHub Desktop
 - 🔧 Visual Studio Code
 - 🔧 Canva
 
