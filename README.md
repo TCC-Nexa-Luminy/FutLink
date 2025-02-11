@@ -26,14 +26,19 @@ Segue o link para o manual de identidade - [FutLink Canva](https://www.canva.com
 2. 📥 No GitHub Desktop, Vá em "Files" -> "Clone repository" e escolha o repositório FutLink
 3. 📥 Selecione o local de destino do projeto em "Local path" e clique em "Clone"
 
-## 🚀 Uso (Sessão ainda sendo digitada)
+## 🚀 Uso
 
-1. 💻 Como iniciar o projeto? <br>
-   Toda e qualquer modificação deverá ser criado uma 'Branch', que leve o nome do arquivo e a alteração que queira realizar
-2. :warning: Branch main <br>
+1. 💻 Como iniciar o projeto?<br>
+   Toda e qualquer modificação deverá ser criado uma 'Branch', que leve o nome do arquivo e a alteração que queira realizar.
+
+   
+2. :warning: Branch main<br>
    Modificações no projeto nunca deverão ser feitas diretamente no Branch principal
-3. 📝 Envio das alterações. <br>
-   Após que as modificações no código do projeto forem feitas, faça o commit, realize o pull request
+
+   
+3. 📝 Envio das alterações.<br>
+   Após que as modificações no código do projeto forem feitas, faça o 'commit' em sua respectiva branch, realize o 'pull origin' e entao crie 'pull request'
+
    
 ## 🤝 Contribuição (Sessão ainda sendo digitada)
 
