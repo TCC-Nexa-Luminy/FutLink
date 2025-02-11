@@ -19,7 +19,7 @@
 
 ## 🛠️ Instalação
 1. 📥 Instale o [GitHub Desktop](https://desktop.github.com/download/) e faça seu login
-2. 📥 No GitHub Desktop, Vá em "Files" -> "Clone repository" e escolha o repositório Teams 2
+2. 📥 No GitHub Desktop, Vá em "Files" -> "Clone repository" e escolha o repositório FutLink
 3. 📥 Selecione o local de destino do projeto em "Local path" e clique em "Clone"
 
 ## 🚀 Uso (Sessão ainda sendo digitada)
