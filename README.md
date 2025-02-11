@@ -1,4 +1,4 @@
-# 🚀 Teams 2
+# 🚀 FutLink
 
 📜 Projeto que visa facilitar a vida do estudante na ETEC
 
