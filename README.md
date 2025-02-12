@@ -19,7 +19,7 @@
 
 ## Manual de identidade
 
-Segue o link para o manual de identidade - [FutLink Canva](https://www.canva.com/design/DAGQfHSZhI8/fClH3R0ciGIFWqaL9sCGLw/view?utm_content=DAGQfHSZhI8&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=UNAVAILABLE)
+Segue o link para o manual de identidade - [NexaLuminy Canva](https://www.canva.com/design/DAGQfHSZhI8/fClH3R0ciGIFWqaL9sCGLw/view?utm_content=DAGQfHSZhI8&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=UNAVAILABLE)
 
 ## 🛠️ Instalação
 1. 📥 Instale o [GitHub Desktop](https://desktop.github.com/download/) e faça seu login
