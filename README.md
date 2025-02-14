@@ -38,7 +38,10 @@ Segue o link para o manual de identidade - [NexaLuminy Canva](https://www.canva.
    
 3. 📝 Envio das alterações.<br>
    Após que as modificações no código do projeto forem feitas, faça o 'commit' em sua respectiva branch, realize o 'pull origin' e entao crie 'pull request'
+   
+:clapper: De preferência, assista a video-aulas do YouTube sobre o uso do GitHub em caso de dúvidas quanto a suas ferramentas.
 
+Na área de 'Issues' deste reposítorio, está anexado um link para uma playlist de aulas de GitHub
    
 ## 🤝 Contribuição (Sessão ainda sendo digitada)
 
