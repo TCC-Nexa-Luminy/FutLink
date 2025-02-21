@@ -58,25 +58,31 @@ Uma breve descrição sobre o que o projeto faz e qual problema ele resolve.
 ## Instalação
 Passo a passo para instalar e configurar o ambiente de desenvolvimento.
 
-```bash
-# Clone o repositório
-git clone https://github.com/usuario/repositorio.git
+### 1. Clone o repositório
+No GitHub Desktop, vá para 'Files' -> 'Clone repository' -> Selecione o repositório desejado
 
-# Entre no diretório do projeto
-cd repositorio
-
-# Instale as dependências
-npm install
+### 2. Escolha o local de destino do projeto
+Após escolher o repositório, vá na parte 'Local path' e selecione o diretório dependendo do servidor usado
+Caso WampServer
+```
+C:\wamp\wwww\FutLink
+```
+Caso XAMPP
+```
+C:\xampp\htdocs\FutLink
 ```
 
+### 3. Clone o repositório
+Após seguir os passos, clique em 'Clone' para finalizar
+
 ## Forma de Trabalhar neste Repositório
-- Crie uma branch para cada feature ou correção de bug (`git checkout -b nome-da-branch`)
-- Faça os commits das suas alterações (`git commit -m 'Descrição das alterações'`)
-- Envie suas alterações para o repositório remoto (`git push origin nome-da-branch`)
-- Abra um Pull Request detalhando suas alterações
+- Crie uma branch para cada modificação ou correção de bug ('Branch' -> 'New Branch' -> Nomeie sua branch baseado em sua modificação)
+- Faça os commits das suas alterações (De preferência, indique o título e descreva as alterações feitas no commit)
+- Envie suas alterações para o repositório remoto (Pull Origin)
+- Abra um Pull Request detalhando suas alterações (Create Pull Request)
 
 ## Licença
-Este projeto está licenciado sob a Licença XYZ - veja o arquivo [LICENSE](LICENSE) para mais detalhes.
+Este projeto está licenciado sob a Licença MIT - veja o arquivo [LICENSE](LICENSE) para mais detalhes.
 
 ## Agradecimentos
 Gostaríamos de agradecer a todos que contribuíram para este projeto de qualquer forma, direta ou indiretamente.
