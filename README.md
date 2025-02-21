@@ -25,8 +25,8 @@ Uma breve descrição sobre o que o projeto faz e qual problema ele resolve.
 ![Visual Studio Code](https://img.shields.io/badge/Visual_Studio_Code-0078D4?style=for-the-badge&logo=visual%20studio%20code&logoColor=white)
 ![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)
 ![Canva](https://img.shields.io/badge/Canva-%2300C4CC.svg?&style=for-the-badge&logo=Canva&logoColor=white)
-![WampServer](https://img.shields.io/badge/Wampserver-800080)
-![phpmyadmin](https://img.shields.io/badge/PHPMyAdmin-939494)
+![WampServer](https://img.shields.io/badge/Wampserver-800080?style=for-the-badge)
+![phpmyadmin](https://img.shields.io/badge/PHPMyAdmin-939494?style=for-the-badge)
 
 ## Estrutura do Projeto 📁
 ```plaintext
