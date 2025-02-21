@@ -13,20 +13,20 @@ Uma breve descrição sobre o que o projeto faz e qual problema ele resolve.
 
 ## Link para o Wireframe 📜
 - [Wireframe no Canva](https://www.canva.com/link-para-wireframe) (Indisponível)
-- OU
 - [Wireframe no Figma](https://www.figma.com/link-para-wireframe) (Indisponível)
 
 ## Tecnologias Utilizadas 🖥️
-- PHP
-- CSS3
-- JavaScript
-- MySql
+![PHP](https://img.shields.io/badge/PHP-777BB4?style=for-the-badge&logo=php&logoColor=white)
+![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
+![MySQL](https://img.shields.io/badge/MySQL-00000F?style=for-the-badge&logo=mysql&logoColor=white)
 
 ## Ferramentas 🛠️
-- Visual Studio Code
-- XAMPP ou Wamp Server
-- PHPMyAdmin
-- GitHub Desktop
+![Visual Studio Code](https://img.shields.io/badge/Visual_Studio_Code-0078D4?style=for-the-badge&logo=visual%20studio%20code&logoColor=white)
+![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)
+![Canva](https://img.shields.io/badge/Canva-%2300C4CC.svg?&style=for-the-badge&logo=Canva&logoColor=white)
+![WampServer](https://img.shields.io/badge/Wampserver-800080)
+![phpmyadmin](https://img.shields.io/badge/PHPMyAdmin-939494)
 
 ## Estrutura do Projeto 📁
 ```plaintext
@@ -62,12 +62,13 @@ Passo a passo para instalar e configurar o ambiente de desenvolvimento.
 No GitHub Desktop, vá para 'Files' -> 'Clone repository' -> Selecione o repositório desejado
 
 ### 2. Escolha o local de destino do projeto
-Após escolher o repositório, vá na parte 'Local path' e selecione o diretório dependendo do servidor usado
-Caso WampServer
+Após escolher o repositório, vá na parte 'Local path' e selecione o diretório dependendo do servidor instalado
+
+- Caso WampServer
 ```
 C:\wamp\wwww\FutLink
 ```
-Caso XAMPP
+- Caso XAMPP
 ```
 C:\xampp\htdocs\FutLink
 ```
