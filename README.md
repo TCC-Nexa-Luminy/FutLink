@@ -30,11 +30,28 @@ Uma breve descrição sobre o que o projeto faz e qual problema ele resolve.
 
 ## Estrutura do Projeto
 ```plaintext
-├── pasta-raiz/
-│   ├── pasta1/
-│   ├── pasta2/
-│   ├── arquivo1.ext
-│   ├── arquivo2.ext
+├── FutLink/
+│   ├── app/
+|   |    |-- controllers/
+|   |    |    └── sign.act.php
+|   |    └── views/
+|   |         └── navbar.php
+|   |
+│   ├── config/
+|   |    └── connect.php
+|   |
+│   ├── database/
+|   |
+│   ├── public/
+|   |    |-- css/
+|   |    |-- js/
+|   |    |-- images/
+|   |    └── index.php
+|   |
+|   |── storage/
+|   |    └──
+|   |
+|   |-- LICENSE.md
 │   └── README.md
 ```
 
