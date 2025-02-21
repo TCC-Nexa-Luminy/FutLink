@@ -1,4 +1,4 @@
-# FutLink ⚽
+# FutLink - TCC ⚽
 
 ## Descrição do Repositório ✏️
 Uma breve descrição sobre o que o projeto faz e qual problema ele resolve.
@@ -31,25 +31,25 @@ Uma breve descrição sobre o que o projeto faz e qual problema ele resolve.
 ## Estrutura do Projeto 📁
 ```plaintext
 ├── FutLink/
-│   ├── app/
-|   |    |-- controllers/
-|   |    |    └── sign.act.php
-|   |    └── views/
+│   ├── app/                        //Pasta onde ficam os arquivos PHP
+|   |    |-- controllers/          //Arquivos PHP responsáveis pela lógica e processamentos de dados
+|   |    |    └── logout.act.php
+|   |    └── views/                //Arquivos PHP visualizadas na Web
 |   |         └── navbar.php
 |   |
-│   ├── config/
+│   ├── config/                    //Pasta com arquivos de configuração
 |   |    └── connect.php
 |   |
-│   ├── database/
+│   ├── database/                //Pasta que contém os scripts SQL
 |   |
 │   ├── public/
-|   |    |-- css/
-|   |    |-- js/
-|   |    |-- images/
-|   |    └── index.php
+|   |    |-- css/                //Arquivos CSS
+|   |    |-- js/                 //Arquivos JavaScript
+|   |    |-- images/             //Arquivos de Imagens
+|   |    └── index.php            //Página inicial
 |   |
-|   |── storage/
-|   |    └──
+|   |── storage/                  //Pasta que armazena arquivos gerados pelo site
+|   |    └── perfilIcons/
 |   |
 |   |-- LICENSE.md
 │   └── README.md
