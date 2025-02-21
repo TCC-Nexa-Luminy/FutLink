@@ -31,24 +31,24 @@ Uma breve descrição sobre o que o projeto faz e qual problema ele resolve.
 ## Estrutura do Projeto 📁
 ```plaintext
 ├── FutLink/
-│   ├── app/                        //Pasta onde ficam os arquivos PHP
-|   |    |-- controllers/          //Arquivos PHP responsáveis pela lógica e processamentos de dados
+│   ├── app/                         //Pasta onde ficam os arquivos PHP
+|   |    |-- controllers/            //Arquivos PHP responsáveis pela lógica e processamentos de dados
 |   |    |    └── logout.act.php
-|   |    └── views/                //Arquivos PHP visualizadas na Web
+|   |    └── views/                  //Arquivos PHP visualizadas na Web
 |   |         └── navbar.php
 |   |
-│   ├── config/                    //Pasta com arquivos de configuração
+│   ├── config/                      //Pasta com arquivos de configuração
 |   |    └── connect.php
 |   |
-│   ├── database/                //Pasta que contém os scripts SQL
+│   ├── database/                    //Pasta que contém os scripts SQL
 |   |
 │   ├── public/
-|   |    |-- css/                //Arquivos CSS
-|   |    |-- js/                 //Arquivos JavaScript
-|   |    |-- images/             //Arquivos de Imagens
-|   |    └── index.php            //Página inicial
+|   |    |-- css/                    //Arquivos CSS
+|   |    |-- js/                     //Arquivos JavaScript
+|   |    |-- images/                 //Arquivos de Imagens
+|   |    └── index.php               //Página inicial
 |   |
-|   |── storage/                  //Pasta que armazena arquivos gerados pelo site
+|   |── storage/                     //Pasta que armazena arquivos gerados pelo site
 |   |    └── perfilIcons/
 |   |
 |   |-- LICENSE.md
