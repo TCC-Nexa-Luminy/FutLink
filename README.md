@@ -1,34 +1,34 @@
-# FutLink
+# FutLink ⚽
 
-## Descrição do Repositório
+## Descrição do Repositório ✏️
 Uma breve descrição sobre o que o projeto faz e qual problema ele resolve.
 
-## Integrantes do Projeto
-- 👤 [Daniel Mattos](https://github.com/DanielHMF)
-- 👤 [Eduardo Fernandes](https://github.com/edudausp)
-- 👤 [Thiago Ribeiro](https://github.com/thiagoConsta)
-- 👤 [Murilo Magalhães](https://github.com/murimbo)
-- 👤 [Pedro Medeiros](https://github.com/phmsantostts)
-- 👤 [Shandel Villasante](https://github.com/Shandel-dev)
+## Integrantes do Projeto 👥
+- 😀 [Daniel Mattos](https://github.com/DanielHMF)
+- 😉 [Eduardo Fernandes](https://github.com/edudausp)
+- 😇 [Thiago Ribeiro](https://github.com/thiagoConsta)
+- 😃 [Murilo Magalhães](https://github.com/murimbo)
+- 😏 [Pedro Medeiros](https://github.com/phmsantostts)
+- 🧐 [Shandel Villasante](https://github.com/Shandel-dev)
 
-## Link para o Wireframe
+## Link para o Wireframe 📜
 - [Wireframe no Canva](https://www.canva.com/link-para-wireframe) (Indisponível)
 - OU
 - [Wireframe no Figma](https://www.figma.com/link-para-wireframe) (Indisponível)
 
-## Tecnologias Utilizadas
+## Tecnologias Utilizadas 🖥️
 - PHP
 - CSS3
 - JavaScript
 - MySql
 
-## Ferramentas
+## Ferramentas 🛠️
 - Visual Studio Code
 - XAMPP ou Wamp Server
 - PHPMyAdmin
 - GitHub Desktop
 
-## Estrutura do Projeto
+## Estrutura do Projeto 📁
 ```plaintext
 ├── FutLink/
 │   ├── app/
@@ -55,7 +55,7 @@ Uma breve descrição sobre o que o projeto faz e qual problema ele resolve.
 │   └── README.md
 ```
 
-## Instalação
+## Instalação ⬇️
 Passo a passo para instalar e configurar o ambiente de desenvolvimento.
 
 ### 1. Clone o repositório
@@ -75,7 +75,7 @@ C:\xampp\htdocs\FutLink
 ### 3. Clone o repositório
 Após seguir os passos, clique em 'Clone' para finalizar
 
-## Forma de Trabalhar neste Repositório
+## Forma de Trabalhar neste Repositório 🔊
 ### - Verificar Atualizações
 - Clique em 'Fetch origin' para verificar se houve atualizações no repositório.
 - Caso sim, clique em 'Push origin' para baixar as atualizações em sua máquina.
@@ -96,8 +96,8 @@ Após seguir os passos, clique em 'Clone' para finalizar
 - Ao finalizar suas ações com uma Branch, solicite que ele seja adicionado à versão principal.
 - Clique em 'Create Pull Request' detalhando suas alterações.
 
-## Licença
-Este projeto está licenciado sob a Licença MIT - veja o arquivo [LICENSE](LICENSE) para mais detalhes.
+## Licença 📑
+🔒 Este projeto está licenciado sob a Licença MIT - veja o arquivo [LICENSE](LICENSE) para mais detalhes.
 
-## Agradecimentos
+## Agradecimentos 👋
 Gostaríamos de agradecer a todos que contribuíram para este projeto de qualquer forma, direta ou indiretamente.
