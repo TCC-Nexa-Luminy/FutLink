@@ -12,9 +12,9 @@ Uma breve descrição sobre o que o projeto faz e qual problema ele resolve.
 - 👤 [Shandel Villasante](https://github.com/Shandel-dev)
 
 ## Link para o Wireframe
-- [Wireframe no Canva](https://www.canva.com/link-para-wireframe)(Indisponível)
+- [Wireframe no Canva](https://www.canva.com/link-para-wireframe) (Indisponível)
 - OU
-- [Wireframe no Figma](https://www.figma.com/link-para-wireframe)(Indisponível)
+- [Wireframe no Figma](https://www.figma.com/link-para-wireframe) (Indisponível)
 
 ## Tecnologias Utilizadas
 - PHP
@@ -76,14 +76,28 @@ C:\xampp\htdocs\FutLink
 Após seguir os passos, clique em 'Clone' para finalizar
 
 ## Forma de Trabalhar neste Repositório
-- Crie uma branch para cada modificação ou correção de bug ('Branch' -> 'New Branch' -> Nomeie sua branch baseado em sua modificação)
-- Faça os commits das suas alterações (De preferência, indique o título e descreva as alterações feitas no commit)
-- Envie suas alterações para o repositório remoto (Pull Origin)
-- Abra um Pull Request detalhando suas alterações (Create Pull Request)
+### - Verificar Atualizações
+- Clique em 'Fetch origin' para verificar se houve atualizações no repositório.
+- Caso sim, clique em 'Push origin' para baixar as atualizações em sua máquina.
+
+### - Branch
+- Crie uma Branch para cada modificação ou correção de bugs.
+- Para criar uma Branch, siga estes passos, 'Branch' -> 'New Branch' -> Nomeie sua branch baseado em sua modificação.
+
+### - Commit
+- Faça os commits das suas alterações.
+- De preferência, Indique e descreva as mudanças em 'Summary' e 'Description'.
+
+### - Atualizar Branch
+- Envie suas alterações para o repositório remoto.
+- Para isso, clique em 'Pull Origin' para atualizar o branch remoto.
+
+### - Solicitar Merge
+- Ao finalizar suas ações com uma Branch, solicite que ele seja adicionado à versão principal.
+- Clique em 'Create Pull Request' detalhando suas alterações.
 
 ## Licença
 Este projeto está licenciado sob a Licença MIT - veja o arquivo [LICENSE](LICENSE) para mais detalhes.
 
 ## Agradecimentos
 Gostaríamos de agradecer a todos que contribuíram para este projeto de qualquer forma, direta ou indiretamente.
-```` ▋
