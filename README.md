@@ -33,9 +33,11 @@ Uma breve descrição sobre o que o projeto faz e qual problema ele resolve.
 ├── FutLink/
 │   ├── app/                         //Pasta onde ficam os arquivos PHP
 |   |    |-- controllers/            //Arquivos PHP responsáveis pela lógica e processamentos de dados
-|   |    |    └── logout.act.php
+|   |    |    | -- logout.act.php
+|   |    |    └──  ...
 |   |    └── views/                  //Arquivos PHP visualizadas na Web
-|   |         └── navbar.php
+|   |         |-- navbar.php
+|   |         └── ...
 |   |
 │   ├── config/                      //Pasta com arquivos de configuração
 |   |    └── connect.php
