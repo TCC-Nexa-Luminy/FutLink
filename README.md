@@ -1,9 +1,9 @@
-# FutLink - TCC ⚽
+# ⚽ FutLink - TCC 
 
-## Descrição do Repositório ✏️
+## ✏️ Descrição do Repositório 
 Uma breve descrição sobre o que o projeto faz e qual problema ele resolve.
 
-## Integrantes do Projeto 👥
+## 👥 Integrantes do Projeto 
 - 😀 [Daniel Mattos](https://github.com/DanielHMF)
 - 😉 [Eduardo Fernandes](https://github.com/edudausp)
 - 😇 [Thiago Ribeiro](https://github.com/thiagoConsta)
@@ -11,24 +11,24 @@ Uma breve descrição sobre o que o projeto faz e qual problema ele resolve.
 - 😏 [Pedro Medeiros](https://github.com/phmsantostts)
 - 🧐 [Shandel Villasante](https://github.com/Shandel-dev)
 
-## Link para o Wireframe 📜
+## 📜 Link para o Wireframe 
 - [Wireframe no Canva](https://www.canva.com/link-para-wireframe) (Indisponível)
 - [Wireframe no Figma](https://www.figma.com/link-para-wireframe) (Indisponível)
 
-## Tecnologias Utilizadas 🖥️
+## 🖥️ Tecnologias Utilizadas 
 ![PHP](https://img.shields.io/badge/PHP-777BB4?style=for-the-badge&logo=php&logoColor=white)
 ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
 ![MySQL](https://img.shields.io/badge/MySQL-00000F?style=for-the-badge&logo=mysql&logoColor=white)
 
-## Ferramentas 🛠️
+## 🛠️ Ferramentas 
 ![Visual Studio Code](https://img.shields.io/badge/Visual_Studio_Code-0078D4?style=for-the-badge&logo=visual%20studio%20code&logoColor=white)
 ![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)
 ![Canva](https://img.shields.io/badge/Canva-%2300C4CC.svg?&style=for-the-badge&logo=Canva&logoColor=white)
 ![WampServer](https://img.shields.io/badge/Wampserver-800080?style=for-the-badge)
 ![phpmyadmin](https://img.shields.io/badge/PHPMyAdmin-939494?style=for-the-badge)
 
-## Estrutura do Projeto 📁
+## 📁 Estrutura do Projeto 
 ```plaintext
 ├── FutLink/
 │   ├── app/                         //Pasta onde ficam os arquivos PHP
@@ -55,7 +55,7 @@ Uma breve descrição sobre o que o projeto faz e qual problema ele resolve.
 │   └── README.md
 ```
 
-## Instalação ⬇️
+## ⬇️ Instalação 
 Passo a passo para instalar e configurar o ambiente de desenvolvimento.
 
 ### 1. Clone o repositório
@@ -76,7 +76,7 @@ C:\xampp\htdocs\FutLink
 ### 3. Clone o repositório
 Após seguir os passos, clique em 'Clone' para finalizar
 
-## Forma de Trabalhar neste Repositório 🔊
+## 🔊 Forma de Trabalhar neste Repositório 
 ### - Verificar Atualizações
 - Clique em 'Fetch origin' para verificar se houve atualizações no repositório.
 - Caso sim, clique em 'Push origin' para baixar as atualizações em sua máquina.
@@ -97,7 +97,7 @@ Após seguir os passos, clique em 'Clone' para finalizar
 - Ao finalizar suas ações com uma Branch, solicite que ele seja adicionado à versão principal.
 - Clique em 'Create Pull Request' detalhando suas alterações.
 
-## Licença 📑
+## 📑 Licença 
 🔒 Este projeto está licenciado sob a Licença MIT - veja o arquivo [LICENSE](LICENSE) para mais detalhes.
 
 ## Agradecimentos 👋
