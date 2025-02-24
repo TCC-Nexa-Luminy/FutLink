@@ -79,23 +79,23 @@ C:\xampp\htdocs\FutLink
 Após seguir os passos, clique em 'Clone' para finalizar
 
 ## 🔊 Forma de Trabalhar neste Repositório 
-### - Verificar Atualizações
+### - Verificar Atualizações (Fetch Origin)
 - Clique em 'Fetch origin' para verificar se houve atualizações no repositório.
-- Caso sim, clique em 'Push origin' para baixar as atualizações em sua máquina.
+- Caso sim, clique em 'Pull origin' para baixar as atualizações em sua máquina.
 
-### - Branch
+### - Versões do código (Branch)
 - Crie uma Branch para cada modificação ou correção de bugs.
 - Para criar uma Branch, siga estes passos, 'Branch' -> 'New Branch' -> Nomeie sua branch baseado em sua modificação.
 
-### - Commit
+### - Salvar alterações (Commit)
 - Faça os commits das suas alterações.
 - De preferência, Indique e descreva as mudanças em 'Summary' e 'Description'.
 
-### - Atualizar Branch
+### - Atualizar Branch (Push Origin)
 - Envie suas alterações para o repositório remoto.
-- Para isso, clique em 'Pull Origin' para atualizar o branch remoto.
+- Para isso, clique em 'Push Origin' para atualizar o branch remoto.
 
-### - Solicitar Merge
+### - Solicitar branch no main (Create Pull Request)
 - Ao finalizar suas ações com uma Branch, solicite que ele seja adicionado à versão principal.
 - Clique em 'Create Pull Request' detalhando suas alterações.
 
