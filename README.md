@@ -68,7 +68,7 @@ Após escolher o repositório, vá na parte 'Local path' e selecione o diretóri
 
 - Caso WampServer
 ```
-C:\wamp\wwww\FutLink
+C:\wamp64\wwww\FutLink
 ```
 - Caso XAMPP
 ```
@@ -95,9 +95,9 @@ Após seguir os passos, clique em 'Clone' para finalizar
 - Envie suas alterações para o repositório remoto.
 - Para isso, clique em 'Push Origin' para atualizar o branch remoto.
 
-### - Solicitar branch no main (Create Pull Request)
-- Ao finalizar suas ações com uma Branch, solicite que ele seja adicionado à versão principal.
-- Clique em 'Create Pull Request' detalhando suas alterações.
+### - Solicitar a inclusão da branch no main (Create Pull Request)
+- Ao finalizar suas ações com uma Branch, solicite a integração delas à versão principal.
+- Clique em 'Create Pull Request' e as modificações realizadas pela sua versão.
 
 ## 📑 Licença 
 🔒 Este projeto está licenciado sob a Licença MIT - veja o arquivo [LICENSE](LICENSE) para mais detalhes.
