@@ -91,7 +91,7 @@ Após seguir os passos, clique em 'Clone' para finalizar
 - Faça os commits das suas alterações.
 - De preferência, Indique e descreva as mudanças em 'Summary' e 'Description'.
 
-### - Atualizar Branch (Push Origin)
+### - Atualizar Versão (Push Origin)
 - Envie suas alterações para o repositório remoto.
 - Para isso, clique em 'Push Origin' para atualizar o branch remoto.
 
