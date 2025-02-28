@@ -1,5 +1,30 @@
 @import url(root.css);
 
-h2{
-    background-color: var(--cor-terciaria);
+nav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    padding: 0.5em 1em;
+    background-color: var(--cor-green-light);
+    border-bottom: 5px solid var(--cor-purple-dark);
+}
+
+nav div{
+    display: flex;
+    align-items: center;
+    gap: 1em;
+}
+
+nav .nav_logo img{
+    aspect-ratio: 1/1;
+    width: 2.5em;
+    background-color: black;
+    border-radius: 50%;
+}
+
+.nav_links a{
+    color: var(--cor-secundaria);
+    text-decoration: none;
 }

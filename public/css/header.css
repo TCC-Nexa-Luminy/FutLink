@@ -1,0 +1,5 @@
+header{
+    padding: 0.5em;
+    color: var(--cor-primaria);
+    background-color: var(--cor-secundaria);
+}
