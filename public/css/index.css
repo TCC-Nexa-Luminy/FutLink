@@ -1,7 +1,23 @@
 @import url(root.css);
+@import url(header.css);
 @import url(navbar.css);
+@import url(footer.css);
 
-h1{
-    color: var(--cor-terciaria);
-    font-family: Arial, Helvetica, sans-serif;
+body{
+    display: flex;
+    flex-direction: column;
 }
+
+main{
+    display: flex;
+    flex-direction: column;
+    padding: 1em;
+}
+
+main .slide-banner{
+    aspect-ratio: 16/9;
+    background-color: var(--cor-purple-dark);
+    border-radius: 1em;
+}
+
+
