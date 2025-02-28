@@ -9,7 +9,7 @@ Uma breve descrição sobre o que o projeto faz e qual problema ele resolve.
 - 😇 [Thiago Ribeiro](https://github.com/thiagoConsta)
 - 😃 [Murilo Magalhães](https://github.com/murimbo)
 - 😏 [Pedro Medeiros](https://github.com/phmsantostts)
-- 🧐 [Shandel Villasante](https://github.com/Shandel-dev)
+- 🧐 [Shandel Villasante](https://github.com/Shandel-dev) (Gerenciador do repositório)
 
 ## 📜 Link para o Wireframe 
 - [Wireframe no Canva](https://www.canva.com/link-para-wireframe) (Indisponível)
