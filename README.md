@@ -4,12 +4,12 @@
 Uma breve descrição sobre o que o projeto faz e qual problema ele resolve.
 
 ## 👥 Integrantes do Projeto 
-- 😀 [Daniel Mattos](https://github.com/DanielHMF)
-- 😉 [Eduardo Fernandes](https://github.com/edudausp)
-- 😇 [Thiago Ribeiro](https://github.com/thiagoConsta)
-- 😃 [Murilo Magalhães](https://github.com/murimbo)
-- 😏 [Pedro Medeiros](https://github.com/phmsantostts)
-- 🧐 [Shandel Villasante](https://github.com/Shandel-dev) (Gerenciador do repositório)
+- 😀 [Daniel Mattos](https://github.com/DanielHMF) (Manual de Identidade e Design UI/UX)
+- 😉 [Eduardo Fernandes](https://github.com/edudausp) (Design UI/UX)
+- 😇 [Thiago Ribeiro](https://github.com/thiagoConsta) (FrontEnd e ABNT)
+- 😃 [Murilo Magalhães](https://github.com/murimbo) (FrontEnd e ABNT)
+- 😏 [Pedro Medeiros](https://github.com/phmsantostts) (BackEnd e Manual de Identidade)
+- 🧐 [Shandel Villasante](https://github.com/Shandel-dev) (DataBase e BackEnd)
 
 ## 📜 Link para o Wireframe 
 - [Wireframe no Canva](https://www.canva.com/link-para-wireframe) (Indisponível)
