@@ -3,28 +3,88 @@
 nav{
     display: flex;
     justify-content: space-between;
-    align-items: center;
     position: sticky;
+    z-index: 2;
     top: 0;
     padding: 0.5em 1em;
-    background-color: var(--cor-green-light);
-    border-bottom: 5px solid var(--cor-purple-dark);
+    box-shadow: 0px 2px 5px var(--cor-secundaria);
+    background-color: var(--cor-primaria);
 }
 
 nav div{
     display: flex;
     align-items: center;
     gap: 1em;
+    flex: 1;
 }
 
-nav .nav_logo img{
+.nav-container:nth-child(2){
+    justify-content: center;
+}
+.nav-container:nth-child(3){
+    justify-content: end;
+}
+
+/*--------------------------------------------------------------------------*/
+
+.nav-container img{
     aspect-ratio: 1/1;
-    width: 2.5em;
-    background-color: black;
-    border-radius: 50%;
+    width: 2em;
+    filter: grayscale(100%) contrast(100%) brightness(0);
 }
 
-.nav_links a{
-    color: var(--cor-secundaria);
+
+.nav-container .nav-lista{
+    display: flex;
+    list-style: none;
+    gap: 1em;
+}
+.nav-container .nav-lista li a{
+    position: relative;
     text-decoration: none;
+    color: var(--cor-secundaria);
+}
+
+.nav-container .nav-lista li a::after{
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    width: 0%;
+    height: 0.2em;
+    transform: translateX(-50%);
+    background-color: var(--cor-purple-dark);
+    transition: 0.2s;
+}
+
+.nav-container .nav-lista li a:hover::after{
+    width: 90%;
+    transition: 0.2s;
+}
+
+/*--------------------------------------------------------------------------*/
+
+.nav-container .input-search{
+    all: unset;
+    background-color: rgb(212, 212, 212);
+    width: 100%;
+    max-width: 35em;
+    border-radius: 3em;
+    padding: 0.5em 1em 0.5em 3em;
+    transition: 0.5s;
+}
+
+.nav-container .input-search:hover{
+    filter: brightness(90%);
+    transition: 0.5s;
+}
+
+/*--------------------------------------------------------------------------*/
+
+
+.nav-container .icon-perfil{
+    aspect-ratio: 1/1;
+    width: 2em;
+    border: 2px solid black;
+    border-radius: 50%;
 }
