@@ -2,7 +2,11 @@
 
 <nav>
     <div class="nav-container">
-        <img src="../public/images/futlinkLogoBg.png" alt="">
+        <a href="../../public/index.php" class="logo-link">
+            <img src="../public/images/futlinkLogoBg.png" alt="">
+            <h1>FutLink</h1>
+        </a>
+
         <ul class="nav-lista">
             <li><a href="">Home</a></li>
             <li><a href="">Sobre nós</a></li>
@@ -13,11 +17,11 @@
         <input type="text" name="" id="" class="input-search" placeholder="Pesquise por times">
     </div>
     <div class="nav-container">
-            <a href="">Log In</a>
-            <a href="">Log Up</a>
+        <a href="">Log In</a>
+        <a href="">Log Up</a>
 
-            <!-- Caso esteja logado, gerar as tags comentadas -->
-            <!-- <p>Bem vindo, Shandel! </p>
+        <!-- Caso esteja logado, gerar as tags comentadas via PHP -->
+        <!-- <p>Bem vindo, Shandel! </p>
             <img src="" alt="" class="icon-perfil"> -->
     </div>
 </nav>

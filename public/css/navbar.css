@@ -27,7 +27,14 @@ nav div{
 
 /*--------------------------------------------------------------------------*/
 
-.nav-container img{
+.nav-container .logo-link{
+    display: flex;
+    align-items: center;
+    color: var(--cor-purple-dark);
+    text-decoration: none;
+}
+
+.nav-container .logo-link img{
     aspect-ratio: 1/1;
     width: 2em;
     filter: grayscale(100%) contrast(100%) brightness(0);
@@ -35,7 +42,7 @@ nav div{
 
 
 .nav-container .nav-lista{
-    display: flex;
+    display: none;
     list-style: none;
     gap: 1em;
 }
@@ -87,4 +94,30 @@ nav div{
     width: 2em;
     border: 2px solid black;
     border-radius: 50%;
+}
+
+@media (min-width: 576px){      /*Dispositivos pequenos (SM)) - Smartphone tela grande - */
+    
+}
+
+
+@media (min-width: 768px){      /*Dispositos médios (MD) - Tablets e Smartphones grandes -*/
+    
+}
+@media (min-width: 992px){      /*Dispositivos grande (LG) - Desktops menores e laptops -*/
+    .nav-container .nav-lista{
+        display: flex;
+    }
+    .nav-container .logo-link h1{
+        display: none;
+    }
+}
+
+
+@media (min-width: 1200px){     /*Dispositivos extra grande (XL) - Desktops grandes -*/
+    
+
+}
+@media (min-width: 1400px){     /*Dispositivos extra extra grande (XXL) - Monitores grandes e telas 4K - */
+    
 }
