@@ -1,5 +1,27 @@
 header{
+    display: flex;
     padding: 0.5em;
     color: var(--cor-primaria);
-    background-color: var(--cor-secundaria);
+    background-color: var(--cor-purple-dark);
+    justify-content: space-between;
+}
+.header-container{
+    display: flex;
+    gap: 1em;
+}
+
+.header-container_lista{
+    display: flex;
+    list-style: none;
+    gap: 0.5em;
+}
+
+.header-container_lista li a{
+    color: var(--cor-primaria);
+    transition: 0.2s;
+}
+
+.header-container_lista li a:hover{
+    color: var(--cor-green-light);
+    transition: 0.2s;
 }
