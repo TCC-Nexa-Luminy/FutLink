@@ -24,6 +24,8 @@ body{
     transition: 0.5s;
 }
 
+/* ESTRUTURA DE MEDIA SCREEN PADRÃO DE RESPONSIVIDADE */
+
 @media (max-width: 575px){}      /*disposivos extra pequenos (XS) - Smartphone tela pequena - padrão no site*/
 
 @media (min-width: 576px){      /*Dispositivos pequenos (SM)) - Smartphone tela grande - */
