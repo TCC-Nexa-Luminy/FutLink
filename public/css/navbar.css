@@ -92,12 +92,23 @@ nav>div{
     width: 2em;
     border: 2px solid black;
     border-radius: 50%;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.nav-container .icon-perfil:hover{
+    transform: scale(0.9);
+    transition: 0.2s;
 }
 
 /*--------------------------------------------------------------------------*/
 
-.nav-modal{
+#input-modal:checked ~ .nav-modal{
     display: flex;
+}
+
+.nav-modal{
+    display: none;
     flex-direction: column;
     position: absolute;
     top: calc(100% + 1em);

@@ -22,8 +22,13 @@
 
         <!-- Caso esteja logado, gerar as tags comentadas via PHP -->
         <p>Bem vindo, Shandel! </p>
-        <img src="" alt="" class="icon-perfil">
+        <label for="input-modal">
+            <img src="" alt="" class="icon-perfil">
+        </label>
     </div>
+
+    <input type="checkbox" id="input-modal" style="display: none;">
+
     <div class="nav-modal">
         <div class="nav-modal_profile">
             <h1>Shandel</h1>
@@ -39,7 +44,6 @@
         <hr>
         <div>
             <p>Tema</p>
-
         </div>
         <hr>
         <div class="nav-modal_links">
