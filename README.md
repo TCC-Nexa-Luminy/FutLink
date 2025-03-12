@@ -80,7 +80,7 @@ Após seguir os passos, clique em 'Clone' para finalizar
 
 ## 🔊 Forma de Trabalhar neste Repositório 
 ### - Verificar Atualizações (Fetch Origin)
-- Clique em 'Fetch origin' para verificar se houve atualizações no repositório.
+- Clique em 'Fetch origin' para verificar se houve atualizações no repositório remoto.
 - Caso sim, clique em 'Pull origin' para baixar as atualizações em sua máquina.
 
 ### - Versões do código (Branch)
