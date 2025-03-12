@@ -2,7 +2,7 @@
 
 <nav>
     <div class="nav-container">
-        <a href="../../public/index.php" class="logo-link">
+        <a href="http://localhost/futlink/public/" class="logo-link">
             <img src="../public/images/futlinkLogoBg.png" alt="">
             <h1>FutLink</h1>
         </a>
@@ -17,14 +17,25 @@
         <input type="text" name="" id="" class="input-search" placeholder="Pesquise por times">
     </div>
     <div class="nav-container">
-        <!-- <a href="">Log In</a>
-        <a href="">Log Up</a> -->
 
         <!-- Caso esteja logado, gerar as tags comentadas via PHP -->
-        <p>Bem vindo, Shandel! </p>
-        <label for="input-modal">
-            <img src="" alt="" class="icon-perfil">
-        </label>
+
+        <?php
+        @session_start();
+        if (!isset($_SESSION["logado"]) || $_SESSION["logado"] == true) {        //CASO ESTEJA LOGADO
+        ?>
+            <p>Bem vindo, Shandel! </p>
+            <label for="input-modal">
+                <img src="" alt="" class="icon-perfil">
+            </label>
+        <?php
+        } else {                                                                //CASO NÃO FEZ LOGIN
+        ?>
+            <a href="../views/login.php" class="btn-login">Log In</a>
+            <a href="../views/logup" class="btn-cadastro">Cadastre-se</a>
+        <?php
+        }
+        ?>
     </div>
 
     <input type="checkbox" id="input-modal" style="display: none;">
@@ -37,7 +48,7 @@
         <a href="" class="nav-modal_btn-profile">Atualizar perfil</a>
         <hr>
         <div class="nav-modal_links">
-            <a href="">Seus times</a>
+            <a href=""><i class="fa-solid fa-people-group"></i> Seus times</a>
             <a href="">Organizações</a>
             <a href="">Configurações</a>
         </div>

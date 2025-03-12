@@ -87,6 +87,29 @@ nav>div{
 }
 
 /*--------------------------------------------------------------------------*/
+.btn-login,
+.btn-cadastro{
+    padding: 0.3em 0.5em;
+    text-decoration: none;
+    border-radius: 0.3em;
+    font-weight: 600;
+}
+
+.btn-login{
+    color: var(--cor-purple-dark);
+    border: 2px solid var(--cor-purple-dark);
+}
+
+.btn-cadastro{
+    border: 2px solid black;
+    color: var(--cor-green-light);
+    background-color: var(--cor-purple-dark);
+}
+
+.btn-cadastro:hover{
+    filter: brightness(2);
+}
+
 .nav-container .icon-perfil{
     aspect-ratio: 1/1;
     width: 2em;
@@ -115,7 +138,7 @@ nav>div{
     right: 1em;
     padding: 0.5em;
     color: var(--cor-primaria);
-    background-color: #1e1d1d90;
+    background-color: var(--cor-purple-dark);
     backdrop-filter: blur(20px);
     border-radius: 1em;
     align-items: stretch;
