@@ -11,7 +11,7 @@ nav{
     background-color: var(--cor-primaria);
 }
 
-nav div{
+nav>div{
     display: flex;
     align-items: center;
     gap: 1em;
@@ -87,13 +87,79 @@ nav div{
 }
 
 /*--------------------------------------------------------------------------*/
-
-
 .nav-container .icon-perfil{
     aspect-ratio: 1/1;
     width: 2em;
     border: 2px solid black;
     border-radius: 50%;
+}
+
+/*--------------------------------------------------------------------------*/
+
+.nav-modal{
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: calc(100% + 1em);
+    right: 1em;
+    padding: 0.5em;
+    color: var(--cor-primaria);
+    background-color: #1e1d1d90;
+    backdrop-filter: blur(20px);
+    border-radius: 1em;
+    align-items: stretch;
+}
+
+.nav-modal_profile{
+    display: flex;
+    flex-direction: column;
+}
+
+.nav-modal_btn-profile{
+    text-decoration: none;
+    background-color: gray;
+    color: var(--cor-primaria);
+    padding: 0.5em;
+    border-radius: 0.5em;
+    text-align: center;
+
+}
+
+.nav-modal_links{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: stretch;
+}
+
+.nav-modal_links a{
+    text-decoration: none;
+    color: var(--cor-primaria);
+    padding: 0.3em;
+    border-radius: 0.4em;
+}
+.nav-modal_links a:hover{
+    color: var(--cor-green-light);
+    background-color: var(--cor-purple-dark);
+    transition: 0.2s;
+}
+
+.nav-modal_footer{
+    display: flex;
+    justify-content: center;
+    gap: 1em;
+}
+.nav-modal_footer a{
+    color: var(--cor-primaria);
+    text-decoration: none;
+    font-size: 0.7em;
+    opacity: 0.6;
+    transition: 0.2s;
+}
+
+.nav-modal_footer a:hover{
+    opacity: 1;
+    transition: 0.2s;
 }
 
 @media (min-width: 576px){      /*Dispositivos pequenos (SM)) - Smartphone tela grande - */

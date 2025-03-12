@@ -17,11 +17,42 @@
         <input type="text" name="" id="" class="input-search" placeholder="Pesquise por times">
     </div>
     <div class="nav-container">
-        <a href="">Log In</a>
-        <a href="">Log Up</a>
+        <!-- <a href="">Log In</a>
+        <a href="">Log Up</a> -->
 
         <!-- Caso esteja logado, gerar as tags comentadas via PHP -->
-        <!-- <p>Bem vindo, Shandel! </p>
-            <img src="" alt="" class="icon-perfil"> -->
+        <p>Bem vindo, Shandel! </p>
+        <img src="" alt="" class="icon-perfil">
+    </div>
+    <div class="nav-modal">
+        <div class="nav-modal_profile">
+            <h1>Shandel</h1>
+            <p>shandelvm16@gmail.com</p>
+        </div>
+        <a href="" class="nav-modal_btn-profile">Atualizar perfil</a>
+        <hr>
+        <div class="nav-modal_links">
+            <a href="">Seus times</a>
+            <a href="">Organizações</a>
+            <a href="">Configurações</a>
+        </div>
+        <hr>
+        <div>
+            <p>Tema</p>
+
+        </div>
+        <hr>
+        <div class="nav-modal_links">
+            <a href="">Planos</a>
+            <a href="">Histórico</a>
+            <a href="">Comunidade</a>
+            <a href="">Sair</a>
+        </div>
+        <hr>
+        <div class="nav-modal_footer">
+            <a href="">Privacidade</a>
+            <a href="">Termos</a>
+            <a href="">Copyright</a>
+        </div>
     </div>
 </nav>
