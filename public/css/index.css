@@ -9,15 +9,38 @@ body{
 }
 
 main{
-    display: flex;
-    flex-direction: column;
-    padding: 1em;
+    
 }
 
-main .slide-banner{
+.main-banner{
+    
+    border: 4px solid red;
     aspect-ratio: 16/9;
-    background-color: var(--cor-purple-dark);
-    border-radius: 1em;
+}
+
+
+@media (max-width: 575px){}      /*disposivos extra pequenos (XS) - Smartphone tela pequena - padrão no site*/
+
+@media (min-width: 576px){      /*Dispositivos pequenos (SM)) - Smartphone tela grande - */
+    
+}
+@media (min-width: 768px){      /*Dispositos médios (MD) - Tablets e Smartphones grandes -*/
+    .main-banner{
+        aspect-ratio: 16/7;
+    }
+    
+}
+@media (min-width: 992px){      /*Dispositivos grande (LG) - Desktops menores e laptops -*/
+    
+}
+@media (min-width: 1200px){     /*Dispositivos extra grande (XL) - Desktops grandes -*/
+    
+}
+@media (min-width: 1400px){     /*Dispositivos extra extra grande (XXL) - Monitores grandes e telas 4K - */
+    .main-banner{
+        aspect-ratio: 16/5;
+    }
+    
 }
 
 
