@@ -28,6 +28,25 @@ Uma breve descrição sobre o que o projeto faz e qual problema ele resolve.
 ![WampServer](https://img.shields.io/badge/Wampserver-800080?style=for-the-badge)
 ![phpmyadmin](https://img.shields.io/badge/PHPMyAdmin-939494?style=for-the-badge)
 
+
+## ⬇️ Instalação 
+Passo a passo para instalar e configurar o ambiente de desenvolvimento.
+
+### 1. Clone o repositório
+No GitHub Desktop, vá para 'Files' -> 'Clone repository' -> Selecione o repositório desejado
+### 2. Escolha o local de destino do projeto
+Após escolher o repositório, vá na parte 'Local path' e selecione o diretório dependendo do servidor instalado
+- Caso WampServer
+```
+C:\wamp64\wwww\FutLink
+```
+- Caso XAMPP
+```
+C:\xampp\htdocs\FutLink
+```
+### 3. Clone o repositório
+Após seguir os passos, clique em 'Clone' para finalizar
+
 ## 📁 Estrutura do Projeto 
 ```plaintext
 ├── FutLink/
@@ -61,26 +80,6 @@ Uma breve descrição sobre o que o projeto faz e qual problema ele resolve.
 │   └── README.md
 ```
 
-## ⬇️ Instalação 
-Passo a passo para instalar e configurar o ambiente de desenvolvimento.
-
-### 1. Clone o repositório
-No GitHub Desktop, vá para 'Files' -> 'Clone repository' -> Selecione o repositório desejado
-
-### 2. Escolha o local de destino do projeto
-Após escolher o repositório, vá na parte 'Local path' e selecione o diretório dependendo do servidor instalado
-
-- Caso WampServer
-```
-C:\wamp64\wwww\FutLink
-```
-- Caso XAMPP
-```
-C:\xampp\htdocs\FutLink
-```
-
-### 3. Clone o repositório
-Após seguir os passos, clique em 'Clone' para finalizar
 
 ## 🔊 Forma de Trabalhar neste Repositório 
 ### - Verificar Atualizações (Fetch Origin)
