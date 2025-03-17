@@ -43,6 +43,10 @@ Uma breve descrição sobre o que o projeto faz e qual problema ele resolve.
 |   |    └── connect.php
 |   |
 │   ├── database/                    //Pasta que contém os scripts SQL
+|   |    └── db_futlink
+|   |    |    |-- db_futlink-insert.sql        //script SQL que contém dados do db_futlink
+|   |    |    └── db_futlink-structure.sql     //script SQL que contém a estrutura do db_futlink
+|   |    └── arquivos...
 |   |
 │   ├── public/
 |   |    |-- css/                    //Arquivos CSS
