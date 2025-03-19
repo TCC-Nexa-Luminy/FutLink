@@ -29,13 +29,21 @@
     flex-direction: column;  
 }
 
-.main_content .form_cadastro{
-    display: flex;
-    flex-direction: column;
-}
 #form_cadastro{
     display: flex;
     flex-direction: column;
+    gap: 0.5em;
+}
+
+.form-label_direction{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1em;
+}
+.form-label{
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 10em;
 }
 
 /* ----------------------------------------------------------------------- */
@@ -90,6 +98,7 @@
     .main_banner .banner_rodape{
         display: flex;
     }
+    
 }
     
 @media (min-width: 1200px){     /*Dispositivos extra grande (XL) - Desktops grandes -*/
