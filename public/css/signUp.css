@@ -1,73 +1,72 @@
 @import url("root.css");
 
 .containerMain{
-    display: flex;
-    flex-direction: column-reverse;
+    display: grid;
+    grid-template-areas: 
+    "banner"
+    "conteudo";
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr;
     height: 100dvh;
-    font-size: var(--fonte-texto);
 }
 
-.containerMain .back_btn{
+.back_btn{
     position: absolute;
-    left: 0.5em;
     top: 0.5em;
-    font-size: 2.5em;
+    left: 0.5em;
+    font-size: 2em;
     color: var(--cor-purple-dark);
-    cursor: pointer;
-    transition: 0.5s;
-}
-.containerMain .back_btn:active{
-    transform: scale(0.9);
-    transition: 0.5s;
 }
 
+/* ----------------------------------------------------------------------- */
 
-.containerMain>section{
+.containerMain .main_content{
     display: flex;
-    flex: 1 1 0;
-}
-
-.containerMain section:first-child{
+    grid-area: conteudo;
     position: relative;
-    justify-content: center;
     align-items: center;
-}
-.containerMain section:last-child{
-    display: none;
-    background-color: var(--cor-purple-dark);
-    /* box-shadow: -3px 1px 5px black; */
+    justify-content: center;
+    flex-direction: column;  
 }
 
-
+.main_content .form_cadastro{
+    display: flex;
+    flex-direction: column;
+}
 #form_cadastro{
     display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: 0.5em;
-    border: 2px solid black;
-    padding: 2em 0.5em;
-    border-radius: 1em;
 }
 
-#form_cadastro .form_label{
+/* ----------------------------------------------------------------------- */
+
+.containerMain .main_banner{
     display: flex;
-    gap: 0.5em;
-
+    grid-area: banner;
+    flex-direction: column;
+    background-color: var(--cor-purple-dark);
+    color: var(--cor-primaria);
+    align-items: center;
+    justify-content: space-between;
+    text-align: center;
+    padding: 2em 4em;
+    gap: 1em;
+}
+.main_banner .banner_top{
+    display: flex;
+    align-items: center;
+}
+.main_banner .banner_top img{
+    aspect-ratio: 1/1;
+    height: 2em;
 }
 
-#form_cadastro .input_user{
-    all: unset;
-    border-bottom: 1px solid gray;
-    color: gray;
+.main_banner .banner_msg h1{
+    color: var(--cor-green-light);
 }
 
-#form_cadastro .input_user:focus{
-    color: var(--cor-purple-dark);
-    border-bottom: 1px solid black;
-}
-
-#form_cadastro .input_user::placeholder{
-    font-size: 0.9em;
+.main_banner .banner_rodape{
+    display: none;
 }
 
 @media (max-width: 575px){}      /*disposivos extra pequenos (XS) - Smartphone tela pequena - padrão no site*/
@@ -77,16 +76,22 @@
 }
 @media (min-width: 768px){      /*Dispositos médios (MD) - Tablets e Smartphones grandes -*/
     
-    
 }
 @media (min-width: 992px){      /*Dispositivos grande (LG) - Desktops menores e laptops -*/
     .containerMain{
-     flex-direction: row;
+        grid-template-areas: 
+        "conteudo banner";
+        grid-template-columns: 3fr 2fr;
+        grid-template-rows: 1fr;
     }
-    .containerMain section:last-child{
+    .containerMain .main_banner{
+        padding: 4em 3em;
+    }
+    .main_banner .banner_rodape{
         display: flex;
     }
 }
+    
 @media (min-width: 1200px){     /*Dispositivos extra grande (XL) - Desktops grandes -*/
     
 
