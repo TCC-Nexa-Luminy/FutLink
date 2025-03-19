@@ -19,7 +19,7 @@
 
 body{
     background-color: var(--cor-primaria);
-    font-size: 12px;
+    font-size: 14px;
     font-family: var(--fonte-div);
     transition: 0.5s;
 }
