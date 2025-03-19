@@ -20,18 +20,16 @@
             <h2>Informe seu e-mail para acessar <br> ou se cadastrar no Futlink.</h2>
             <form>
                 <input type="email" placeholder="Email" required>
+            </form>
+            <form>
+                <input type="Senha" placeholder="Senha" required>
+                <a href="">Esqueceu sua senha?</a>
                 <button type="submit" id="button-continue">Continuar</button>
             </form>
             <div class="separator">
                 <span>Ou escolha</span>
             </div>
 
-
-            <div class="g_id_signin"
-                data-type="standard"
-                data-size="large"
-                data-theme="outline">
-            </div>
 
 
             <button class="social-button google">
