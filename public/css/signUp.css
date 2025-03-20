@@ -24,17 +24,25 @@
     display: flex;
     grid-area: conteudo;
     position: relative;
-    justify-content: center;
-    padding: 7vw;
+    padding: 4em 7vw;
     flex-direction: column;  
+    overflow-y: auto;
 }
 
 #form_cadastro{
     display: flex;
     flex-direction: column;
+    gap: 0.7em;
+}
+.content-input{
+    display: flex;
+    flex-direction: column;
     gap: 0.5em;
-    border: 2px solid red;
-    
+}
+
+.content-input>h3{
+    opacity: 0.4;
+    font-size: 0.8em;
 }
 
 .form-label_direction{
@@ -46,7 +54,56 @@
     display: flex;
     flex-direction: column;
     flex: 1 1 17em;
+    gap: 0.3em;
 }
+.form-label>label{
+    font-weight: 700;
+    font-size: 0.9em;
+}
+.form-label input{
+    background-color: transparent;
+    border: 2px solid gray;
+    padding: 0.5em;
+    font-size: unset;
+    border-radius: 0.5em 0;
+}
+.form-label input:focus{
+    outline: 1px solid var(--cor-purple-light);
+    border: 2px solid var(--cor-purple-light);
+}
+
+.form-label_direction .form_back-btn, .form_submit{
+    font-size: unset;
+    padding: 0.6em;
+    border-radius: 0.4em;
+    cursor: pointer;
+    flex: 1 1 0;
+    text-align: center;
+}
+
+.form_back-btn{
+    text-decoration: none;
+    border: 2px solid var(--cor-purple-dark);
+    color: var(--cor-purple-dark);
+    transform: translateX(0);
+    transition: 0.2s;
+}
+
+.form_back-btn:hover>i{
+    transition: 0.2s;
+    transform: translateX(-0.3em);
+}
+
+.form_submit{
+    color: var(--cor-primaria);
+    background-color: var(--cor-purple-dark);
+    transition: 0.3s;
+}
+.form_submit:hover{
+    transition: 0.3s;
+    filter: brightness(1.5);
+}
+
 
 /* ----------------------------------------------------------------------- */
 
@@ -60,7 +117,7 @@
     justify-content: space-between;
     text-align: center;
     padding: 2em 4em;
-    gap: 1em;
+    gap: 2em;
 }
 .main_banner .banner_top{
     display: flex;
@@ -73,6 +130,7 @@
 
 .main_banner .banner_msg h1{
     color: var(--cor-green-light);
+    font-family: var(--fonte-div);
 }
 
 .main_banner .banner_rodape{

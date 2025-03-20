@@ -48,7 +48,6 @@
                 <article class="content-input">
                     <h3>Contato</h3>
                     <div class="form-label_direction">
-
                         <div class="form-label">
                             <label for="iemail">Email</label>
                             <input type="email" name="user_email" id="iemail" required placeholder="seuemail@email.com" autocomplete="off" class="input_user">
@@ -74,10 +73,11 @@
                         </div>
                     </div>
                 </article>
-
-
-
-                <input type="submit" value="Finalizar cadastro">
+                <hr>
+                <div class="form-label_direction">
+                    <a href="../../public/index.php" class="form_back-btn"><i class="fa-solid fa-arrow-left"></i> Voltar</a>
+                    <input type="submit" value="Finalizar cadastro" class="form_submit">
+                </div>
             </form>
         </section>
         <section class="main_banner">
