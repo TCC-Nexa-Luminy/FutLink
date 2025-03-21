@@ -8,23 +8,23 @@
             <form action="../controllers/signUp.act.php" method="post" id="form_cadastro">
                 <h1>Cadastro</h1>
                 <h2>Já tem uma conta? <a href="">Entre aqui</a></h2>
-                <label for="iprofile">
-                    <input type="file" name="user_photo" id="iprofile" style="display: none;">
-                    Foto de Perfil
+                <label for="iprofile" class="container_photo">
+                    <input type="file" name="user_photo" id="iprofile" style="display: none;" accept=".png, .jpg, .jpeg, .webp">
+                    <span class="placeholderSpan">Foto(1:3)</span>
+                    <img src="" alt="Foto de Perfil" id="iphoto" style="display: none;">
                 </label>
 
                 <hr>
                 <article class="content-input">
                     <h3>Informações pessoais</h3>
                     <div class="form-label_direction">
-
                         <div class="form-label">
                             <label for="inome">Nome</i></label>
                             <input type="text" name="user_nome" id="inome" required placeholder="Insira seu nome completo" autocomplete="off" class="input_user">
                         </div>
                         <div class="form-label">
                             <label for="idate">Data de Nascimento</i></label>
-                            <input type="date" name="user_data_nasc" id="idate" required class="input_user">
+                            <input type="date" name="user_data_nasc" id="idate" class="input_user">
                         </div>
                     </div>
 
@@ -50,7 +50,7 @@
                     <div class="form-label_direction">
                         <div class="form-label">
                             <label for="iemail">Email</label>
-                            <input type="email" name="user_email" id="iemail" required placeholder="seuemail@email.com" autocomplete="off" class="input_user">
+                            <input type="email" name="user_email" id="iemail" placeholder="seuemail@email.com" autocomplete="off" class="input_user">
                         </div>
                         <div class="form-label">
                             <label for="itel">Telefone</label>
@@ -65,11 +65,11 @@
                     <div class="form-label_direction">
                         <div class="form-label">
                             <label for="ipass">Senha</label>
-                            <input type="password" name="user_pass" id="ipass" required placeholder="Insira sua senha" autocomplete="off" class="input_user">
+                            <input type="password" name="user_pass" id="ipass" placeholder="Insira sua senha" autocomplete="off" class="input_user">
                         </div>
                         <div class="form-label">
                             <label for="ipass2">Confirme sua senha</i></label>
-                            <input type="password" name="user_pass2" id="ipass2" required placeholder="Confirme sua senha" autocomplete="off" class="input_user">
+                            <input type="password" name="user_pass2" id="ipass2" placeholder="Confirme sua senha" autocomplete="off" class="input_user">
                         </div>
                     </div>
                 </article>
@@ -95,6 +95,7 @@
         </section>
     </main>
     <script src="../../public/js/signUp.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/5.0.7/jquery.inputmask.min.js"></script>       <!--Biblioteca de mascara de inputs-->
 </body>
 
 </html>

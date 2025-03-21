@@ -24,6 +24,20 @@ body{
     transition: 0.5s;
 }
 
+
+.swat-message_popup{
+    color: var(--cor-primaria);
+    background-color: var(--cor-purple-dark);
+}
+
+.swat-message_popup span{
+    color: var(--cor-green-light);
+}
+
+.swat-message_timer{
+    background-color: var(--cor-green-light);
+}
+
 /* ESTRUTURA DE MEDIA SCREEN PADRÃO DE RESPONSIVIDADE */
 
 @media (max-width: 575px){}      /*disposivos extra pequenos (XS) - Smartphone tela pequena - padrão no site*/

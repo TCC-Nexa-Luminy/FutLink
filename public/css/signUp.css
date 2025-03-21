@@ -45,6 +45,24 @@
     font-size: 0.8em;
 }
 
+.container_photo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid black;
+    aspect-ratio: 1/1;
+    width: 5em;
+    border-radius: 1em 0;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.container_photo>img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
 .form-label_direction{
     display: flex;
     flex-wrap: wrap;
