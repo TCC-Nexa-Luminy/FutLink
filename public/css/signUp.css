@@ -24,7 +24,7 @@
     display: flex;
     grid-area: conteudo;
     position: relative;
-    padding: 4em 7vw;
+    padding: 4em 7vw 2em;
     flex-direction: column;  
     overflow-y: auto;
 }
@@ -45,16 +45,24 @@
     font-size: 0.8em;
 }
 
+.form-content-info{
+    display: flex;
+    align-items: center;
+    gap: 1em;
+}
+
 .container_photo{
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 2px solid black;
-    aspect-ratio: 1/1;
-    width: 5em;
+    border: 2px dashed black;
+    height: 100%;
+    min-height: 7em;
+    aspect-ratio: 1/1;  
     border-radius: 1em 0;
     cursor: pointer;
     overflow: hidden;
+    text-align: center;
 }
 
 .container_photo>img{
@@ -67,6 +75,7 @@
     display: flex;
     flex-wrap: wrap;
     gap: 1em;
+    width: 100%;
 }
 .form-label{
     display: flex;
@@ -134,8 +143,8 @@
     align-items: center;
     justify-content: space-between;
     text-align: center;
-    padding: 2em 4em;
-    gap: 2em;
+    padding: 2em 2em;
+    gap: 1.5em;
 }
 .main_banner .banner_top{
     display: flex;

@@ -19,7 +19,7 @@
 
 body{
     background-color: var(--cor-primaria);
-    font-size: 14px;
+    font-size: 13px;
     font-family: var(--fonte-div);
     transition: 0.5s;
 }
@@ -62,7 +62,6 @@ body{
     body{
         font-size: 20px;
     }
-
 }
 @media (min-width: 1400px){     /*Dispositivos extra extra grande (XXL) - Monitores grandes e telas 4K - */
     body{
