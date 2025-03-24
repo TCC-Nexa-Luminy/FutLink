@@ -1,0 +1,219 @@
+@import url("root.css");
+
+body {
+    font-family: Arial, sans-serif;
+    background-image: linear-gradient(
+        66deg,
+        #08db60,
+        #06b850, 
+        #03692e);
+}
+
+.painel-gradient {
+    font-size: var(--fonte-texto);
+    padding: 15px;
+    height: 25vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    text-align: center;
+}
+
+.container-topo {
+    display: flex;
+    justify-content: center;
+    justify-content: center;
+    align-items: center;
+    font-size: var(--fonte-texto);
+    padding: 15px;
+    height: 15vh;
+}
+
+.infos {
+    display: flex;
+    flex-direction: column; 
+    align-items: center; 
+}
+
+.infos img {
+    width: 130px;
+    height: 130px;
+    position: relative;
+    top: -70px; 
+    z-index: 1;
+    border: 3px solid  #08db60; 
+    border-radius: 50%; 
+}
+
+#imagemUsuario {
+    cursor: pointer;
+}
+
+.infos h2 {
+    font-weight: bold;
+    font-size: 25px;
+}
+
+.painel-gradient .back_btn {
+    position: absolute;
+    left: 15px;
+    top: 15px;
+    z-index: 2; 
+}
+
+.section-formulario{
+    background-color: #e6e3e3;
+    border-radius: 50px;
+}
+
+.container-perfil {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 800px; 
+    margin: 20px auto;
+    padding: 20px 0 100px 0;
+}
+
+.perfil-label {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: space-between;
+}
+
+.form_perfil {
+    width: 49%; 
+    display: flex;
+    flex-direction: column;
+}
+
+.form_perfil p {
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+
+.form_perfil label {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-bottom: 15px;
+}
+
+
+input[type="text"], 
+input[type="email"], 
+input[type="date"], 
+select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ffffff;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+input[type="submit"] {
+    width: 20%;
+    padding: 12px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px; 
+    text-align: center;
+}
+
+input[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+#button-editar {
+    margin: 20px auto; 
+    text-align: center;
+}
+
+#button-editar:hover {
+    background-color: #45a049; 
+}
+
+
+.modal {
+    display: none; 
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4); 
+    overflow: auto; 
+}
+
+
+.modal-conteudo {
+    background-color: #fff;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 600px;
+    text-align: center;
+}
+
+.fechar {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.fechar:hover,
+.fechar:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.botoes {
+    margin-top: 20px;
+}
+
+.botoes button {
+    padding: 10px 20px;
+    margin: 5px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.botoes button:hover {
+    background-color: #45a049;
+}
+
+
+
+
+@media (max-width: 768px) {
+    .container-perfil{
+        width: 95%;
+        margin: 10px;
+        input[type="submit"] {
+            text-align: center;
+        }
+    }
+    .form_perfil {
+        width: 100%;
+    }
+    #button-editar {
+        width: 60%; 
+    }
+
+
+}
