@@ -1,4 +1,8 @@
 :root{
+
+    --cor-principal-verde1: #06a348; /* verde principal */
+    --cor-secundaria-verde2: #03692e; /* verde escuro */
+    --font-principal: Arial, Helvetica, sans-serif;
     --cor-primaria: #EBECEE;
     --cor-secundaria: #1e1d1d;
     --cor-purple-light: #6c5fe6;
