@@ -1,0 +1,141 @@
+@import url(//.//public/css/root.css);
+
+body {
+    box-shadow: 100px;
+    background-color: #fff;
+    margin: 0; 
+}
+
+.navbar-container {
+    background-image: linear-gradient(
+        to bottom,  
+        #00200f,  
+        #045322,  
+        #0f8011   
+    );
+    height: 80vh;
+    padding: 20px;
+    color: white; 
+
+}
+
+.navbar img {
+    width: 55px;
+    height: 55px;
+}
+
+.navbar {
+    height: 75px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;  
+    background-color: #00200f;
+    position: fixed;  
+    top: 0;  
+    width: 100%;  
+    z-index: 1000;  
+    padding: 0 20px;
+    
+}
+
+.navbar .logo {
+    display: flex;
+    align-items: center;
+}
+
+.navbar ul.infos {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: 30px; 
+}
+
+.navbar ul.infos li {
+    position: relative;
+}
+
+.navbar ul.infos li a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 500;
+    transition: color 0.3s, transform 0.3s;
+}
+
+.navbar ul.infos li a:hover {
+    color: #08db60; 
+    transform: scale(1.1); 
+}
+
+.navbar .buttons {
+    display: flex;
+    gap: 15px; 
+    align-items: center;
+}
+
+.buttons a {
+    text-align: center;
+    height: 40px;
+    color: white;
+    text-decoration: none;
+    background-color: var(--cor-principal-verde1);
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-size: 16px;
+    font-weight: 600;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.navbar .buttons a:hover {
+    background-color: #06b850;
+    transform: scale(1.05); 
+}
+
+
+.navbar-container {
+    margin-top: 75px;
+}
+
+/* ESCRITAS UX */
+
+
+.h1-page{
+    margin-top: 150px;
+    margin-left: 200px;
+}
+
+.h2-page{
+    padding: 20px 0 0 0;
+    margin-left: 200px;
+    font-weight: 300; 
+    font-size: 24px; 
+    font-family: var(--font);
+}
+
+
+.button-se-cadastre button {
+    width: 20%;
+    padding: 12px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    text-align: center;
+    display: inline-flex;  
+    justify-content: center;  
+    align-items: center; 
+    border-radius: 25px;
+    margin-left: 200px;
+}
+
+.button-se-cadastre i {
+    font-size: 20px; 
+    color: white; 
+}
+
+.button-se-cadastre{
+    padding: 30px 0 0 0;
+}
+
