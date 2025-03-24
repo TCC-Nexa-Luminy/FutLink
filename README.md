@@ -13,7 +13,7 @@ Uma breve descrição sobre o que o projeto faz e qual problema ele resolve.
 
 ## 📜 Link para o Wireframe 
 - [Wireframe no Canva](https://www.canva.com/link-para-wireframe) (Indisponível)
-- [Wireframe no Figma](https://www.figma.com/files/team/1480258622877540985/all-projects)
+- [Wireframe no Figma](https://www.figma.com/team_invite/redeem/H3JK4LlmFJqc35eOC3tkah)
 
 ## 🖥️ Tecnologias Utilizadas 
 ![PHP](https://img.shields.io/badge/PHP-777BB4?style=for-the-badge&logo=php&logoColor=white)
