@@ -1,73 +1,166 @@
 @import url("root.css");
 
 .containerMain{
-    display: flex;
-    flex-direction: column-reverse;
+    display: grid;
+    grid-template-areas: 
+    "banner"
+    "conteudo";
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr;
     height: 100dvh;
-    font-size: var(--fonte-texto);
 }
 
-.containerMain .back_btn{
+.back_btn{
     position: absolute;
-    left: 0.5em;
     top: 0.5em;
-    font-size: 2.5em;
+    left: 0.5em;
+    font-size: 2em;
     color: var(--cor-purple-dark);
-    cursor: pointer;
-    transition: 0.5s;
-}
-.containerMain .back_btn:active{
-    transform: scale(0.9);
-    transition: 0.5s;
 }
 
+/* ----------------------------------------------------------------------- */
 
-.containerMain>section{
+.containerMain .main_content{
     display: flex;
-    flex: 1 1 0;
-}
-
-.containerMain section:first-child{
+    grid-area: conteudo;
     position: relative;
-    justify-content: center;
-    align-items: center;
+    padding: 4em 7vw 2em;
+    flex-direction: column;  
+    overflow-y: auto;
 }
-.containerMain section:last-child{
-    display: none;
-    background-color: var(--cor-purple-dark);
-    /* box-shadow: -3px 1px 5px black; */
-}
-
 
 #form_cadastro{
     display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: 0.5em;
-    border: 2px solid black;
-    padding: 2em 0.5em;
-    border-radius: 1em;
+    gap: 0.7em;
 }
-
-#form_cadastro .form_label{
+.content-input{
     display: flex;
+    flex-direction: column;
     gap: 0.5em;
-
 }
 
-#form_cadastro .input_user{
-    all: unset;
-    border-bottom: 1px solid gray;
-    color: gray;
+.content-input>h3{
+    opacity: 0.4;
+    font-size: 0.8em;
 }
 
-#form_cadastro .input_user:focus{
-    color: var(--cor-purple-dark);
-    border-bottom: 1px solid black;
+.form-content-info{
+    display: flex;
+    align-items: center;
+    gap: 1em;
 }
 
-#form_cadastro .input_user::placeholder{
+.container_photo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px dashed black;
+    aspect-ratio: 1/1;
+    height: 8em;
+    border-radius: 2em 0;
+    cursor: pointer;
+    overflow: hidden;
+    text-align: center;
+}
+
+.container_photo>img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.form-label_direction{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1em;
+    width: 100%;
+}
+.form-label{
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 17em;
+    gap: 0.3em;
+}
+.form-label>label{
+    font-weight: 700;
     font-size: 0.9em;
+}
+.form-label input{
+    background-color: transparent;
+    border: 2px solid gray;
+    padding: 0.5em;
+    font-size: unset;
+    border-radius: 0.5em 0;
+}
+.form-label input:focus{
+    outline: 1px solid var(--cor-purple-light);
+    border: 2px solid var(--cor-purple-light);
+}
+
+.form-label_direction .form_back-btn, .form_submit{
+    font-size: unset;
+    padding: 0.6em;
+    border-radius: 0.4em;
+    cursor: pointer;
+    flex: 1 1 0;
+    text-align: center;
+}
+
+.form_back-btn{
+    text-decoration: none;
+    border: 2px solid var(--cor-purple-dark);
+    color: var(--cor-purple-dark);
+    transform: translateX(0);
+    transition: 0.2s;
+}
+
+.form_back-btn:hover>i{
+    transition: 0.2s;
+    transform: translateX(-0.3em);
+}
+
+.form_submit{
+    color: var(--cor-primaria);
+    background-color: var(--cor-purple-dark);
+    transition: 0.3s;
+}
+.form_submit:hover{
+    transition: 0.3s;
+    filter: brightness(1.5);
+}
+
+
+/* ----------------------------------------------------------------------- */
+
+.containerMain .main_banner{
+    display: flex;
+    grid-area: banner;
+    flex-direction: column;
+    background-color: var(--cor-purple-dark);
+    color: var(--cor-primaria);
+    align-items: center;
+    justify-content: space-between;
+    text-align: center;
+    padding: 2em 2em;
+    gap: 1.5em;
+}
+.main_banner .banner_top{
+    display: flex;
+    align-items: center;
+}
+.main_banner .banner_top img{
+    aspect-ratio: 1/1;
+    height: 2em;
+}
+
+.main_banner .banner_msg h1{
+    color: var(--cor-green-light);
+    font-family: var(--fonte-div);
+}
+
+.main_banner .banner_rodape{
+    display: none;
 }
 
 @media (max-width: 575px){}      /*disposivos extra pequenos (XS) - Smartphone tela pequena - padrão no site*/
@@ -77,16 +170,23 @@
 }
 @media (min-width: 768px){      /*Dispositos médios (MD) - Tablets e Smartphones grandes -*/
     
-    
 }
 @media (min-width: 992px){      /*Dispositivos grande (LG) - Desktops menores e laptops -*/
     .containerMain{
-     flex-direction: row;
+        grid-template-areas: 
+        "conteudo banner";
+        grid-template-columns: 3fr 2fr;
+        grid-template-rows: 1fr;
     }
-    .containerMain section:last-child{
+    .containerMain .main_banner{
+        padding: 4em 3em;
+    }
+    .main_banner .banner_rodape{
         display: flex;
     }
+    
 }
+    
 @media (min-width: 1200px){     /*Dispositivos extra grande (XL) - Desktops grandes -*/
     
 

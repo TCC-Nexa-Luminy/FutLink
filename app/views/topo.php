@@ -19,5 +19,29 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>   <!--JQUERY-->
 
+    <!-- SWEET ALERT -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
+<script>
+    function sweet_message(msg){
+        tempo = msg.length / 6 * 750
+        Swal.fire({
+            position: "top-end",
+            title: "Título",
+            html: `${msg}`,
+            showConfirmButton: false,
+            timer: tempo,
+            backdrop: false,
+            timerProgressBar: true,
+            showCloseButton: true,
+            theme: "auto",
+            customClass: {
+                popup: 'swat-message_popup',
+                timerProgressBar: 'swat-message_timer'
+            },
+        })
+    }
+</script>

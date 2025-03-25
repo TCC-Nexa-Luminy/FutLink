@@ -23,9 +23,23 @@
 
 body{
     background-color: var(--cor-primaria);
-    font-size: 14px;
+    font-size: 13px;
     font-family: var(--fonte-div);
     transition: 0.5s;
+}
+
+
+.swat-message_popup{
+    color: var(--cor-primaria);
+    background-color: var(--cor-purple-dark);
+}
+
+.swat-message_popup span{
+    color: var(--cor-green-light);
+}
+
+.swat-message_timer{
+    background-color: var(--cor-green-light);
 }
 
 /* ESTRUTURA DE MEDIA SCREEN PADRÃO DE RESPONSIVIDADE */
@@ -52,7 +66,6 @@ body{
     body{
         font-size: 20px;
     }
-
 }
 @media (min-width: 1400px){     /*Dispositivos extra extra grande (XXL) - Monitores grandes e telas 4K - */
     body{
