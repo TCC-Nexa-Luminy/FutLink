@@ -6,7 +6,7 @@ $(document).ready(function () {
     if (filePhoto) {
       let imgUrl = URL.createObjectURL(filePhoto);
       img.attr("src", imgUrl);
-      img.attr("style", "display: block")
+      img.attr("style", "display: block");
 
       let spanPhoto = $(".placeholderSpan");
       spanPhoto.attr("style", "display: none")
@@ -23,7 +23,7 @@ $(document).ready(function () {
 
     if (senha != senha2) {
       e.preventDefault();
-      sweet_message("As <span><b>senhas</b></span>     não coincidem!");
+      sweet_message("As <span><b>senhas</b></span> não coincidem!");
     }
   });
 });
