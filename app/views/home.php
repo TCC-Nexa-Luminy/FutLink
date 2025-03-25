@@ -21,6 +21,10 @@
 
     <div class="navbar-container">
 
+        <div class="img-banner-phone">
+            <img src="../../public/images/banners/SlonganFutLink.png" alt="">
+        </div>
+
         <div class="h1-page">
             <h1>Sua chance de <br> brilhar no futebol <br> começa aqui!</h1>
         </div>
@@ -30,9 +34,11 @@
         </div>
         <div class="button-se-cadastre">
             <button type="submit">
-                Criar seu perfil <i class="fa-solid fa-angle-right"></i>
+                Criar seu perfil <i class=" fa-solid fa-angle-right"></i>
             </button>
         </div>
+
+
 
     </div>
 </body>
