@@ -21,7 +21,7 @@
         list($msg, $pagDestino) = inserirDados($conn, $nome, $email, $senha_hash, $data_nasc, $genero, $fotoDestino, $telefone);
     } else{
         $msg = "O email informado já esta em uso!";
-        $pagDestino = "signUp.php";
+        $pagDestino = "../views/signUp.php";
     }
 
     function verificarEmail($email, $connect)
@@ -60,13 +60,11 @@
         ('$nome', '$email', '$senha', '$data_nasc', '$genero', '$foto', '$telefone');";
 
         if (mysqli_query($connect, $query)) {
-            return ["Conta criada com sucesso", "signUp.php"];
+            return ["Conta criada com sucesso", "../views/login.php"];
         } else {
-            return ["Erro ao cadastrar usuário" . mysqli_error($connect), "signUp.php"];
+            return ["Erro ao cadastrar usuário" . mysqli_error($connect), "../views/signUp.php"];
         }
-    }
-
-    
+    }    
 
     $_SESSION['msg'] = $msg;
     header("location: $pagDestino");

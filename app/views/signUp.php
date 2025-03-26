@@ -8,9 +8,8 @@
             <form action="../controllers/signUp.act.php" method="post" id="form_cadastro" enctype="multipart/form-data">
                 <input type="file" name="user_photo" id="iprofile" style="display: none;" accept=".png, .jpg, .jpeg, .webp">
                 <h1>Cadastro</h1>
-                <h2>Já tem uma conta? <a href="">Entre aqui</a></h2>
+                <h2>Já tem uma conta? <a href="login.php">Entre aqui</a></h2>
                 <hr>
-
                 <article class="content-input">
                     <h3>Informações pessoais</h3>
                     <div class="form-content-info">
