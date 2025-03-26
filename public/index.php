@@ -7,7 +7,7 @@ include("../app/views/topo.php");
 
     <nav class="navbar">
         <div class="logo">
-            <a href="home.php">
+            <a href="index.php">
                 <img src="../public/images/futlinkLogoBg.png" alt="">
             </a>
         </div>
