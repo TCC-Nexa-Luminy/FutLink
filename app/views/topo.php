@@ -27,7 +27,7 @@
 </head>
 <script>
     function sweet_message(msg){
-        tempo = msg.length / 6 * 750
+        tempo = msg.length / 6 * 1000
         Swal.fire({
             position: "top-end",
             title: "Título",

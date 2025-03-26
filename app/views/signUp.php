@@ -1,7 +1,11 @@
-<?php include("topo.php"); ?>
+<?php
+@session_start();
+include("topo.php");
+?>
 <link rel="stylesheet" href="../../public/css/signUp.css">
 
 <body>
+    <?php include("message.php"); ?>
     <main class="containerMain">
         <section class="main_content">
             <a href="../../public/index.php" class="back_btn"><i class="fa-solid fa-circle-left"></i></a>
@@ -30,18 +34,29 @@
                     </div>
 
                     <fieldset>
-                        <legend><i class="fa-solid fa-venus-mars"></i> Gênero:</legend>
-                        <input type="radio" name="genero" id="imasc" value="masculino" checked>
-                        <label for="imasc">Masculino</label>
+                        <legend><i class="fa-solid fa-venus-mars"></i> Gênero </legend>
+                        <span>
+                            <input type="radio" name="genero" id="imasc" value="masculino" checked>
+                            <label for="imasc">Masculino</label>
 
-                        <input type="radio" name="genero" id="ifem" value="feminino">
-                        <label for="ifem">Feminino</label>
+                        </span>
+                        <span>
+                            <input type="radio" name="genero" id="ifem" value="feminino">
+                            <label for="ifem">Feminino</label>
 
-                        <input type="radio" name="genero" id="ioutro" value="outro">
-                        <label for="ioutro">Outro</label>
+                        </span>
+                        <span>
+                            <input type="radio" name="genero" id="ioutro" value="outro">
+                            <label for="ioutro">Outro</label>
 
-                        <input type="radio" name="genero" id="iprefiro" value="prefiro não dizer">
-                        <label for="iprefiro">Prefiro não dizer</label>
+                        </span>
+                        <span>
+                            <input type="radio" name="genero" id="iprefiro" value="prefiro não dizer">
+                            <label for="iprefiro">Prefiro não dizer</label>
+                        </span>
+
+
+
                     </fieldset>
                 </article>
 
@@ -65,7 +80,7 @@
                     <h3>Segurança</h3>
                     <div class="form-label_direction">
                         <div class="form-label">
-                            <label for="ipass">Senha</label>
+                            <label for="ipass">Crie uma senha</label>
                             <input type="password" name="user_pass" id="ipass" required placeholder="Insira sua senha" autocomplete="off" class="input_user">
                         </div>
                         <div class="form-label">

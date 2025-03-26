@@ -4,15 +4,14 @@
 
     require("../../config/connect.php");
     $email = $_POST['user_email'];
-
     $msg = "";
     $pagDestino = "";
 
     if (verificarEmail($email, $conn)) {
-        $nome = $_POST['user_nome'];
-        $data_nasc = $_POST["user_data_nasc"];
-        $genero = $_POST["genero"];
-        $telefone = $_POST["user_tel"];
+        $nome = filter_input(INPUT_POST, "user_nome", FILTER_SANITIZE_SPECIAL_CHARS);
+        $data_nasc = filter_input(INPUT_POST, "user_data_nasc", FILTER_SANITIZE_EMAIL);
+        $genero = filter_input(INPUT_POST, "genero", FILTER_SANITIZE_SPECIAL_CHARS);
+        $telefone = filter_input(INPUT_POST, "user_tel", FILTER_SANITIZE_SPECIAL_CHARS);
         $senha = $_POST["user_pass"];
         $senha_hash = password_hash($senha, PASSWORD_BCRYPT);
 
