@@ -7,12 +7,13 @@ body {
 }
 
 .navbar-container {
-    background-image: linear-gradient(
+    background-color: #06b850;
+    /* background-image: linear-gradient(
         to bottom,  
         #00200f,  
         #045322,  
         #0f8011   
-    );
+    ); */
     height: 85vh;
     padding: 20px;
     color: white; 
@@ -98,17 +99,26 @@ body {
 }
 
 
+
+
 .img-banner-phone img{
-    display: flex;
-    justify-content: flex-start;
-    width: 750px;
+    /* caso seja phone */
+    /* width: 750px;
     height: 750px;
     z-index: 1;
     float: right;
-    /* margin-top: 1000px; */
     text-align: center;
     margin-bottom: 10px;
-    margin-right: 85px;
+    margin-right: 85px; */
+
+    /* caso seja o mockup */
+    margin-top: 100px;
+    width: 90vh;
+    z-index: 1;
+    float: right;
+    text-align: center;
+    margin-bottom: 10px;
+    margin-right: 140px;
 
     
 }
@@ -133,7 +143,7 @@ body {
 .button-se-cadastre button {
     width: 20%;
     padding: 12px 20px;
-    background-color: #4CAF50;
+    background-color: #00200f;
     color: white;
     border: none;
     cursor: pointer;
@@ -153,6 +163,112 @@ body {
 
 .button-se-cadastre{
     padding: 30px 0 0 0;
+}
+
+/* arrumar */
+.button-se-cadastre a:hover {
+    background-color: #06b850;
+    transform: scale(1.05); 
+}
+
+/* .box-two{
+    background-color: #fff;
+    height: 100vh;
+} */
+
+/* comecando a box three */
+
+.box-three{
+    /* caso seja branco */
+    background-color: #fff; 
+
+    /* caso seja verde  */
+    /* background-color: #06b850; */
+
+    height: 100vh;
+    align-items: center;
+}
+
+.cards-infos{
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    flex-direction: column; 
+    margin-left: 180px;
+    padding: 100px 0 0 0;
+}
+
+.cards-infos h1,
+.cards-infos p{
+    align-self: flex-start; 
+    margin: 0; 
+    /* color: #fff; */
+}
+
+.cards-infos h1{
+    font-size: 55px;
+    font-weight: bold;
+    font-family: var(--fonte-ModernaProfissional);
+}
+
+.cards-infos p{
+    font-size: 25px;
+    font-family: var(--fonte-texto2);
+    line-height: 1.6;
+    margin-top: 15px;
+}
+
+.cards-container{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1px;
+    padding: 10px;
+    max-width: 1200px;
+    margin: 0 auto;
+    margin-top: 55px;
+}
+
+.cards{
+    height: 94%;
+    width: 85%;
+    background-color: #fff;
+    border-radius: 25px;
+    padding: 12px;
+    display: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+    justify-content: flex-start;
+    box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
+} 
+
+.written-cards{
+    /* margin-top: 10px; */
+    padding: 25px;
+    padding-right: 11px;
+}
+
+.title-card{
+    margin-bottom: 10px;
+    font-family: var(--font-);
+    font-size: 20px;
+    font-family: var(--fonte-ModernaProfissional);
+    line-height: 1.2;
+    flex-grow: 0;
+}
+
+.card-text{
+    font-size: 14px;
+    line-height: 1.6;
+    font-family: var(--fonte-texto2);
+    margin-top: 0;
+    flex-grow: 0;
+}
+
+.cards-container .cards .fa-solid{
+    font-size: 45px;
+    min-width: 40px;
+    margin-top: 10px;
+    margin-left: 20px;
 }
 
 
