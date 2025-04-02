@@ -101,7 +101,7 @@ body {
 
 
 
-.img-banner-phone img{
+.img-banner img{
     /* caso seja phone */
     /* width: 750px;
     height: 750px;
@@ -119,8 +119,6 @@ body {
     text-align: center;
     margin-bottom: 10px;
     margin-right: 140px;
-
-    
 }
 
 /* ESCRITAS UX */
@@ -171,21 +169,55 @@ body {
     transform: scale(1.05); 
 }
 
-/* .box-two{
+/* comecando box two */
+
+.box-two{
     background-color: #fff;
-    height: 100vh;
-} */
+    height: 110vh;
+}
+
+.box-two .img-banner-phone img{
+    /* caso seja phone */
+    /* width: 750px;
+    height: 750px;
+    z-index: 1;
+    float: left;
+    text-align: center;
+    margin-bottom: 10px;
+    margin-top: 25px;
+    margin-left: 85px; */
+
+    /* caso seja ao iphone com fundo */
+    width: 800px;
+    height: 800px;
+    z-index: 1;
+    float: left;
+    text-align: center;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /* comecando a box three */
 
 .box-three{
     /* caso seja branco */
-    background-color: #fff; 
+    /* background-color: #fff;  */
 
     /* caso seja verde  */
-    /* background-color: #06b850; */
+    background-color: #06b850;
 
-    height: 100vh;
+    height: 90vh;
     align-items: center;
 }
 
@@ -202,7 +234,7 @@ body {
 .cards-infos p{
     align-self: flex-start; 
     margin: 0; 
-    /* color: #fff; */
+    color: #fff;
 }
 
 .cards-infos h1{

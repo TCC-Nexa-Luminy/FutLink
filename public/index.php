@@ -20,7 +20,7 @@
     </nav>
 
     <div class="navbar-container">
-        <div class="img-banner-phone">
+        <div class="img-banner">
             <img src="./images/banners/BannerDeviceMockup.png" alt="">
         </div>
         <div class="h1-page">
@@ -38,11 +38,13 @@
     </div>
 
     <div class="box-two">
-
+        <div class="img-banner-phone">
+                <img src="./images/banners/foto-banner-celular-fundo2.png" alt="">
+            </div>
     </div>
 
     <div class="box-three">
-        <div class="cards-infos">
+    <div class="cards-infos">
             <h1>Transforme sua jornada esportiva</h1>
             <p>Conecte-se com oportunidades, mostre seu talento e conquiste seu espaço no mundo dos esportes.</p>
         </div>
