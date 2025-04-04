@@ -14,8 +14,8 @@
             <li><a href="">Contato</a></li>
         </ul>
         <div class="buttons">
-            <a href="">Login <i class="fa-solid fa-angle-down"></i></a>
-            <a href="">Cadastrar <i class="fa-solid fa-angle-down"></i></a>
+            <a href="" id="buttonlogin">Login <i class="fa-solid fa-angle-down"></i></a>
+            <a href="" id="buttoncadastrar">Cadastrar <i class="fa-solid fa-angle-down"></i></a>
         </div>
     </nav>
 
@@ -32,19 +32,49 @@
         </div>
         <div class="button-se-cadastre">
             <button type="submit">
-                Criar seu perfil <i class=" fa-solid fa-angle-right"></i>
+            <i class="fa-solid fa-user"></i> Criar seu perfil <i class=" fa-solid fa-angle-right"></i>
             </button>
         </div>
     </div>
 
     <div class="box-two">
         <div class="img-banner-phone">
-                <img src="./images/banners/foto-banner-celular-fundo2.png" alt="">
-            </div>
+            <img src="./images/banners/foto-banner-celular-fundo2.png" alt="">
+        </div>
+        <div class="banner-phone-text">
+            <h1>Somos a FutLink,<br> seu talento no <br> caminho certo.</h1>
+            <ul>
+                <li>
+                    Somos uma ponte entre atletas e oportunidades reais.
+                </li>
+                <li>
+                    Somos pessoas que acreditam no poder do esporte.
+                </li>
+                <li>
+                    Somos uma rede de conexões, sem barreiras ou burocracia.
+                </li>
+                <li>
+                    Somos a chance de visibilidade para quem vem da quebrada ou do interior.
+                </li>
+                <li>
+                    Somos uma plataforma feita exclusivamente para o futebol brasileiro.
+                </li>
+                <li>
+                    Somos acesso fácil, rápido e direto ao seu futuro no esporte.
+                </li>
+            </ul>
+
+            <button id="buttonbannerphone">
+                Saiba Mais <i class="fa-solid fa-angle-right"></i>
+            </button>
+
+        </div>
+
+
     </div>
 
     <div class="box-three">
-    <div class="cards-infos">
+        <div class="cards-infos">
             <h1>Transforme sua jornada esportiva</h1>
             <p>Conecte-se com oportunidades, mostre seu talento e conquiste seu espaço no mundo dos esportes.</p>
         </div>
