@@ -1,5 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap');
 :root{
-
     --cor-principal-verde1: #06a348; /* verde principal */
     --cor-secundaria-verde2: #03692e; /* verde escuro */
     --font-principal: Arial, Helvetica, sans-serif;
@@ -10,9 +10,13 @@
     --cor-green-light: #16db65;
     --cor-green-dark: #0d2818;
 
+
     --fonte-texto: "Roboto", sans-serif;
+    --fonte-texto2: "Arial", sans-serif;
     --fonte-titulo: "Bebas Neue", sans-serif;
     --fonte-div: "Raleway", sans-serif;
+    --fonte-titulo-moderna: 'Montserrat', sans-serif;
+    --fonte-apagada-clean: 'Poppins', sans-serif;
 }
 
 *{
