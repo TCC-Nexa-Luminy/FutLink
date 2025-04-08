@@ -14,8 +14,8 @@
             <li><a href="">Contato</a></li>
         </ul>
         <div class="buttons">
-            <a href="" id="buttonlogin">Login <i class="fa-solid fa-angle-down"></i></a>
-            <a href="" id="buttoncadastrar">Cadastrar <i class="fa-solid fa-angle-down"></i></a>
+            <a href="../app/views/login.php" id="buttonlogin">Login <i class="fa-solid fa-angle-down"></i></a>
+            <a href="../app/views/signUp.php" id="buttoncadastrar">Cadastrar <i class="fa-solid fa-angle-down"></i></a>
         </div>
     </nav>
 
