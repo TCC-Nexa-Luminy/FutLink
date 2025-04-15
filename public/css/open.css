@@ -1,0 +1,110 @@
+@import url(root.css);
+
+.navbar-left{
+    display: flex;
+    background-color: var(--cor-principal-verde1);
+    position: fixed;
+    flex-direction: column;
+    width: 30vw;  
+    min-width: 200px; 
+    box-sizing: border-box;
+    padding: 1rem;
+    height: 100vh;
+
+}
+
+.navbar-left ul.icons-bar li{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.navbar-left ul.icons-bar{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 2rem;
+    list-style: none;
+    gap: 1rem;
+    flex-wrap: nowrap;
+}
+
+.navbar-left ul.icons-bar a{
+    display: inline-flex; 
+    align-items: center; 
+    margin-left: 12rem;
+    font-family: var(--fonte-apagada-clean);
+    color: #fff;
+    text-decoration: none;
+    width: fit-content;
+    padding: 0.5rem;
+    font-size: 1.5rem;
+    border-radius: 2rem;
+    justify-content: center;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.navbar-left ul.icons-bar i{
+    width: 2.5rem;
+    font-size: 1.3rem;
+}
+
+.navbar-left ul.icons-bar li a:hover {
+    background-color: rgba(255, 255, 255, 0.07);
+
+    color: #fff; 
+}
+
+.button-container {
+    display: flex;
+    justify-content: flex-start;
+    padding-left: 12rem; 
+}
+
+#button-poster {
+    font-size: 1.5rem;
+    padding: 0.5rem 5rem;
+    background-color: #fff;
+    font-family: var(--fonte-titulo-moderna);
+    color: var(--cor-principal-verde1);
+    border: none;
+    border-radius: 2rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+#button-poster:hover {
+    background-color: rgba(3, 71, 9, 0.281);
+    color: #fff;
+}
+
+@media (max-width :768px){
+    .navbar-left {
+        width: 6rem;
+        padding: 1rem 0;
+    }
+
+    .navbar-left ul.icons-bar a {
+        font-size: 0;
+        padding: 0;
+        margin-left: 0;
+    }
+
+    .navbar-left ul.icons-bar i {
+        font-size: 1.6rem;
+        margin: 0 auto;
+        width: 100%;
+        text-align: center;
+    }
+
+    .navbar-left ul.icons-bar li {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 900px) {
+    .nav-text {
+        display: none;
+    }
+}
+
