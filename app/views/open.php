@@ -59,6 +59,12 @@
                     <button id="button-poster"><span class="nav-text">Postar</span></button>
                 </div>
             </li>
+
+            <li>
+                <a href="">
+                    <i class="fa-solid fa-pen-to-square" id="buttonWrite" style="color:#fff"></i>
+                </a>
+            </li>
         </ul>
     </nav>
 </body>

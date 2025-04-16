@@ -5,7 +5,7 @@
     background-color: var(--cor-principal-verde1);
     position: fixed;
     flex-direction: column;
-    width: 30vw;  
+    width: 25vw;  
     min-width: 200px; 
     box-sizing: border-box;
     padding: 1rem;
@@ -32,7 +32,7 @@
 .navbar-left ul.icons-bar a{
     display: inline-flex; 
     align-items: center; 
-    margin-left: 12rem;
+    margin-left: 6.5rem;
     font-family: var(--fonte-apagada-clean);
     color: #fff;
     text-decoration: none;
@@ -51,14 +51,13 @@
 
 .navbar-left ul.icons-bar li a:hover {
     background-color: rgba(255, 255, 255, 0.07);
-
     color: #fff; 
 }
 
 .button-container {
     display: flex;
     justify-content: flex-start;
-    padding-left: 12rem; 
+    padding-left: 6.5rem; 
 }
 
 #button-poster {
@@ -78,33 +77,171 @@
     color: #fff;
 }
 
-@media (max-width :768px){
+#buttonWrite{
+    display: none;
+}
+
+
+@media (min-width: 200px) and (max-width: 500px) {
+    #button-poster {
+        display: none;
+    }
+
+    #buttonWrite{
+        display: flex;
+    }
+
     .navbar-left {
-        width: 6rem;
-        padding: 1rem 0;
+        width: 60px !important; 
+        min-width: 0;           
+        padding: 1rem 0.5rem;    
     }
 
-    .navbar-left ul.icons-bar a {
-        font-size: 0;
+    .navbar-left ul.icons-bar {
         padding: 0;
-        margin-left: 0;
-    }
-
-    .navbar-left ul.icons-bar i {
-        font-size: 1.6rem;
-        margin: 0 auto;
+        gap: 1rem;
+        align-items: center;
         width: 100%;
-        text-align: center;
     }
 
     .navbar-left ul.icons-bar li {
         justify-content: center;
+        width: 100%;
     }
-}
 
-@media (max-width: 900px) {
+    .navbar-left ul.icons-bar a {
+        width: auto;
+        margin-left: 0;
+        padding: 0.3rem;
+        font-size: 0;
+        border-radius: 0;
+    }
+
     .nav-text {
         display: none;
     }
+
+    .navbar-left ul.icons-bar i {
+        font-size: 1.6rem;
+        margin: 1 auto;
+        width: 100%;
+        text-align: center;
+    }
+
+    .button-container {
+        display: none;
+    }
+
+    /* MENU RESPONSIVO ^^^^^^^^^^^^ */
+}
+
+@media (min-width: 500px) and (max-width: 1024px) {
+    #button-poster {
+        display: none;
+    }
+
+    #buttonWrite{
+        display: flex;
+    }
+
+    .navbar-left {
+        width: 85px !important; 
+        min-width: 0;           
+        padding: 1rem 0.5rem;    
+    }
+
+    .navbar-left ul.icons-bar {
+        padding: 0;
+        gap: 1rem;
+        align-items: center;
+        width: 100%;
+    }
+
+    .navbar-left ul.icons-bar li {
+        justify-content: center;
+        width: 100%;
+    }
+
+    .navbar-left ul.icons-bar a {
+        width: auto;
+        margin-left: 0;
+        padding: 0.5rem;
+        font-size: 0;
+        border-radius: 0;
+    }
+
+    .nav-text {
+        display: none;
+    }
+
+    .navbar-left ul.icons-bar i {
+        font-size: 1.6rem;
+        margin: 1 auto;
+        width: 100%;
+        text-align: center;
+    }
+
+    .button-container {
+        display: none;
+    }
+
+    /* MENU RESPONSIVO ^^^^^^^^^^^^ */
+
+}
+
+
+
+
+@media (min-width: 1024px) and (max-width: 1600px) {
+    #buttonWrite{
+        display: flex;
+    }
+
+    #button-poster {
+        display: none;
+    }
+
+    .navbar-left {
+        width: 150px !important; 
+        min-width: 0;            
+        padding: 1rem 0.5rem;   
+    }
+
+    .navbar-left ul.icons-bar {
+        padding: 0;
+        gap: 1rem;
+        align-items: center;
+        width: 100%;
+    }
+
+    .navbar-left ul.icons-bar li {
+        justify-content: center;
+        width: 100%;
+    }
+
+    .navbar-left ul.icons-bar a {
+        width: auto;
+        margin-left: 0;
+        padding: 0.5rem;
+        font-size: 0;
+    }
+
+    .nav-text {
+        display: none;
+    }
+
+    .navbar-left ul.icons-bar i {
+        font-size: 2rem;
+        margin: 1 auto;
+        width: 100%;
+        text-align: center;
+    }
+
+    .button-container {
+        display: none;
+    }
+
+    /* MENU RESPONSIVO ^^^^^^^^^^^^ */
+
 }
 
