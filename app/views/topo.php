@@ -27,11 +27,12 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <script>
+    //CONFIGURAÇÃO DO POP UP DE MENSAGEM
     function sweet_message(msg){
         tempo = msg.length / 6 * 1000
         Swal.fire({
             position: "top-end",
-            title: "Título",
+            title: "Mensagem",
             html: `${msg}`,
             showConfirmButton: false,
             timer: tempo,
