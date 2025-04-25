@@ -7,10 +7,6 @@
     margin-left: var(--largura-menu);
 }
 
-.painel h1, .painel p{
-
-}
-
 .painel h1{
     font-size: 2.5rem;
     font-family: var(--fonte-titulo-moderna);
