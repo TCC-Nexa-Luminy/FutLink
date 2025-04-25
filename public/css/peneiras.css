@@ -1,0 +1,69 @@
+
+.painel{
+    width: 100vw;
+    background: #012d3a;
+    padding: 2rem;
+    overflow-y: auto;
+    margin-left: var(--largura-menu);
+}
+
+.painel h1, .painel p{
+
+}
+
+.painel h1{
+    font-size: 2.5rem;
+    font-family: var(--fonte-titulo-moderna);
+    color: var(--cor-principal-verde1);
+}
+
+.painel p{
+    color: #fff;
+    font-size: 1.5rem;
+    font-family: var(--fonte-texto);
+}
+
+.barra-pesquisa{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 500px;
+    margin: 0;
+}
+
+.campo-pesquisa, .btn-pesquisar{
+    margin-top: 1rem;
+}
+
+.campo-pesquisa{
+    font-family: var(--fonte-texto);
+    width: 80%;
+    padding: 0.5rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 25px;
+    outline: none;
+}
+
+.campo-pesquisa:focus {
+    border-color: #4CAF50;
+    box-shadow: 0 0 5px rgba(0, 150, 0, 0.5);
+}
+
+.btn-pesquisar{
+    padding: 0.5rem;
+    background-color:  #4CAF50;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-pesquisar:hover {
+    background-color: #45a049;
+}
+
+.btn-pesquisar i {
+    color: white;
+    font-size: 1.2rem;
+}
