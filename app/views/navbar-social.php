@@ -1,7 +1,7 @@
 <?php include("topo.php") ?>
 
 <body>
-    <link rel="stylesheet" href="../../public/css/open.css">
+    <link rel="stylesheet" href="../../public/css/navbar-social.css">
     <nav class="navbar-left">
         <ul class="icons-bar">
             <li>
