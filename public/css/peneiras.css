@@ -1,10 +1,14 @@
 
+body{
+    display: flex;
+    flex-direction: column;
+}
+
 .painel{
     width: 100vw;
     background: #012d3a;
     padding: 2rem;
     overflow-y: auto;
-    margin-left: var(--largura-menu);
 }
 
 .painel h1{
@@ -63,3 +67,67 @@
     color: white;
     font-size: 1.2rem;
 }
+
+
+
+.painel-box{
+    width: 100vw;
+    height: 100vw;
+    background-color: #4CAF50;
+}
+
+.list-box{
+    gap: 5rem;
+    margin-top: 5rem;
+    margin-left: 10rem;
+    display: flex;
+    flex-direction: column; 
+}
+
+.container-box{
+    display: flex;
+    flex-direction: row; 
+    width: 50rem;
+    height: 30rem;
+    border-radius: 10px;
+    background-color: aqua;
+}
+
+.infos{
+    max-width: 50vw;
+}
+
+.textos{
+    text-align: center;
+}
+
+.button-box{
+    align-items: flex-start;
+}
+
+#button-box{
+    text-decoration: none;
+    font-size: 1.5rem;
+    padding: 0.5rem 1.5rem;
+    background-color: #fff;
+    font-family: var(--fonte-titulo-moderna);
+    color: var(--cor-principal-verde1);
+    border: none;
+    border-radius: 2rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.container-box img{
+    margin: 2rem;
+    width: 20rem;
+    height: 15rem;
+}
+
+.container-box h1, .container-box p{
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem;
+    text-align: center;
+}
+
