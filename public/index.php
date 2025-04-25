@@ -5,7 +5,7 @@
     <nav class="navbar">
         <div class="logo">
             <a href="home.php">
-                <img src="./images/futlinkLogoBg.png" alt="">
+                <img src="./images/logos/logo-fl-branco-solido.png" alt="">
             </a>
         </div>
         <ul class="infos">
