@@ -1,7 +1,22 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
 body{
     display: flex;
     flex-direction: column;
+    overflow-x: hidden;
+}
+
+.container-site {
+    display: grid;
+    grid-template-columns: 25vw 1fr;
+    min-height: 100vh;
+    overflow-x: hidden;
+    width: 100%;
+    /* margin-left: 25vw; */
 }
 
 .painel{
@@ -9,6 +24,7 @@ body{
     background: #012d3a;
     padding: 2rem;
     overflow-y: auto;
+    
 }
 
 .painel h1{
@@ -78,34 +94,85 @@ body{
 
 .list-box{
     gap: 5rem;
-    margin-top: 5rem;
     margin-left: 10rem;
     display: flex;
     flex-direction: column; 
+    height: 100vw;
 }
 
-.container-box{
+.container-box {
+    margin-top: 5rem;
     display: flex;
-    flex-direction: row; 
+    flex-direction: row;
     width: 50rem;
-    height: 30rem;
+    height: auto;
     border-radius: 10px;
-    background-color: aqua;
+    background-color: #012d3a;
+    padding: 1rem;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-.infos{
-    max-width: 50vw;
+.img-box {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.textos{
-    text-align: center;
+.img-box img {
+    width: 20rem;
+    height: auto;
+    border-radius: 10px;
 }
 
-.button-box{
-    align-items: flex-start;
+.textos {
+    flex: 2;
+    padding: 1rem;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
-#button-box{
+h1 {
+    font-size: 2rem;
+    font-family: var(--fonte-titulo-moderna);
+    color: #FFF;
+    margin-bottom: 1rem;
+}
+
+p {
+    font-size: 1.2rem;
+    color: #FFF;
+    margin-bottom: 1rem;
+}
+
+.event-details {
+    margin-top: 1rem; 
+    margin-left: 0;
+    text-align: left;
+    margin-bottom: 1rem;
+}
+
+.event-details ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+}
+
+.event-details li {
+    font-size: 1rem;
+    color: #FFF;
+    margin-bottom: 0.5rem;
+}
+
+.button-box {
+    display: flex;
+    justify-content: flex-start;
+}
+
+#button-box {
     text-decoration: none;
     font-size: 1.5rem;
     padding: 0.5rem 1.5rem;
@@ -116,18 +183,60 @@ body{
     border-radius: 2rem;
     cursor: pointer;
     transition: background-color 0.3s ease, color 0.3s ease;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
 }
 
-.container-box img{
-    margin: 2rem;
-    width: 20rem;
-    height: 15rem;
+#button-box:hover {
+    background-color: var(--cor-principal-verde1);
+    color: #fff;
+    transform: translateY(-4px); /* Eleva o botão ao passar o mouse */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Aumenta a sombra */
 }
 
-.container-box h1, .container-box p{
-    display: flex;
-    flex-direction: column;
-    padding: 1.5rem;
-    text-align: center;
+#button-box:active {
+    transform: translateY(2px); /* Efeito de pressionamento */
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); /* Sombra reduzida */
 }
 
+
+@media (min-width: 200px) and (max-width: 500px){
+
+    .container-box{
+        width: 15rem;
+    }
+
+    body{
+        display: flex;
+        flex-direction: column;
+        overflow-x: hidden;
+    }
+
+    .container-site {
+        /* margin-left: 60px; */
+    }
+}
+
+
+@media (min-width: 500px) and (max-width: 1024px){
+    body{
+        display: flex;
+        flex-direction: column;
+        overflow-x: hidden;
+    }
+
+    .container-site {
+        /* margin-left: 85px; */
+    }
+}
+
+@media (min-width: 1024px) and (max-width: 1600px){
+    body{
+        display: flex;
+        flex-direction: column;
+        overflow-x: hidden;
+    }
+
+    .container-site {
+        /* margin-left: 150px; */
+    }
+}

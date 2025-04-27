@@ -1,17 +1,15 @@
 @import url(root.css);
 
-
 .navbar-left{
     display: flex;
     flex-direction: column;
     align-items: center;
     background-color: var(--cor-principal-verde1);
-    position: fixed;
     width: 25vw;  
-    min-width: 200px; 
+    height: 100%;
     box-sizing: border-box;
     padding: 1rem;
-    height: 100vh;
+    position: fixed;
 }
 
 .navbar-left ul.icons-bar li{
@@ -93,6 +91,7 @@
     }
 
     .navbar-left {
+        position: fixed;
         width: 60px !important; 
         min-width: 0;           
         padding: 1rem 0.5rem;    
@@ -137,6 +136,7 @@
 }
 
 @media (min-width: 500px) and (max-width: 1024px) {
+
     #button-poster {
         display: none;
     }
@@ -146,6 +146,7 @@
     }
 
     .navbar-left {
+        position: fixed;
         width: 85px !important; 
         min-width: 0;           
         padding: 1rem 0.5rem;    
@@ -203,6 +204,7 @@
     }
 
     .navbar-left {
+        position: fixed;
         width: 150px !important; 
         min-width: 0;            
         padding: 1rem 0.5rem;   
