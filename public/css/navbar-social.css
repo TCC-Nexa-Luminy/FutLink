@@ -9,7 +9,6 @@
     height: 100%;
     box-sizing: border-box;
     padding: 1rem;
-    position: fixed;
 }
 
 .navbar-left ul.icons-bar li{
@@ -31,7 +30,6 @@
 .navbar-left ul.icons-bar a{
     display: inline-flex; 
     align-items: center; 
-    margin-left: 6.5rem;
     font-family: var(--fonte-apagada-clean);
     color: #fff;
     text-decoration: none;
@@ -56,7 +54,6 @@
 .button-container {
     display: flex;
     justify-content: flex-start;
-    padding-left: 6.5rem; 
 }
 
 #button-poster {
@@ -91,7 +88,7 @@
     }
 
     .navbar-left {
-        position: fixed;
+    
         width: 60px !important; 
         min-width: 0;           
         padding: 1rem 0.5rem;    
@@ -146,7 +143,6 @@
     }
 
     .navbar-left {
-        position: fixed;
         width: 85px !important; 
         min-width: 0;           
         padding: 1rem 0.5rem;    
@@ -204,7 +200,6 @@
     }
 
     .navbar-left {
-        position: fixed;
         width: 150px !important; 
         min-width: 0;            
         padding: 1rem 0.5rem;   

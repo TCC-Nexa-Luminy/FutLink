@@ -1,4 +1,3 @@
-<?php include("topo.php") ?>
 <link rel="stylesheet" href="../../public/css/navbar-social.css">
 <nav class="navbar-left">
     <ul class="icons-bar">

@@ -6,25 +6,21 @@
 
 body{
     display: flex;
-    flex-direction: column;
-    overflow-x: hidden;
+    height: 100dvh;
 }
 
 .container-site {
-    display: grid;
-    grid-template-columns: 25vw 1fr;
+    display: flex;
+    flex-direction: column;
     min-height: 100vh;
-    overflow-x: hidden;
     width: 100%;
-    /* margin-left: 25vw; */
+    overflow-y: auto;
 }
 
 .painel{
-    width: 100vw;
     background: #012d3a;
     padding: 2rem;
     overflow-y: auto;
-    
 }
 
 .painel h1{
@@ -87,18 +83,17 @@ body{
 
 
 .painel-box{
-    width: 100vw;
-    height: 100vw;
+    display: flex;
+    gap: 5em;
+    padding: 1em;
     background-color: #4CAF50;
 }
 
-.list-box{
-    gap: 5rem;
-    margin-left: 10rem;
+/* .list-box{
     display: flex;
     flex-direction: column; 
-    height: 100vw;
-}
+    gap: 5rem;
+} */
 
 .container-box {
     margin-top: 5rem;
@@ -204,39 +199,15 @@ p {
     .container-box{
         width: 15rem;
     }
-
-    body{
-        display: flex;
-        flex-direction: column;
-        overflow-x: hidden;
-    }
-
-    .container-site {
-        /* margin-left: 60px; */
-    }
 }
 
 
 @media (min-width: 500px) and (max-width: 1024px){
-    body{
-        display: flex;
-        flex-direction: column;
-        overflow-x: hidden;
-    }
-
-    .container-site {
-        /* margin-left: 85px; */
-    }
+    
 }
 
 @media (min-width: 1024px) and (max-width: 1600px){
-    body{
-        display: flex;
-        flex-direction: column;
-        overflow-x: hidden;
-    }
+    
 
-    .container-site {
-        /* margin-left: 150px; */
-    }
+    
 }
