@@ -84,7 +84,7 @@ body{
 
 .painel-box{
     display: flex;
-    gap: 5em;
+    gap: 2em;
     padding: 1em;
     background-color: #4CAF50;
 }
@@ -99,7 +99,6 @@ body{
     margin-top: 5rem;
     display: flex;
     flex-direction: row;
-    width: 50rem;
     height: auto;
     border-radius: 10px;
     background-color: #012d3a;
