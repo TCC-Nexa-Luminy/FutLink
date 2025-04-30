@@ -1,0 +1,73 @@
+@import url(./footer.css);
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding-top: 2rem; /* Mais espaço no topo */
+}
+
+.barra-pesquisa {
+    position: relative;
+    width: 100%; /* Barra ocupa 100% da largura disponível */
+    max-width: 1200px; /* Limite máximo da largura */
+}
+
+.barra-pesquisa input {
+    width: 100%; /* Barra ocupa toda a largura disponível */
+    padding: 15px 20px 15px 50px; /* Menos padding, diminuindo a altura */
+    font-size: 20px; /* Fonte ainda grande, mas não tão grande */
+    border-radius: 40px; /* Borda arredondada */
+    border: 2px solid #ccc; /* Borda visível */
+    outline: none;
+    box-sizing: border-box;
+}
+
+.barra-pesquisa i {
+    position: absolute;
+    top: 4%;
+    left: 20px; /* Ícone da lupa mais à esquerda */
+    transform: translateY(-60%);
+    color: #999;
+    font-size: 30px; /* Ícone menor, proporcional ao tamanho do input */
+}
+
+.content {
+    display: flex;
+    gap: 60px;
+    flex-wrap: wrap;
+}
+
+.filtros {
+    width: 250px;
+    background-color: #e3e8f0;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+  
+.filtros h3 {
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+  
+.filtros label {
+    font-weight: bold;
+    display: block;
+    margin-top: 20px;
+    margin-bottom: 5px;
+}
+
+.filtros input {
+    width: 80px;
+    padding: 5px;
+    margin: 5px 10px 10px 0;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+  }
