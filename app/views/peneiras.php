@@ -43,7 +43,7 @@
                             </div>
 
                             <div class="button-box">
-                                <button id="button-box"><span class="nav-text">Ver mais</span></button>
+                                <button id="button-vermais">Ver mais</button>
                             </div>
                         </div>
                     </div> <!-- container-box -->
@@ -71,7 +71,7 @@
                             </div>
 
                             <div class="button-box">
-                                <button id="button-box"><span class="nav-text">Ver mais</span></button>
+                                <button id="button-vermais">Ver mais</button>
                             </div>
                         </div>
                     </div> <!-- container-box -->

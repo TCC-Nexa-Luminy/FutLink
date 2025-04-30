@@ -20,7 +20,6 @@ body{
 .painel{
     background: #012d3a;
     padding: 2rem;
-    overflow-y: auto;
 }
 
 .painel h1{
@@ -83,6 +82,8 @@ body{
 
 
 .painel-box{
+    justify-content: center;
+    align-items: center;
     display: flex;
     gap: 2em;
     padding: 1em;
@@ -96,14 +97,14 @@ body{
 } */
 
 .container-box {
-    margin-top: 5rem;
+    margin-top: 3rem;
     display: flex;
     flex-direction: row;
+    width: 900px;
     height: auto;
     border-radius: 10px;
     background-color: #012d3a;
     padding: 1rem;
-    overflow: hidden;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
@@ -166,8 +167,7 @@ p {
     justify-content: flex-start;
 }
 
-#button-box {
-    text-decoration: none;
+#button-vermais {
     font-size: 1.5rem;
     padding: 0.5rem 1.5rem;
     background-color: #fff;
@@ -180,33 +180,90 @@ p {
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
 }
 
-#button-box:hover {
+#button-vermais:hover {
     background-color: var(--cor-principal-verde1);
     color: #fff;
-    transform: translateY(-4px); /* Eleva o botão ao passar o mouse */
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Aumenta a sombra */
+    transform: translateY(-4px); 
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); 
 }
 
-#button-box:active {
-    transform: translateY(2px); /* Efeito de pressionamento */
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); /* Sombra reduzida */
+#button-vermais:active {
+    transform: translateY(2px); 
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); 
 }
 
 
 @media (min-width: 200px) and (max-width: 500px){
 
-    .container-box{
-        width: 15rem;
+    .container-box {
+        width: 100%; 
+        flex-direction: column; 
+        height: auto;
+        align-items: center;
     }
-}
 
+    .img-box img {
+        width: 100%;
+        max-width: 300px;
+        height: auto;
+    }
 
-@media (min-width: 500px) and (max-width: 1024px){
+    .textos {
+        padding: 1rem;
+        width: 100%;
+    }
+
+    .textos h1 {
+        font-size: 1.2rem;
+    }
+
+    .textos p {
+        font-size: 0.9rem;
+    }
+
+    .event-details li {
+        font-size: 0.8rem;
+    }
+
+    #button-vermais {
+        font-size: 1rem;
+    }
     
 }
 
-@media (min-width: 1024px) and (max-width: 1600px){
-    
 
-    
+@media (min-width: 500px) and (max-width: 800px){
+    .container-box {
+        width: 100%; 
+        flex-direction: column; 
+        height: auto;
+        align-items: center;
+    }
+
+    .img-box img {
+        width: 100%;
+        max-width: 300px;
+        height: auto;
+    }
+
+    .textos {
+        padding: 1rem;
+        width: 100%;
+    }
+
+    .textos h1 {
+        font-size: 1.2rem;
+    }
+
+    .textos p {
+        font-size: 0.9rem;
+    }
+
+    .event-details li {
+        font-size: 0.8rem;
+    }
+
+    #button-vermais {
+        font-size: 1rem;
+    }
 }
