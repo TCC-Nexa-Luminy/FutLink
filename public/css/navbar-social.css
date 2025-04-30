@@ -5,7 +5,7 @@
     flex-direction: column;
     align-items: center;
     background-color: var(--cor-principal-verde1);
-    width: 25vw;  
+    width: 20vw;  
     height: 100%;
     box-sizing: border-box;
     padding: 1rem;
@@ -199,7 +199,7 @@
     }
 
     .navbar-left {
-        width: 150px !important; 
+        width: 110px !important; 
         min-width: 0;            
         padding: 1rem 0.5rem;   
     }
