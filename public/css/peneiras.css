@@ -1,0 +1,269 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    display: flex;
+    height: 100dvh;
+}
+
+.container-site {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    width: 100%;
+    overflow-y: auto;
+}
+
+.painel{
+    background: #012d3a;
+    padding: 2rem;
+}
+
+.painel h1{
+    font-size: 2.5rem;
+    font-family: var(--fonte-titulo-moderna);
+    color: var(--cor-principal-verde1);
+}
+
+.painel p{
+    color: #fff;
+    font-size: 1.5rem;
+    font-family: var(--fonte-texto);
+}
+
+.barra-pesquisa{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 500px;
+    margin: 0;
+}
+
+.campo-pesquisa, .btn-pesquisar{
+    margin-top: 1rem;
+}
+
+.campo-pesquisa{
+    font-family: var(--fonte-texto);
+    width: 80%;
+    padding: 0.5rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 25px;
+    outline: none;
+}
+
+.campo-pesquisa:focus {
+    border-color: #4CAF50;
+    box-shadow: 0 0 5px rgba(0, 150, 0, 0.5);
+}
+
+.btn-pesquisar{
+    padding: 0.5rem;
+    background-color:  #4CAF50;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-pesquisar:hover {
+    background-color: #45a049;
+}
+
+.btn-pesquisar i {
+    color: white;
+    font-size: 1.2rem;
+}
+
+
+
+.painel-box{
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    gap: 2em;
+    padding: 1em;
+    background-color: #4CAF50;
+}
+
+/* .list-box{
+    display: flex;
+    flex-direction: column; 
+    gap: 5rem;
+} */
+
+.container-box {
+    margin-top: 3rem;
+    display: flex;
+    flex-direction: row;
+    width: 900px;
+    height: auto;
+    border-radius: 10px;
+    background-color: #012d3a;
+    padding: 1rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.img-box {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.img-box img {
+    width: 20rem;
+    height: auto;
+    border-radius: 10px;
+}
+
+.textos {
+    flex: 2;
+    padding: 1rem;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+h1 {
+    font-size: 2rem;
+    font-family: var(--fonte-titulo-moderna);
+    color: #FFF;
+    margin-bottom: 1rem;
+}
+
+p {
+    font-size: 1.2rem;
+    color: #FFF;
+    margin-bottom: 1rem;
+}
+
+.event-details {
+    margin-top: 1rem; 
+    margin-left: 0;
+    text-align: left;
+    margin-bottom: 1rem;
+}
+
+.event-details ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+}
+
+.event-details li {
+    font-size: 1rem;
+    color: #FFF;
+    margin-bottom: 0.5rem;
+}
+
+.button-box {
+    display: flex;
+    justify-content: flex-start;
+}
+
+#button-vermais {
+    font-size: 1.5rem;
+    padding: 0.5rem 1.5rem;
+    background-color: #fff;
+    font-family: var(--fonte-titulo-moderna);
+    color: var(--cor-principal-verde1);
+    border: none;
+    border-radius: 2rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+}
+
+#button-vermais:hover {
+    background-color: var(--cor-principal-verde1);
+    color: #fff;
+    transform: translateY(-4px); 
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); 
+}
+
+#button-vermais:active {
+    transform: translateY(2px); 
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); 
+}
+
+
+@media (min-width: 200px) and (max-width: 500px){
+
+    .container-box {
+        width: 100%; 
+        flex-direction: column; 
+        height: auto;
+        align-items: center;
+    }
+
+    .img-box img {
+        width: 100%;
+        max-width: 300px;
+        height: auto;
+    }
+
+    .textos {
+        padding: 1rem;
+        width: 100%;
+    }
+
+    .textos h1 {
+        font-size: 1.2rem;
+    }
+
+    .textos p {
+        font-size: 0.9rem;
+    }
+
+    .event-details li {
+        font-size: 0.8rem;
+    }
+
+    #button-vermais {
+        font-size: 1rem;
+    }
+    
+}
+
+
+@media (min-width: 500px) and (max-width: 800px){
+    .container-box {
+        width: 100%; 
+        flex-direction: column; 
+        height: auto;
+        align-items: center;
+    }
+
+    .img-box img {
+        width: 100%;
+        max-width: 300px;
+        height: auto;
+    }
+
+    .textos {
+        padding: 1rem;
+        width: 100%;
+    }
+
+    .textos h1 {
+        font-size: 1.2rem;
+    }
+
+    .textos p {
+        font-size: 0.9rem;
+    }
+
+    .event-details li {
+        font-size: 0.8rem;
+    }
+
+    #button-vermais {
+        font-size: 1rem;
+    }
+}
