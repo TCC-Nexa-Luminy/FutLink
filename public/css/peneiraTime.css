@@ -1,4 +1,59 @@
+@import url("root.css");
+
 body{
+    font-family: Arial, sans-serif;
+}
+
+.painel-gradient {
+    font-size: var(--fonte-texto);
+    height: 25vh;
     display: flex;
-    height: 100dvh;
+    text-align: center;
+    background-image: url('../../public/images/corinthians_p000Pmj_widexl.jpeg'); /* Imagem de fundo */
+    background-size: cover; /* Faz a imagem cobrir toda a div */
+    background-position: center; /* Garante que a imagem fique centralizada */
+}
+
+
+.painel-gradient img{
+    width: 1654;
+
+}
+
+.container-topo {
+    display: flex;
+    justify-content: center;
+    justify-content: center;
+    align-items: center;
+    font-size: var(--fonte-texto);
+    padding: 15px;
+    height: 150vh;
+}
+
+.infos {
+    display: flex;
+    flex-direction: column; 
+    align-items: center; 
+    height: 50rem;
+}
+
+#imagemUsuario{
+    display: flex;
+    align-items: flex-end;
+}
+
+@media (max-width: 768px) {
+    .container-perfil{
+        width: 95%;
+        margin: 10px;
+
+    }
+    .form_perfil {
+        width: 100%;
+    }
+    #button-editar {
+        width: 60%; 
+    }
+
+
 }
