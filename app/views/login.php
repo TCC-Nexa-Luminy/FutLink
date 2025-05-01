@@ -18,30 +18,53 @@
         </div>
         <div class="login-form">
             <h2>Informe seu e-mail para acessar <br> ou se cadastrar no Futlink.</h2>
-            <form>
-                <input type="email" placeholder="Email" required>
-            </form>
-            <form>
-                <input type="Senha" placeholder="Senha" required>
-                <a href="">Esqueceu sua senha?</a>
+
+            <!-- Formulário de login -->
+            <form action="../controllers/login.act.php" method="POST">
+                <div class="input-group">
+                    <input type="email" name="user_email" placeholder="Email" required autocomplete="off">
+                </div>
+                <div class="input-group">
+                    <input type="password" name="user_pass" placeholder="Senha" required>
+                    <a href="#">Esqueceu sua senha?</a>
+                </div>
                 <button type="submit" id="button-continue">Continuar</button>
             </form>
+
             <div class="separator">
                 <span>Ou escolha</span>
             </div>
 
+            <!-- Login com Google -->
+            <div id="google-login-button" class="g_id_signin" data-type="standard" data-shape="rectangular" data-theme="outline" data-text="signin_with" data-size="large"></div>
+            <script>
+                window.onload = function () {
+                    google.accounts.id.initialize({
+                        client_id: "YOUR_GOOGLE_CLIENT_ID", // Substitua pelo seu Client ID
+                        callback: handleCredentialResponse
+                    });
 
+                    google.accounts.id.renderButton(
+                        document.getElementById("google-login-button"),
+                        { theme: "outline", size: "large" }
+                    );
+                };
 
-            <button class="social-button google">
-                <img src="../../public/images/icons/Logo-Google-G.png" alt="Google" id="button-ads"> Continuar com Google
-            </button>
-            <button class="social-button apple" id="button-ads">
+                function handleCredentialResponse(response) {
+                    const data = response.credential;
+                    // Agora, você pode enviar o token para o backend PHP para fazer a autenticação no seu sistema
+                    console.log("Google Token: ", data);
+                }
+            </script>
+
+            <!-- Login com Apple -->
+            <button class="social-button apple" id="apple-login">
                 <img src="../../public/images/icons/Logo-Apple.png" alt="Apple"> Continuar com Apple
             </button>
-        </div>
 
-        
+        </div>
     </div>
 </body>
 
 </html>
+
