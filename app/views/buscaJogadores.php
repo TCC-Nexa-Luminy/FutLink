@@ -1,57 +1,146 @@
 <?php include("../views/topo.php"); ?>
 
 <html lang="pt-br">
-<link rel="stylesheet" href="../../public/css/buscaJogadores.css">
-<title>Buscar Jogadores</title>
+<head>
+    <link rel="stylesheet" href="../../public/css/buscaJogadores.css">
+    <title>Buscar Jogadores</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
 <body>
     <div class="container">
 
-        <div class="barra-pesquisa">
-        <input type="text" placeholder="Buscar jogadores...">
-        <i class="fa fa-search"></i>
+        <div class="barraPesquisa">
+            <div class="pesquisaContainer">
+                <input type="text" placeholder="Buscar jogador por nome..." />
+                <button><i class="fas fa-search"></i></button>
+            </div>
         </div>
 
-        <div class="content">
+        <div class="conteudo">
             <div class="filtros">
-                <h2>ORDENAR ATLETAS POR:</h2>
+                <h3>Filtrar jogadores</h3>
 
-                <label>Idade</label>
-                <input type="number" placeholder="De">
-                <input type="number" placeholder="Até">
-
-                <label>Altura</label>
-                <input type="number" placeholder="De">
-                <input type="number" placeholder="Até">
-
-                <label>Posição</label>
-                <div class="checkbox-group">
-                    <div><input type="checkbox"> Atacantes</div>
-                    <div><input type="checkbox"> Meio-Campistas</div>
-                    <div><input type="checkbox"> Defensores</div>
-                    <div><input type="checkbox"> Goleiros</div>
+                <div class="filtro">
+                    <label>Idade:</label>
+                    <div class="faixa">
+                        <input type="number" placeholder="De" id="idadeMin" min=0>
+                        <input type="number" placeholder="Até" id="idadeMax" min=0>
+                    </div>
                 </div>
 
-                <label>Tempo de carreira</label>
-                <div class="detalhes-carreira">
-                    <div> Mais experiente</div>
-                    <div>Menos experiente</div>
+                <div class="filtro">
+                    <label>Peso (kg):</label>
+                    <select id="peso">
+                        <option value="">Selecione</option>
+                        <option value="asc">Menor peso</option>
+                        <option value="desc">Maior peso</option>
+                    </select>
                 </div>
 
-                <label>Popularidade</label>
-                <div class="radio-group">
-                    <div><input type="radio" name="popularidade"> Mais popular primeiro</div>
-                    <div><input type="radio" name="popularidade"> Menos popular primeiro</div>
+                <div class="filtro">
+                    <label>Altura (cm):</label>
+                    <div class="faixa">
+                        <input type="number" placeholder="De" id="altura_min" min=0>
+                        <input type="number" placeholder="Até" id="altura_max" min=0>
+                    </div>
+                </div>
+
+                <div class="filtro">
+                    <label>Experiência (anos):</label>
+                    <select id="experiencia">
+                        <option value="">Selecione</option>
+                        <option value="asc">Menor tempo</option>
+                        <option value="desc">Maior tempo</option>
+                    </select>
+                </div>
+
+                <div class="filtro">
+                    <label>Posição:</label>
+                    <div class="posicoes">
+                        <button type="button">Goleiro</button>
+                        <button type="button">Zagueiro</button>
+                        <button type="button">Lateral</button>
+                        <button type="button">Meia</button>
+                        <button type="button">Atacante</button>
+                    </div>
                 </div>
             </div>
 
-            <div class="grade-cards">
-                <div class="card-jogadores"><span>Representante, 17</span></div>
-                <div class="card-jogadores"><span>Lanches, 42</span></div>
-                <div class="card-jogadores"><span>Henrique, 19</span></div>
-                <div class="card-jogadores"><span>Gótico, 17</span></div>
-                <div class="card-jogadores"><span>Buzeria, 17</span></div>
-                <div class="card-jogadores"><span>Gabriel Nazi, 16</span></div>
+            <div class="jogadorGrid">
+                <div class="jogadorCard">
+                    <img src="../../public/images/bambu.png" alt="Foto do jogador">
+                    <div class="nome-idade">
+                        <span class="nome">Robson Bambu</span>
+                        <span class="idade">Idade: 22</span>
+                    </div>
+                </div>
+
+                <div class="jogadorCard">
+                    <img src="../../public/images/felixTorres.png" alt="Foto do jogador">
+                    <div class="nome-idade">
+                        <span class="nome">Felix Torres</span>
+                        <span class="idade">Idade: 16</span>
+                    </div>
+                </div>
+
+                <div class="jogadorCard">
+                    <img src="../../public/images/luan.png" alt="Foto do jogador">
+                    <div class="nome-idade">
+                        <span class="nome">Rei da America 2017</span>
+                        <span class="idade">Idade: 22</span>
+                    </div>
+                </div>
+
+                <div class="jogadorCard">
+                    <img src="player-photo.jpg" alt="Foto do jogador">
+                    <div class="nome-idade">
+                        <span class="nome">João Silva</span>
+                        <span class="idade">Idade: 22</span>
+                    </div>
+                </div>
+
+                <div class="jogadorCard">
+                    <img src="player-photo.jpg" alt="Foto do jogador">
+                    <div class="nome-idade">
+                        <span class="nome">João Silva</span>
+                        <span class="idade">Idade: 22</span>
+                    </div>
+                </div>
+
+                <div class="jogadorCard">
+                    <img src="player-photo.jpg" alt="Foto do jogador">
+                    <div class="nome-idade">
+                        <span class="nome">João Silva</span>
+                        <span class="idade">Idade: 22</span>
+                    </div>
+                </div>
+
+                <div class="jogadorCard">
+                    <img src="player-photo.jpg" alt="Foto do jogador">
+                    <div class="nome-idade">
+                        <span class="nome">João Silva</span>
+                        <span class="idade">Idade: 22</span>
+                    </div>
+                </div>
+
+                <div class="jogadorCard">
+                    <img src="player-photo.jpg" alt="Foto do jogador">
+                    <div class="nome-idade">
+                        <span class="nome">João Silva</span>
+                        <span class="idade">Idade: 22</span>
+                    </div>
+                </div>
+
+                <div class="jogadorCard">
+                    <img src="player-photo.jpg" alt="Foto do jogador">
+                    <div class="nome-idade">
+                        <span class="nome">João Silva</span>
+                        <span class="idade">Idade: 22</span>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
 </body>
+</html>
