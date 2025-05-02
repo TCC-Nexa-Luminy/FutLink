@@ -12,7 +12,7 @@ Uma breve descrição sobre o que o projeto faz e qual problema ele resolve.
 - 🧐 [Shandel Villasante](https://github.com/Shandel-dev) (DataBase e BackEnd)
 
 ## 📜 Link para o Wireframe 
-- [Manual de identidade no Canva]([https://www.canva.com/link-para-wireframe](https://www.canva.com/design/DAGg-Y4reM4/T_IS_sypto5E-pHfEgOKJg/edit?utm_content=DAGg-Y4reM4&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)) 
+- [Manual de identidade no Canva]([[https://www.canva.com/link-para-wireframe](https://www.canva.com/design/DAGg-Y4reM4/T_IS_sypto5E-pHfEgOKJg/edit?utm_content=DAGg-Y4reM4&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)](https://www.canva.com/design/DAGg-Y4reM4/T_IS_sypto5E-pHfEgOKJg/edit?utm_content=DAGg-Y4reM4&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)) 
 - [Wireframe no Figma](https://www.figma.com/team_invite/redeem/H3JK4LlmFJqc35eOC3tkah)
 - [Quadro de tarefas no Trello](https://trello.com/invite/b/68140ada8b0d94fb14350a11/ATTI677de3d642dd87ce822d09ac22e11f1b0E25560C/futlink)
 
