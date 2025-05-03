@@ -1,3 +1,7 @@
+<?php
+    @session_start();
+    include_once("topo.php")
+?>
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -10,6 +14,7 @@
 </head>
 
 <body>
+    <?php include_once("message.php");?>
     <div class="container-login">
         <div class="banner-left">
             <div class="banner">
