@@ -32,7 +32,7 @@
 
 body{
     background-color: var(--cor-primaria);
-    font-size: 13px;
+    font-size: clamp(13px, 2.5vw, 18px);    /*RESPONSIVIDADE DE FONTES*/
     font-family: var(--fonte-div);
     transition: 0.5s;
 }
@@ -56,28 +56,18 @@ body{
 @media (max-width: 575px){}      /*disposivos extra pequenos (XS) - Smartphone tela pequena - padrão no site*/
 
 @media (min-width: 576px){      /*Dispositivos pequenos (SM)) - Smartphone tela grande - */
-    body{
-        font-size: 14px;
-    }
+    
 }
 @media (min-width: 768px){      /*Dispositos médios (MD) - Tablets e Smartphones grandes -*/
-    body{
-        font-size: 16px;
-    }
+    
     
 }
 @media (min-width: 992px){      /*Dispositivos grande (LG) - Desktops menores e laptops -*/
-    body{
-        font-size: 18px;
-    }
+    
 }
 @media (min-width: 1200px){     /*Dispositivos extra grande (XL) - Desktops grandes -*/
-    body{
-        font-size: 20px;
-    }
+    
 }
 @media (min-width: 1400px){     /*Dispositivos extra extra grande (XXL) - Monitores grandes e telas 4K - */
-    body{
-        font-size: 22px;
-    }
+    
 }

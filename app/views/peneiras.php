@@ -1,9 +1,12 @@
-<?php include("topo.php") ?>
+<?php include("topo.php");
+@session_start();
+?>
 <link rel="stylesheet" href="../../public/css/peneiras.css">
 
 <body>
     <?php
     include("navbar-social.php");
+    include_once("message.php");
     ?>
     <div class="container-site">
         <div class="painel-area">
