@@ -22,7 +22,7 @@ html {
         #045322,  
         #0f8011   
     ); */
-    height: 85vh;
+    height: 100vh;
     padding: 20px;
     color: white;
 
@@ -154,48 +154,55 @@ html {
 }
 
 
-.button-se-cadastre button {
+.button-se-cadastre {
+    padding: 30px 0 0 0;
+  }
+  
+
+  .button-se-cadastre-link {
+    all: unset;
+    display: inline-flex;
+  }
+  
+
+  .button-se-cadastre-link button {
+    all: unset;
+    cursor: pointer;
     font-family: var(--fonte-texto2);
-    width: 14%;
     padding: 12px 20px;
     background-color: white;
     color: black;
-    border: none;
-    cursor: pointer;
-    font-size: 20px;
-    text-align: center;
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
     border-radius: 25px;
-    margin-left: 250px;
+    font-size: 20px;
     font-weight: 500;
+    display: inline-flex;
     gap: 5px;
+    margin-left: 250px;
     white-space: nowrap;
-}
+    transition: all 0.3s ease;
+  }
+  
 
-.button-se-cadastre button i {
+  .button-se-cadastre-link button i {
     margin: 5px;
-    font-size: 10x;
+    font-size: 16px; 
     color: var(--cor-principal-verde1);
-}
-
-
-.button-se-cadastre {
-    padding: 30px 0 0 0;
-}
-
-/* arrumar */
-.button-se-cadastre a:hover {
-    background-color: #06b850;
+  }
+  
+  .button-se-cadastre-link button:hover {
+    background-color: var(--cor-principal-verde1);
+    color: white;
     transform: scale(1.05);
-}
-
+  }
+  
+  .button-se-cadastre-link button:hover i {
+    color: white;
+  }
 /* comecando box two */
 
 .box-two {
     background-color: #fff;
-    height: 100vh;
+    height: 110vh;
     display: flex;
 }
 
@@ -214,7 +221,7 @@ html {
     margin-top: 150px;
     flex: 1;
     width: 100px;
-    margin-left: 200px;
+    margin-left: 150px;
 }
 
 .banner-phone-text h1 {
@@ -573,21 +580,42 @@ html {
     }
 
     .button-se-cadastre {
-        margin-bottom: 100px;
         display: flex;
         justify-content: center;
         width: 100%;
-        margin-top: 10px
-    }
+        margin-top: 10px;
+        margin-bottom: 3rem;
+      }
+    
+      .button-se-cadastre-link {
+        all: unset;
+        display: flex;
+        justify-content: center;
+        width: 100%;
+      }
 
-    .button-se-cadastre button {
-        width: 20rem;
+      .button-se-cadastre-link button {
+        all: unset;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 5px;
         margin: 0;
+        width: 60%;
+        max-width: 300px;
         font-size: 1rem;
         padding: 12px 20px;
         border-radius: 25px;
-    }
-
+        text-align: center;
+        white-space: nowrap;
+        background-color: white;
+        color: black;
+        font-family: var(--fonte-texto2);
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+      
     /* box two */
 
     .box-two {

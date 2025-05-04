@@ -31,9 +31,11 @@
                 oportunidades e faça história no futebol.</p>
         </div>
         <div class="button-se-cadastre">
-            <button type="submit">
-            <i class="fa-solid fa-user"></i> Criar seu perfil <i class=" fa-solid fa-angle-right"></i>
-            </button>
+            <a href="../app/views/signUp.php" class="button-se-cadastre-link">
+                <button>
+                    <i class="fa-solid fa-user"></i> Criar seu perfil <i class="fa-solid fa-angle-right"></i>
+                </button>
+            </a>
         </div>
     </div>
 
