@@ -45,7 +45,7 @@
             </a>
         </li>
         <li>
-            <a href="profile.php">
+            <a href="perfilJogador.php">
                 <i class="fa-solid fa-user" style="color:#fff"></i>
                 <span class="nav-text">Perfil</span>
             </a>

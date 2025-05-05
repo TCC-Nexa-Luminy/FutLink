@@ -13,6 +13,11 @@ include_once("topo.php");
     <form action="../controllers/playerForm.act.php" method="post">
         <h1>Quer se candidatar a jogadores em nossos times registrados neste plataforma?</h1>
         <h2>Informe estes dados para se tornar um jogador aqui no FutLink</h2>
+
+        <p>Desenvolver o front-end desta página de formulario de jogador</p>
+
+        <input type="text" name="descrip" id="" placeholder="Sobre mim">
+
         <label for="ipeso">Informe seu peso: </label>
         <input type="number" name="peso" id="ipeso" placeholder="Ex: 70.5" step="0.01" min="0" max="500" required>
 
