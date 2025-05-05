@@ -8,3 +8,8 @@ body{
     overflow-y: auto;
 }
 
+#pageMain{
+    display: flex;
+    flex-direction: column;
+}
+
