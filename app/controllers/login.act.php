@@ -30,6 +30,7 @@ if ($resultado->num_rows == 0) {
         // Se a senha for correta, cria a sessão para o usuário
         $_SESSION['usuario'] = $usuario['nome'];  // Salva o nome do usuário na sessão
         $_SESSION['email'] = $usuario['email'];   // Salva o email na sessão
+        $_SESSION['id'] = $usuario['id_user'];
         $msg = "Bem-vindo ao FutLink, <span>" . $usuario['nome'] . "</span>!";
         $pagDestino = "../views/peneiras.php";  // Redireciona para o dashboard
     } else {
