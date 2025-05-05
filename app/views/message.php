@@ -6,5 +6,6 @@ if (isset($_SESSION['msg'])) {
         sweet_message("<?php echo $_SESSION['msg'];?>")
     </script>
 <?php
+unset($_SESSION['msg']);
 }
 ?>
