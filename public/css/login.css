@@ -141,7 +141,9 @@ form:last-of-type a:hover {
 
 
 
-
+#google-login-button{
+    margin-top: 10px;
+}
 
 
 /*Responsividade*/

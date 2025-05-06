@@ -3,19 +3,19 @@
     <ul class="icons-bar">
         <li>
             <div class="logo">
-                <a href="home.php">
+                <a href="home-page.php">
                     <img src="../../public/images/logos/logo-fl-branco-solido.png" alt="Icon FutLink">
                 </a>
             </div>
         </li>
         <li>
-            <a href="">
+            <a href="home-page.php">
                 <i class="fa-solid fa-house" style="color:#fff"></i>
                 <span class="nav-text">Home</span>
             </a>
         </li>
         <li>
-            <a href="">
+            <a href="buscaJogadores.php">
                 <i class="fa-solid fa-magnifying-glass" style="color:#fff"></i>
                 <span class="nav-text">Explorar</span>
             </a>
@@ -39,7 +39,7 @@
             </a>
         </li>
         <li>
-            <a href="">
+            <a href="peneiras.php">
                 <i class="fa-solid fa-users" style="color:#fff"></i>
                 <span class="nav-text">Comunidades</span>
             </a>

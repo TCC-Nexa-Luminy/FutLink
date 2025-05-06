@@ -1,0 +1,147 @@
+body{
+    display: flex;
+    height: 100dvh;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+
+:root {
+    --verde-futlink: #2e7d32;
+    --verde-dark: #1b5e20;
+    --cinza-claro: #f1f1f1;
+    --cinza-texto: #444;
+    --fonte-titulo: 'Inter', sans-serif;
+}
+
+body {
+    font-family: var(--fonte-titulo);
+    font-size: 18px;
+    background-color: #fafafa;
+}
+
+.feed-wrapper {
+    max-width: 800px;
+    margin: 2.5rem auto;
+    padding: 0 1.5rem;
+}
+
+/* 🔝 Header */
+.feed-header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+}
+.feed-header h2 {
+    font-size: 2.2rem;
+    margin-bottom: 1.2rem;
+    color: var(--verde-futlink);
+    font-weight: 600;
+}
+.feed-header input {
+    width: 100%;
+    padding: 1rem 1.2rem;
+    font-size: 1rem;
+    border: 2px solid var(--verde-futlink);
+    border-radius: 12px;
+    outline: none;
+}
+
+/* ✏️ Nova Postagem */
+.new-post-card {
+    display: flex;
+    gap: 1.5rem;
+    background-color: var(--cinza-claro);
+    border-radius: 14px;
+    padding: 1.5rem;
+    margin-bottom: 2.5rem;
+    align-items: flex-start;
+}
+.profile-circle {
+    background-color: var(--verde-futlink);
+    color: white;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+.post-form {
+    flex: 1;
+}
+.post-form textarea {
+    width: 100%;
+    resize: none;
+    height: 120px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    padding: 1rem;
+    font-size: 1.1rem;
+}
+.form-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1rem;
+}
+.upload-input {
+    display: none;
+}
+.form-actions label {
+    background-color: var(--verde-futlink);
+    color: white;
+    padding: 0.6rem 1.2rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+.publish-btn {
+    background-color: var(--verde-dark);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 0.6rem 1.4rem;
+    font-size: 1.05rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+/* 🧱 Card de postagem */
+.feed-section {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+.card-post {
+    background-color: white;
+    border-radius: 14px;
+    border: 1px solid #ccc;
+    padding: 1.5rem;
+}
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1rem;
+    color: var(--cinza-texto);
+    margin-bottom: 0.8rem;
+    font-weight: 600;
+}
+.card-post p {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+}
+.post-image {
+    width: 100%;
+    border-radius: 12px;
+    margin-bottom: 1rem;
+}
+.card-footer {
+    display: flex;
+    gap: 1.5rem;
+    font-size: 1rem;
+    color: var(--verde-futlink);
+    font-weight: 500;
+}
+
+

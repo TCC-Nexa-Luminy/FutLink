@@ -32,7 +32,7 @@ include("topo.php");
                         </div>
 
                         <div class="textos">
-                            <h1>Peneira Thiagão</h1>
+                            <h1>Peneira Corinthians</h1>
                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem sed sequi praesentium harum laudantium aut!
                                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem sed sequi praesentium harum laudantium aut!
                             </p>
@@ -40,14 +40,14 @@ include("topo.php");
                             <div class="event-details">
                                 <ul>
                                     <li>Data e hora: 05/02/2008 às 15:00</li>
-                                    <li>Localização: Rua das Merdas, 255</li>
+                                    <li>Localização: Rua das Alamedas, 255</li>
                                     <li>Idade: 14-16</li>
                                     <li>Taxa de inscrição: Gratuita</li>
                                 </ul>
                             </div>
 
                             <div class="button-box">
-                                <button id="button-vermais">Ver mais</button>
+                                <a href="peneiraTime.php"><button id="button-vermais">Ver mais</button></a>
                             </div>
                         </div>
                     </div> <!-- container-box -->
@@ -60,7 +60,7 @@ include("topo.php");
                         </div>
 
                         <div class="textos">
-                            <h1>Peneira Thiagão</h1>
+                            <h1>Peneira Corinthians</h1>
                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem sed sequi praesentium harum laudantium aut!
                                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem sed sequi praesentium harum laudantium aut!
                             </p>
@@ -68,14 +68,14 @@ include("topo.php");
                             <div class="event-details">
                                 <ul>
                                     <li>Data e hora: 05/02/2008 às 15:00</li>
-                                    <li>Localização: Rua das Merdas, 255</li>
+                                    <li>Localização: Rua das Alamedas, 255</li>
                                     <li>Idade: 14-16</li>
                                     <li>Taxa de inscrição: Gratuita</li>
                                 </ul>
                             </div>
 
                             <div class="button-box">
-                                <button id="button-vermais">Ver mais</button>
+                                <a href="peneiraTime.php"><button id="button-vermais">Ver mais</button></a>
                             </div>
                         </div>
                     </div> <!-- container-box -->
