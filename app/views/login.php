@@ -62,10 +62,10 @@
                 }
             </script>
 
-            <!-- Login com Apple -->
+            <!-- Login com Apple
             <button class="social-button apple" id="apple-login">
                 <img src="../../public/images/icons/Logo-Apple.png" alt="Apple"> Continuar com Apple
-            </button>
+            </button> -->
 
         </div>
     </div>

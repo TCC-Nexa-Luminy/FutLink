@@ -15,7 +15,7 @@
     top: 0.5em;
     left: 0.5em;
     font-size: 2em;
-    color: var(--cor-purple-dark);
+    color: var(--cor-secundaria-verde2);
 }
 
 /* ----------------------------------------------------------------------- */
@@ -119,8 +119,8 @@
 
 .form_back-btn{
     text-decoration: none;
-    border: 2px solid var(--cor-purple-dark);
-    color: var(--cor-purple-dark);
+    border: 2px solid var(--cor-secundaria-verde2);
+    color: var(--cor-secundaria-verde2);
     transform: translateX(0);
     transition: 0.2s;
 }
@@ -132,7 +132,7 @@
 
 .form_submit{
     color: var(--cor-primaria);
-    background-color: var(--cor-purple-dark);
+    background-color: var(--cor-secundaria-verde2);
     transition: 0.3s;
 }
 .form_submit:hover{
@@ -147,7 +147,7 @@
     display: flex;
     grid-area: banner;
     flex-direction: column;
-    background-color: var(--cor-purple-dark);
+    background-color: var(--cor-secundaria-verde2);
     color: var(--cor-primaria);
     align-items: center;
     justify-content: space-between;
