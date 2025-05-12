@@ -1,38 +1,140 @@
-<?php 
-@session_start();
-include_once("topo.php");
-?>
-
-<!--ARQUIVO CSS JÁ EXISTENTE, DESENVOLVER SEU FRONT-END-->
-<link rel="stylesheet" href="../../public/css/playerForm.css">
-
-    <?php
-    include_once("message.php");
-    ?>
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Criar Perfil do Jogador</title>
+  <link rel="stylesheet" href="../../public/css/playerForm.css" />
+</head>
 <body>
-    <main id="pageMain">
 
-        <h1>Quer se candidatar a jogadores em nossos times registrados neste plataforma?</h1>
-        <h2>Informe estes dados para se tornar um jogador aqui no FutLink</h2>
-        
-        <p>Desenvolver o front-end desta página de formulario de jogador</p>
-        
-        <p>Este formulario deve pedir os seguintes dados do usuário para que se torne um jogador:</p>
-        <ul>
-            <li>peso</li>
-            <li>altura</li>
-            <li>descrição</li>
-            <li>posição</li>
-            <li>pé dominante</li>
-        </ul>
-        <p>abaixo são inputs meramente ilustrativos, eles podem ser removidos ou modificados pelo dev front-end</p>
-        <form action="../controllers/playerForm.act.php" method="post">
-            <input type="number" name="peso" id="" step="0,01" min='0' required placeholder="peso">
-            <input type="hidden" name="id_user" value="<?= $_SESSION['id']; ?>"> <!--input que retorna o id do usuario, ele deve estar dentro de um form-->
-            
-            <input type="submit" value="Enviar">
-        </form>
-    </main>
+  <section class="criar-perfil">
+    <h2>Criar Perfil do Jogador</h2>
+    <form action="salvar_jogador.php" method="POST" class="form-grid" enctype="multipart/form-data">
+
+      <!-- foto de perfil -->
+      <div class="foto-perfil">
+        <input type="file" name="foto" accept="image/*" onchange="previewFoto(event)" id="foto-input" />
+        <label for="foto-input" class="foto-label">
+          <img id="preview" src="../../public/img/default.jpg" alt="Prévia da Foto">
+        </label>
+      </div>
+
+      <div class="campo-completo">
+        <label>Nome Completo:</label>
+        <input type="text" name="nome" required />
+      </div>
+
+      <div class="campo-completo">
+        <label>Apelido:</label>
+        <input type="text" name="apelido" />
+      </div>
+
+      <div class="campo-metade">
+        <label>Idade:</label>
+        <input type="number" name="idade" required />
+      </div>
+
+      <div class="campo-metade">
+        <label>Peso (kg):</label>
+        <input type="number" name="peso" step="0.1" required />
+      </div>
+
+      <div class="campo-metade">
+        <label>Altura (m):</label>
+        <input type="number" name="altura" step="0.01" required />
+      </div>
+
+      <div class="campo-metade">
+        <label>Status:</label>
+        <input type="text" name="status" placeholder="Ex: Em busca de clube" required />
+      </div>
+
+      <div class="campo-completo">
+        <label>Estilo de Jogo:</label>
+        <input type="text" name="estilo" placeholder="Ex: Raçudo, técnico, habilidoso..." required />
+      </div>
+
+      <div class="campo-metade">
+        <label>Pé Dominante:</label>
+        <select name="pe_dominante" required>
+          <option value="">Selecione</option>
+          <option value="Direito">Direito</option>
+          <option value="Esquerdo">Esquerdo</option>
+          <option value="Ambos">Ambos</option>
+        </select>
+      </div>
+
+      <div class="campo-metade">
+        <label>Estado (UF):</label>
+        <select name="estado" required>
+          <option value="">Selecione</option>
+          <option value="AC">Acre</option>
+          <option value="AL">Alagoas</option>
+          <option value="AP">Amapá</option>
+          <option value="AM">Amazonas</option>
+          <option value="BA">Bahia</option>
+          <option value="CE">Ceará</option>
+          <option value="DF">Distrito Federal</option>
+          <option value="ES">Espírito Santo</option>
+          <option value="GO">Goiás</option>
+          <option value="MA">Maranhão</option>
+          <option value="MT">Mato Grosso</option>
+          <option value="MS">Mato Grosso do Sul</option>
+          <option value="MG">Minas Gerais</option>
+          <option value="PA">Pará</option>
+          <option value="PB">Paraíba</option>
+          <option value="PR">Paraná</option>
+          <option value="PE">Pernambuco</option>
+          <option value="PI">Piauí</option>
+          <option value="RJ">Rio de Janeiro</option>
+          <option value="RN">Rio Grande do Norte</option>
+          <option value="RS">Rio Grande do Sul</option>
+          <option value="RO">Rondônia</option>
+          <option value="RR">Roraima</option>
+          <option value="SC">Santa Catarina</option>
+          <option value="SP">São Paulo</option>
+          <option value="SE">Sergipe</option>
+          <option value="TO">Tocantins</option>
+        </select>
+      </div>
+
+      <div class="campo-completo">
+        <label>Posição:</label>
+        <input type="text" name="posicao" placeholder="Ex: Atacante, Zagueiro..." required />
+      </div>
+
+      <div class="campo-completo">
+        <label>Contato (E-mail ou WhatsApp):</label>
+        <input type="text" name="contato" required />
+      </div>
+
+      <div class="campo-completo">
+        <label>Sobre Mim:</label>
+        <textarea name="sobre_mim" rows="5" placeholder="Fale um pouco sobre você como jogador..." required></textarea>
+      </div>
+
+      <div class="campo-completo">
+        <label>Clube Atual (se tiver):</label>
+        <select name="clube_atual">
+          <option value="">Nenhum</option>
+        </select>
+      </div>
+
+      <div class="botao-salvar">
+        <button type="submit">Criar Perfil</button>
+      </div>
+
+    </form>
+  </section>
+
+  <script>
+    function previewFoto(event) {
+      const img = document.getElementById('preview');
+      img.src = URL.createObjectURL(event.target.files[0]);
+    }
+  </script>
+
 </body>
+</html>  
 
-</html>
