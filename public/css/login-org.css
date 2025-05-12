@@ -11,8 +11,14 @@
 }
 
 body {
+    
     height: 100%;
     font-family: Arial, sans-serif;
+}
+
+.back_btn i{
+    color: var(--cor-principal-verde1);
+    font-size: 2rem;
 }
 
 .container-login {

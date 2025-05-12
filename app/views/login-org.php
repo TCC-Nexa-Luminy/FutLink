@@ -9,20 +9,31 @@ include_once("topo.php")
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Futlink - Login</title>
-    <link rel="stylesheet" href="../../public/css/login.css">
+    <link rel="stylesheet" href="../../public/css/login-org.css">
     <script src="https://accounts.google.com/gsi/client" async defer></script>
 </head>
 
 <body>
     <?php include_once("message.php"); ?>
     <div class="container-login">
+
+
         <div class="banner-left">
             <div class="banner">
                 <img src="../../public/images/bannerLogin.png" alt="Banner do Futlink">
             </div>
         </div>
+
+
+
         <div class="login-form">
-            <h2>Informe seu e-mail para acessar <br> ou se cadastrar no Futlink.</h2>
+
+        <div class="painel-gradient">
+            <a href="login.php" class="back_btn"><i class="fa-solid fa-circle-left"></i></a>
+        </div>
+
+            <h2>Informe seu e-mail para acessar seu clube no Futlink.</h2>
+
 
             <!-- Formulário de login -->
             <form action="../controllers/login.act.php" method="POST">
@@ -64,15 +75,7 @@ include_once("topo.php")
                 }
             </script>
 
-            <p class="club-or-organization">É um clube ou organização?</p>
 
-            <div class="create-organization">
-                <a href="login-org.php">
-                    <button id="create-organization-button">
-                        Criar Organização
-                    </button>
-                </a>
-            </div>
 
 
 
