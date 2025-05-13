@@ -9,12 +9,15 @@
 <body>
     <div class="container">
 
-        <div class="barraPesquisa">
-            <div class="pesquisaContainer">
-                <input type="text" placeholder="Buscar jogador por nome..." />
-                <button><i class="fas fa-search"></i></button>
-            </div>
+    <div class="barraPesquisa">
+        <div class="pesquisaContainer">
+            <form method="GET" action="../controllers/buscaJogadores.act.php">
+                <input type="text" name="apelido" placeholder="Buscar jogador por nome..." />
+                <button type="submit"><i class="fas fa-search"></i></button>
+            </form>
         </div>
+    </div>
+
 
         <div class="conteudo">
             <div class="filtros">
