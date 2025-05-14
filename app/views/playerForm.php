@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Criar Perfil do Jogador</title>
   <link rel="stylesheet" href="../../public/css/playerForm.css" />
+  
 </head>
 <body>
 
@@ -12,37 +13,19 @@
     <h2>Criar Perfil do Jogador</h2>
     <form action="salvar_jogador.php" method="POST" class="form-grid" enctype="multipart/form-data">
 
-      <!-- foto de perfil -->
-      <div class="foto-perfil">
-        <input type="file" name="foto" accept="image/*" onchange="previewFoto(event)" id="foto-input" />
-        <label for="foto-input" class="foto-label">
-          <img id="preview" src="../../public/img/default.jpg" alt="Prévia da Foto">
-        </label>
-      </div>
-
       <div class="campo-completo">
-        <label>Nome Completo:</label>
-        <input type="text" name="nome" required />
-      </div>
-
-      <div class="campo-completo">
-        <label>Apelido:</label>
+        <label>Apelido (Opcional):</label>
         <input type="text" name="apelido" />
       </div>
 
       <div class="campo-metade">
-        <label>Idade:</label>
-        <input type="number" name="idade" required />
-      </div>
-
-      <div class="campo-metade">
         <label>Peso (kg):</label>
-        <input type="number" name="peso" step="0.1" required />
+        <input type="number" name="peso" step="0.1" required min="0"/>
       </div>
 
       <div class="campo-metade">
         <label>Altura (m):</label>
-        <input type="number" name="altura" step="0.01" required />
+         <input name="altura" oninput="this.value=this.value.replace(/\D/g,'').replace(/^(\d{1})(\d{0,2})$/,'$1,$2')"  placeholder="Ex: 1,75">
       </div>
 
       <div class="campo-metade">
@@ -101,12 +84,17 @@
 
       <div class="campo-completo">
         <label>Posição:</label>
-        <input type="text" name="posicao" placeholder="Ex: Atacante, Zagueiro..." required />
-      </div>
-
-      <div class="campo-completo">
-        <label>Contato (E-mail ou WhatsApp):</label>
-        <input type="text" name="contato" required />
+        <select name="posicao" required>
+          <option value="">Selecione</option>
+          <option value="Goleiro">Goleiro</option>
+          <option value="Lateral">Lateral</option>
+          <option value="Zagueiro">Zagueiro</option>
+          <option value="Volante">Volante</option>
+          <option value="Meia">Meia</option>
+          <option value="Atacante">Atacante</option>
+          <option value="Ponta">Ponta</option>
+          <option value="Centroavante">Centroavante</option>
+        </select>
       </div>
 
       <div class="campo-completo">
@@ -128,13 +116,5 @@
     </form>
   </section>
 
-  <script>
-    function previewFoto(event) {
-      const img = document.getElementById('preview');
-      img.src = URL.createObjectURL(event.target.files[0]);
-    }
-  </script>
-
 </body>
-</html>  
-
+</html>
