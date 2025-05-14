@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 17/03/2025 às 20:15
+-- Tempo de geração: 14/05/2025 às 22:43
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -22,6 +22,20 @@ SET time_zone = "+00:00";
 --
 CREATE DATABASE IF NOT EXISTS `db_futlink` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 USE `db_futlink`;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `posts`
+--
+
+CREATE TABLE `posts` (
+  `id_post` int(11) NOT NULL,
+  `id_user` int(11) NOT NULL,
+  `conteudo` text NOT NULL,
+  `imagem` varchar(255) DEFAULT NULL,
+  `criado_em` datetime DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -180,6 +194,13 @@ CREATE TABLE `tbl_usuarios` (
 --
 
 --
+-- Índices de tabela `posts`
+--
+ALTER TABLE `posts`
+  ADD PRIMARY KEY (`id_post`),
+  ADD KEY `id_user` (`id_user`);
+
+--
 -- Índices de tabela `tbl_hist_contrato`
 --
 ALTER TABLE `tbl_hist_contrato`
@@ -245,6 +266,12 @@ ALTER TABLE `tbl_usuarios`
 --
 
 --
+-- AUTO_INCREMENT de tabela `posts`
+--
+ALTER TABLE `posts`
+  MODIFY `id_post` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de tabela `tbl_hist_contrato`
 --
 ALTER TABLE `tbl_hist_contrato`
@@ -295,6 +322,12 @@ ALTER TABLE `tbl_usuarios`
 --
 -- Restrições para tabelas despejadas
 --
+
+--
+-- Restrições para tabelas `posts`
+--
+ALTER TABLE `posts`
+  ADD CONSTRAINT `posts_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `tbl_usuarios` (`id_user`) ON DELETE CASCADE;
 
 --
 -- Restrições para tabelas `tbl_hist_contrato`

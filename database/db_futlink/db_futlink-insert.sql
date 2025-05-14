@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 22/04/2025 às 19:14
+-- Tempo de geração: 14/05/2025 às 22:45
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -20,6 +20,18 @@ SET time_zone = "+00:00";
 --
 -- Banco de dados: `db_futlink`
 --
+
+--
+-- Despejando dados para a tabela `posts`
+--
+
+INSERT INTO `posts` (`id_post`, `id_user`, `conteudo`, `imagem`, `criado_em`) VALUES
+(1, 1, 'a', '../../uploads/bannerLogin.png', '2025-05-14 17:13:07'),
+(2, 1, 'aa', '../../uploads/bambu.png', '2025-05-14 17:13:12'),
+(3, 1, 'fd', '../../uploads/6824f9c7843bb-campeao.png', '2025-05-14 17:15:03'),
+(4, 3, 'asdkjasd', '../../uploads/6824fc0785ad9-bambu.png', '2025-05-14 17:24:39'),
+(5, 3, 'oii', '', '2025-05-14 17:41:32'),
+(6, 3, 'SOU O MELHOR JHOGADOR DO MUNDO', '', '2025-05-14 17:41:48');
 
 --
 -- Despejando dados para a tabela `tbl_usuarios`
