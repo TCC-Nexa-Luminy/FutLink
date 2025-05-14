@@ -3,35 +3,40 @@
     max-width: 900px;
     margin: 100px auto 60px;
     padding: 40px;
-    border-radius: 16px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    font-family: 'Segoe UI', sans-serif;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0, 100, 50, 0.15);
+    font-family: 'Poppins', 'Segoe UI', sans-serif;
+    border: 1px solid rgba(6, 184, 80, 0.2);
 }
 
 .criar-perfil h2 {
-    font-size: 30px;
+    font-size: 2.5rem;
     text-align: center;
     margin-bottom: 30px;
     color: #03692e;
     text-transform: uppercase;
     position: relative;
+    letter-spacing: 1px;
+    font-weight: 700;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
 }
 
 .criar-perfil h2::after {
     content: "";
-    width: 80px;
-    height: 3px;
-    background: #06b850;
+    width: 100px;
+    height: 4px;
+    background: linear-gradient(to right, #06b850, #0ad872);
     display: block;
     margin: 15px auto 0;
-    border-radius: 5px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(6, 184, 80, 0.3);
 }
 
 .form-grid {
     display: flex;
     flex-wrap: wrap;
-    gap: 25px;
-    justify-content: flex-start; 
+    gap: 30px;
+    justify-content: space-between;
 }
 
 .campo-completo,
@@ -39,17 +44,29 @@
     display: flex;
     flex-direction: column;
     width: 100%;
+    position: relative;
 }
 
 .campo-metade {
-    flex: 1 1 45%; 
+    flex: 1 1 calc(50% - 15px);
 }
 
 .campo-completo label,
 .campo-metade label {
     font-weight: 600;
-    color: #333;
-    margin-bottom: 8px;
+    color: #03692e;
+    margin-bottom: 10px;
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+}
+
+.campo-completo label::before,
+.campo-metade label::before {
+    content: "•";
+    color: #06b850;
+    margin-right: 8px;
+    font-size: 1.2rem;
 }
 
 .campo-completo input,
@@ -58,12 +75,13 @@
 .campo-metade textarea,
 .campo-completo select,
 .campo-metade select {
-    padding: 12px 15px;
-    border-radius: 10px;
-    border: 1px solid #ccc;
-    font-size: 16px;
+    padding: 14px 18px;
+    border-radius: 12px;
+    border: 2px solid #e0e0e0;
+    font-size: 1rem;
     background: #f9f9f9;
-    transition: border 0.3s ease;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);
 }
 
 .campo-completo input:focus,
@@ -75,84 +93,77 @@
     outline: none;
     border-color: #06b850;
     background: #fff;
+    box-shadow: 0 0 0 3px rgba(6, 184, 80, 0.2), 
+                inset 0 1px 3px rgba(0,0,0,0.05);
+    transform: scale(1.01);
 }
 
 textarea {
     resize: vertical;
-    min-height: 100px;
+    min-height: 120px;
+    line-height: 1.6;
 }
 
 .botao-salvar {
-    margin-top: 30px;
+    margin-top: 40px;
     display: flex;
     justify-content: center;
 }
 
 .botao-salvar button {
-    background: linear-gradient(to right, #06b850, #029a44);
+    background: linear-gradient(135deg, #06b850 0%, #0ad872 100%);
     border: none;
-    padding: 14px 30px;
-    border-radius: 12px;
+    padding: 16px 40px;
+    border-radius: 50px;
     color: white;
-    font-size: 18px;
-    font-weight: 600;
+    font-size: 1.1rem;
+    font-weight: 700;
     cursor: pointer;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    box-shadow: 0 5px 15px rgba(6, 184, 80, 0.4);
+    position: relative;
+    overflow: hidden;
 }
 
 .botao-salvar button:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 10px 25px rgba(6, 184, 80, 0.5);
 }
 
-.foto-perfil {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    width: 150px;
-    height: 150px;
-    margin: 0 auto 20px;
-    cursor: pointer;
-    border-radius: 50%;
-    overflow: hidden;
-    border: 5px solid #06b850;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
-    transition: box-shadow 0.3s ease;
+.botao-salvar button:active {
+    transform: translateY(1px);
 }
 
-.foto-perfil:hover {
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
-}
-
-.foto-perfil input[type="file"] {
-    display: none;
-}
-
-.foto-label {
-    display: block;
+.botao-salvar button::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
-}
-
-.foto-label img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; 
+    background: linear-gradient(135deg, rgba(255,255,255,0.3) 0%, transparent 100%);
+    opacity: 0;
     transition: opacity 0.3s ease;
 }
 
-.foto-label img:hover {
-    opacity: 0.8;
+.botao-salvar button:hover::after {
+    opacity: 1;
 }
 
 @media (max-width: 768px) {
+    .criar-perfil {
+        margin: 60px 20px;
+        padding: 30px 25px;
+    }
+    
     .campo-metade {
         flex: 1 1 100%;
     }
-
-    .foto-perfil {
-        width: 120px;
-        height: 120px;
+    
+    .botao-salvar button {
+        width: 100%;
+        padding: 14px;
     }
 }
