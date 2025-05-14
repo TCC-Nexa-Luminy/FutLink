@@ -6,44 +6,46 @@ include("topo.php");
 <body>
     <?php include("navbar-social.php"); ?>
 
-    <div class="feed-wrapper">
+    <div class="container">
 
-        <div class="feed-header">
-            <h2>Explorar FutLink</h2>
-            <input type="text" placeholder="🔍 Buscar por atletas, clubes ou hashtags...">
+        <div class="caixa-post">
+            <form action="../controllers/publicar-post.act.php" method="POST" enctype="multipart/form-data">
+                <textarea name="conteudo" placeholder="Compartilhe uma jogada, treino ou conquista..." required></textarea>
+                <input type="file" name="imagem">
+                <button type="submit">Publicar</button>
+            </form>
         </div>
 
-        <div class="new-post-card">
-            <div class="profile-circle">👤</div>
-            <div class="post-form">
-                <textarea placeholder="Compartilhe uma jogada, treino ou conquista..."></textarea>
-                <div class="form-actions">
-                    <label for="upload-img">📷 Imagem</label>
-                    <input type="file" id="upload-img" class="upload-input">
-                    <button class="publish-btn">Publicar</button>
-                </div>
-            </div>
+        <div class="posts">
+            <?php
+            include('../../config/connect.php');
+            $sql = "SELECT p.id_post, p.conteudo, p.imagem, p.criado_em, u.nome 
+                    FROM posts p
+                    JOIN tbl_usuarios u ON p.id_user = u.id_user
+                    ORDER BY p.criado_em DESC";
+            $result = $conn->query($sql);
+
+            if ($result->num_rows > 0) {
+                while ($post = $result->fetch_assoc()) {
+                    echo '<div class="card-post">';
+                    echo '<div class="card-header">';
+                    echo '<span class="user">@' . htmlspecialchars($post['nome']) . '</span>';
+                    echo '<span class="time">' . date('d/m/Y H:i', strtotime($post['criado_em'])) . '</span>';
+                    echo '</div>';
+                    echo '<p>' . htmlspecialchars($post['conteudo']) . '</p>';
+                    if ($post['imagem']) {
+                        $caminhoImagem = str_replace('../../', '../', $post['imagem']);
+                        echo '<img src="' . $caminhoImagem . '" alt="Imagem do post" class="post-image">';
+                    }
+                    echo '</div>';
+                }
+            } else {
+                echo 'Nenhum post encontrado.';
+            }
+            ?>
         </div>
 
-        <div class="feed-section">
-            <div class="card-post">
-                <div class="card-header">
-                    <span class="user">@caioatanque171</span>
-                    <span class="time">há 2h</span>
-                </div>
-                <p>Primeiro treinoOOO! com o time novo HAHAHAH 💚⚽ #FutLink #Neymar</p>
-                <img src="https://via.placeholder.com/500x250" alt="Imagem do treino" class="post-image">
-                <div class="card-footer">
-                    <span>❤️ 152</span>
-                    <span>💬 18</span>
-                    <span>🔁 9</span>
-                </div>
-            </div>
-        </div>
     </div>
-
-
-
-    </div>
-
 </body>
+
+

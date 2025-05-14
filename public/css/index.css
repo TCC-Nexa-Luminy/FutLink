@@ -123,6 +123,37 @@ html {
     margin-top: 75px;
 }
 
+/* CSS */
+.dropdown-menu-cadastrar {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 200px;
+    box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+    padding: 12px;
+    border-radius: 5px;
+    z-index: 1;
+    top: 110%;
+    right:0;
+  }
+  
+  .dropdown-cadastrar.ativo .dropdown-menu-cadastrar {
+    display: block;
+  }
+  
+  .dropdown-menu-cadastrar a {
+    display: block;
+    padding: 8px 10px;
+    text-decoration: none;
+    color: #333;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .dropdown-menu-cadastrar a:hover {
+    background-color: #e0e0e0;
+  }
+  
+
 
 
 
@@ -356,6 +387,59 @@ html {
     min-width: 40px;
     margin-top: 10px;
     margin-left: 20px;
+}
+
+/* ------------------------------------------------------- arrumar */
+
+.box-org {
+    height: 100vh;
+    background-color: #222;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    text-align: center;
+    color: white;
+}
+
+.box-org h1 {
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    max-width: 700px;
+}
+
+.box-org p {
+    font-size: 18px;
+    font-weight: 300;
+    margin-bottom: 30px;
+    max-width: 600px;
+}
+
+#buttonorg {
+    border-radius: 10px;
+    border: none;
+    padding: 12px 25px;
+    background-color: var(--cor-principal-verde1);
+    font-family: var(--fonte-apagada-clean);
+    font-weight: 500;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    transition: background-color 0.3s;
+    text-decoration: none;
+}
+
+#buttonorg:hover {
+    background-color: #17a44c;
+}
+
+#buttonorg i {
+    font-size: 16px;
 }
 
 

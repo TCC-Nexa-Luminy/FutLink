@@ -8,14 +8,23 @@
                 <img src="./images/logos/logo-fl-branco-solido.png" alt="">
             </a>
         </div>
+
         <ul class="infos">
             <li><a href="">Sobre nós</a></li>
             <li><a href="">Serviços</a></li>
             <li><a href="">Contato</a></li>
         </ul>
+
         <div class="buttons">
             <a href="../app/views/login.php" id="buttonlogin">Login <i class="fa-solid fa-angle-down"></i></a>
-            <a href="../app/views/signUp.php" id="buttoncadastrar">Cadastrar <i class="fa-solid fa-angle-down"></i></a>
+
+            <div class="dropdown-cadastrar" id="dropdownCadastrar">
+                <a href="#" id="buttoncadastrar">Cadastrar <i class="fa-solid fa-angle-down"></i></a>
+                <div class="dropdown-menu-cadastrar">
+                    <a href="../app/views/signUp.php">Cadastrar como Jogador</a>
+                    <a href="../app/views/signUp-org.php">Cadastrar como Organização</a>
+                </div>
+            </div>
         </div>
     </nav>
 
@@ -142,5 +151,18 @@
             </div>
         </div>
     </div>
+
+    <div class="box-org">
+        <h1>Crie seu clube. Conquiste respeito. Vire lenda no Footlink.</h1>
+        <p>Monte seu clube do zero e desafie outras equipes no Footlink. Mostre que seu nome tem peso.</p>
+
+        <a id="buttonorg" href="../app/views/signUp-org.php">
+            Criar Organização <i class="fa-solid fa-angle-right"></i>
+        </a>
+    </div>
+
+
+</html>
+<script src="../public/js/index.js"></script>
 
 </body>
