@@ -1,10 +1,11 @@
 <?php
+@session_start();
 require_once("../../config/connect.php");
-function inserirDados($connect, $peso, $altura, $posicao, $id_user)
+function inserirDados($connect, $id_user, $apelido, $peso, $altura, $estilo, $peDominante, $posicao, $descricao)
 {
     $query = "INSERT INTO tbl_jogador
-        (`id_user`, `peso`, `altura`, `posicao`) VALUES
-        ('$id_user', '$peso', '$altura', '$posicao');";
+        (`id_user`, `apelido`, `peso`, `altura`, `posicao`, `estiloJogo`, `pe_dominante`, `descricao`) VALUES
+        ('$id_user', '$apelido', '$peso', '$altura', '$posicao', '$estilo', '$peDominante', '$descricao');";
 
     if (mysqli_query($connect, $query)) {
         return ["Parabéns! Agora você pode se candidatar para entrar nos times existentes da plataforma!", "../views/peneiras.php"];
@@ -30,10 +31,12 @@ function verificaJogador($id, $connect)
     }
 }
 
-$id_user = filter_input(INPUT_POST, "id_user", FILTER_VALIDATE_INT);
+$id_user = $_SESSION['id'];
 
 $msg = "";
 $destino = "";
+
+
 
 if (verificaJogador($id_user, $conn)) {
     //jogador já registrado
@@ -41,11 +44,15 @@ if (verificaJogador($id_user, $conn)) {
     $destino = "../views/playerForm.php";
 } else {
     //pode criar sua conta
-    $peso = str_replace(",", ".", $_POST["peso"]);
+    $apelido = filter_input(INPUT_POST, "apelido", FILTER_SANITIZE_SPECIAL_CHARS);       //input:text
+    $peso = str_replace(",", ".", $_POST['peso']);
     $altura = str_replace(",", ".", $_POST["altura"]);
+    $estiloJogo = filter_input(INPUT_POST, "estilo", FILTER_SANITIZE_SPECIAL_CHARS);
+    $peDominante = $_POST['pe_dominante'];
     $posicao = $_POST['posicao'];
+    $descricao = filter_input(INPUT_POST, "sobre_mim", FILTER_SANITIZE_SPECIAL_CHARS);
 
-    list($msg, $destino) = inserirDados($conn, $peso, $altura, $posicao, $id_user);
+    list($msg, $destino) = inserirDados($conn, $id_user, $apelido, $peso, $altura, $estiloJogo, $peDominante, $posicao, $descricao);
 }
 
 $_SESSION['msg'] = $msg;
