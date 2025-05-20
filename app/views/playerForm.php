@@ -1,17 +1,27 @@
+<?php
+@session_start();
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Criar Perfil do Jogador</title>
   <link rel="stylesheet" href="../../public/css/playerForm.css" />
-  
-</head>
-<body>
 
+</head>
+
+<body>
+  <!-- RETIRAR OS INPUTS DE ESTADO (UF), CLUBE ATUAL (se tiver) E STATUS -->
+  <span>
+    <?php
+    echo $_SESSION['id'];
+    ?>
+  </span>
   <section class="criar-perfil">
     <h2>Criar Perfil do Jogador</h2>
-    <form action="salvar_jogador.php" method="POST" class="form-grid" enctype="multipart/form-data">
+    <form action="../controllers/playerForm.act.php" method="POST" class="form-grid" enctype="multipart/form-data">
 
       <div class="campo-completo">
         <label>Apelido (Opcional):</label>
@@ -20,12 +30,12 @@
 
       <div class="campo-metade">
         <label>Peso (kg):</label>
-        <input type="number" name="peso" step="0.1" required min="0"/>
+        <input type="number" name="peso" step="0.1" required min="0" />
       </div>
 
       <div class="campo-metade">
         <label>Altura (m):</label>
-         <input name="altura" oninput="this.value=this.value.replace(/\D/g,'').replace(/^(\d{1})(\d{0,2})$/,'$1,$2')"  placeholder="Ex: 1,75">
+        <input name="altura" oninput="this.value=this.value.replace(/\D/g,'').replace(/^(\d{1})(\d{0,2})$/,'$1,$2')" placeholder="Ex: 1,75">
       </div>
 
       <div class="campo-metade">
@@ -117,4 +127,5 @@
   </section>
 
 </body>
+
 </html>
