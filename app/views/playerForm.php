@@ -81,7 +81,6 @@
       </form>
     </section>
   </div>
-
   <script>
     function previewImage(input) {
       const preview = document.getElementById('preview-img');
