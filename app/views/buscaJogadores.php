@@ -4,9 +4,8 @@
 <head>
     <link rel="stylesheet" href="../../public/css/buscaJogadores.css">
     <title>Buscar Jogadores</title>
-</head>
-<body>
-<?php include("navbar-social.php"); ?>
+
+
     <div class="container">
 
     <div class="barraPesquisa">

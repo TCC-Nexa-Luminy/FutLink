@@ -48,7 +48,7 @@
             <li>
                 <a href="peneiras.php" class="item-menu">
                     <i class="fas fa-users"></i>
-                    <span class="texto-nav">Comunidades</span>
+                    <span class="texto-nav">Peneiras</span>
                 </a>
             </li>
             <li>
