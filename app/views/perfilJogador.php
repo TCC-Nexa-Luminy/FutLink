@@ -1,12 +1,7 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-  <meta charset="UTF-8">
-  <title>Perfil do Jogador</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../../public/css/perfilJogador.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-</head>
+<?php
+  include("topo.php");
+?>
+<link rel="stylesheet" href="../../public/css/perfilJogador.css">
 <body>
 
     <header class="navbar">
@@ -179,20 +174,7 @@
       &copy; 2025 <strong>FutLink</strong> — Todos os direitos reservados.
     </div>
   </footer>
-  
 
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      const navbar = document.querySelector(".navbar");
-
-      window.addEventListener("scroll", function () {
-        if (window.scrollY > 100) {
-          navbar.classList.add("scrolled");
-        } else {
-          navbar.classList.remove("scrolled");
-        }
-      });
-    });
-  </script>
+  <script src="../../public/js/perfilJogador.js"></script>
 </body>
 </html>
