@@ -1,22 +1,20 @@
-
-<?php include 'topo.php'; ?>
+<?php include('topo.php'); ?>
 <title>Perfil do Jogador - FutLink</title>
 <link rel="stylesheet" href="../../public/css/perfilJogador.css">
 
-
 <body>
-<?php include 'navbar-social.php'; ?>
-      
+  <?php include 'navbar-social.php'; ?>
+
   <section class="banner">
     <div class="banner-overlay"></div>
     <div class="banner-container">
       <div class="banner-img">
         <img src="../../public/images/bambu.png" alt="Foto do Jogador" />
-        <div class="status-badge">Disponível</div>
+        <div class="status-badge" id="status_user">Disponível</div>
       </div>
       <div class="banner-info">
         <div class="nome-social">
-          <h1>Robson Bambu</h1>
+          <h1 id="name_user">Robson Bambu</h1>
           <div class="social-icons">
             <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
             <a href="#" title="YouTube"><i class="fab fa-youtube"></i></a>
@@ -28,11 +26,11 @@
         <div class="contato-info">
           <div class="contato-item">
             <i class="fas fa-envelope"></i>
-            <span>robsonbambu@gmail.com</span>
+            <span id="email_user">robsonbambu@gmail.com</span>
           </div>
           <div class="contato-item">
             <i class="fas fa-phone"></i>
-            <span>(11) 99999-9999</span>
+            <span id="tel_user">(11) 99999-9999</span>
           </div>
           <div class="contato-item">
             <i class="fas fa-map-marker-alt"></i>
@@ -49,13 +47,13 @@
   </section>
 
   <div class="container">
-   <section class="card galeria-expandida destaque-midia">
+    <section class="card galeria-expandida destaque-midia">
       <h2><i class="fas fa-photo-film"></i> Portfólio de Mídia</h2>
       <div class="galeria-tabs">
         <button class="tab-btn ativo" data-tab="fotos">Fotos</button>
         <button class="tab-btn" data-tab="videos">Vídeos</button>
       </div>
-      
+
       <div class="tab-content ativo" id="fotos">
         <div class="galeria-grid-expandida">
           <div class="galeria-item destaque">
@@ -133,7 +131,7 @@
         </div>
         <button class="btn-mais">Ver mais fotos</button>
       </div>
-      
+
       <div class="tab-content" id="videos">
         <div class="videos-lista-expandida">
           <div class="video-item">
@@ -151,7 +149,7 @@
               <span>Duração: 2:45 • 1.2K visualizações</span>
             </div>
           </div>
-          
+
           <div class="video-item">
             <div class="video-container">
               <video controls poster="https://via.placeholder.com/800x450">
@@ -167,7 +165,7 @@
               <span>Duração: 0:48 • 3.5K visualizações</span>
             </div>
           </div>
-          
+
           <div class="video-item">
             <div class="video-container">
               <video controls poster="https://via.placeholder.com/800x450">
@@ -183,7 +181,7 @@
               <span>Duração: 1:32 • 856 visualizações</span>
             </div>
           </div>
-          
+
           <div class="video-item">
             <div class="video-container">
               <video controls poster="https://via.placeholder.com/800x450">
@@ -199,7 +197,7 @@
               <span>Duração: 3:15 • 742 visualizações</span>
             </div>
           </div>
-          
+
           <div class="video-item">
             <div class="video-container">
               <video controls poster="https://via.placeholder.com/800x450">
@@ -215,7 +213,7 @@
               <span>Duração: 4:27 • 2.1K visualizações</span>
             </div>
           </div>
-          
+
           <div class="video-item">
             <div class="video-container">
               <video controls poster="https://via.placeholder.com/800x450">
@@ -241,11 +239,8 @@
         <section class="card sobre">
           <h2><i class="fas fa-user"></i> Sobre Mim</h2>
           <div class="texto-sobre">
-            <p>
+            <p id="descricao_user">
               Sou um jogador dedicado e apaixonado por futebol, sempre em busca de novos desafios e oportunidades para crescer e melhorar. Tenho uma forte ética de trabalho, e minha mentalidade de equipe sempre se destaca dentro e fora de campo.
-            </p>
-            <p>
-              Com foco em desenvolvimento contínuo, busco aprimorar minhas habilidades e alcançar novos patamares na minha carreira esportiva. Acredito no poder da perseverança, no trabalho árduo e na importância de cada treino para conquistar grandes vitórias.
             </p>
           </div>
         </section>
@@ -257,63 +252,49 @@
               <i class="fas fa-user-tag"></i>
               <div class="info-content">
                 <span class="info-label">Apelido</span>
-                <span class="info-valor">Juninho</span>
+                <span class="info-valor" id="apelido_user">Juninho</span>
               </div>
             </div>
             <div class="info-item">
               <i class="fas fa-birthday-cake"></i>
               <div class="info-content">
                 <span class="info-label">Idade</span>
-                <span class="info-valor">17 anos</span>
+                <span class="info-valor" id="idade_user">17 anos</span>
               </div>
             </div>
             <div class="info-item">
               <i class="fas fa-weight"></i>
               <div class="info-content">
                 <span class="info-label">Peso</span>
-                <span class="info-valor">68 kg</span>
+                <span class="info-valor" id="peso_user">68 kg</span>
               </div>
             </div>
             <div class="info-item">
               <i class="fas fa-ruler-vertical"></i>
               <div class="info-content">
                 <span class="info-label">Altura</span>
-                <span class="info-valor">1.78 m</span>
-              </div>
-            </div>
-            <div class="info-item">
-              <i class="fas fa-bolt"></i>
-              <div class="info-content">
-                <span class="info-label">Status</span>
-                <span class="info-valor">Em busca de clube</span>
+                <span class="info-valor" id="altura_user">1.78 m</span>
               </div>
             </div>
             <div class="info-item">
               <i class="fas fa-fire"></i>
               <div class="info-content">
                 <span class="info-label">Estilo</span>
-                <span class="info-valor">Raçudo</span>
+                <span class="info-valor" id="estilo_user">Raçudo 1</span>
               </div>
             </div>
             <div class="info-item">
               <i class="fas fa-shoe-prints"></i>
               <div class="info-content">
                 <span class="info-label">Pé dominante</span>
-                <span class="info-valor">Direito</span>
-              </div>
-            </div>
-            <div class="info-item">
-              <i class="fas fa-map-marker-alt"></i>
-              <div class="info-content">
-                <span class="info-label">Estado</span>
-                <span class="info-valor">SP</span>
+                <span class="info-valor" id="pe_user">Direito1</span>
               </div>
             </div>
             <div class="info-item">
               <i class="fas fa-futbol"></i>
               <div class="info-content">
                 <span class="info-label">Posição</span>
-                <span class="info-valor">Atacante</span>
+                <span class="info-valor" id="posicao_user">Atacante</span>
               </div>
             </div>
           </div>
@@ -502,7 +483,7 @@
         <h2>Fut<span>Link</span></h2>
         <p>Conectando talentos ao futuro do futebol.</p>
       </div>
-  
+
       <div class="footer-col">
         <h3>Plataforma</h3>
         <ul>
@@ -511,7 +492,7 @@
           <li><a href="#">Empresários</a></li>
         </ul>
       </div>
-  
+
       <div class="footer-col">
         <h3>Institucional</h3>
         <ul>
@@ -520,7 +501,7 @@
           <li><a href="#">Termos e Privacidade</a></li>
         </ul>
       </div>
-  
+
       <div class="footer-col">
         <h3>Redes</h3>
         <div class="footer-social">
@@ -542,25 +523,25 @@
       // codigo para as abas da galeria expandida
       const tabBtns = document.querySelectorAll('.tab-btn');
       const tabContents = document.querySelectorAll('.tab-content');
-      
+
       tabBtns.forEach(btn => {
         btn.addEventListener('click', () => {
           // remove a classe ativo de todos os botões e conteúdos
           tabBtns.forEach(b => b.classList.remove('ativo'));
           tabContents.forEach(c => c.classList.remove('ativo'));
-          
+
           // adiciona a classe ativo ao botão clicado
           btn.classList.add('ativo');
-          
+
           // adiciona a classe ativo ao conteúdo correspondente
           const tabId = btn.getAttribute('data-tab');
           document.getElementById(tabId).classList.add('ativo');
         });
       });
-      
+
       // efeito de hover nas galerias
       const galeriaItems = document.querySelectorAll('.galeria-item');
-      
+
       galeriaItems.forEach(item => {
         item.addEventListener('mouseenter', () => {
           const overlay = item.querySelector('.galeria-overlay');
@@ -568,7 +549,7 @@
             overlay.style.transform = 'translateY(0)';
           }
         });
-        
+
         item.addEventListener('mouseleave', () => {
           const overlay = item.querySelector('.galeria-overlay');
           if (overlay) {
@@ -579,4 +560,5 @@
     });
   </script>
 </body>
+
 </html>
