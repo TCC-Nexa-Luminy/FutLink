@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
   const navbar = document.querySelector(".navbar");
-  const dados = dadosPerfil();
+  dadosPerfil();
   window.addEventListener("scroll", function () {
     if (window.scrollY > 100) {
       navbar.classList.add("scrolled");
@@ -19,7 +19,6 @@ async function dadosPerfil() {
     success: function (response) {
       console.log(response);
       addDados(response);
-      return response;
     },
     error: function (xhr, status, error) {
       console.error("Erro na requisição:", error);
@@ -45,7 +44,4 @@ function addDados(object) {
   tagsId.map((item) => {
     $(`#${item.id}`).text(object[item.prop]);
   });
-  // $("#name_user").text(response.nome);
-  // $("#descricao_user").text(response.descricao);
-  // $("#email_user").text(response.email);
 }
