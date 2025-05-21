@@ -1,13 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-  const navbar = document.querySelector(".navbar");
   dadosPerfil();
-  window.addEventListener("scroll", function () {
-    if (window.scrollY > 100) {
-      navbar.classList.add("scrolled");
-    } else {
-      navbar.classList.remove("scrolled");
-    }
-  });
 });
 
 async function dadosPerfil() {
@@ -21,7 +13,7 @@ async function dadosPerfil() {
       addDados(response);
     },
     error: function (xhr, status, error) {
-      console.error("Erro na requisição:", error);
+      console.log("Erro na requisição:", error);
     },
   });
 }
@@ -42,6 +34,11 @@ function addDados(object) {
   ];
 
   tagsId.map((item) => {
-    $(`#${item.id}`).text(object[item.prop]);
+    $(`#${item.id}`).text(object.user[item.prop]);
   });
+  const fotoPerfil = object[foto_perfil] || "../../public/images/profilePhotos/defaultPhoto.png"; // Supondo que a chave seja 'foto_perfil'
+  $("#photo_user").attr(
+    "src",
+    `${fotoPerfil}`
+  );
 }
