@@ -20,7 +20,27 @@
     --fonte-apagada-clean: 'Poppins', sans-serif;
 
 
-    --largura-menu: 25vw;
+    /* CSS APURADO 2 */
+    --verde: #00c853;
+    --verde-claro: #5efc82;
+    --verde-escuro: #009624;
+    --verde-destaque: #00e676;
+    --verde-principal: #034709;
+    --branco: #FFFFFF;
+    --cinza-claro: #f9f9f9;
+    --cinza: #757575;
+    --cinza-escuro: #2d2d2d;
+    --preto: #121212;
+    --gradiente-verde: linear-gradient(135deg, #00c853, #009624);
+    --gradiente-banner: linear-gradient(to right, #03692e, #06a348);
+    --sombra-suave: 0 5px 15px rgba(0, 0, 0, 0.05);
+    --sombra-media: 0 8px 25px rgba(0, 0, 0, 0.1);
+    --sombra-forte: 0 12px 30px rgba(0, 0, 0, 0.15);
+    --borda-radius: 12px;
+    --transicao: all 0.3s ease;
+
+    --gradiente-navbar: linear-gradient(to right, #03692e, #06a348);
+
 
 }
 
