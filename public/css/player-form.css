@@ -1,0 +1,330 @@
+:root {
+  --verde: #00c853;
+  --verde-claro: #5efc82;
+  --verde-escuro: #009624;
+  --verde-destaque: #00e676;
+  --verde-principal: #034709;
+  --branco: #FFFFFF;
+  --cinza-claro: #f9f9f9;
+  --cinza: #757575;
+  --cinza-escuro: #2d2d2d;
+  --preto: #121212;
+  --gradiente-verde: linear-gradient(135deg, #00c853, #009624);
+  --gradiente-banner: linear-gradient(to right, #03692e, #06a348);
+  --sombra-suave: 0 5px 15px rgba(0, 0, 0, 0.05);
+  --sombra-media: 0 8px 25px rgba(0, 0, 0, 0.1);
+  --sombra-forte: 0 12px 30px rgba(0, 0, 0, 0.15);
+  --borda-radius: 12px;
+  --transicao: all 0.3s ease;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', 'Segoe UI', sans-serif;
+}
+
+body {
+  background-color: var(--cinza-claro);
+  color: var(--cinza-escuro);
+  line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 0;
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.criar-perfil {
+  background: var(--branco);
+  width: 100%;
+  margin: 0 auto;
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 15px 35px rgba(3, 71, 9, 0.15);
+  border: 1px solid rgba(3, 71, 9, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.criar-perfil::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 8px;
+  background: var(--gradiente-verde);
+}
+
+.criar-perfil h2 {
+  font-size: 2.2rem;
+  text-align: center;
+  margin-bottom: 40px;
+  color: var(--verde-principal);
+  position: relative;
+  letter-spacing: 0.5px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+}
+
+.criar-perfil h2 i {
+  color: var(--verde);
+  font-size: 2rem;
+}
+
+.criar-perfil h2::after {
+  content: "";
+  width: 80px;
+  height: 4px;
+  background: var(--gradiente-verde);
+  display: block;
+  margin: 15px auto 0;
+  border-radius: 10px;
+  position: absolute;
+  bottom: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.form-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 25px;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.campo-completo,
+.campo-metade {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  position: relative;
+}
+
+.campo-metade {
+  flex: 1 1 calc(50% - 15px);
+  min-width: 250px;
+}
+
+.campo-completo label,
+.campo-metade label {
+  font-weight: 600;
+  color: var(--verde-principal);
+  margin-bottom: 10px;
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.campo-completo label i,
+.campo-metade label i {
+  color: var(--verde);
+  font-size: 1rem;
+}
+
+.campo-completo input,
+.campo-metade input,
+.campo-completo textarea,
+.campo-metade textarea,
+.campo-completo select,
+.campo-metade select {
+  padding: 14px 18px;
+  border-radius: 12px;
+  border: 2px solid #e0e0e0;
+  font-size: 1rem;
+  background: var(--cinza-claro);
+  transition: var(--transicao);
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.campo-completo input:focus,
+.campo-metade input:focus,
+.campo-completo textarea:focus,
+.campo-metade textarea:focus,
+.campo-completo select:focus,
+.campo-metade select:focus {
+  outline: none;
+  border-color: var(--verde);
+  background: var(--branco);
+  box-shadow: 0 0 0 3px rgba(3, 71, 9, 0.1), 
+              inset 0 1px 3px rgba(0,0,0,0.05);
+  transform: translateY(-2px);
+}
+
+textarea {
+  resize: vertical;
+  min-height: 120px;
+  line-height: 1.6;
+}
+
+/* campo do upload da foto */
+.campo-foto {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  align-items: center;
+  margin-bottom: 20px;
+  padding: 20px;
+  background-color: rgba(0, 200, 83, 0.05);
+  border-radius: 15px;
+  border: 1px dashed rgba(3, 71, 9, 0.2);
+}
+
+.foto-preview {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  overflow: hidden;
+  background-color: var(--cinza-claro);
+  border: 3px solid var(--verde-claro);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+.foto-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--cinza);
+}
+
+.foto-placeholder i {
+  font-size: 4rem;
+  opacity: 0.5;
+}
+
+#preview-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.foto-upload {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.btn-upload {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--verde-principal);
+  color: var(--branco);
+  padding: 12px 24px;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: var(--transicao);
+  font-weight: 600;
+  max-width: fit-content;
+  box-shadow: 0 4px 10px rgba(3, 71, 9, 0.2);
+}
+
+.btn-upload:hover {
+  background: var(--verde);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(3, 71, 9, 0.3);
+}
+
+.btn-upload i {
+  font-size: 1.2rem;
+}
+
+input[type="file"] {
+  display: none;
+}
+
+.foto-info {
+  color: var(--cinza);
+  font-size: 0.9rem;
+}
+
+.botao-salvar {
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.botao-salvar button {
+  background: var(--verde-principal);
+  border: none;
+  padding: 16px 40px;
+  border-radius: 50px;
+  color: var(--branco);
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: var(--transicao);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  box-shadow: 0 5px 15px rgba(3, 71, 9, 0.3);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 250px;
+  justify-content: center;
+}
+
+.botao-salvar button:hover {
+  background: var(--verde);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(3, 71, 9, 0.4);
+}
+
+.botao-salvar button:active {
+  transform: translateY(1px);
+}
+
+.botao-salvar button i {
+  font-size: 1.2rem;
+}
+
+@media (max-width: 768px) {
+  .criar-perfil {
+    padding: 30px 25px;
+  }
+  
+  .campo-metade {
+    flex: 1 1 100%;
+  }
+  
+  .campo-foto {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .foto-upload {
+    align-items: center;
+  }
+  
+  .botao-salvar button {
+    width: 100%;
+    padding: 14px;
+  }
+  
+  .criar-perfil h2 {
+    font-size: 1.8rem;
+  }
+}
