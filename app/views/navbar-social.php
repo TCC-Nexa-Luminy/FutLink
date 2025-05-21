@@ -40,7 +40,7 @@
                 </a>
             </li>
             <li>
-                <a href="#" class="item-menu">
+                <a href="organizacoes.php" class="item-menu">
                     <i class="fas fa-briefcase"></i>
                     <span class="texto-nav">Trabalho</span>
                 </a>

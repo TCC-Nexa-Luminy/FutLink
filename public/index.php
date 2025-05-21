@@ -161,7 +161,7 @@
         </a>
     </div>
 
-
+    <?php include("../app/views/footer.php"); ?>
 </html>
 <script src="../public/js/index.js"></script>
 
