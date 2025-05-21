@@ -1,6 +1,8 @@
+
 <?php include 'topo.php'; ?>
 <title>Perfil do Jogador - FutLink</title>
 <link rel="stylesheet" href="../../public/css/perfilJogador.css">
+
 
 <body>
 <?php include 'navbar-social.php'; ?>
@@ -20,6 +22,7 @@
             <a href="#" title="YouTube"><i class="fab fa-youtube"></i></a>
             <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
           </div>
+
         </div>
         <p class="bio">Atacante com foco em finalização e velocidade. Buscando oportunidades para crescer profissionalmente.</p>
         <div class="contato-info">
@@ -34,6 +37,7 @@
           <div class="contato-item">
             <i class="fas fa-map-marker-alt"></i>
             <span>São Paulo, SP</span>
+
           </div>
         </div>
         <div class="acoes">
@@ -530,7 +534,9 @@
       &copy; 2025 <strong>FutLink</strong> — Todos os direitos reservados.
     </div>
   </footer>
-  
+
+  <script src="../../public/js/perfilJogador.js"></script>
+
   <script>
     document.addEventListener("DOMContentLoaded", function() {
       // codigo para as abas da galeria expandida
