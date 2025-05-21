@@ -1,8 +1,7 @@
 
-<?php include 'topo.php'; ?>
+<?php include ('topo.php'); ?>
 <title>Perfil do Jogador - FutLink</title>
 <link rel="stylesheet" href="../../public/css/perfilJogador.css">
-
 
 <body>
 <?php include 'navbar-social.php'; ?>
@@ -12,11 +11,11 @@
     <div class="banner-container">
       <div class="banner-img">
         <img src="../../public/images/bambu.png" alt="Foto do Jogador" />
-        <div class="status-badge">Disponível</div>
+        <div class="status-badge" id="status_user">Disponível</div>
       </div>
       <div class="banner-info">
         <div class="nome-social">
-          <h1>Robson Bambu</h1>
+          <h1 id="name_user">Robson Bambu</h1>
           <div class="social-icons">
             <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
             <a href="#" title="YouTube"><i class="fab fa-youtube"></i></a>
@@ -28,11 +27,11 @@
         <div class="contato-info">
           <div class="contato-item">
             <i class="fas fa-envelope"></i>
-            <span>robsonbambu@gmail.com</span>
+            <span id="email_user">robsonbambu@gmail.com</span>
           </div>
           <div class="contato-item">
             <i class="fas fa-phone"></i>
-            <span>(11) 99999-9999</span>
+            <span id="tel_user">(11) 99999-9999</span>
           </div>
           <div class="contato-item">
             <i class="fas fa-map-marker-alt"></i>
@@ -241,7 +240,7 @@
         <section class="card sobre">
           <h2><i class="fas fa-user"></i> Sobre Mim</h2>
           <div class="texto-sobre">
-            <p>
+            <p id="descricao_user">
               Sou um jogador dedicado e apaixonado por futebol, sempre em busca de novos desafios e oportunidades para crescer e melhorar. Tenho uma forte ética de trabalho, e minha mentalidade de equipe sempre se destaca dentro e fora de campo.
             </p>
             <p>
@@ -257,63 +256,49 @@
               <i class="fas fa-user-tag"></i>
               <div class="info-content">
                 <span class="info-label">Apelido</span>
-                <span class="info-valor">Juninho</span>
+                <span class="info-valor" id="apelido_user">Juninho</span>
               </div>
             </div>
             <div class="info-item">
               <i class="fas fa-birthday-cake"></i>
               <div class="info-content">
                 <span class="info-label">Idade</span>
-                <span class="info-valor">17 anos</span>
+                <span class="info-valor" id="idade_user">17 anos</span>
               </div>
             </div>
             <div class="info-item">
               <i class="fas fa-weight"></i>
               <div class="info-content">
                 <span class="info-label">Peso</span>
-                <span class="info-valor">68 kg</span>
+                <span class="info-valor" id="peso_user">68 kg</span>
               </div>
             </div>
             <div class="info-item">
               <i class="fas fa-ruler-vertical"></i>
               <div class="info-content">
                 <span class="info-label">Altura</span>
-                <span class="info-valor">1.78 m</span>
-              </div>
-            </div>
-            <div class="info-item">
-              <i class="fas fa-bolt"></i>
-              <div class="info-content">
-                <span class="info-label">Status</span>
-                <span class="info-valor">Em busca de clube</span>
+                <span class="info-valor" id="altura_user">1.78 m</span>
               </div>
             </div>
             <div class="info-item">
               <i class="fas fa-fire"></i>
               <div class="info-content">
                 <span class="info-label">Estilo</span>
-                <span class="info-valor">Raçudo</span>
+                <span class="info-valor" id="estilo_user">Raçudo 1</span>
               </div>
             </div>
             <div class="info-item">
               <i class="fas fa-shoe-prints"></i>
               <div class="info-content">
                 <span class="info-label">Pé dominante</span>
-                <span class="info-valor">Direito</span>
-              </div>
-            </div>
-            <div class="info-item">
-              <i class="fas fa-map-marker-alt"></i>
-              <div class="info-content">
-                <span class="info-label">Estado</span>
-                <span class="info-valor">SP</span>
+                <span class="info-valor" id="pe_user">Direito1</span>
               </div>
             </div>
             <div class="info-item">
               <i class="fas fa-futbol"></i>
               <div class="info-content">
                 <span class="info-label">Posição</span>
-                <span class="info-valor">Atacante</span>
+                <span class="info-valor" id="posicao_user">Atacante</span>
               </div>
             </div>
           </div>
