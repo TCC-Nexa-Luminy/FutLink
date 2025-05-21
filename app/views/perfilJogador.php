@@ -23,7 +23,7 @@
             <img src="../../public/images/bambu.png" alt="Foto do Jogador" />
           </div>
           <div class="banner-info">
-            <h1>Robson Bambu</h1>
+            <h1 id="nome_user">Robson Bambu</h1>
             <p>Vou acabar com a raça do meu próprio time memo</p>
             <p><strong>Contato:</strong> robsonbambu@gmail.com</p>
           </div>
