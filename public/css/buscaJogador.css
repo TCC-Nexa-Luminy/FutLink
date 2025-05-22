@@ -1,0 +1,387 @@
+@import url(root.css);
+
+:root {
+    --verde-destaque: #22c55e;
+    --verde-claro: #dcfce7;
+    --verde-escuro: #166534;
+    --cinza-claro: #f5f5f5;
+    --cinza: #9ca3af;
+    --cinza-escuro: #333333;
+    --branco: #ffffff;
+    --sombra-suave: 0 4px 10px rgba(0, 0, 0, 0.05);
+    --sombra-media: 0 10px 25px rgba(0, 0, 0, 0.1);
+    --transicao: all 0.3s ease;
+    --borda-radius: 16px;
+    --borda-radius-full: 9999px;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background: linear-gradient(to bottom right, #f9fafb, #f3f4f6);
+    color: var(--cinza-escuro);
+    line-height: 1.6;
+    min-height: 100vh;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+}
+
+button {
+    cursor: pointer;
+    border: none;
+    outline: none;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.container {
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 30px 20px;
+}
+
+.titulo {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 30px;
+    color: var(--cinza-escuro);
+}
+
+.barraPesquisa {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.pesquisaContainer {
+    display: flex;
+    width: 100%;
+    max-width: 600px;
+    background: var(--branco);
+    border-radius: var(--borda-radius-full);
+    box-shadow: var(--sombra-suave);
+    overflow: hidden;
+}
+
+.pesquisaContainer form {
+    display: flex;
+    width: 100%;
+}
+
+.pesquisaContainer input {
+    flex: 1;
+    border: none;
+    padding: 15px 20px;
+    font-size: 16px;
+    outline: none;
+}
+
+.pesquisaContainer button {
+    background: var(--verde-destaque);
+    color: white;
+    border: none;
+    padding: 0 25px;
+    cursor: pointer;
+    transition: var(--transicao);
+}
+
+.pesquisaContainer button:hover {
+    background: var(--verde-escuro);
+}
+
+.conteudo {
+    display: flex;
+    gap: 30px;
+}
+
+.filtros {
+    width: 300px;
+    background: var(--branco);
+    padding: 25px;
+    border-radius: var(--borda-radius);
+    box-shadow: var(--sombra-suave);
+    position: sticky;
+    top: 20px;
+    height: fit-content;
+}
+
+.filtros h3 {
+    margin-bottom: 25px;
+    font-size: 1.25rem;
+    color: var(--cinza-escuro);
+    position: relative;
+    display: inline-block;
+}
+
+.filtros h3::after {
+    content: "";
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 40px;
+    height: 3px;
+    background-color: var(--verde-destaque);
+    border-radius: 3px;
+}
+
+.filtro {
+    margin-bottom: 20px;
+}
+
+.filtro label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: var(--cinza-escuro);
+    font-size: 0.9rem;
+}
+
+.faixa {
+    display: flex;
+    gap: 10px;
+}
+
+.faixa input,
+.filtro select {
+    width: 100%;
+    padding: 10px 15px;
+    border: 1px solid #e5e7eb;
+    border-radius: var(--borda-radius-full);
+    font-size: 0.9rem;
+    outline: none;
+    transition: var(--transicao);
+}
+
+.faixa input:focus,
+.filtro select:focus {
+    border-color: var(--verde-destaque);
+    box-shadow: 0 0 0 2px rgba(34, 197, 94, 0.2);
+}
+
+.posicoes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 10px;
+}
+
+.posicoes button {
+    padding: 8px 12px;
+    background: var(--branco);
+    color: var(--verde-escuro);
+    border: 1px solid rgba(34, 197, 94, 0.3);
+    border-radius: var(--borda-radius-full);
+    font-size: 0.85rem;
+    transition: var(--transicao);
+}
+
+.posicoes button:hover {
+    background: var(--verde-claro);
+    transform: translateY(-2px);
+    box-shadow: var(--sombra-suave);
+}
+
+.btnAplicarFiltros {
+    width: 100%;
+    padding: 12px;
+    background: var(--verde-destaque);
+    color: white;
+    border-radius: var(--borda-radius-full);
+    margin-top: 20px;
+    font-weight: 600;
+    transition: var(--transicao);
+}
+
+.btnAplicarFiltros:hover {
+    background: var(--verde-escuro);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(22, 101, 52, 0.3);
+}
+
+.jogadorGrid {
+    flex: 1;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 25px;
+}
+
+.jogadorCard {
+    background: var(--branco);
+    border-radius: var(--borda-radius);
+    overflow: hidden;
+    box-shadow: var(--sombra-suave);
+    transition: var(--transicao);
+}
+
+.jogadorCard:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--sombra-media);
+}
+
+.jogadorImagem {
+    position: relative;
+    height: 280px;
+    overflow: hidden;
+}
+
+.jogadorImagem img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.jogadorCard:hover .jogadorImagem img {
+    transform: scale(1.05);
+}
+
+.posicaoBadge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: var(--verde-destaque);
+    color: white;
+    padding: 5px 12px;
+    border-radius: var(--borda-radius-full);
+    font-size: 0.8rem;
+    font-weight: 600;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+}
+
+.jogadorOverlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+    color: white;
+    padding: 20px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.3s ease;
+}
+
+.jogadorCard:hover .jogadorOverlay {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.jogadorInfo {
+    padding: 20px;
+}
+
+.jogadorInfo h3 {
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+    color: var(--cinza-escuro);
+}
+
+.jogadorInfo p {
+    color: var(--cinza);
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+}
+
+.jogadorAcoes {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+}
+
+.acaoBtn {
+    color: var(--cinza);
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: var(--transicao);
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.acaoBtn:hover {
+    color: var(--verde-destaque);
+}
+
+.carregarMais {
+    text-align: center;
+    margin-top: 40px;
+}
+
+.btnCarregarMais {
+    background: var(--verde-destaque);
+    color: white;
+    padding: 12px 30px;
+    border-radius: var(--borda-radius-full);
+    font-weight: 600;
+    font-size: 1rem;
+    transition: var(--transicao);
+}
+
+.btnCarregarMais:hover {
+    background: var(--verde-escuro);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(22, 101, 52, 0.3);
+}
+
+/* responsividade */
+@media (max-width: 1024px) {
+    .jogadorGrid {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    .conteudo {
+        flex-direction: column;
+    }
+    
+    .filtros {
+        width: 100%;
+        position: static;
+        margin-bottom: 30px;
+    }
+    
+    .jogadorGrid {
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    }
+}
+
+@media (max-width: 576px) {
+    .jogadorGrid {
+        grid-template-columns: 1fr;
+    }
+    
+    .pesquisaContainer {
+        flex-direction: column;
+    }
+    
+    .pesquisaContainer input {
+        width: 100%;
+        border-radius: var(--borda-radius-full) var(--borda-radius-full) 0 0;
+    }
+    
+    .pesquisaContainer button {
+        width: 100%;
+        padding: 12px;
+        border-radius: 0 0 var(--borda-radius-full) var(--borda-radius-full);
+    }
+    
+    .faixa {
+        flex-direction: column;
+    }
+}
