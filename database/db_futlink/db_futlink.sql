@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
-
+-- Tempo de geração: 23/05/2025 às 22:50
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -55,8 +55,7 @@ CREATE TABLE `peneiras` (
 --
 
 INSERT INTO `peneiras` (`id`, `titulo`, `clube`, `descricao`, `localizacao`, `data`, `horario`, `inscricao`, `status`, `faixa_etaria`, `caminho_foto`, `caminho_documento`, `badge_type`, `status_inscricao`, `fotos`, `documentos`, `data_criacao`, `data_atualizacao`) VALUES
-(1, 'Oi', 'a', 'a', 'aaaaa', '2025-05-13', '18:16:00', 'Aberta', 'Inativa', '19', NULL, NULL, 'normal', 'status-soon', NULL, NULL, '2025-05-23 20:06:49', '2025-05-23 20:06:49'),
-(2, 'Peneira de doidinhos', 'loucos ofc', 'aaaaaaaaaaaaaaaaaaaaa', 'aaa', '2025-05-29', '21:12:00', 'Em Breve', 'Destaque', '12', '[\"uploads\\/fotos\\/6830d68c225f3_depositphotos_35097143-stock-photo-burglar-sneaking-in-a-open.jpg\",\"uploads\\/fotos\\/6830d68c227bc_space.jpg\",\"uploads\\/fotos\\/6830d68c22914_WhatsApp Image 2025-02-18 at 14.28.23.jpeg\"]', '[\"uploads\\/documentos\\/6830d68c22a76_WhatsApp Image 2025-02-18 at 14.28.23.jpeg\"]', 'normal', 'status-soon', NULL, NULL, '2025-05-23 20:11:56', '2025-05-23 20:11:56');
+(3, 'Peneira sub 14', 'Santos Futebol Clube', 'A Peneira do Santos Futebol Clube é uma excelente oportunidade para jovens talentos demonstrarem seu potencial e realizarem o sonho de jogar em um dos maiores clubes formadores de atletas do Brasil e do mundo.\\r\\n\\r\\nCom foco em revelar novos craques, a peneira é aberta para diversas faixas etárias e ocorre nas dependências do clube, sob avaliação da comissão técnica oficial do Santos FC. Durante o processo, os participantes são observados em aspectos técnicos, físicos, táticos e comportamentais.\\r\\n\\r\\nO evento visa selecionar atletas com perfil para integrar as categorias de base do Santos, que historicamente revelou nomes como Pelé, Neymar e Rodrygo.', 'Rua José Campos', '2025-07-25', '14:30:00', 'Aberta', 'Ativa', '14', '[\"uploads\\/fotos\\/6830def3db94a_images (1).jfif\",\"uploads\\/fotos\\/6830def3dbcd8_images (2).jfif\",\"uploads\\/fotos\\/6830def3dbfe2_images.jfif\"]', NULL, 'normal', 'status-soon', NULL, NULL, '2025-05-23 20:47:47', '2025-05-23 20:47:47');
 
 -- --------------------------------------------------------
 
@@ -110,7 +109,7 @@ CREATE TABLE `tbl_jogador` (
   `peso` decimal(5,2) NOT NULL,
   `posicao` varchar(150) DEFAULT 'Atacante',
   `estiloJogo` varchar(250) NOT NULL,
-  `pe_dominante` varchar(100) NOT NULL,
+  `pe_dominante` int(100) NOT NULL,
   `descricao` varchar(1000) NOT NULL,
   `data_inicio_time` date DEFAULT NULL,
   `status` enum('sem time','ativo','lesionado','suspenso') DEFAULT 'sem time'
@@ -121,9 +120,7 @@ CREATE TABLE `tbl_jogador` (
 --
 
 INSERT INTO `tbl_jogador` (`id_jogador`, `id_user`, `id_time`, `apelido`, `altura`, `peso`, `posicao`, `estiloJogo`, `pe_dominante`, `descricao`, `data_inicio_time`, `status`) VALUES
-(1, 11, NULL, 'Shand', 1.70, 55.30, 'Zagueiro', 'Estratégico', 'Direito', 'Sou apenas um aluno da etec com o desejo de competir na Champions', NULL, 'sem time'),
-(16, 3, NULL, 'Murimbo', 1.72, 79.00, 'Volante', 'Raçudo', 'Direito', 'Sou um jogador profissional muito dedicado, acredito que minhas habilidades podem um dia me levar para competir na Europa.', NULL, 'sem time'),
-(17, 7, NULL, 'Luquinhas', 1.76, 82.00, 'Zagueiro', 'Defensivo', 'Esquerdo', 'Meu estilo de jogo se baseia em manter o controle defensivo do meu time. Gosto de ritmos de jogos controlados.', NULL, 'sem time');
+(1, 11, NULL, 'Shand', 1.70, 55.30, 'Zagueiro', 'Estratégico', 0, 'Sou apenas um aluno da etec com o desejo de competir na Champions', NULL, 'sem time');
 
 -- --------------------------------------------------------
 
@@ -247,8 +244,9 @@ CREATE TABLE `tbl_usuarios` (
 --
 
 INSERT INTO `tbl_usuarios` (`id_user`, `nome`, `email`, `senha`, `data_nasc`, `genero`, `foto_perfil`, `telefone`, `bio`, `rede_social`, `cep`, `rua`, `bairro`, `cidade`, `estado`, `status`, `created_at`, `updated_at`) VALUES
+(1, 'Shandel Villasante Merlo', 'shandelvm16@gmail.com', '$2y$10$/r1NjYb6YbuPLHqEfJWoTOgC1gWW9Y2GjlYqyHuo3.hsi64xJG.7.', '2006-06-13', 'masculino', '../../public/images/profilePhotos/63f9078f50343495a705174a579c4ebb.png', '(11) 91034-6024', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'ativo', '2025-03-26 16:30:59', '2025-03-26 16:30:59'),
 (2, 'Pedro Medeiros', 'pedrosantos57@gmail.com', '$2y$10$RGBbFsjHN445mW13T1lNuuRTQKSLKmt6kn3nJLWaYtjN6p97TLvUS', '2007-10-15', 'masculino', '../../public/images/profilePhotos/4dfbdd0bab17f7db0777ebe63f252392.png', '(11) 93739-4489', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'ativo', '2025-04-22 13:49:20', '2025-04-22 13:49:20'),
-(3, 'Murilo Magalhâes', 'superonze46@gmail.com', '$2y$10$fb8mzsnbuknK1gn5vm/2pe1JCajbeI6vJqJzkXt.kc39knhw0zn72', '2007-01-18', 'masculino', '../../public/images/profilePhotos/b7a663e8cf54ed1d04eca111f9dc54cd.png', '(11) 93497-3298', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'ativo', '2025-04-22 13:51:32', '2025-05-23 14:26:54'),
+(3, 'Murilo Magalhâes', 'superonze46@gmail.com', '$2y$10$fb8mzsnbuknK1gn5vm/2pe1JCajbeI6vJqJzkXt.kc39knhw0zn72', '2007-01-18', 'masculino', '../../public/images/profilePhotos/d1174ab5ba81d29a006a8032587894a4.png', '(11) 93497-3298', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'ativo', '2025-04-22 13:51:32', '2025-04-22 13:51:32'),
 (4, 'Eduardo Fernandes', 'eduardofernandes134@gmail.com', '$2y$10$nKkdNMWtvoq/MoZT5f1AmeMxm273QzaCzGmyR31VdoqWtIkjFC8du', '2008-02-05', 'masculino', '../../public/images/profilePhotos/defaultPhoto', '(11) 93487-3894', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'ativo', '2025-04-22 13:54:56', '2025-04-22 13:54:56'),
 (5, 'Daniel Mattos', 'danimattos@gmail.com', '$2y$10$i8yA1OcevHfOuENccmJjW.INo46k0wvaAQzBK/keKNZO3.QZSRevK', '2007-04-08', 'masculino', '../../public/images/profilePhotos/fc6674b38f5ddc654d765bad7c410b99.png', '(11) 94597-8548', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'ativo', '2025-04-22 14:00:12', '2025-04-22 14:00:12'),
 (6, 'Thiago Ribeiro', 'thiagoribeiro23@gmail.com', '$2y$10$UcNCrhuS.GnVmewqepW0G.yKp0aV7QKI8fY5RNS/Eelxl8TXBpWLi', '2006-09-01', 'masculino', '../../public/images/profilePhotos/defaultPhoto', '(11) 98429-5376', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'ativo', '2025-04-22 14:05:40', '2025-04-22 14:05:40'),
@@ -256,8 +254,7 @@ INSERT INTO `tbl_usuarios` (`id_user`, `nome`, `email`, `senha`, `data_nasc`, `g
 (8, 'Mariana Costa', 'mariana.costa88@hotmail.com', '$2y$10$cakhPbUuDnw.By6Dt9qSpubJyldwC7IKbXYqU944ntLbtfqON9QdO', '1988-07-23', 'masculino', '../../public/images/profilePhotos/defaultPhoto', '(11) 92349-8495', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'ativo', '2025-04-22 14:10:59', '2025-04-22 14:10:59'),
 (9, 'Gabriel Almeida', 'gabriel.almeida01@gmail.com', '$2y$10$DfFdrR5UgRiX1dHAtJbPbuv9o2xOGjW/NdqIy3LUq/LOLKO1Dsu7e', '2001-11-01', 'masculino', '../../public/images/profilePhotos/defaultPhoto', '(19) 95293-4857', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'ativo', '2025-04-22 14:11:52', '2025-04-22 14:11:52'),
 (10, 'João Oliveira', 'joao.oliveira80@gmail.com', '$2y$10$X45zxeG5Nd6re714MfqQVuArt8j4QOw1VUmaaqCFlwm88p1c6UWFy', '1980-08-04', 'masculino', '../../public/images/profilePhotos/516517828b4162c14cf596544d41a424.png', '(11) 93985-2147', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'ativo', '2025-04-22 14:12:55', '2025-04-22 14:12:55'),
-(11, 'Shandel', 'shandelvm18@gmail.etec', '$2y$10$d5IrkqQMSnRMt6nUeWmBgeSNwI.Xokm1Zaq9YjdF7IKsnTrwL4tsS', '2006-06-13', 'masculino', '../../public/images/profilePhotos/defaultPhoto', '(11) 91034-3903', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'ativo', '2025-05-20 14:10:05', '2025-05-20 14:10:05'),
-(12, 'Shandel Villasante Merlo', 'shandelvm16@gmail.com', '$2y$10$1eyi2xDvvdjlqbcDA8w27uCEONmMktHAt2SJnZks6bLsFCFKz48/q', '2006-06-13', 'masculino', '../../public/images/profilePhotos/defaultPhoto', '(11) 94963-3106', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'ativo', '2025-05-21 17:02:09', '2025-05-21 17:02:09');
+(11, 'Shandel', 'shandelvm18@gmail.etec', '$2y$10$d5IrkqQMSnRMt6nUeWmBgeSNwI.Xokm1Zaq9YjdF7IKsnTrwL4tsS', '2006-06-13', 'masculino', '../../public/images/profilePhotos/defaultPhoto', '(11) 91034-3903', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'ativo', '2025-05-20 14:10:05', '2025-05-20 14:10:05');
 
 --
 -- Índices para tabelas despejadas
@@ -345,7 +342,7 @@ ALTER TABLE `tbl_usuarios`
 -- AUTO_INCREMENT de tabela `peneiras`
 --
 ALTER TABLE `peneiras`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de tabela `posts`
@@ -363,7 +360,7 @@ ALTER TABLE `tbl_hist_contrato`
 -- AUTO_INCREMENT de tabela `tbl_jogador`
 --
 ALTER TABLE `tbl_jogador`
-  MODIFY `id_jogador` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id_jogador` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de tabela `tbl_jogo`
@@ -399,7 +396,7 @@ ALTER TABLE `tbl_time`
 -- AUTO_INCREMENT de tabela `tbl_usuarios`
 --
 ALTER TABLE `tbl_usuarios`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- Restrições para tabelas despejadas
