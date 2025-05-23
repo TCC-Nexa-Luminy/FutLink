@@ -19,26 +19,32 @@ async function dadosPerfil() {
 }
 
 function addDados(object) {
-  const tagsId = [
+
+  const tagsUserId = [
     { id: "name_user", prop: "nome" },
     { id: "status_user", prop: "status" },
     { id: "descricao_user", prop: "descricao" },
     { id: "email_user", prop: "email" },
-    { id: "tel_user", prop: "telefone" },
+    { id: "tel_user", prop: "telefone" },   
+    { id: "pe_user", prop: "pe_dominante" },
+  ]
+  
+  const tagsPlayerId = [
     { id: "apelido_user", prop: "apelido" },
     { id: "peso_user", prop: "peso" },
     { id: "altura_user", prop: "altura" },
     { id: "estilo_user", prop: "estiloJogo" },
-    { id: "pe_user", prop: "pe_dominante" },
     { id: "posicao_user", prop: "posicao" },
-  ];
+    { id: "pe_user", prop: "pe_dominante"}
+  ]
 
-  tagsId.map((item) => {
+  tagsUserId.map((item) => {
     $(`#${item.id}`).text(object.user[item.prop]);
   });
-  const fotoPerfil = object[foto_perfil] || "../../public/images/profilePhotos/defaultPhoto.png"; // Supondo que a chave seja 'foto_perfil'
-  $("#photo_user").attr(
-    "src",
-    `${fotoPerfil}`
-  );
+
+  tagsPlayerId.map((item) => {
+    $(`#${item.id}`).text(object.player[item.prop]);
+  });
+
+  $(`#photo_user`).attr("src", object.user['foto_perfil']);
 }

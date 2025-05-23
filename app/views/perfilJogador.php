@@ -9,7 +9,7 @@
     <div class="banner-overlay"></div>
     <div class="banner-container">
       <div class="banner-img">
-        <img src="../../public/images/bambu.png" alt="Foto do Jogador" id="photo_user"/>
+        <img src="../../public/images/profilePhotos/default" alt="Foto do Jogador" id="photo_user"/>
         <div class="status-badge" id="status_user">Disponível</div>
       </div>
       <div class="banner-info">
