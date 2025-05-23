@@ -9,7 +9,6 @@ async function dadosPerfil() {
     data: { nome: "Shandel" }, //dados a serem enviados ao backend
     dataType: "json", //tipo de dados que se espera, como texto ou JSON
     success: function (response) {
-      console.log(response);
       addDados(response);
     },
     error: function (xhr, status, error) {
