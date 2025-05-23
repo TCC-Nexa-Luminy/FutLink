@@ -28,12 +28,34 @@ $peneira = $result->fetch_assoc();
 $fotos = json_decode($peneira['caminho_foto'], true);
 $documentos = json_decode($peneira['caminho_documento'], true);
 
+// Função para verificar se arquivo existe e retornar caminho correto
+function getImagePath($filename) {
+    if (empty($filename)) return '../../public/images/default-peneira.png';
+    
+    // Possíveis caminhos onde a imagem pode estar
+    $possible_paths = [
+        '../../controllers/' . $filename,
+        '../controllers/' . $filename,
+        '../../controllers/uploads/fotos/' . $filename,
+        '../controllers/uploads/fotos/' . $filename,
+        '../../uploads/fotos/' . $filename,
+        '../uploads/fotos/' . $filename
+    ];
+    
+    foreach ($possible_paths as $path) {
+        if (file_exists($path)) {
+            return $path;
+        }
+    }
+    
+    // Se não encontrar, retorna imagem padrão
+    return '../../public/images/default-peneira.png';
+}
+
 // Determinar foto principal
-$foto_principal = '';
+$foto_principal = '../../public/images/default-peneira.png';
 if ($fotos && is_array($fotos) && !empty($fotos)) {
-    $foto_principal = '../../controllers/' . $fotos[0];
-} else {
-    $foto_principal = '../../public/images/default-peneira.jpg';
+    $foto_principal = getImagePath($fotos[0]);
 }
 
 // Determinar status
@@ -67,6 +89,10 @@ $meses = [
 foreach ($meses as $en => $pt) {
     $data_formatada = str_replace($en, $pt, $data_formatada);
 }
+
+// Debug: Vamos ver o que está no banco
+echo "<!-- DEBUG: Fotos no banco: " . htmlspecialchars($peneira['caminho_foto']) . " -->";
+echo "<!-- DEBUG: Documentos no banco: " . htmlspecialchars($peneira['caminho_documento']) . " -->";
 ?>
 
 <link rel="stylesheet" href="../../public/css/peneiraTime.css">
@@ -78,14 +104,14 @@ foreach ($meses as $en => $pt) {
     <main>
         <!-- Hero Banner -->
         <section class="hero-banner">
-            <img src="<?php echo $foto_principal; ?>" alt="<?php echo htmlspecialchars($peneira['titulo']); ?>" class="hero-image">
+            <img src="<?php echo $foto_principal; ?>" alt="<?php echo htmlspecialchars($peneira['titulo']); ?>" class="hero-image" onerror="this.src='../../public/images/default-peneira.png'">
             <div class="hero-overlay"></div>
             <a href="peneiras.php" class="back-button">
                 <i class="fas fa-arrow-left"></i>
             </a>
             <div class="hero-content">
                 <div class="club-logo">
-                    <img src="../../public/images/club-placeholder.png" alt="Logo <?php echo htmlspecialchars($peneira['clube']); ?>">
+                    <img src="../../public/images/club-placeholder.png" alt="Logo <?php echo htmlspecialchars($peneira['clube']); ?>" onerror="this.src='../../public/images/default-club.png'">
                 </div>
                 <div class="hero-text">
                     <span class="status-badge <?php echo $status_class; ?>">
@@ -177,7 +203,7 @@ foreach ($meses as $en => $pt) {
                                                 <i class="fas fa-file-pdf"></i>
                                             </div>
                                             <div class="document-text">
-                                                <a href="../../controllers/<?php echo $documento; ?>" target="_blank">
+                                                <a href="<?php echo getImagePath($documento); ?>" target="_blank">
                                                     Ver documento
                                                 </a>
                                             </div>
@@ -242,10 +268,15 @@ foreach ($meses as $en => $pt) {
                             <div class="photos-grid">
                                 <?php if ($fotos && is_array($fotos) && !empty($fotos)): ?>
                                     <?php foreach ($fotos as $index => $foto): ?>
+                                        <?php 
+                                        $foto_path = getImagePath($foto);
+                                        echo "<!-- DEBUG: Foto $index: $foto -> $foto_path -->";
+                                        ?>
                                         <div class="photo-item">
-                                            <img src="../../controllers/<?php echo $foto; ?>" 
+                                            <img src="<?php echo $foto_path; ?>" 
                                                  alt="Foto <?php echo $index + 1; ?> da peneira"
-                                                 onclick="openPhotoModal(this.src)">
+                                                 onclick="openPhotoModal(this.src)"
+                                                 onerror="this.parentElement.innerHTML='<div class=\'photo-placeholder\'><i class=\'fas fa-image\'></i><br><small>Imagem não encontrada</small></div>'">
                                         </div>
                                     <?php endforeach; ?>
                                     
@@ -262,6 +293,7 @@ foreach ($meses as $en => $pt) {
                                     <div class="photo-item">
                                         <div class="photo-placeholder">
                                             <i class="fas fa-image"></i>
+                                            <small>Nenhuma foto disponível</small>
                                         </div>
                                     </div>
                                     <div class="photo-item">
@@ -377,13 +409,6 @@ foreach ($meses as $en => $pt) {
         </section>
     </main>
 
-    <!-- Modal para visualizar fotos -->
-    <div id="photoModal" class="photo-modal" onclick="closePhotoModal()">
-        <div class="photo-modal-content">
-            <span class="photo-modal-close" onclick="closePhotoModal()">&times;</span>
-            <img id="photoModalImage" src="/placeholder.svg" alt="Foto ampliada">
-        </div>
-    </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -460,100 +485,5 @@ foreach ($meses as $en => $pt) {
         });
     </script>
 
-    <style>
-        /* Estilos para o modal de fotos */
-        .photo-modal {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.9);
-        }
 
-        .photo-modal-content {
-            position: relative;
-            margin: auto;
-            padding: 20px;
-            width: 90%;
-            max-width: 800px;
-            top: 50%;
-            transform: translateY(-50%);
-        }
-
-        .photo-modal-close {
-            position: absolute;
-            top: 15px;
-            right: 35px;
-            color: #f1f1f1;
-            font-size: 40px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-
-        .photo-modal-close:hover {
-            color: #bbb;
-        }
-
-        #photoModalImage {
-            width: 100%;
-            height: auto;
-            border-radius: 8px;
-        }
-
-        .photos-grid img {
-            width: 100%;
-            height: 150px;
-            object-fit: cover;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: transform 0.3s ease;
-        }
-
-        .photos-grid img:hover {
-            transform: scale(1.05);
-        }
-
-        .action-button.disabled {
-            background-color: #ccc;
-            cursor: not-allowed;
-            opacity: 0.6;
-        }
-
-        .action-button.disabled:hover {
-            background-color: #ccc;
-            transform: none;
-        }
-
-        .documents-grid {
-            display: grid;
-            gap: 15px;
-        }
-
-        .documents-grid .document-item {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            padding: 15px;
-            background: #f8f9fa;
-            border-radius: 8px;
-            transition: background-color 0.3s ease;
-        }
-
-        .documents-grid .document-item:hover {
-            background: #e9ecef;
-        }
-
-        .documents-grid .document-text a {
-            color: #007bff;
-            text-decoration: none;
-            font-weight: 500;
-        }
-
-        .documents-grid .document-text a:hover {
-            text-decoration: underline;
-        }
-    </style>
 </body>

@@ -84,14 +84,6 @@ include("topo.php");
             </div>
         </div>
 
-        <!-- Botão para criar nova peneira -->
-        <div class="create-peneira-section">
-            <a href="criar-peneira.php" class="create-peneira-btn">
-                <i class="fas fa-plus"></i>
-                Criar Nova Peneira
-            </a>
-        </div>
-
         <!-- Main Content -->
         <div class="main-content">
             <!-- Featured Section -->
