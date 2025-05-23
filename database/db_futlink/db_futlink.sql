@@ -3,7 +3,6 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 21/05/2025 às 22:49
 
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
@@ -27,6 +26,41 @@ USE `db_futlink`;
 -- --------------------------------------------------------
 
 --
+-- Estrutura para tabela `peneiras`
+--
+
+CREATE TABLE `peneiras` (
+  `id` int(11) NOT NULL,
+  `titulo` varchar(255) NOT NULL,
+  `clube` varchar(255) NOT NULL,
+  `descricao` text NOT NULL,
+  `localizacao` varchar(255) NOT NULL,
+  `data` date NOT NULL,
+  `horario` time NOT NULL,
+  `inscricao` varchar(255) NOT NULL,
+  `status` varchar(50) NOT NULL,
+  `faixa_etaria` varchar(50) NOT NULL,
+  `caminho_foto` varchar(255) DEFAULT NULL,
+  `caminho_documento` varchar(255) DEFAULT NULL,
+  `badge_type` enum('featured','new','normal') DEFAULT 'normal',
+  `status_inscricao` enum('status-open','status-closed','status-soon') DEFAULT 'status-soon',
+  `fotos` text DEFAULT NULL,
+  `documentos` text DEFAULT NULL,
+  `data_criacao` timestamp NOT NULL DEFAULT current_timestamp(),
+  `data_atualizacao` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Despejando dados para a tabela `peneiras`
+--
+
+INSERT INTO `peneiras` (`id`, `titulo`, `clube`, `descricao`, `localizacao`, `data`, `horario`, `inscricao`, `status`, `faixa_etaria`, `caminho_foto`, `caminho_documento`, `badge_type`, `status_inscricao`, `fotos`, `documentos`, `data_criacao`, `data_atualizacao`) VALUES
+(1, 'Oi', 'a', 'a', 'aaaaa', '2025-05-13', '18:16:00', 'Aberta', 'Inativa', '19', NULL, NULL, 'normal', 'status-soon', NULL, NULL, '2025-05-23 20:06:49', '2025-05-23 20:06:49'),
+(2, 'Peneira de doidinhos', 'loucos ofc', 'aaaaaaaaaaaaaaaaaaaaa', 'aaa', '2025-05-29', '21:12:00', 'Em Breve', 'Destaque', '12', '[\"uploads\\/fotos\\/6830d68c225f3_depositphotos_35097143-stock-photo-burglar-sneaking-in-a-open.jpg\",\"uploads\\/fotos\\/6830d68c227bc_space.jpg\",\"uploads\\/fotos\\/6830d68c22914_WhatsApp Image 2025-02-18 at 14.28.23.jpeg\"]', '[\"uploads\\/documentos\\/6830d68c22a76_WhatsApp Image 2025-02-18 at 14.28.23.jpeg\"]', 'normal', 'status-soon', NULL, NULL, '2025-05-23 20:11:56', '2025-05-23 20:11:56');
+
+-- --------------------------------------------------------
+
+--
 -- Estrutura para tabela `posts`
 --
 
@@ -37,6 +71,13 @@ CREATE TABLE `posts` (
   `imagem` varchar(255) DEFAULT NULL,
   `criado_em` datetime DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Despejando dados para a tabela `posts`
+--
+
+INSERT INTO `posts` (`id_post`, `id_user`, `conteudo`, `imagem`, `criado_em`) VALUES
+(2, 6, 'EAE SEUS ARROMBADO', '', '2025-05-23 14:24:26');
 
 -- --------------------------------------------------------
 
@@ -223,6 +264,12 @@ INSERT INTO `tbl_usuarios` (`id_user`, `nome`, `email`, `senha`, `data_nasc`, `g
 --
 
 --
+-- Índices de tabela `peneiras`
+--
+ALTER TABLE `peneiras`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Índices de tabela `posts`
 --
 ALTER TABLE `posts`
@@ -295,10 +342,16 @@ ALTER TABLE `tbl_usuarios`
 --
 
 --
+-- AUTO_INCREMENT de tabela `peneiras`
+--
+ALTER TABLE `peneiras`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT de tabela `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `id_post` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_post` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de tabela `tbl_hist_contrato`
