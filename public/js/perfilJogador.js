@@ -23,7 +23,6 @@ function addDados(object) {
   const tagsUserId = [
     { id: "name_user", prop: "nome" },
     { id: "status_user", prop: "status" },
-    { id: "descricao_user", prop: "descricao" },
     { id: "email_user", prop: "email" },
     { id: "tel_user", prop: "telefone" },   
     { id: "pe_user", prop: "pe_dominante" },
@@ -31,6 +30,7 @@ function addDados(object) {
   
   const tagsPlayerId = [
     { id: "apelido_user", prop: "apelido" },
+    { id: "descricao_user", prop: "descricao" },
     { id: "peso_user", prop: "peso" },
     { id: "altura_user", prop: "altura" },
     { id: "estilo_user", prop: "estiloJogo" },

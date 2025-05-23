@@ -6,10 +6,10 @@ require_once("../../config/connect.php");
 $id = $_SESSION['id'];
 
 // Primeira query para obter os dados do usuário
-$query = "SELECT * FROM `tbl_usuarios` WHERE id_user = $id";
+$query = "SELECT data_nasc, email, foto_perfil, genero, nome, `status`, `telefone` FROM `tbl_usuarios` WHERE id_user = $id";
 
 // Segunda query para obter os dados do jogador
-$queryPlayer = "SELECT j.* FROM `tbl_usuarios` as u
+$queryPlayer = "SELECT j.altura, j.apelido, j.descricao, j.estiloJogo, j.pe_dominante, j.peso, j.posicao, j.status FROM `tbl_usuarios` as u
                 JOIN `tbl_jogador` as j
                 ON u.id_user = j.id_user
                 WHERE u.id_user = $id";
