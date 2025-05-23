@@ -14,7 +14,7 @@
       </div>
       <div class="banner-info">
         <div class="nome-social">
-          <h1 id="name_user">Robson Bambu</h1>
+          <h1 id="name_user">Nome usuário</h1>
           <div class="social-icons">
             <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
             <a href="#" title="YouTube"><i class="fab fa-youtube"></i></a>
