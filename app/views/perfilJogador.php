@@ -9,12 +9,12 @@
     <div class="banner-overlay"></div>
     <div class="banner-container">
       <div class="banner-img">
-        <img src="../../public/images/bambu.png" alt="Foto do Jogador" />
+        <img src="../../public/images/profilePhotos/default" alt="Foto do Jogador" id="photo_user"/>
         <div class="status-badge" id="status_user">Disponível</div>
       </div>
       <div class="banner-info">
         <div class="nome-social">
-          <h1 id="name_user">Robson Bambu</h1>
+          <h1 id="name_user">Nome usuário</h1>
           <div class="social-icons">
             <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
             <a href="#" title="YouTube"><i class="fab fa-youtube"></i></a>

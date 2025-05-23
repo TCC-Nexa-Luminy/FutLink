@@ -48,7 +48,7 @@
             move_uploaded_file($photo["tmp_name"], $destino);
             return $destino;
         } else {
-            return "../../public/images/profilePhotos/defaultPhoto";
+            return "../../public/images/profilePhotos/defaultPhoto.png";
         }
     }
 
