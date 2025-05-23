@@ -1,12 +1,17 @@
-<?php include 'topo.php'; ?>
+<?php include 'topo.php'; 
+
+@session_start();
+?>
   <title>Criar Perfil do Jogador - FutLink</title>
   <link rel="stylesheet" href="../../public/css/playerForm.css" />
 <body>
   <div class="container">
     <section class="criar-perfil">
       <h2><i class="fas fa-user-plus"></i> Criar Perfil do Jogador</h2>
-      
-      <form action="salvar_jogador.php" method="POST" class="form-grid" enctype="multipart/form-data">
+      <p><?php
+        echo $_SESSION['id'];
+      ?></p>
+      <form action="../controllers/playerForm.act.php" method="POST" class="form-grid" enctype="multipart/form-data">
         
         <div class="campo-foto">
           <div class="foto-preview">
@@ -81,7 +86,6 @@
       </form>
     </section>
   </div>
-
   <script>
     function previewImage(input) {
       const preview = document.getElementById('preview-img');
