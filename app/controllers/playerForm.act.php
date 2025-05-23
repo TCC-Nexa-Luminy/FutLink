@@ -24,9 +24,16 @@ if (verificaJogador($id_user, $conn)) {
     $descricao = filter_input(INPUT_POST, "sobre_mim", FILTER_SANITIZE_SPECIAL_CHARS);
     $fotoDestino = destinoFoto("foto_perfil");
 
-    list($msg, $destino) = inserirDados($conn, $fotoDestino, $id_user, $apelido, $peso, $altura, $estiloJogo, $peDominante, $posicao, $descricao);
-}
+    list($msg, $destino) = inserirDados($conn, $id_user, $apelido, $peso, $altura, $estiloJogo, $peDominante, $posicao, $descricao);
+    inserirPhoto($fotoDestino, $id_user);
+    echo $fotoDestino;
+};
 
+function inserirPhoto($nomePhoto, $id){
+    $query = "UPDATE `tbl_usuarios`
+SET `foto_perfil` = '$nomePhoto'
+WHERE `id_user` = '$id';";
+}
 
 function inserirDados($connect, $id_user, $apelido, $peso, $altura, $estilo, $peDominante, $posicao, $descricao)
 {
@@ -34,7 +41,6 @@ function inserirDados($connect, $id_user, $apelido, $peso, $altura, $estilo, $pe
         (`id_user`, `apelido`, `peso`, `altura`, `posicao`, `estiloJogo`, `pe_dominante`, `descricao`) VALUES
         ('$id_user', '$apelido', '$peso', '$altura', '$posicao', '$estilo', '$peDominante', '$descricao');";
 
-    $updateQuery = "";
     if (mysqli_query($connect, $query)) {
         return ["Parabéns! Agora você pode se candidatar para entrar nos times existentes da plataforma!", "../views/peneiras.php"];
     } else {
