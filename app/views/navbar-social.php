@@ -28,13 +28,13 @@
                 </a>
             </li>
             <li>
-                <a href="#" class="item-menu">
+                <a href="notificacoes.php" class="item-menu">
                     <i class="fas fa-bell"></i>
                     <span class="texto-nav">Notificações</span>
                 </a>
             </li>
             <li>
-                <a href="#" class="item-menu">
+                <a href="mensagens.php" class="item-menu">
                     <i class="fas fa-envelope"></i>
                     <span class="texto-nav">Mensagens</span>
                 </a>
@@ -42,7 +42,7 @@
             <li>
                 <a href="organizacoes.php" class="item-menu">
                     <i class="fas fa-briefcase"></i>
-                    <span class="texto-nav">Trabalho</span>
+                    <span class="texto-nav">Organizações</span>
                 </a>
             </li>
             <li>
