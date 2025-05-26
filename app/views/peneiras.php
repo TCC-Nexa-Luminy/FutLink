@@ -13,7 +13,7 @@ include("topo.php");
     require("../../config/connect.php");
     
     // Busca peneiras do banco de dados
-    $sql = "SELECT * FROM peneiras ORDER BY data DESC";
+    $sql = "SELECT * FROM peneiras WHERE status != 'Inativa' ORDER BY data DESC";
     $result = $conn->query($sql);
     
     // Mensagens de feedback
@@ -84,6 +84,14 @@ include("topo.php");
             </div>
         </div>
 
+        <!-- Botão para criar nova peneira -->
+        <div class="create-peneira-section" style="text-align: center; margin: 20px 0;">
+            <a href="criar-peneira.php" class="create-peneira-btn" style="display: inline-block; padding: 12px 24px; background: var(--primary-color); color: white; text-decoration: none; border-radius: 6px; font-weight: 600;">
+                <i class="fas fa-plus"></i>
+                Criar Nova Peneira
+            </a>
+        </div>
+
         <!-- Main Content -->
         <div class="main-content">
             <!-- Featured Section -->
@@ -139,15 +147,41 @@ include("topo.php");
                                 $status_text = 'Em Breve';
                             }
                             
-                            // Processa as fotos
-                            $fotos = json_decode($row['caminho_foto'], true);
-                            $primeira_foto = '';
+                            // Processa a FOTO DO CLUBE (banner do card)
+                            $foto_clube = '';
+                            if (!empty($row['foto_clube'])) {
+                                // Verifica se o arquivo existe
+                                $caminhos_possiveis = [
+                                    '../../controllers/' . $row['foto_clube'],
+                                    '../controllers/' . $row['foto_clube'],
+                                    '../../' . $row['foto_clube'],
+                                    $row['foto_clube']
+                                ];
+                                
+                                foreach ($caminhos_possiveis as $caminho) {
+                                    if (file_exists($caminho)) {
+                                        $foto_clube = $caminho;
+                                        break;
+                                    }
+                                }
+                                
+                                // Se não encontrou, usa o caminho direto
+                                if (empty($foto_clube)) {
+                                    $foto_clube = '../../controllers/' . $row['foto_clube'];
+                                }
+                            } else {
+                                // Foto padrão se não houver foto do clube
+                                $foto_clube = '../../public/images/default-club.png';
+                            }
+                            
+                            // Processa as fotos da peneira (para o logo pequeno)
+                            $fotos = json_decode($row['fotos'], true);
+                            $logo_clube = '';
                             
                             if($fotos && is_array($fotos) && !empty($fotos)) {
-                                $primeira_foto = '../../controllers/' . $fotos[0];
+                                $logo_clube = '../../controllers/' . $fotos[0];
                             } else {
-                                // Foto padrão se não houver foto
-                                $primeira_foto = '../../public/images/default-peneira.jpg';
+                                $logo_clube = '../../public/images/club-placeholder.png';
                             }
                             
                             // Formata a data
@@ -162,8 +196,11 @@ include("topo.php");
                         </div>
                         <?php endif; ?>
                         
+                        <!-- Imagem principal do card (foto do clube) -->
                         <div class="card-image">
-                            <img src="<?php echo $primeira_foto; ?>" alt="<?php echo htmlspecialchars($row['titulo']); ?>">
+                            <img src="<?php echo $foto_clube; ?>" 
+                                 alt="<?php echo htmlspecialchars($row['titulo']); ?>"
+                                 onerror="this.src='../../public/images/default-club.png'">
                         </div>
                         
                         <div class="card-content">
