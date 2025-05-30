@@ -126,7 +126,7 @@ body {
   border: 2px solid #e5e7eb;
   aspect-ratio: 1 / 1;
   height: 8em;
-  border-radius: 1em 0;
+  border-radius: 50%; /* MUDANÇA: de "1em 0" para "50%" para ficar redondo */
   cursor: pointer;
   overflow: hidden;
   text-align: center;
@@ -143,6 +143,7 @@ body {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  border-radius: 50%; /* ADICIONADO: para garantir que a imagem também fique redonda */
 }
 
 .placeholderSpan {
@@ -436,6 +437,14 @@ body {
   right: 20%;
 }
 
+.container_photo {
+  border-radius: 70%; /* ← AQUI! Era "1em 0", agora é redondo */
+}
+
+.container_photo > img {
+  border-radius: 70%; /* ← E AQUI! Para a imagem também ficar redonda */
+}
+
 /* Animações */
 @keyframes fadeIn {
   from {
@@ -521,6 +530,7 @@ body {
   .container_photo {
     width: 120px;
     height: 120px;
+    border-radius: 50%; /* ADICIONADO: manter redondo no mobile também */
   }
 
   .form-label_direction {
