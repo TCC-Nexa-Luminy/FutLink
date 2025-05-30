@@ -4,12 +4,18 @@ require("../../config/connect.php");
 $jogadores = [];
 
 if (isset($_GET['apelido']) && !empty(trim($_GET['apelido']))) {
-    $apelido = trim($_GET['apelido']);
+    $termo = trim($_GET['apelido']);
 
-    $sql = "SELECT * FROM tbl_jogador WHERE apelido LIKE ?";
+    $sql = "
+        SELECT j.*, u.nome 
+        FROM tbl_jogador AS j
+        INNER JOIN tbl_usuarios AS u ON j.id_user = u.id_user
+        WHERE j.apelido LIKE ? OR u.nome LIKE ?
+    ";
+
     $stmt = $conn->prepare($sql);
-    $likeApelido = "%$apelido%";
-    $stmt->bind_param("s", $likeApelido);
+    $likeTermo = "%$termo%";
+    $stmt->bind_param("ss", $likeTermo, $likeTermo);
     $stmt->execute();
     $resultado = $stmt->get_result();
 
@@ -19,9 +25,7 @@ if (isset($_GET['apelido']) && !empty(trim($_GET['apelido']))) {
 
     $stmt->close();
 }
-
 ?>
-
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -31,7 +35,7 @@ if (isset($_GET['apelido']) && !empty(trim($_GET['apelido']))) {
         table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 20px;   
+            margin-top: 20px;
         }
         table, th, td {
             border: 1px solid #999;
@@ -49,6 +53,7 @@ if (isset($_GET['apelido']) && !empty(trim($_GET['apelido']))) {
         <table>
             <tr>
                 <th>ID</th>
+                <th>Nome</th>
                 <th>Apelido</th>
                 <th>Posição</th>
                 <th>Altura</th>
@@ -59,6 +64,7 @@ if (isset($_GET['apelido']) && !empty(trim($_GET['apelido']))) {
             <?php foreach ($jogadores as $jogador): ?>
                 <tr>
                     <td><?= $jogador['id_jogador'] ?></td>
+                    <td><?= htmlspecialchars($jogador['nome']) ?></td>
                     <td><?= htmlspecialchars($jogador['apelido']) ?></td>
                     <td><?= $jogador['posicao'] ?></td>
                     <td><?= $jogador['altura'] ?> m</td>
@@ -69,9 +75,8 @@ if (isset($_GET['apelido']) && !empty(trim($_GET['apelido']))) {
             <?php endforeach; ?>
         </table>
     <?php else: ?>
-        <p>Nenhum jogador encontrado com o apelido informado.</p>
+        <p>Nenhum jogador encontrado com o nome ou apelido informado.</p>
     <?php endif; ?>
 
 </body>
 </html>
-

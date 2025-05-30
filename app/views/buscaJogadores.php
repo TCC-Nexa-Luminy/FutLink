@@ -18,59 +18,58 @@ include("navbar-social.php");
         </div>
     </div>
 
+<?php
+require("../../config/connect.php");
+$sql = "
+    SELECT 
+        j.apelido,
+        u.nome,
+        TIMESTAMPDIFF(YEAR, u.data_nasc, CURDATE()) AS idade,
+        j.altura,
+        j.peso
+    FROM tbl_jogador AS j
+    INNER JOIN tbl_usuarios AS u
+        ON j.id_user = u.id_user
+    ORDER BY j.apelido
+";
 
-    <div class="conteudo">
-        <div class="filtros">
-            <h3>Filtrar jogadores</h3>
+$result = mysqli_query($conn, $sql);
+if (!$result) {
+    die('Erro na consulta: ' . mysqli_error($conn));
+}
+?>
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Jogadores</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        ul { list-style-type: none; padding: 0; }
+        li { padding: 10px; border-bottom: 1px solid #ccc; }
+        .campo { font-weight: bold; }
+    </style>
+</head>
+<body>
+    <h1>Lista de Jogadores</h1>
+    <ul>
+        <?php while ($row = mysqli_fetch_assoc($result)): ?>
+            <li>
+                <span class="campo">Apelido:</span> <?= htmlspecialchars($row['apelido']) ?><br>
+                <span class="campo">Nome:</span> <?= htmlspecialchars($row['nome']) ?><br>
+                <span class="campo">Idade:</span> <?= $row['idade'] ?> anos<br>
+                <span class="campo">Altura:</span> <?= number_format($row['altura'], 2, ',', ' ') ?> m<br>
+                <span class="campo">Peso:</span> <?= number_format($row['peso'], 2, ',', ' ') ?> kg
+            </li>
+        <?php endwhile; ?>
+    </ul>
+</body>
+</html>
+<?php
+mysqli_free_result($result);
+mysqli_close($conn);
+?>
 
-            <div class="filtro">
-                <label>Idade:</label>
-                <div class="faixa">
-                    <input type="number" placeholder="De" id="idadeMin" min=0>
-                    <input type="number" placeholder="Até" id="idadeMax" min=0>
-                </div>
-            </div>
-
-            <div class="filtro">
-                <label>Peso (kg):</label>
-                <select id="peso">
-                    <option value="">Selecione</option>
-                    <option value="asc">Menor peso</option>
-                    <option value="desc">Maior peso</option>
-                </select>
-            </div>
-
-            <div class="filtro">
-                <label>Altura (cm):</label>
-                <div class="faixa">
-                    <input type="number" placeholder="De" id="altura_min" min=0>
-                    <input type="number" placeholder="Até" id="altura_max" min=0>
-                </div>
-            </div>
-
-            <div class="filtro">
-                <label>Experiência (anos):</label>
-                <select id="experiencia">
-                    <option value="">Selecione</option>
-                    <option value="asc">Menor tempo</option>
-                    <option value="desc">Maior tempo</option>
-                </select>
-            </div>
-
-            <div class="filtro">
-                <label>Posição:</label>
-                <div class="posicoes">
-                    <button type="button">Goleiro</button>
-                    <button type="button">Zagueiro</button>
-                    <button type="button">Lateral</button>
-                    <button type="button">Meia</button>
-                    <button type="button">Atacante</button>
-                </div>
-            </div>
-        </div>
-
-        
-</div>
 <?php include("footer.php"); ?>
 </body>
 
