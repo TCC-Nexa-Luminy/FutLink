@@ -8,9 +8,6 @@
   <div class="container">
     <section class="criar-perfil">
       <h2><i class="fas fa-user-plus"></i> Criar Perfil do Jogador</h2>
-      <p><?php
-        echo $_SESSION['id'];
-      ?></p>
       <form action="../controllers/playerForm.act.php" method="POST" class="form-grid" enctype="multipart/form-data">
         
         <div class="campo-foto">

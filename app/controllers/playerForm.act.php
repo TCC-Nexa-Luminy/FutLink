@@ -7,8 +7,6 @@ $id_user = $_SESSION['id'];
 $msg = "";
 $destino = "";
 
-
-
 if (verificaJogador($id_user, $conn)) {
     //jogador já registrado
     $msg = 'Você já está registrado como jogador!';
@@ -25,14 +23,16 @@ if (verificaJogador($id_user, $conn)) {
     $fotoDestino = destinoFoto("foto_perfil");
 
     list($msg, $destino) = inserirDados($conn, $id_user, $apelido, $peso, $altura, $estiloJogo, $peDominante, $posicao, $descricao);
-    inserirPhoto($fotoDestino, $id_user);
-    echo $fotoDestino;
+    inserirPhoto($fotoDestino, $id_user, $conn);
 };
 
-function inserirPhoto($nomePhoto, $id){
+function inserirPhoto($nomePhoto, $id, $conexao)
+{
     $query = "UPDATE `tbl_usuarios`
-SET `foto_perfil` = '$nomePhoto'
-WHERE `id_user` = '$id';";
+    SET `foto_perfil` = '$nomePhoto'
+    WHERE `id_user` = '$id';";
+
+    mysqli_query($conexao, $query);
 }
 
 function inserirDados($connect, $id_user, $apelido, $peso, $altura, $estilo, $peDominante, $posicao, $descricao)
