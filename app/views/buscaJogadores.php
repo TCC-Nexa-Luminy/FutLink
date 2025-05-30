@@ -1,6 +1,7 @@
 <?php
 include("../views/topo.php");
 include("navbar-social.php");
+require("../../config/connect.php");
 ?>
 
 <link rel="stylesheet" href="../../public/css/buscaJogadores.css">
@@ -18,8 +19,53 @@ include("navbar-social.php");
         </div>
     </div>
 
+    <div class="filtrosAvancados">
+        <form method="GET" action="">
+            <select name="posicao">
+                    <option value="">-- Posição --</option>
+                    <option value="Atacante" <?= ($_GET['posicao'] ?? '') === 'Atacante' ? 'selected' : '' ?>>Atacante</option>
+                    <option value="Meio-campo" <?= ($_GET['posicao'] ?? '') === 'Meio-campo' ? 'selected' : '' ?>>Meio-campo</option>
+                    <option value="Defensor" <?= ($_GET['posicao'] ?? '') === 'Defensor' ? 'selected' : '' ?>>Defensor</option>
+                    <option value="Goleiro" <?= ($_GET['posicao'] ?? '') === 'Goleiro' ? 'selected' : '' ?>>Goleiro</option>
+            </select>
+            <button type="submit">Aplicar Filtros</button>
+
+        </form>
+    </div>
 <?php
-require("../../config/connect.php");
+    $where = [];
+    if (!empty($_GET['posicao'])) {
+        $posicao = mysqli_real_escape_string($conn, $_GET['posicao']);
+        $where[] = "j.posicao = '$posicao'";
+    }
+
+    $where_sql = '';
+    if (!empty($where)) {
+        $where_sql = 'WHERE ' . implode(' AND ', $where);
+    }
+
+    $sql = "
+        SELECT 
+            j.apelido,
+            u.nome,
+            TIMESTAMPDIFF(YEAR, u.data_nasc, CURDATE()) AS idade,
+            j.altura,
+            j.peso,
+            j.posicao,
+            j.status
+        FROM tbl_jogador AS j
+        INNER JOIN tbl_usuarios AS u ON j.id_user = u.id_user
+        $where_sql
+        ORDER BY j.apelido
+    ";
+
+    $result = mysqli_query($conn, $sql);
+    if (!$result) {
+        die('Erro na consulta: ' . mysqli_error($conn));
+    }
+?>
+
+<?php
 $sql = "
     SELECT 
         j.apelido,
@@ -38,6 +84,7 @@ if (!$result) {
     die('Erro na consulta: ' . mysqli_error($conn));
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -64,7 +111,7 @@ if (!$result) {
         <?php endwhile; ?>
     </ul>
 </body>
-</html>
+</html> 
 <?php
 mysqli_free_result($result);
 mysqli_close($conn);
