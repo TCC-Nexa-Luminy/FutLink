@@ -10,10 +10,6 @@ include("topo.php");
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Futlink - Cadastro de Organização</title>
     <link rel="stylesheet" href="../../public/css/signup-org.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/all.min.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/5.0.7/jquery.inputmask.min.js"></script>
 </head>
 
 <body>
@@ -24,7 +20,7 @@ include("topo.php");
         <section class="main_content">
             <a href="../../public/index.php" class="back_btn"><i class="fa-solid fa-circle-left"></i></a>
             
-            <form action="../controllers/signUpOrg.act.php" method="post" id="organizationForm" enctype="multipart/form-data">
+            <form action="../controllers/signUp-org.act.php" method="post" id="organizationForm" enctype="multipart/form-data">
                 <h1>Cadastro da Organização</h1>
                 <h2>Já tem uma conta? <a href="login.php">Entre aqui</a></h2>
                 <hr>
@@ -227,6 +223,5 @@ include("topo.php");
     </main>
 
     <script src="../../public/js/signUp.js"></script>
-    <script src="script.js"></script>
 </body>
 </html>
