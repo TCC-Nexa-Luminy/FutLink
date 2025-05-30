@@ -25,29 +25,21 @@ if ($result->num_rows == 0) {
 $peneira = $result->fetch_assoc();
 
 // Processar dados da peneira
-$fotos = json_decode($peneira['fotos'], true);
-$documentos = json_decode($peneira['documentos'], true);
+$fotos = json_decode($peneira['caminho_foto'], true);
+$documentos = json_decode($peneira['caminho_documento'], true);
 
 // Função para verificar se arquivo existe e retornar caminho correto
 function getImagePath($filename) {
     if (empty($filename)) return '../../public/images/default-peneira.png';
     
-    // Possíveis caminhos onde o arquivo pode estar
+    // Possíveis caminhos onde a imagem pode estar
     $possible_paths = [
         '../../controllers/' . $filename,
         '../controllers/' . $filename,
-        '../../controllers/uploads/fotos/' . basename($filename),
-        '../controllers/uploads/fotos/' . basename($filename),
-        '../../controllers/uploads/clubes/' . basename($filename),
-        '../controllers/uploads/clubes/' . basename($filename),
-        '../../controllers/uploads/documentos/' . basename($filename),
-        '../controllers/uploads/documentos/' . basename($filename),
-        '../../uploads/fotos/' . basename($filename),
-        '../uploads/fotos/' . basename($filename),
-        '../../uploads/clubes/' . basename($filename),
-        '../uploads/clubes/' . basename($filename),
-        '../../uploads/documentos/' . basename($filename),
-        '../uploads/documentos/' . basename($filename)
+        '../../controllers/uploads/fotos/' . $filename,
+        '../controllers/uploads/fotos/' . $filename,
+        '../../uploads/fotos/' . $filename,
+        '../uploads/fotos/' . $filename
     ];
     
     foreach ($possible_paths as $path) {
@@ -56,13 +48,8 @@ function getImagePath($filename) {
         }
     }
     
-    // Se não encontrar, retorna imagem padrão para imagens ou o caminho original para documentos
-    $extension = strtolower(pathinfo($filename, PATHINFO_EXTENSION));
-    if (in_array($extension, ['jpg', 'jpeg', 'png', 'gif'])) {
+    // Se não encontrar, retorna imagem padrão
     return '../../public/images/default-peneira.png';
-}
-    
-    return $filename; // Para documentos, retorna o caminho original
 }
 
 // Determinar foto principal
@@ -104,12 +91,11 @@ foreach ($meses as $en => $pt) {
 }
 
 // Debug: Vamos ver o que está no banco
-echo "<!-- DEBUG: Fotos no banco: " . htmlspecialchars($peneira['fotos']) . " -->";
-echo "<!-- DEBUG: Documentos no banco: " . htmlspecialchars($peneira['documentos']) . " -->";
+echo "<!-- DEBUG: Fotos no banco: " . htmlspecialchars($peneira['caminho_foto']) . " -->";
+echo "<!-- DEBUG: Documentos no banco: " . htmlspecialchars($peneira['caminho_documento']) . " -->";
 ?>
 
 <link rel="stylesheet" href="../../public/css/peneiraTime.css">
-<link rel="stylesheet" href="../../public/css/image-fallbacks.css">
 <!-- Adicione Font Awesome para ícones -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
@@ -202,49 +188,52 @@ echo "<!-- DEBUG: Documentos no banco: " . htmlspecialchars($peneira['documentos
 
                     <!-- Requirements Card -->
                     <div class="content-card animate-fadeInUp delay-100">
-
-    <div class="card-body">
-        <?php if ($documentos && is_array($documentos) && !empty($documentos)): ?>
-            <div class="documents-grid">
-                <?php foreach ($documentos as $index => $documento): ?>
-                    <?php 
-                    $doc_path = getImagePath($documento);
-                    $doc_name = basename($documento);
-                    $doc_extension = strtolower(pathinfo($doc_name, PATHINFO_EXTENSION));
-                    $doc_icon = ($doc_extension == 'pdf') ? 'fas fa-file-pdf' : 'fas fa-file-image';
-                    ?>
-                    <div class="document-item">
-                        <div class="document-icon">
-                            <i class="<?php echo $doc_icon; ?>"></i>
+                        <div class="card-header">
+                            <div class="card-icon">
+                                <i class="fas fa-clipboard-list"></i>
+                            </div>
+                            <h2 class="card-title">Documentação Obrigatória</h2>
                         </div>
-                        <div class="document-text">
-                            <a href="<?php echo $doc_path; ?>" target="_blank" download>
-                                <?php echo htmlspecialchars($doc_name); ?>
-                            </a>
-                            <small class="document-type"><?php echo strtoupper($doc_extension); ?></small>
-                        </div>
-                        <div class="document-actions">
-                            <a href="<?php echo $doc_path; ?>" target="_blank" class="doc-action-btn">
-                                <i class="fas fa-eye"></i> Ver
-                            </a>
-                            <a href="<?php echo $doc_path; ?>" download class="doc-action-btn">
-                                <i class="fas fa-download"></i> Baixar
-                            </a>
+                        <div class="card-body">
+                            <?php if ($documentos && is_array($documentos) && !empty($documentos)): ?>
+                                <div class="documents-grid">
+                                    <?php foreach ($documentos as $documento): ?>
+                                        <div class="document-item">
+                                            <div class="document-icon">
+                                                <i class="fas fa-file-pdf"></i>
+                                            </div>
+                                            <div class="document-text">
+                                                <a href="<?php echo getImagePath($documento); ?>" target="_blank">
+                                                    Ver documento
+                                                </a>
+                                            </div>
+                                        </div>
+                                    <?php endforeach; ?>
+                                </div>
+                            <?php else: ?>
+                                <ul class="document-list">
+                                    <li class="document-item">
+                                        <div class="document-icon">
+                                            <i class="fas fa-id-card"></i>
+                                        </div>
+                                        <div class="document-text">Cópia do RG ou certidão de nascimento</div>
+                                    </li>
+                                    <li class="document-item">
+                                        <div class="document-icon">
+                                            <i class="fas fa-file-signature"></i>
+                                        </div>
+                                        <div class="document-text">Autorização assinada pelos pais ou responsáveis</div>
+                                    </li>
+                                    <li class="document-item">
+                                        <div class="document-icon">
+                                            <i class="fas fa-notes-medical"></i>
+                                        </div>
+                                        <div class="document-text">Atestado médico de aptidão física (emitido nos últimos 6 meses)</div>
+                                    </li>
+                                </ul>
+                            <?php endif; ?>
                         </div>
                     </div>
-                <?php endforeach; ?>
-            </div>
-        <?php else: ?>
-            <div class="no-documents">
-                <div class="no-documents-icon">
-                    <i class="fas fa-file-alt"></i>
-                </div>
-                <p class="no-documents-text">Nenhum documento específico foi enviado para esta peneira.</p>
-                <p class="no-documents-hint">Entre em contato com o clube para mais informações sobre a documentação necessária.</p>
-            </div>
-        <?php endif; ?>
-    </div>
-</div>
 
                     <!-- Age Requirements Card -->
                     <div class="content-card animate-fadeInUp delay-200">
@@ -287,7 +276,7 @@ echo "<!-- DEBUG: Documentos no banco: " . htmlspecialchars($peneira['documentos
                                             <img src="<?php echo $foto_path; ?>" 
                                                  alt="Foto <?php echo $index + 1; ?> da peneira"
                                                  onclick="openPhotoModal(this.src)"
-                                                 onerror="this.src='../../public/images/default-peneira.png'">
+                                                 onerror="this.parentElement.innerHTML='<div class=\'photo-placeholder\'><i class=\'fas fa-image\'></i><br><small>Imagem não encontrada</small></div>'">
                                         </div>
                                     <?php endforeach; ?>
                                     
@@ -420,13 +409,6 @@ echo "<!-- DEBUG: Documentos no banco: " . htmlspecialchars($peneira['documentos
         </section>
     </main>
 
-    <!-- Modal para visualizar fotos -->
-    <div id="photoModal" class="photo-modal" onclick="closePhotoModal()">
-        <div class="photo-modal-content">
-            <span class="photo-modal-close" onclick="closePhotoModal()">&times;</span>
-            <img id="photoModalImage" src="/placeholder.svg" alt="Foto ampliada">
-        </div>
-    </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -502,4 +484,6 @@ echo "<!-- DEBUG: Documentos no banco: " . htmlspecialchars($peneira['documentos
             }
         });
     </script>
+
+
 </body>
