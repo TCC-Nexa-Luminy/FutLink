@@ -18,14 +18,23 @@ async function dadosPerfil() {
 }
 
 function addDados(object) {
-
   const tagsUserId = [
     { id: "name_user", prop: "nome" },
     { id: "status_user", prop: "status" },
     { id: "email_user", prop: "email" },
-    { id: "tel_user", prop: "telefone" },   
+    { id: "tel_user", prop: "telefone" },
     { id: "pe_user", prop: "pe_dominante" },
-  ]
+  ];
+
+  tagsUserId.map((item) => {
+    $(`#${item.id}`).text(object.user[item.prop]);
+  });
+
+  $(`#photo_user`).attr("src", object.user["foto_perfil"]);
+
+  let idade = calcularIdade(object.user["data_nasc"]);
+  $('#idade_user').text(idade);
+
   
   const tagsPlayerId = [
     { id: "apelido_user", prop: "apelido" },
@@ -34,16 +43,31 @@ function addDados(object) {
     { id: "altura_user", prop: "altura" },
     { id: "estilo_user", prop: "estiloJogo" },
     { id: "posicao_user", prop: "posicao" },
-    { id: "pe_user", prop: "pe_dominante"}
-  ]
+    { id: "pe_user", prop: "pe_dominante" },
+  ];
+  if(object.player !== null){
+    
+    tagsPlayerId.map((item) => {
+      let dado = object.player[item.prop]
+      $(`#${item.id}`).text(dado);
+    });
+  }else{
+    tagsPlayerId.map((item) => {
+      $(`#${item.id}`).text("?");
+    });
+  }
+}
 
-  tagsUserId.map((item) => {
-    $(`#${item.id}`).text(object.user[item.prop]);
-  });
+function calcularIdade(dataNasc){
+  const hoje = new Date();
+  const nasc = new Date(dataNasc);
+  
+  let idade = hoje.getFullYear() - nasc.getFullYear();
+  const mes = hoje.getMonth() - nasc.getMonth();
 
-  tagsPlayerId.map((item) => {
-    $(`#${item.id}`).text(object.player[item.prop]);
-  });
+  if (mes < 0 || (mes === 0 && hoje.getDate() < nasc.getDate())) {
+    idade--;
+  }
 
-  $(`#photo_user`).attr("src", object.user['foto_perfil']);
+  return String(idade + " anos");
 }

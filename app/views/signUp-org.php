@@ -2,84 +2,159 @@
 @session_start();
 include("topo.php");
 ?>
-<link rel="stylesheet" href="../../public/css/signUp-org.css">
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Futlink - Cadastro de Organização</title>
+    <link rel="stylesheet" href="../../public/css/signup-org.css">
+</head>
 
 <body>
     <?php include("message.php"); ?>
+    
     <main class="containerMain">
+        <!-- Formulário de Cadastro -->
         <section class="main_content">
             <a href="../../public/index.php" class="back_btn"><i class="fa-solid fa-circle-left"></i></a>
-            <form action="../controllers/signUpOrg.act.php" method="post" id="form_cadastro" enctype="multipart/form-data">
-                <input type="file" name="org_photo" id="iprofile" style="display: none;" accept=".png, .jpg, .jpeg, .webp">
+            
+            <form action="../controllers/signUp-org.act.php" method="post" id="organizationForm" enctype="multipart/form-data">
                 <h1>Cadastro da Organização</h1>
                 <h2>Já tem uma conta? <a href="login.php">Entre aqui</a></h2>
                 <hr>
+                
+                <!-- Seção 1: Logo e Informações Básicas -->
                 <article class="content-input">
                     <h3>Informações da organização</h3>
                     <div class="form-content-info">
-                        <label for="iprofile" class="container_photo">
-                            <span class="placeholderSpan">Logo (1:1)<br>(Opcional)</span>
-                            <img src="" alt="Logo da Organização" id="iphoto" style="display: none;">
+                        <input type="file" name="org_photo" id="logoUpload" style="display: none;" accept=".png, .jpg, .jpeg, .webp">
+                        <label for="logoUpload" class="container_photo">
+                            <span id="uploadPlaceholder" class="placeholderSpan">Logo (1:1)<br>(Opcional)</span>
+                            <img src="/placeholder.svg" alt="Logo da Organização" id="logoPreview" style="display: none;">
                         </label>
                         <div class="form-label_direction">
                             <div class="form-label">
-                                <label for="inome">Nome da Organização</label>
-                                <input type="text" name="org_nome" id="inome" required placeholder="Insira o nome da organização" autocomplete="off" class="input_user">
+                                <label for="orgName">Nome da Organização</label>
+                                <input type="text" name="org_nome" id="orgName" required placeholder="Insira o nome da organização" autocomplete="off" class="input_user">
                             </div>
                             <div class="form-label">
-                                <label for="idata">Data de Fundação</label>
-                                <input type="date" name="org_data_fund" id="idata" required class="input_user">
+                                <label for="foundationDate">Data de Fundação</label>
+                                <input type="date" name="org_data_fund" id="foundationDate" required class="input_user">
                             </div>
                         </div>
                     </div>
                 </article>
 
                 <hr>
-                <article class="content-input">
-                    <h3>Contato</h3>
-                    <div class="form-label_direction">
-                        <div class="form-label">
-                            <label for="iemail">Email</label>
-                            <input type="email" name="org_email" id="iemail" required placeholder="email@organizacao.com" autocomplete="off" class="input_user">
-                        </div>
-                        <div class="form-label">
-                            <label for="itel">Telefone</label>
-                            <input type="tel" name="org_tel" id="itel" required placeholder="(xx)12345-6789">
-                        </div>
-                    </div>
-                </article>
-
-                <hr>
-                <article class="content-input">
-                    <h3>Segurança</h3>
-                    <div class="form-label_direction">
-                        <div class="form-label">
-                            <label for="ipass">Crie uma senha</label>
-                            <input type="password" name="org_pass" id="ipass" required placeholder="Insira sua senha" autocomplete="off" class="input_user">
-                        </div>
-                        <div class="form-label">
-                            <label for="ipass2">Confirme sua senha</label>
-                            <input type="password" name="org_pass2" id="ipass2" required placeholder="Confirme sua senha" autocomplete="off" class="input_user">
-                        </div>
-                    </div>
-                </article>
-
+                
+                <!-- Seção 2: Tipo e CNPJ -->
                 <article class="content-input">
                     <h3>Informações da Organização</h3>
                     <div class="form-label_direction">
                         <div class="form-label">
-                            <label for="iorgname">Nome da Organização</label>
-                            <input type="text" name="org_nome" id="iorgname" required placeholder="Nome oficial do clube" class="input_user">
+                            <label for="orgType">Tipo de Organização</label>
+                            <select name="org_tipo" id="orgType" required class="input_user">
+                                <option value="">Selecione o tipo</option>
+                                <option value="clube">Clube de Futebol</option>
+                                <option value="escola">Escola de Futebol</option>
+                                <option value="academia">Academia</option>
+                                <option value="federacao">Federação</option>
+                                <option value="empresa">Empresa</option>
+                                <option value="outro">Outro</option>
+                            </select>
                         </div>
                         <div class="form-label">
-                            <label for="icnpj">CNPJ</label>
-                            <input type="text" name="org_cnpj" id="icnpj" placeholder="00.000.000/0000-00" class="input_user">
+                            <label for="cnpj">CNPJ</label>
+                            <input type="text" name="org_cnpj" id="cnpj" placeholder="00.000.000/0000-00" class="input_user">
                         </div>
                     </div>
                 </article>
 
+                <hr>
+                
+                <!-- Seção 3: Localização -->
+                <article class="content-input">
+                    <h3>Localização</h3>
+                    <div class="form-label_direction">
+                        <div class="form-label">
+                            <label for="state">Estado</label>
+                            <select name="org_estado" id="state" required class="input_user">
+                                <option value="">Selecione o estado</option>
+                                <option value="AC">Acre</option>
+                                <option value="AL">Alagoas</option>
+                                <option value="AP">Amapá</option>
+                                <option value="AM">Amazonas</option>
+                                <option value="BA">Bahia</option>
+                                <option value="CE">Ceará</option>
+                                <option value="DF">Distrito Federal</option>
+                                <option value="ES">Espírito Santo</option>
+                                <option value="GO">Goiás</option>
+                                <option value="MA">Maranhão</option>
+                                <option value="MT">Mato Grosso</option>
+                                <option value="MS">Mato Grosso do Sul</option>
+                                <option value="MG">Minas Gerais</option>
+                                <option value="PA">Pará</option>
+                                <option value="PB">Paraíba</option>
+                                <option value="PR">Paraná</option>
+                                <option value="PE">Pernambuco</option>
+                                <option value="PI">Piauí</option>
+                                <option value="RJ">Rio de Janeiro</option>
+                                <option value="RN">Rio Grande do Norte</option>
+                                <option value="RS">Rio Grande do Sul</option>
+                                <option value="RO">Rondônia</option>
+                                <option value="RR">Roraima</option>
+                                <option value="SC">Santa Catarina</option>
+                                <option value="SP">São Paulo</option>
+                                <option value="SE">Sergipe</option>
+                                <option value="TO">Tocantins</option>
+                            </select>
+                        </div>
+                        <div class="form-label">
+                            <label for="city">Cidade</label>
+                            <input type="text" name="org_cidade" id="city" required placeholder="Nome da cidade" class="input_user">
+                        </div>
+                    </div>
+                </article>
 
                 <hr>
+                
+                <!-- Seção 4: Contato -->
+                <article class="content-input">
+                    <h3>Contato</h3>
+                    <div class="form-label_direction">
+                        <div class="form-label">
+                            <label for="email">Email</label>
+                            <input type="email" name="org_email" id="email" required placeholder="email@organizacao.com" autocomplete="off" class="input_user">
+                        </div>
+                        <div class="form-label">
+                            <label for="phone">Telefone</label>
+                            <input type="tel" name="org_tel" id="phone" required placeholder="(11) 99999-9999" class="input_user">
+                        </div>
+                    </div>
+                </article>
+
+                <hr>
+                
+                <!-- Seção 5: Segurança -->
+                <article class="content-input">
+                    <h3>Segurança</h3>
+                    <div class="form-label_direction">
+                        <div class="form-label">
+                            <label for="password">Crie uma senha</label>
+                            <input type="password" name="org_pass" id="password" required placeholder="Insira sua senha" autocomplete="off" class="input_user">
+                        </div>
+                        <div class="form-label">
+                            <label for="confirmPassword">Confirme sua senha</label>
+                            <input type="password" name="org_pass2" id="confirmPassword" required placeholder="Confirme sua senha" autocomplete="off" class="input_user">
+                        </div>
+                    </div>
+                </article>
+
+                <hr>
+                
+                <!-- Botões de Ação -->
                 <div class="form-label_direction">
                     <a href="../../public/index.php" class="form_back-btn"><i class="fa-solid fa-arrow-left"></i> Voltar</a>
                     <input type="submit" value="Finalizar cadastro" class="form_submit">
@@ -87,23 +162,66 @@ include("topo.php");
             </form>
         </section>
 
+        <!-- Banner Lateral -->
         <section class="main_banner">
-            <div class="banner_top">
-                <img src="../../public/images/futlinkLogoBg.png" alt="">
-                <h1>FutLink</h1>
-            </div>
-            <div class="banner_msg">
-                <h1>Cadastre sua organização!</h1>
-                <h2>Conecte-se com talentos e fortaleça sua equipe</h2>
-            </div>
-            <div class="banner_rodape">
-                <p>Informe os dados ao lado para se cadastrar na nossa plataforma de recrutamento de jogadores</p>
+            <div class="banner_content">
+                <div class="banner_top">
+                    <div class="logo_container">
+                        <img src="../../public/images/futlinkLogoBg.png" alt="FutLink Logo">
+                    </div>
+                    <h1>FutLink</h1>
+                </div>
+                
+                <div class="banner_msg">
+                    <h1>Cadastre sua organização!</h1>
+                    <h2>Conecte-se com talentos e fortaleça sua equipe</h2>
+                </div>
+                
+                <div class="banner_features">
+                    <div class="feature_item">
+                        <div class="feature_icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="feature_text">
+                            <h3>Encontre Talentos</h3>
+                            <p>Acesse perfis de jogadores qualificados</p>
+                        </div>
+                    </div>
+                    
+                    <div class="feature_item">
+                        <div class="feature_icon">
+                            <i class="fas fa-trophy"></i>
+                        </div>
+                        <div class="feature_text">
+                            <h3>Cresça no Esporte</h3>
+                            <p>Desenvolva sua organização esportiva</p>
+                        </div>
+                    </div>
+                    
+                    <div class="feature_item">
+                        <div class="feature_icon">
+                            <i class="fas fa-handshake"></i>
+                        </div>
+                        <div class="feature_text">
+                            <h3>Conexões Diretas</h3>
+                            <p>Comunique-se com jogadores e clubes</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="banner_rodape">
+                    <p>Informe os dados ao lado para se cadastrar na nossa plataforma de recrutamento de jogadores</p>
+                </div>
+                
+                <div class="banner_decoration">
+                    <div class="decoration_circle circle1"></div>
+                    <div class="decoration_circle circle2"></div>
+                    <div class="decoration_circle circle3"></div>
+                </div>
             </div>
         </section>
     </main>
 
     <script src="../../public/js/signUp.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/5.0.7/jquery.inputmask.min.js"></script>
 </body>
-
 </html>

@@ -3,52 +3,38 @@
 include("topo.php");
 ?>
 <link rel="stylesheet" href="../../public/css/addPeneira-org.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 <body>
     <?php
     include("navbar-social.php");
     include_once("message.php");
     ?>
-
+    
     <div class="container-site">
         <!-- Botão de voltar -->
         <a href="javascript:history.back()" class="back-button">
             <i class="fas fa-arrow-left"></i>
         </a>
-
+        
         <div class="form-container animate-fadeInUp">
             <h1 class="form-title">Criar Nova Peneira</h1>
-
+            
             <form action="../controllers/addPeneira-org.act.php" method="POST" enctype="multipart/form-data" id="peneiraForm">
                 <div class="form-group">
                     <label for="titulo" class="form-label">Nome da peneira</label>
                     <input type="text" id="titulo" name="titulo" class="form-control" required placeholder="Ex: Peneira Oficial Sub-17">
                 </div>
-
+                
                 <div class="form-group">
                     <label for="clube" class="form-label">Clube da organização</label>
                     <input type="text" id="clube" name="clube" class="form-control" required placeholder="Ex: Santos Futebol Clube">
                 </div>
-
-                <!-- Campo específico para foto do clube -->
-                <div class="form-group">
-                    <label class="form-label">Logo/Banner do Clube</label>
-                    <div class="form-hint">Adicione o logo ou banner do clube que aparecerá nos cards (máx. 2MB)</div>
-                    <div class="form-col">
-                        <label for="foto_clube" class="form-file-custom">
-                            <i class="fas fa-upload"></i> Logo do Clube
-                        </label>
-                        <input type="file" id="foto_clube" name="foto_clube" accept="image/*" class="form-file" style="display:none" onchange="previewImage(this, 'preview_clube')">
-                        <div id="preview_clube" class="form-preview"></div>
-                    </div>
-                </div>
-
+                
                 <div class="form-group">
                     <label for="descricao" class="form-label">Descrição</label>
                     <textarea id="descricao" name="descricao" class="form-control" required placeholder="Descreva os detalhes da peneira, requisitos e informações importantes..."></textarea>
                 </div>
-
+                
                 <div class="form-row">
                     <div class="form-col">
                         <div class="form-group">
@@ -63,7 +49,7 @@ include("topo.php");
                         </div>
                     </div>
                 </div>
-
+                
                 <div class="form-row">
                     <div class="form-col">
                         <div class="form-group">
@@ -78,7 +64,7 @@ include("topo.php");
                         </div>
                     </div>
                 </div>
-
+                
                 <div class="form-row">
                     <div class="form-col">
                         <div class="form-group">
@@ -102,11 +88,11 @@ include("topo.php");
                         </div>
                     </div>
                 </div>
-
+                
                 <div class="form-group">
                     <label class="form-label">Imagens da Peneira</label>
                     <div class="form-hint">Adicione até 3 imagens para ilustrar a peneira (máx. 2MB cada)</div>
-
+                    
                     <div class="form-row">
                         <div class="form-col">
                             <label for="fotos1" class="form-file-custom">
@@ -131,7 +117,7 @@ include("topo.php");
                         </div>
                     </div>
                 </div>
-
+                
                 <div class="form-group">
                     <label for="documentos" class="form-label">Documentos Obrigatórios</label>
                     <div class="form-hint">Adicione documentos necessários para a inscrição (PDF ou imagens)</div>
@@ -141,78 +127,78 @@ include("topo.php");
                     <input type="file" id="documentos" name="documentos[]" accept=".pdf,image/*" multiple class="form-file" style="display:none" onchange="updateFileList(this)">
                     <div id="fileList" class="form-hint" style="margin-top: 10px;"></div>
                 </div>
-
+                
                 <button type="submit" class="form-submit">
                     <i class="fas fa-plus-circle"></i> Criar Peneira
                 </button>
             </form>
         </div>
     </div>
-
+    
     <script>
         function previewImage(input, previewId) {
             const preview = document.getElementById(previewId);
             preview.innerHTML = '';
-
+            
             if (input.files && input.files[0]) {
                 const reader = new FileReader();
-
+                
                 reader.onload = function(e) {
                     const img = document.createElement('img');
                     img.src = e.target.result;
                     img.className = 'preview-image';
                     preview.appendChild(img);
                 }
-
+                
                 reader.readAsDataURL(input.files[0]);
             }
         }
-
+        
         function updateFileList(input) {
             const fileList = document.getElementById('fileList');
             fileList.innerHTML = '';
-
+            
             if (input.files.length > 0) {
                 const list = document.createElement('ul');
                 list.style.paddingLeft = '20px';
                 list.style.marginTop = '5px';
-
+                
                 for (let i = 0; i < input.files.length; i++) {
                     const item = document.createElement('li');
                     item.textContent = input.files[i].name;
                     list.appendChild(item);
                 }
-
+                
                 fileList.appendChild(list);
             }
         }
-
+        
         // Animação de entrada dos elementos
         document.addEventListener('DOMContentLoaded', function() {
             const animatedElements = document.querySelectorAll('.animate-fadeInUp');
-
+            
             function checkScroll() {
                 animatedElements.forEach(element => {
                     const elementTop = element.getBoundingClientRect().top;
                     const windowHeight = window.innerHeight;
-
+                    
                     if (elementTop < windowHeight * 0.9) {
                         element.style.opacity = '1';
                         element.style.transform = 'translateY(0)';
                     }
                 });
             }
-
+            
             // Inicialmente, definir os elementos como invisíveis
             animatedElements.forEach(element => {
                 element.style.opacity = '0';
                 element.style.transform = 'translateY(20px)';
                 element.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
             });
-
+            
             // Verificar posição inicial
             checkScroll();
-
+            
             // Verificar ao rolar
             window.addEventListener('scroll', checkScroll);
         });

@@ -10,7 +10,6 @@ if($conn->connect_error) {
 // Criar diretórios se não existirem
 if(!is_dir("uploads/fotos")) mkdir("uploads/fotos", 0777, true);
 if(!is_dir("uploads/documentos")) mkdir("uploads/documentos", 0777, true);
-if(!is_dir("uploads/clubes")) mkdir("uploads/clubes", 0777, true);
 
 // Sanitiza dados recebidos
 $titulo = mysqli_real_escape_string($conn, $_POST['titulo']);
@@ -26,23 +25,8 @@ $faixa_etaria = mysqli_real_escape_string($conn, $_POST['faixa_etaria']);
 // Arrays para armazenar caminhos das fotos e documentos
 $fotos_caminhos = [];
 $documentos_caminhos = [];
-$foto_clube_caminho = NULL;
 
-// Processa FOTO DO CLUBE (campo específico)
-if(isset($_FILES['foto_clube']) && $_FILES['foto_clube']['error'] == 0) {
-    $permitidos_foto = ['image/jpeg', 'image/png', 'image/gif'];
-    
-    if(in_array($_FILES['foto_clube']['type'], $permitidos_foto) && $_FILES['foto_clube']['size'] <= 2 * 1024 * 1024) {
-        $foto_clube_nome = uniqid() . "_clube_" . basename($_FILES['foto_clube']['name']);
-        $foto_clube_destino = "uploads/clubes/" . $foto_clube_nome;
-        
-        if(move_uploaded_file($_FILES['foto_clube']['tmp_name'], $foto_clube_destino)) {
-            $foto_clube_caminho = $foto_clube_destino;
-        }
-    }
-}
-
-// Processa MÚLTIPLAS FOTOS DA PENEIRA
+// Processa MÚLTIPLAS FOTOS
 if(isset($_FILES['fotos']) && is_array($_FILES['fotos']['name'])) {
     $permitidos_foto = ['image/jpeg', 'image/png', 'image/gif'];
     
@@ -94,20 +78,12 @@ if($diferenca <= 7) {
     $badge_type = 'featured';
 }
 
-// Determina o status de inscrição
-$status_inscricao = 'status-soon';
-if($inscricao == 'Aberta' && $status == 'Ativa') {
-    $status_inscricao = 'status-open';
-} elseif($inscricao == 'Fechada') {
-    $status_inscricao = 'status-closed';
-}
-
-// Insere na tabela peneiras (incluindo foto_clube)
-$sql = "INSERT INTO peneiras (titulo, clube, foto_clube, descricao, localizacao, data, horario, inscricao, status, faixa_etaria, fotos, documentos, badge_type, status_inscricao) 
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+// Insere na tabela peneiras
+$sql = "INSERT INTO peneiras (titulo, clube, descricao, localizacao, data, horario, inscricao, status, faixa_etaria, caminho_foto, caminho_documento) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 $stmt = $conn->prepare($sql);
-$stmt->bind_param("ssssssssssssss", $titulo, $clube, $foto_clube_caminho, $descricao, $localizacao, $data, $horario, $inscricao, $status, $faixa_etaria, $fotos_json, $documentos_json, $badge_type, $status_inscricao);
+$stmt->bind_param("sssssssssss", $titulo, $clube, $descricao, $localizacao, $data, $horario, $inscricao, $status, $faixa_etaria, $fotos_json, $documentos_json);
 
 if($stmt->execute()){
     // Redireciona para a página de peneiras com mensagem de sucesso

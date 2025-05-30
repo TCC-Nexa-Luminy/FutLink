@@ -1,206 +1,589 @@
 @import url("root.css");
 
-.containerMain{
-    display: grid;
-    grid-template-areas: 
-    "banner"
-    "conteudo";
+/* Estilos base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: #f9fafb;
+  color: var(--cor-text);
+  line-height: 1.5;
+  min-height: 100vh;
+}
+
+/* Container principal - ocupando 100% do espaço */
+.containerMain {
+  display: grid;
+  grid-template-areas: "conteudo banner";
+  grid-template-columns: 3fr 2fr;
+  grid-template-rows: 1fr;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+}
+
+/* Botão de voltar - mantido como original */
+.back_btn {
+  position: absolute;
+  top: 0.5em;
+  left: 0.5em;
+  font-size: 2em;
+  color: var(--cor-secundaria-verde2);
+  text-decoration: none;
+  transition: transform 0.3s ease;
+}
+
+.back_btn:hover {
+  transform: scale(1.1);
+}
+
+/* Conteúdo principal - formulário */
+.main_content {
+  display: flex;
+  grid-area: conteudo;
+  position: relative;
+  padding: 4em 7vw 2em;
+  flex-direction: column;
+  overflow-y: auto;
+  background-color: white;
+}
+
+/* Estilos do formulário */
+#organizationForm {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7em;
+  max-width: 800px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+#organizationForm h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--cor-text);
+  margin-bottom: 0.5rem;
+  text-align: center;
+  font-family: "Poppins", sans-serif;
+}
+
+#organizationForm h2 {
+  font-size: 1rem;
+  color: var(--cor-text-light);
+  margin-bottom: 1rem;
+  text-align: center;
+  font-weight: normal;
+  font-family: "Poppins", sans-serif;
+}
+
+#organizationForm h2 a {
+  color: var(--cor-secundaria-verde2);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+#organizationForm h2 a:hover {
+  text-decoration: underline;
+}
+
+#organizationForm hr {
+  border: none;
+  border-top: 1px solid #e5e7eb;
+  margin: 1rem 0;
+}
+
+.content-input {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+  animation: fadeIn 0.6s ease forwards;
+}
+
+.content-input > h3 {
+  opacity: 0.6;
+  font-size: 0.9em;
+  font-weight: 600;
+  color: var(--cor-secundaria-verde2);
+  margin-bottom: 0.5rem;
+  font-family: "Poppins", sans-serif;
+}
+
+.form-content-info {
+  display: flex;
+  align-items: flex-start;
+  gap: 1em;
+}
+
+/* Upload de logo */
+.container_photo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid #e5e7eb;
+  aspect-ratio: 1 / 1;
+  height: 8em;
+  border-radius: 50%; /* MUDANÇA: de "1em 0" para "50%" para ficar redondo */
+  cursor: pointer;
+  overflow: hidden;
+  text-align: center;
+  transition: all 0.3s ease;
+  background-color: #f9fafb;
+}
+
+.container_photo:hover {
+  border-color: var(--cor-secundaria-verde2);
+  background-color: #f0fdf4;
+}
+
+.container_photo > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%; /* ADICIONADO: para garantir que a imagem também fique redonda */
+}
+
+.placeholderSpan {
+  font-size: 0.9rem;
+  color: #6b7280;
+  text-align: center;
+  padding: 1rem;
+  font-family: "Poppins", sans-serif;
+}
+
+/* Campos do formulário */
+.form-label_direction {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1em;
+  width: 100%;
+}
+
+.form-label {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 17em;
+  gap: 0.3em;
+}
+
+.form-label > label {
+  font-weight: 600;
+  font-size: 0.9em;
+  color: var(--cor-text);
+  font-family: "Poppins", sans-serif;
+}
+
+.form-label input,
+.form-label select {
+  background-color: white;
+  border: 2px solid #e5e7eb;
+  padding: 0.75em 1em;
+  font-size: 1rem;
+  border-radius: 0.5em 0;
+  font-family: "Poppins", sans-serif;
+  transition: all 0.3s ease;
+}
+
+.form-label input:focus,
+.form-label select:focus {
+  outline: none;
+  border-color: var(--cor-secundaria-verde2);
+  box-shadow: 0 0 0 3px rgba(3, 105, 46, 0.1);
+}
+
+/* Botões de ação */
+.form-label_direction .form_back-btn,
+.form_submit {
+  font-size: 1rem;
+  padding: 0.75em 1.5em;
+  border-radius: 0.5em;
+  cursor: pointer;
+  flex: 1 1 0;
+  text-align: center;
+  transition: all 0.3s ease;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-family: "Poppins", sans-serif;
+}
+
+.form_back-btn {
+  text-decoration: none;
+  border: 2px solid var(--cor-secundaria-verde2);
+  color: var(--cor-secundaria-verde2);
+  background-color: white;
+}
+
+.form_back-btn:hover {
+  background-color: #f0fdf4;
+  transform: translateY(-2px);
+}
+
+.form_back-btn:hover > i {
+  transform: translateX(-0.3em);
+}
+
+.form_submit {
+  color: white;
+  background-color: var(--cor-secundaria-verde2);
+  border: none;
+}
+
+.form_submit:hover {
+  filter: brightness(1.1);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+/* Banner lateral - MELHORADO */
+.main_banner {
+  display: flex;
+  grid-area: banner;
+  flex-direction: column;
+  background: linear-gradient(135deg, var(--cor-secundaria-verde2) 0%, #025a26 100%);
+  color: white;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.banner_content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  width: 100%;
+  padding: 4em 2em;
+}
+
+/* Logo e título */
+.banner_top {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.logo_container {
+  width: 80px;
+  height: 80px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+  animation: pulse 2s infinite;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+  overflow: hidden;
+}
+
+.logo_container img {
+  width: 60%;
+  height: auto;
+}
+
+.banner_top h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: white;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  font-family: "Poppins", sans-serif;
+  letter-spacing: 1px;
+}
+
+/* Mensagem principal */
+.banner_msg {
+  margin-bottom: 3rem;
+}
+
+.banner_msg h1 {
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: white;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  font-family: "Poppins", sans-serif;
+}
+
+.banner_msg h2 {
+  font-size: 1.2rem;
+  opacity: 0.9;
+  font-weight: 400;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.9);
+  font-family: "Poppins", sans-serif;
+}
+
+/* Features com ícones */
+.banner_features {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+}
+
+.feature_item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  text-align: left;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 1rem;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+.feature_item:hover {
+  transform: translateY(-5px);
+  background: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+.feature_icon {
+  width: 50px;
+  height: 50px;
+  min-width: 50px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  color: white;
+  transition: all 0.3s ease;
+}
+
+.feature_item:hover .feature_icon {
+  background: rgba(255, 255, 255, 0.3);
+  transform: scale(1.1);
+}
+
+.feature_text h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+  color: white;
+  font-family: "Poppins", sans-serif;
+}
+
+.feature_text p {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.8);
+  font-family: "Poppins", sans-serif;
+}
+
+/* Rodapé do banner */
+.banner_rodape {
+  margin-top: auto;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.banner_rodape p {
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.8);
+  max-width: 400px;
+  margin: 0 auto;
+  font-family: "Poppins", sans-serif;
+}
+
+/* Elementos decorativos */
+.banner_decoration {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.decoration_circle {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.circle1 {
+  width: 300px;
+  height: 300px;
+  top: -100px;
+  right: -100px;
+}
+
+.circle2 {
+  width: 200px;
+  height: 200px;
+  bottom: 20%;
+  left: -100px;
+}
+
+.circle3 {
+  width: 150px;
+  height: 150px;
+  bottom: -50px;
+  right: 20%;
+}
+
+.container_photo {
+  border-radius: 70%; /* ← AQUI! Era "1em 0", agora é redondo */
+}
+
+.container_photo > img {
+  border-radius: 70%; /* ← E AQUI! Para a imagem também ficar redonda */
+}
+
+/* Animações */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.4);
+  }
+  70% {
+    transform: scale(1.05);
+    box-shadow: 0 0 0 10px rgba(255, 255, 255, 0);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+  }
+}
+
+/* Validação de erros */
+.field-error {
+  color: #ef4444;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+  font-family: "Poppins", sans-serif;
+}
+
+.input_user.error {
+  border-color: #ef4444;
+}
+
+.input_user.success {
+  border-color: #10b981;
+}
+
+/* Responsividade */
+@media (max-width: 991px) {
+  .containerMain {
+    grid-template-areas:
+      "banner"
+      "conteudo";
     grid-template-columns: 1fr;
     grid-template-rows: auto 1fr;
-    height: 100dvh;
+    height: auto;
+    min-height: 100vh;
+  }
+
+  .main_banner {
+    padding: 0;
+  }
+
+  .banner_content {
+    padding: 2em 1.5em;
+  }
+
+  .banner_msg h1 {
+    font-size: 1.8rem;
+  }
+
+  .banner_top h1 {
+    font-size: 2rem;
+  }
+
+  .main_content {
+    padding: 4em 1.5em 2em;
+  }
 }
 
-.back_btn{
-    position: absolute;
-    top: 0.5em;
-    left: 0.5em;
-    font-size: 2em;
-    color: var(--cor-secundaria-verde2);
-}
-
-/* ----------------------------------------------------------------------- */
-
-.containerMain .main_content{
-    display: flex;
-    grid-area: conteudo;
-    position: relative;
-    padding: 4em 7vw 2em;
-    flex-direction: column;  
-    overflow-y: auto;
-}
-
-#form_cadastro{
-    display: flex;
+@media (max-width: 767px) {
+  .form-content-info {
     flex-direction: column;
-    gap: 0.7em;
-}
-.content-input{
-    display: flex;
+    align-items: center;
+  }
+
+  .container_photo {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%; /* ADICIONADO: manter redondo no mobile também */
+  }
+
+  .form-label_direction {
     flex-direction: column;
-    gap: 0.5em;
+  }
+
+  .banner_content {
+    padding: 1.5em 1em;
+  }
+
+  .banner_msg h1 {
+    font-size: 1.5rem;
+  }
+
+  .feature_item {
+    padding: 0.75rem;
+  }
+
+  .feature_icon {
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+    font-size: 1.2rem;
+  }
+
+  .feature_text h3 {
+    font-size: 1rem;
+  }
+
+  .feature_text p {
+    font-size: 0.8rem;
+  }
 }
 
-.content-input>h3{
-    opacity: 0.4;
-    font-size: 0.8em;
-}
+@media (max-width: 575px) {
+  .main_content {
+    padding: 4em 1em 2em;
+  }
 
-.form-content-info{
-    display: flex;
-    align-items: center;
-    gap: 1em;
-}
+  #organizationForm h1 {
+    font-size: 1.5rem;
+  }
 
-.container_photo{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: 2px solid black;
-    aspect-ratio: 1/1;
-    height: 8em;
-    border-radius: 1em 0;
-    cursor: pointer;
-    overflow: hidden;
-    text-align: center;
-}
+  .banner_top h1 {
+    font-size: 1.75rem;
+  }
 
-.container_photo>img{
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
+  .banner_msg h1 {
+    font-size: 1.3rem;
+  }
 
-.form-label_direction{
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1em;
-    width: 100%;
-}
-.form-label{
-    display: flex;
-    flex-direction: column;
-    flex: 1 1 17em;
-    gap: 0.3em;
-}
-.form-label>label{
-    font-weight: 700;
-    font-size: 0.9em;
-}
-.form-label input{
-    background-color: transparent;
-    border: 2px solid gray;
-    padding: 0.5em;
-    font-size: unset;
-    border-radius: 0.5em 0;
-}
-.form-label input:focus{
-    outline: 1px solid var(--cor-purple-light);
-    border: 2px solid var(--cor-purple-light);
-}
-
-.form-label_direction .form_back-btn, .form_submit{
-    font-size: unset;
-    padding: 0.6em;
-    border-radius: 0.4em;
-    cursor: pointer;
-    flex: 1 1 0;
-    text-align: center;
-}
-.containerMain fieldset{
-    display: flex;
-    flex-wrap: wrap;
-    padding: 0.5em;
-    justify-content: center;
-    gap: 1em 4em;
-    border-radius: 1em 0;
-    accent-color: var(--cor-green-light);
-    border: 3px double var(--cor-purple-dark);
-}
-
-.form_back-btn{
-    text-decoration: none;
-    border: 2px solid var(--cor-secundaria-verde2);
-    color: var(--cor-secundaria-verde2);
-    transform: translateX(0);
-    transition: 0.2s;
-}
-
-.form_back-btn:hover>i{
-    transition: 0.2s;
-    transform: translateX(-0.3em);
-}
-
-.form_submit{
-    color: var(--cor-primaria);
-    background-color: var(--cor-secundaria-verde2);
-    transition: 0.3s;
-}
-.form_submit:hover{
-    transition: 0.3s;
-    filter: brightness(1.5);
-}
-
-
-/* ----------------------------------------------------------------------- */
-
-.containerMain .main_banner{
-    display: flex;
-    grid-area: banner;
-    flex-direction: column;
-    background-color: var(--cor-secundaria-verde2);
-    color: var(--cor-primaria);
-    align-items: center;
-    justify-content: space-between;
-    text-align: center;
-    padding: 2em 2em;
-    gap: 1.5em;
-}
-.main_banner .banner_top{
-    display: flex;
-    align-items: center;
-}
-.main_banner .banner_top img{
-    aspect-ratio: 1/1;
-    height: 2em;
-}
-
-.main_banner .banner_msg h1{
-    color: var(--cor-green-light);
-    font-family: var(--fonte-div);
-}
-
-.main_banner .banner_rodape{
-    display: none;
-}
-
-@media (max-width: 575px){}      /*disposivos extra pequenos (XS) - Smartphone tela pequena - padrão no site*/
-
-@media (min-width: 576px){      /*Dispositivos pequenos (SM)) - Smartphone tela grande - */
-    
-}
-@media (min-width: 768px){      /*Dispositos médios (MD) - Tablets e Smartphones grandes -*/
-    
-}
-@media (min-width: 992px){      /*Dispositivos grande (LG) - Desktops menores e laptops -*/
-    .containerMain{
-        grid-template-areas: 
-        "conteudo banner";
-        grid-template-columns: 3fr 2fr;
-        grid-template-rows: 1fr;
-    }
-    .containerMain .main_banner{
-        padding: 4em 3em;
-    }
-    .main_banner .banner_rodape{
-        display: flex;
-    }
-    
-}
-    
-@media (min-width: 1200px){     /*Dispositivos extra grande (XL) - Desktops grandes -*/
-    
-
-}
-@media (min-width: 1400px){     /*Dispositivos extra extra grande (XXL) - Monitores grandes e telas 4K - */
-    
+  .form-label_direction .form_back-btn,
+  .form_submit {
+    padding: 0.6em 1em;
+  }
 }
