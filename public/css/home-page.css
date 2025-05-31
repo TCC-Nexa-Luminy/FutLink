@@ -438,3 +438,160 @@ form button[type="submit"] i {
     display: none;
   }
 }
+
+
+/* ========== SEÇÃO DE COMENTÁRIOS ========== */
+
+.comentarios-section {
+    margin-top: 15px;
+    border-top: 1px solid #e0e0e0;
+    padding-top: 15px;
+    background: #fafafa;
+    border-radius: 0 0 var(--borda-radius) var(--borda-radius);
+}
+
+.comentario-form {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+    padding: 0 5px;
+}
+
+.comentario-input {
+    flex: 1;
+    padding: 10px 15px;
+    border: 1px solid #e0e0e0;
+    border-radius: 25px;
+    outline: none;
+    font-size: 14px;
+    font-family: inherit;
+    transition: var(--transicao);
+    background: var(--branco, #ffffff);
+}
+
+.comentario-input:focus {
+    border-color: var(--verde, #00c853);
+    box-shadow: 0 0 0 2px rgba(0, 200, 83, 0.2);
+}
+
+.comentario-btn {
+    background: var(--gradiente-verde);
+    color: var(--branco, #ffffff);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: var(--transicao);
+    white-space: nowrap;
+}
+
+.comentario-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: var(--sombra-suave);
+}
+
+.comentario-item {
+    margin-bottom: 12px;
+    padding: 12px 15px;
+    background: var(--branco, #ffffff);
+    border-radius: 12px;
+    border-left: 3px solid var(--verde-claro, #5efc82);
+    transition: var(--transicao);
+}
+
+.comentario-item:hover {
+    transform: translateX(3px);
+    box-shadow: var(--sombra-suave);
+}
+
+.comentario-usuario {
+    font-weight: 600;
+    color: var(--verde-escuro, #009624);
+    font-size: 14px;
+}
+
+.comentario-tempo {
+    color: var(--cinza, #757575);
+    font-size: 12px;
+    margin-left: 10px;
+}
+
+.comentario-conteudo {
+    margin-top: 5px;
+    color: var(--cinza-escuro, #2d2d2d);
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+/* ========== ESTADOS DOS BOTÕES DE AÇÃO ========== */
+
+.action-button.curtido {
+    color: #e74c3c;
+    background-color: rgba(231, 76, 60, 0.1);
+}
+
+.action-button.curtido i {
+    color: #e74c3c;
+}
+
+.action-button.curtido:hover {
+    background-color: rgba(231, 76, 60, 0.2);
+    color: #c0392b;
+}
+
+/* ========== UTILITÁRIOS ========== */
+
+.hidden {
+    display: none !important;
+}
+
+.loading {
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+/* ========== RESPONSIVIDADE PARA COMENTÁRIOS ========== */
+
+@media (max-width: 768px) {
+    .comentario-form {
+        flex-direction: column;
+        gap: 8px;
+    }
+    
+    .comentario-btn {
+        align-self: flex-end;
+        padding: 8px 16px;
+    }
+    
+    .comentario-item {
+        padding: 10px 12px;
+    }
+    
+    .comentario-usuario {
+        font-size: 13px;
+    }
+    
+    .comentario-tempo {
+        font-size: 11px;
+        margin-left: 8px;
+    }
+}
+
+@media (max-width: 480px) {
+    .comentarios-section {
+        margin-top: 10px;
+        padding-top: 10px;
+    }
+    
+    .comentario-input {
+        padding: 8px 12px;
+        font-size: 13px;
+    }
+    
+    .comentario-btn {
+        padding: 8px 14px;
+        font-size: 13px;
+    }
+}
