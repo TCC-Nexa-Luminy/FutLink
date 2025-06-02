@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 02/06/2025 às 19:42
+-- Tempo de geração: 02/06/2025 às 22:02
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -76,6 +76,7 @@ CREATE TABLE `peneiras` (
   `id` int(11) NOT NULL,
   `titulo` varchar(255) NOT NULL,
   `clube` varchar(255) NOT NULL,
+  `foto_peneira` text NOT NULL,
   `descricao` text NOT NULL,
   `localizacao` varchar(255) NOT NULL,
   `data` date NOT NULL,
@@ -97,8 +98,8 @@ CREATE TABLE `peneiras` (
 -- Despejando dados para a tabela `peneiras`
 --
 
-INSERT INTO `peneiras` (`id`, `titulo`, `clube`, `descricao`, `localizacao`, `data`, `horario`, `inscricao`, `status`, `faixa_etaria`, `caminho_foto`, `caminho_documento`, `badge_type`, `status_inscricao`, `fotos`, `documentos`, `data_criacao`, `data_atualizacao`) VALUES
-(3, 'Peneira sub 14', 'Santos Futebol Clube', 'A Peneira do Santos Futebol Clube é uma excelente oportunidade para jovens talentos demonstrarem seu potencial e realizarem o sonho de jogar em um dos maiores clubes formadores de atletas do Brasil e do mundo.\\r\\n\\r\\nCom foco em revelar novos craques, a peneira é aberta para diversas faixas etárias e ocorre nas dependências do clube, sob avaliação da comissão técnica oficial do Santos FC. Durante o processo, os participantes são observados em aspectos técnicos, físicos, táticos e comportamentais.\\r\\n\\r\\nO evento visa selecionar atletas com perfil para integrar as categorias de base do Santos, que historicamente revelou nomes como Pelé, Neymar e Rodrygo.', 'Rua José Campos', '2025-07-25', '14:30:00', 'Aberta', 'Ativa', '14', '[\"uploads\\/fotos\\/6830def3db94a_images (1).jfif\",\"uploads\\/fotos\\/6830def3dbcd8_images (2).jfif\",\"uploads\\/fotos\\/6830def3dbfe2_images.jfif\"]', NULL, 'normal', 'status-soon', NULL, NULL, '2025-05-23 20:47:47', '2025-05-23 20:47:47');
+INSERT INTO `peneiras` (`id`, `titulo`, `clube`, `foto_peneira`, `descricao`, `localizacao`, `data`, `horario`, `inscricao`, `status`, `faixa_etaria`, `caminho_foto`, `caminho_documento`, `badge_type`, `status_inscricao`, `fotos`, `documentos`, `data_criacao`, `data_atualizacao`) VALUES
+(4, 'Peneira Ofc Sub 14', 'Santos Futebol Clube', 'uploads/peneiras/peneira_683e02c12c3ef.jpg', 'O Santos Futebol Clube, também conhecido como Santos, é um clube brasileiro de futebol com sede na cidade de Santos, no estado de São Paulo. Foi fundado em 14 de abril de 1912 e é um dos clubes mais históricos e vitoriosos do Brasil, com um legado que inclui a revelação de grandes talentos, como Pelé. ', 'Rua Pelé Silveiro', '2025-09-19', '15:30:00', 'Gratuita', 'Ativa', '14', NULL, NULL, 'normal', '', '[\"uploads\\/peneiras\\/extra_683e02c12c57b.png\",\"uploads\\/peneiras\\/extra_683e02c12c6b0.png\",\"uploads\\/peneiras\\/extra_683e02c12c7d7.png\"]', '[\"uploads\\/documentos\\/doc_683e02c12c96a.png\"]', '2025-06-02 20:00:01', '2025-06-02 20:00:01');
 
 -- --------------------------------------------------------
 
@@ -235,7 +236,8 @@ CREATE TABLE `tbl_organizacao` (
 --
 
 INSERT INTO `tbl_organizacao` (`id_org`, `nome_org`, `email_org`, `telefone_org`, `password_org`, `logo_org`, `descricao`, `data_fundacao`, `tipo`, `cep`, `redes_sociais`, `created_at`) VALUES
-(1, 'Palmeiras 2', 'palmeirasdois@gmail.com', '(11) 93040-3949', '$2y$10$/pNuAwpHwHBDPhzGiL.vUOSoKmfpMdmkD2zNvmr3aL5t1CV/ZzVGC', '../../public/images/profilePhotos/defaultPhoto.png', NULL, '2022-06-13', '', '8451360', NULL, '2025-06-02 16:02:32');
+(1, 'Palmeiras 2', 'palmeirasdois@gmail.com', '(11) 93040-3949', '$2y$10$/pNuAwpHwHBDPhzGiL.vUOSoKmfpMdmkD2zNvmr3aL5t1CV/ZzVGC', '../../public/images/profilePhotos/defaultPhoto.png', NULL, '2022-06-13', '', '8451360', NULL, '2025-06-02 16:02:32'),
+(2, 'Etec', 'etec@gmail.com', '(11) 90298-7234', '$2y$10$n2zjPxKK.q5dSdtqZK990OmnbWB23M90.cDU8A1XAJy2pTHHsDxt.', '../../public/images/profilePhotos/defaultPhoto.png', NULL, '2001-01-08', '', '8451360', NULL, '2025-06-02 16:26:53');
 
 -- --------------------------------------------------------
 
@@ -446,13 +448,13 @@ ALTER TABLE `comentarios`
 -- AUTO_INCREMENT de tabela `curtidas`
 --
 ALTER TABLE `curtidas`
-  MODIFY `id_curtida` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_curtida` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT de tabela `peneiras`
 --
 ALTER TABLE `peneiras`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de tabela `posts`
@@ -488,7 +490,7 @@ ALTER TABLE `tbl_jogo`
 -- AUTO_INCREMENT de tabela `tbl_organizacao`
 --
 ALTER TABLE `tbl_organizacao`
-  MODIFY `id_org` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_org` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de tabela `tbl_profissional`
