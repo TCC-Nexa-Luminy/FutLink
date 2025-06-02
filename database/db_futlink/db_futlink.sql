@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 02/06/2025 às 15:56
+-- Tempo de geração: 02/06/2025 às 21:03
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -165,6 +165,13 @@ CREATE TABLE `tbl_organizacao` (
   `redes_sociais` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL CHECK (json_valid(`redes_sociais`)),
   `created_at` datetime DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Despejando dados para a tabela `tbl_organizacao`
+--
+
+INSERT INTO `tbl_organizacao` (`id_org`, `nome_org`, `email_org`, `telefone_org`, `password_org`, `logo_org`, `descricao`, `data_fundacao`, `tipo`, `cep`, `redes_sociais`, `created_at`) VALUES
+(1, 'Palmeiras 2', 'palmeirasdois@gmail.com', '(11) 93040-3949', '$2y$10$/pNuAwpHwHBDPhzGiL.vUOSoKmfpMdmkD2zNvmr3aL5t1CV/ZzVGC', '../../public/images/profilePhotos/defaultPhoto.png', NULL, '2022-06-13', '', '8451360', NULL, '2025-06-02 16:02:32');
 
 -- --------------------------------------------------------
 
@@ -370,7 +377,7 @@ ALTER TABLE `tbl_jogo`
 -- AUTO_INCREMENT de tabela `tbl_organizacao`
 --
 ALTER TABLE `tbl_organizacao`
-  MODIFY `id_org` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_org` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de tabela `tbl_profissional`
