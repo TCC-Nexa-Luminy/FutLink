@@ -139,16 +139,38 @@ include("topo.php");
                                 $status_text = 'Em Breve';
                             }
                             
-                            // Processa as fotos
-                            $fotos = json_decode($row['caminho_foto'], true);
-                            $primeira_foto = '';
+                            // CORRIGIDO: Usar o campo foto_peneira para a imagem principal
+                            $foto_principal = '';
                             
-                            if($fotos && is_array($fotos) && !empty($fotos)) {
-                                $primeira_foto = '../../controllers/' . $fotos[0];
+                            if (!empty($row['foto_peneira'])) {
+                                // Verificar se o arquivo existe
+                                $possible_paths = [
+                                    '../../controllers/' . $row['foto_peneira'],
+                                    '../controllers/' . $row['foto_peneira'],
+                                    '../../' . $row['foto_peneira'],
+                                    '../' . $row['foto_peneira']
+                                ];
+                                
+                                $foto_encontrada = false;
+                                foreach ($possible_paths as $path) {
+                                    if (file_exists($path)) {
+                                        $foto_principal = $path;
+                                        $foto_encontrada = true;
+                                        break;
+                                    }
+                                }
+                                
+                                if (!$foto_encontrada) {
+                                    $foto_principal = '../../controllers/' . $row['foto_peneira'];
+                                }
                             } else {
-                                // Foto padrão se não houver foto
-                                $primeira_foto = '../../public/images/default-peneira.jpg';
+                                // Foto padrão se não houver foto principal
+                                $foto_principal = '../../public/images/default-peneira.jpg';
                             }
+                            
+                            // Debug para ver o que está acontecendo
+                            echo "<!-- DEBUG: foto_peneira = " . htmlspecialchars($row['foto_peneira']) . " -->";
+                            echo "<!-- DEBUG: foto_principal = " . htmlspecialchars($foto_principal) . " -->";
                             
                             // Formata a data
                             $data_formatada = date('d/m/Y', strtotime($row['data']));
@@ -163,7 +185,9 @@ include("topo.php");
                         <?php endif; ?>
                         
                         <div class="card-image">
-                            <img src="<?php echo $primeira_foto; ?>" alt="<?php echo htmlspecialchars($row['titulo']); ?>">
+                            <img src="<?php echo $foto_principal; ?>" 
+                                 alt="<?php echo htmlspecialchars($row['titulo']); ?>"
+                                 onerror="this.src='../../public/images/default-peneira.jpg'">
                         </div>
                         
                         <div class="card-content">
@@ -234,7 +258,7 @@ include("topo.php");
                     <?php
                         }
                     } else {
-                        echo "<p class='no-peneiras'>Nenhuma peneira encontrada. <a href='criar-peneira.php'>Criar a primeira peneira</a></p>";
+                        echo "<p class='no-peneiras'>Nenhuma peneira encontrada. <a href='addPeneira-org.php'>Criar a primeira peneira</a></p>";
                     }
                     ?>
                 </div>
