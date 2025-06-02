@@ -1,100 +1,216 @@
 <?php
-@session_start();
-include("../views/topo.php");
+session_start();
 require("../../config/connect.php");
 
-if($conn->connect_error) {
-    die("Falha na conexão: " . $conn->connect_error);
+// Função para upload da foto principal
+function uploadFotoPeneira($file) {
+    $upload_dir = 'uploads/peneiras/';
+    
+    // Criar diretório se não existir
+    if (!file_exists($upload_dir)) {
+        mkdir($upload_dir, 0777, true);
+    }
+    
+    $allowed_types = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp'];
+    $max_size = 5 * 1024 * 1024; // 5MB
+    
+    if ($file['error'] !== UPLOAD_ERR_OK) {
+        throw new Exception('Erro no upload da foto principal');
+    }
+    
+    if (!in_array($file['type'], $allowed_types)) {
+        throw new Exception('Tipo de arquivo não permitido para foto principal. Use apenas JPG, PNG ou WEBP.');
+    }
+    
+    if ($file['size'] > $max_size) {
+        throw new Exception('Foto principal muito grande. Tamanho máximo: 5MB.');
+    }
+    
+    $file_extension = pathinfo($file['name'], PATHINFO_EXTENSION);
+    $new_filename = 'peneira_' . uniqid() . '.' . $file_extension;
+    $upload_path = $upload_dir . $new_filename;
+    
+    if (move_uploaded_file($file['tmp_name'], $upload_path)) {
+        return $upload_path;
+    }
+    
+    throw new Exception('Erro ao fazer upload da foto principal.');
 }
 
-// Criar diretórios se não existirem
-if(!is_dir("uploads/fotos")) mkdir("uploads/fotos", 0777, true);
-if(!is_dir("uploads/documentos")) mkdir("uploads/documentos", 0777, true);
-
-// Sanitiza dados recebidos
-$titulo = mysqli_real_escape_string($conn, $_POST['titulo']);
-$clube = mysqli_real_escape_string($conn, $_POST['clube']);
-$descricao = mysqli_real_escape_string($conn, $_POST['descricao']);
-$localizacao = mysqli_real_escape_string($conn, $_POST['localizacao']);
-$data = $_POST['data'];
-$horario = $_POST['horario'];
-$inscricao = mysqli_real_escape_string($conn, $_POST['inscricao']);
-$status = mysqli_real_escape_string($conn, $_POST['status']);
-$faixa_etaria = mysqli_real_escape_string($conn, $_POST['faixa_etaria']);
-
-// Arrays para armazenar caminhos das fotos e documentos
-$fotos_caminhos = [];
-$documentos_caminhos = [];
-
-// Processa MÚLTIPLAS FOTOS
-if(isset($_FILES['fotos']) && is_array($_FILES['fotos']['name'])) {
-    $permitidos_foto = ['image/jpeg', 'image/png', 'image/gif'];
+// Função para upload de múltiplas fotos
+function uploadFotos($files) {
+    $upload_dir = 'uploads/peneiras/';
+    $uploaded_files = [];
     
-    for($i = 0; $i < count($_FILES['fotos']['name']); $i++) {
-        if($_FILES['fotos']['error'][$i] == 0) {
-            if(in_array($_FILES['fotos']['type'][$i], $permitidos_foto) && $_FILES['fotos']['size'][$i] <= 2 * 1024 * 1024) {
-                $foto_nome = uniqid() . "_" . basename($_FILES['fotos']['name'][$i]);
-                $foto_destino = "uploads/fotos/" . $foto_nome;
-                
-                if(move_uploaded_file($_FILES['fotos']['tmp_name'][$i], $foto_destino)) {
-                    $fotos_caminhos[] = $foto_destino;
-                }
+    if (!file_exists($upload_dir)) {
+        mkdir($upload_dir, 0777, true);
+    }
+    
+    foreach ($files['tmp_name'] as $key => $tmp_name) {
+        if ($files['error'][$key] === UPLOAD_ERR_OK) {
+            $file_extension = pathinfo($files['name'][$key], PATHINFO_EXTENSION);
+            $new_filename = 'extra_' . uniqid() . '.' . $file_extension;
+            $upload_path = $upload_dir . $new_filename;
+            
+            if (move_uploaded_file($tmp_name, $upload_path)) {
+                $uploaded_files[] = $upload_path;
             }
         }
     }
+    
+    return $uploaded_files;
 }
 
-// Processa MÚLTIPLOS DOCUMENTOS
-if(isset($_FILES['documentos']) && is_array($_FILES['documentos']['name'])) {
-    $permitidos_doc = ['application/pdf', 'image/jpeg', 'image/png'];
+// Função para upload de documentos
+function uploadDocumentos($files) {
+    $upload_dir = 'uploads/documentos/';
+    $uploaded_files = [];
     
-    for($i = 0; $i < count($_FILES['documentos']['name']); $i++) {
-        if($_FILES['documentos']['error'][$i] == 0) {
-            if(in_array($_FILES['documentos']['type'][$i], $permitidos_doc)) {
-                $doc_nome = uniqid() . "_" . basename($_FILES['documentos']['name'][$i]);
-                $doc_destino = "uploads/documentos/" . $doc_nome;
-                
-                if(move_uploaded_file($_FILES['documentos']['tmp_name'][$i], $doc_destino)) {
-                    $documentos_caminhos[] = $doc_destino;
-                }
+    if (!file_exists($upload_dir)) {
+        mkdir($upload_dir, 0777, true);
+    }
+    
+    foreach ($files['tmp_name'] as $key => $tmp_name) {
+        if ($files['error'][$key] === UPLOAD_ERR_OK) {
+            $file_extension = pathinfo($files['name'][$key], PATHINFO_EXTENSION);
+            $new_filename = 'doc_' . uniqid() . '.' . $file_extension;
+            $upload_path = $upload_dir . $new_filename;
+            
+            if (move_uploaded_file($tmp_name, $upload_path)) {
+                $uploaded_files[] = $upload_path;
             }
         }
     }
+    
+    return $uploaded_files;
 }
 
-// Converte arrays para JSON para armazenar no banco
-$fotos_json = !empty($fotos_caminhos) ? json_encode($fotos_caminhos) : NULL;
-$documentos_json = !empty($documentos_caminhos) ? json_encode($documentos_caminhos) : NULL;
-
-// Determina o tipo de badge baseado na data
-$data_peneira = new DateTime($data);
-$hoje = new DateTime();
-$diferenca = $hoje->diff($data_peneira)->days;
-
-$badge_type = 'normal';
-if($diferenca <= 7) {
-    $badge_type = 'new';
-} elseif($status == 'Ativa' && $inscricao == 'Aberta') {
-    $badge_type = 'featured';
-}
-
-// Insere na tabela peneiras
-$sql = "INSERT INTO peneiras (titulo, clube, descricao, localizacao, data, horario, inscricao, status, faixa_etaria, caminho_foto, caminho_documento) 
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-
-$stmt = $conn->prepare($sql);
-$stmt->bind_param("sssssssssss", $titulo, $clube, $descricao, $localizacao, $data, $horario, $inscricao, $status, $faixa_etaria, $fotos_json, $documentos_json);
-
-if($stmt->execute()){
-    // Redireciona para a página de peneiras com mensagem de sucesso
-    header("Location: ../views/peneiras.php?success=1");
+try {
+    // Verificar se é POST
+    if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+        throw new Exception('Método não permitido');
+    }
+    
+    // Validações básicas
+    $erros = [];
+    
+    if (empty($_POST['titulo'])) {
+        $erros[] = 'Título é obrigatório';
+    }
+    
+    if (empty($_POST['clube'])) {
+        $erros[] = 'Clube é obrigatório';
+    }
+    
+    if (empty($_POST['descricao'])) {
+        $erros[] = 'Descrição é obrigatória';
+    }
+    
+    if (empty($_POST['localizacao'])) {
+        $erros[] = 'Localização é obrigatória';
+    }
+    
+    if (empty($_POST['data'])) {
+        $erros[] = 'Data é obrigatória';
+    }
+    
+    if (empty($_POST['horario'])) {
+        $erros[] = 'Horário é obrigatório';
+    }
+    
+    if (empty($_POST['faixa_etaria'])) {
+        $erros[] = 'Faixa etária é obrigatória';
+    }
+    
+    // Verificar se foto principal foi enviada
+    if (!isset($_FILES['foto_peneira']) || $_FILES['foto_peneira']['error'] === UPLOAD_ERR_NO_FILE) {
+        $erros[] = 'Foto principal da peneira é obrigatória';
+    }
+    
+    // NOVA VALIDAÇÃO: Taxa de inscrição
+    if (empty($_POST['tipo_taxa'])) {
+        $erros[] = 'Tipo de taxa é obrigatório';
+    }
+    
+    if ($_POST['tipo_taxa'] === 'paga' && (empty($_POST['valor_inscricao']) || $_POST['valor_inscricao'] <= 0)) {
+        $erros[] = 'Valor da inscrição é obrigatório para peneiras pagas';
+    }
+    
+    if (!empty($erros)) {
+        $_SESSION['msg'] = implode('<br>', $erros);
+        header('Location: ../views/addPeneira-org.php');
+        exit();
+    }
+    
+    // Upload da foto principal
+    $foto_peneira_path = uploadFotoPeneira($_FILES['foto_peneira']);
+    
+    // Upload das fotos extras (opcional)
+    $fotos_extras = [];
+    if (isset($_FILES['fotos']) && !empty($_FILES['fotos']['tmp_name'][0])) {
+        $fotos_extras = uploadFotos($_FILES['fotos']);
+    }
+    
+    // Upload dos documentos (opcional)
+    $documentos = [];
+    if (isset($_FILES['documentos']) && !empty($_FILES['documentos']['tmp_name'][0])) {
+        $documentos = uploadDocumentos($_FILES['documentos']);
+    }
+    
+    // NOVA LÓGICA: Processar taxa de inscrição
+    $taxa_inscricao = '';
+    if ($_POST['tipo_taxa'] === 'gratuita') {
+        $taxa_inscricao = 'Gratuita';
+    } else {
+        $valor = number_format((float)$_POST['valor_inscricao'], 2, ',', '.');
+        $taxa_inscricao = 'R$ ' . $valor;
+    }
+    
+    // Preparar dados para inserção
+    $titulo = mysqli_real_escape_string($conn, $_POST['titulo']);
+    $clube = mysqli_real_escape_string($conn, $_POST['clube']);
+    $descricao = mysqli_real_escape_string($conn, $_POST['descricao']);
+    $localizacao = mysqli_real_escape_string($conn, $_POST['localizacao']);
+    $data = $_POST['data'];
+    $horario = $_POST['horario'];
+    $status_inscricao = $_POST['status_inscricao']; // Status das inscrições (Aberta/Fechada/Em Breve)
+    $status = $_POST['status'];
+    $faixa_etaria = mysqli_real_escape_string($conn, $_POST['faixa_etaria']);
+    
+    // Converter arrays para JSON
+    $fotos_json = json_encode($fotos_extras);
+    $documentos_json = json_encode($documentos);
+    
+    // Inserir no banco de dados - USANDO O CAMPO inscricao PARA A TAXA
+    $query = "INSERT INTO peneiras 
+              (titulo, clube, foto_peneira, descricao, localizacao, data, horario, 
+               inscricao, status, faixa_etaria, fotos, documentos, status_inscricao) 
+              VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    
+    $stmt = $conn->prepare($query);
+    
+    if (!$stmt) {
+        throw new Exception('Erro ao preparar consulta: ' . $conn->error);
+    }
+    
+    $stmt->bind_param("sssssssssssss", 
+        $titulo, $clube, $foto_peneira_path, $descricao, $localizacao, 
+        $data, $horario, $taxa_inscricao, $status, $faixa_etaria, 
+        $fotos_json, $documentos_json, $status_inscricao
+    );
+    
+    if ($stmt->execute()) {
+        $_SESSION['msg'] = 'Peneira criada com sucesso!';
+        header('Location: ../views/peneiras.php?success=1');
+        exit();
+    } else {
+        throw new Exception('Erro ao criar peneira: ' . $stmt->error);
+    }
+    
+} catch (Exception $e) {
+    error_log("Erro ao criar peneira: " . $e->getMessage());
+    $_SESSION['msg'] = $e->getMessage();
+    header('Location: ../views/addPeneira-org.php');
     exit();
-} else {
-    // Redireciona com mensagem de erro
-    header("Location: ../views/peneiras.php?error=1");
-    exit();
 }
-
-$stmt->close();
-$conn->close();
 ?>

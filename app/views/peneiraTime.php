@@ -24,22 +24,19 @@ if ($result->num_rows == 0) {
 
 $peneira = $result->fetch_assoc();
 
-// Processar dados da peneira
-$fotos = json_decode($peneira['caminho_foto'], true);
-$documentos = json_decode($peneira['caminho_documento'], true);
+// Processar dados da peneira com os campos corretos
+$fotos_extras = json_decode($peneira['fotos'], true);
+$documentos = json_decode($peneira['documentos'], true);
 
 // Função para verificar se arquivo existe e retornar caminho correto
 function getImagePath($filename) {
-    if (empty($filename)) return '../../public/images/default-peneira.png';
+    if (empty($filename)) return '../../public/images/default-peneira.jpg';
     
-    // Possíveis caminhos onde a imagem pode estar
     $possible_paths = [
         '../../controllers/' . $filename,
         '../controllers/' . $filename,
-        '../../controllers/uploads/fotos/' . $filename,
-        '../controllers/uploads/fotos/' . $filename,
-        '../../uploads/fotos/' . $filename,
-        '../uploads/fotos/' . $filename
+        '../../' . $filename,
+        '../' . $filename
     ];
     
     foreach ($possible_paths as $path) {
@@ -48,25 +45,27 @@ function getImagePath($filename) {
         }
     }
     
-    // Se não encontrar, retorna imagem padrão
-    return '../../public/images/default-peneira.png';
+    return '../../controllers/' . $filename;
 }
 
-// Determinar foto principal
-$foto_principal = '../../public/images/default-peneira.png';
-if ($fotos && is_array($fotos) && !empty($fotos)) {
-    $foto_principal = getImagePath($fotos[0]);
+// Determinar foto principal usando o campo foto_peneira
+$foto_principal = '../../public/images/default-peneira.jpg';
+if (!empty($peneira['foto_peneira'])) {
+    $foto_principal = getImagePath($peneira['foto_peneira']);
 }
 
-// Determinar status
+// Determinar status das inscrições
 $status_class = '';
 $status_text = '';
 $status_icon = 'fas fa-circle';
 
-if ($peneira['inscricao'] == 'Aberta' && $peneira['status'] == 'Ativa') {
+// Verificar se existe o campo status_inscricao, senão usar o campo inscricao
+$status_inscricao = isset($peneira['status_inscricao']) ? $peneira['status_inscricao'] : 'Aberta';
+
+if ($status_inscricao == 'Aberta' && $peneira['status'] == 'Ativa') {
     $status_class = 'status-open';
     $status_text = 'Inscrições Abertas';
-} elseif ($peneira['inscricao'] == 'Fechada') {
+} elseif ($status_inscricao == 'Fechada') {
     $status_class = 'status-closed';
     $status_text = 'Inscrições Encerradas';
 } else {
@@ -90,13 +89,21 @@ foreach ($meses as $en => $pt) {
     $data_formatada = str_replace($en, $pt, $data_formatada);
 }
 
-// Debug: Vamos ver o que está no banco
-echo "<!-- DEBUG: Fotos no banco: " . htmlspecialchars($peneira['caminho_foto']) . " -->";
-echo "<!-- DEBUG: Documentos no banco: " . htmlspecialchars($peneira['caminho_documento']) . " -->";
+// NOVA LÓGICA: Processar taxa de inscrição
+$taxa_inscricao = $peneira['inscricao']; // O campo inscricao agora contém a taxa
+$taxa_icon = 'fas fa-gift';
+$taxa_class = 'taxa-gratuita';
+
+if (strpos(strtolower($taxa_inscricao), 'gratuita') !== false) {
+    $taxa_icon = 'fas fa-gift';
+    $taxa_class = 'taxa-gratuita';
+} else {
+    $taxa_icon = 'fas fa-money-bill-wave';
+    $taxa_class = 'taxa-paga';
+}
 ?>
 
 <link rel="stylesheet" href="../../public/css/peneiraTime.css">
-<!-- Adicione Font Awesome para ícones -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 <body>
@@ -104,7 +111,7 @@ echo "<!-- DEBUG: Documentos no banco: " . htmlspecialchars($peneira['caminho_do
     <main>
         <!-- Hero Banner -->
         <section class="hero-banner">
-            <img src="<?php echo $foto_principal; ?>" alt="<?php echo htmlspecialchars($peneira['titulo']); ?>" class="hero-image" onerror="this.src='../../public/images/default-peneira.png'">
+            <img src="<?php echo $foto_principal; ?>" alt="<?php echo htmlspecialchars($peneira['titulo']); ?>" class="hero-image" onerror="this.src='../../public/images/default-peneira.jpg'">
             <div class="hero-overlay"></div>
             <a href="peneiras.php" class="back-button">
                 <i class="fas fa-arrow-left"></i>
@@ -169,16 +176,15 @@ echo "<!-- DEBUG: Documentos no banco: " . htmlspecialchars($peneira['caminho_do
                                         <div class="info-value"><?php echo $horario_formatado; ?></div>
                                     </div>
                                 </div>
+                                <!-- NOVA SEÇÃO: Taxa de Inscrição -->
                                 <div class="info-item">
                                     <div class="info-icon">
-                                        <i class="fas fa-money-bill-wave"></i>
+                                        <i class="<?php echo $taxa_icon; ?>"></i>
                                     </div>
                                     <div class="info-content">
-                                        <div class="info-label">Inscrição</div>
-                                        <div class="info-value">
-                                            <?php 
-                                            echo ($peneira['inscricao'] == 'Aberta') ? 'Gratuita' : 'Consultar';
-                                            ?>
+                                        <div class="info-label">Taxa de Inscrição</div>
+                                        <div class="info-value <?php echo $taxa_class; ?>">
+                                            <?php echo htmlspecialchars($taxa_inscricao); ?>
                                         </div>
                                     </div>
                                 </div>
@@ -266,22 +272,17 @@ echo "<!-- DEBUG: Documentos no banco: " . htmlspecialchars($peneira['caminho_do
                         </div>
                         <div class="card-body">
                             <div class="photos-grid">
-                                <?php if ($fotos && is_array($fotos) && !empty($fotos)): ?>
-                                    <?php foreach ($fotos as $index => $foto): ?>
-                                        <?php 
-                                        $foto_path = getImagePath($foto);
-                                        echo "<!-- DEBUG: Foto $index: $foto -> $foto_path -->";
-                                        ?>
+                                <?php if ($fotos_extras && is_array($fotos_extras) && !empty($fotos_extras)): ?>
+                                    <?php foreach ($fotos_extras as $index => $foto): ?>
                                         <div class="photo-item">
-                                            <img src="<?php echo $foto_path; ?>" 
+                                            <img src="<?php echo getImagePath($foto); ?>" 
                                                  alt="Foto <?php echo $index + 1; ?> da peneira"
                                                  onclick="openPhotoModal(this.src)"
                                                  onerror="this.parentElement.innerHTML='<div class=\'photo-placeholder\'><i class=\'fas fa-image\'></i><br><small>Imagem não encontrada</small></div>'">
                                         </div>
                                     <?php endforeach; ?>
                                     
-                                    <!-- Preencher com placeholders se houver menos de 3 fotos -->
-                                    <?php for ($i = count($fotos); $i < 3; $i++): ?>
+                                    <?php for ($i = count($fotos_extras); $i < 3; $i++): ?>
                                         <div class="photo-item">
                                             <div class="photo-placeholder">
                                                 <i class="fas fa-image"></i>
@@ -289,11 +290,10 @@ echo "<!-- DEBUG: Documentos no banco: " . htmlspecialchars($peneira['caminho_do
                                         </div>
                                     <?php endfor; ?>
                                 <?php else: ?>
-                                    <!-- Placeholders padrão se não houver fotos -->
                                     <div class="photo-item">
                                         <div class="photo-placeholder">
                                             <i class="fas fa-image"></i>
-                                            <small>Nenhuma foto disponível</small>
+                                            <small>Nenhuma foto adicional disponível</small>
                                         </div>
                                     </div>
                                     <div class="photo-item">
@@ -348,16 +348,15 @@ echo "<!-- DEBUG: Documentos no banco: " . htmlspecialchars($peneira['caminho_do
                             </div>
                         </div>
 
+                        <!-- ATUALIZADA: Taxa de Inscrição -->
                         <div class="action-info">
                             <div class="action-icon">
-                                <i class="fas fa-money-bill-wave"></i>
+                                <i class="<?php echo $taxa_icon; ?>"></i>
                             </div>
                             <div class="action-text">
                                 <div class="action-label">Taxa de Inscrição</div>
-                                <div class="action-value">
-                                    <?php 
-                                    echo ($peneira['inscricao'] == 'Aberta') ? 'Gratuita' : 'Consultar';
-                                    ?>
+                                <div class="action-value <?php echo $taxa_class; ?>">
+                                    <?php echo htmlspecialchars($taxa_inscricao); ?>
                                 </div>
                             </div>
                         </div>
@@ -382,7 +381,7 @@ echo "<!-- DEBUG: Documentos no banco: " . htmlspecialchars($peneira['caminho_do
                             </div>
                         </div>
 
-                        <?php if ($peneira['inscricao'] == 'Aberta' && $peneira['status'] == 'Ativa'): ?>
+                        <?php if ($status_inscricao == 'Aberta' && $peneira['status'] == 'Ativa'): ?>
                             <button class="action-button" onclick="inscreverPeneira(<?php echo $peneira['id']; ?>)">
                                 <i class="fas fa-user-plus"></i> Inscrever-se
                             </button>
@@ -409,10 +408,16 @@ echo "<!-- DEBUG: Documentos no banco: " . htmlspecialchars($peneira['caminho_do
         </section>
     </main>
 
+    <!-- Modal para visualizar fotos -->
+    <div id="photoModal" class="photo-modal" onclick="closePhotoModal()">
+        <div class="photo-modal-content">
+            <span class="photo-modal-close" onclick="closePhotoModal()">&times;</span>
+            <img id="photoModalImage" src="/placeholder.svg" alt="Foto ampliada">
+        </div>
+    </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Animação de entrada dos elementos
             const animatedElements = document.querySelectorAll('.animate-fadeInUp');
             
             function checkScroll() {
@@ -427,41 +432,31 @@ echo "<!-- DEBUG: Documentos no banco: " . htmlspecialchars($peneira['caminho_do
                 });
             }
             
-            // Inicialmente, definir os elementos como invisíveis
             animatedElements.forEach(element => {
                 element.style.opacity = '0';
                 element.style.transform = 'translateY(20px)';
                 element.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
             });
             
-            // Verificar posição inicial
             checkScroll();
-            
-            // Verificar ao rolar
             window.addEventListener('scroll', checkScroll);
         });
 
-        // Função para abrir modal de foto
         function openPhotoModal(src) {
             document.getElementById('photoModal').style.display = 'block';
             document.getElementById('photoModalImage').src = src;
         }
 
-        // Função para fechar modal de foto
         function closePhotoModal() {
             document.getElementById('photoModal').style.display = 'none';
         }
 
-        // Função para inscrever na peneira
         function inscreverPeneira(peneiraId) {
-            // Aqui você pode implementar a lógica de inscrição
             alert('Funcionalidade de inscrição será implementada em breve!\nPeneira ID: ' + peneiraId);
         }
 
-        // Funções de compartilhamento
         function compartilharFacebook() {
             const url = encodeURIComponent(window.location.href);
-            const titulo = encodeURIComponent('<?php echo addslashes($peneira['titulo']); ?>');
             window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}`, '_blank');
         }
 
@@ -477,7 +472,6 @@ echo "<!-- DEBUG: Documentos no banco: " . htmlspecialchars($peneira['caminho_do
             window.open(`https://wa.me/?text=${texto}${url}`, '_blank');
         }
 
-        // Fechar modal com ESC
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') {
                 closePhotoModal();
@@ -485,5 +479,59 @@ echo "<!-- DEBUG: Documentos no banco: " . htmlspecialchars($peneira['caminho_do
         });
     </script>
 
+    <style>
+        /* Estilos para o modal de fotos */
+        .photo-modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+        }
+
+        .photo-modal-content {
+            position: relative;
+            margin: auto;
+            padding: 20px;
+            width: 90%;
+            max-width: 800px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .photo-modal-close {
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .photo-modal-close:hover {
+            color: #bbb;
+        }
+
+        #photoModalImage {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+        
+        /* NOVOS ESTILOS PARA TAXA */
+        .taxa-gratuita {
+            color: #059669;
+            font-weight: 600;
+        }
+        
+        .taxa-paga {
+            color: #dc2626;
+            font-weight: 600;
+        }
+    </style>
 
 </body>
