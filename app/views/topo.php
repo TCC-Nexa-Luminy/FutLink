@@ -37,7 +37,7 @@
         tempo = msg.length / 6 * 1000
         Swal.fire({
             position: "top-end",
-            title: "Mensagem",
+            title: "FutLink diz...",
             html: `${msg}`,
             showConfirmButton: false,
             timer: tempo,

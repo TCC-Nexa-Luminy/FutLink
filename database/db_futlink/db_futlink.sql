@@ -218,18 +218,24 @@ CREATE TABLE `tbl_jogo` (
 CREATE TABLE `tbl_organizacao` (
   `id_org` int(11) NOT NULL,
   `nome_org` varchar(100) NOT NULL,
-  `id_user_dono` int(11) DEFAULT NULL,
-  `slogan` varchar(150) DEFAULT NULL,
+  `email_org` varchar(200) NOT NULL,
+  `telefone_org` varchar(100) NOT NULL,
+  `password_org` varchar(255) NOT NULL,
+  `logo_org` varchar(255) DEFAULT NULL,
   `descricao` text DEFAULT NULL,
-  `tipo` enum('Clube Profissional','Clube Amador','Escola de Futebol','Projeto Social','Empresa Esportiva') NOT NULL,
-  `rua` varchar(100) NOT NULL,
-  `bairro` varchar(100) NOT NULL,
-  `cidade` varchar(100) NOT NULL,
-  `estado` varchar(50) NOT NULL,
+  `data_fundacao` date NOT NULL DEFAULT current_timestamp(),
+  `tipo` enum('clube de futebol','escola de futebol','academia','federação','empresa','outro') NOT NULL,
   `cep` varchar(20) DEFAULT NULL,
   `redes_sociais` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL CHECK (json_valid(`redes_sociais`)),
   `created_at` datetime DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Despejando dados para a tabela `tbl_organizacao`
+--
+
+INSERT INTO `tbl_organizacao` (`id_org`, `nome_org`, `email_org`, `telefone_org`, `password_org`, `logo_org`, `descricao`, `data_fundacao`, `tipo`, `cep`, `redes_sociais`, `created_at`) VALUES
+(1, 'Palmeiras 2', 'palmeirasdois@gmail.com', '(11) 93040-3949', '$2y$10$/pNuAwpHwHBDPhzGiL.vUOSoKmfpMdmkD2zNvmr3aL5t1CV/ZzVGC', '../../public/images/profilePhotos/defaultPhoto.png', NULL, '2022-06-13', '', '8451360', NULL, '2025-06-02 16:02:32');
 
 -- --------------------------------------------------------
 
@@ -395,8 +401,7 @@ ALTER TABLE `tbl_jogo`
 --
 ALTER TABLE `tbl_organizacao`
   ADD PRIMARY KEY (`id_org`),
-  ADD UNIQUE KEY `nome_org` (`nome_org`),
-  ADD KEY `id_user_dono` (`id_user_dono`);
+  ADD UNIQUE KEY `nome_org` (`nome_org`);
 
 --
 -- Índices de tabela `tbl_profissional`
@@ -483,7 +488,7 @@ ALTER TABLE `tbl_jogo`
 -- AUTO_INCREMENT de tabela `tbl_organizacao`
 --
 ALTER TABLE `tbl_organizacao`
-  MODIFY `id_org` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_org` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de tabela `tbl_profissional`
@@ -560,12 +565,6 @@ ALTER TABLE `tbl_jogador`
 ALTER TABLE `tbl_jogo`
   ADD CONSTRAINT `tbl_jogo_ibfk_1` FOREIGN KEY (`id_time_casa`) REFERENCES `tbl_time` (`id_time`) ON DELETE CASCADE,
   ADD CONSTRAINT `tbl_jogo_ibfk_2` FOREIGN KEY (`id_time_fora`) REFERENCES `tbl_time` (`id_time`) ON DELETE CASCADE;
-
---
--- Restrições para tabelas `tbl_organizacao`
---
-ALTER TABLE `tbl_organizacao`
-  ADD CONSTRAINT `tbl_organizacao_ibfk_1` FOREIGN KEY (`id_user_dono`) REFERENCES `tbl_usuarios` (`id_user`) ON DELETE SET NULL;
 
 --
 -- Restrições para tabelas `tbl_profissional`
