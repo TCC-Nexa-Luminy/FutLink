@@ -78,43 +78,13 @@ include("topo.php");
                 <article class="content-input">
                     <h3>Localização</h3>
                     <div class="form-label_direction">
+                        
                         <div class="form-label">
-                            <label for="state">Estado</label>
-                            <select name="org_estado" id="state" required class="input_user">
-                                <option value="">Selecione o estado</option>
-                                <option value="AC">Acre</option>
-                                <option value="AL">Alagoas</option>
-                                <option value="AP">Amapá</option>
-                                <option value="AM">Amazonas</option>
-                                <option value="BA">Bahia</option>
-                                <option value="CE">Ceará</option>
-                                <option value="DF">Distrito Federal</option>
-                                <option value="ES">Espírito Santo</option>
-                                <option value="GO">Goiás</option>
-                                <option value="MA">Maranhão</option>
-                                <option value="MT">Mato Grosso</option>
-                                <option value="MS">Mato Grosso do Sul</option>
-                                <option value="MG">Minas Gerais</option>
-                                <option value="PA">Pará</option>
-                                <option value="PB">Paraíba</option>
-                                <option value="PR">Paraná</option>
-                                <option value="PE">Pernambuco</option>
-                                <option value="PI">Piauí</option>
-                                <option value="RJ">Rio de Janeiro</option>
-                                <option value="RN">Rio Grande do Norte</option>
-                                <option value="RS">Rio Grande do Sul</option>
-                                <option value="RO">Rondônia</option>
-                                <option value="RR">Roraima</option>
-                                <option value="SC">Santa Catarina</option>
-                                <option value="SP">São Paulo</option>
-                                <option value="SE">Sergipe</option>
-                                <option value="TO">Tocantins</option>
-                            </select>
+                            <label for="icep">Digite seu cep: </label>
+                            <input type="number" name="org_cep" id="icep" required placeholder="Ex: 12345678" class="input_user" >
+                            <button id="btn_cep">Verificar</button>
                         </div>
-                        <div class="form-label">
-                            <label for="city">Cidade</label>
-                            <input type="text" name="org_cidade" id="city" required placeholder="Nome da cidade" class="input_user">
-                        </div>
+                        
                     </div>
                 </article>
 
@@ -130,7 +100,7 @@ include("topo.php");
                         </div>
                         <div class="form-label">
                             <label for="phone">Telefone</label>
-                            <input type="tel" name="org_tel" id="phone" required placeholder="(11) 99999-9999" class="input_user">
+                            <input type="tel" name="org_tel" id="iphone" required placeholder="(11) 99999-9999" class="input_user">
                         </div>
                     </div>
                 </article>
@@ -221,7 +191,9 @@ include("topo.php");
             </div>
         </section>
     </main>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/5.0.7/jquery.inputmask.min.js"></script> <!--Biblioteca de mascara de inputs-->
 
+    <script src="../../public/js/signUp-Org.js"></script>
     <script src="../../public/js/signUp.js"></script>
 </body>
 </html>

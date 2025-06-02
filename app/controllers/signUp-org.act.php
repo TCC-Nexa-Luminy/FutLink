@@ -24,13 +24,15 @@
         $cep = filter_input(INPUT_POST, "org_cep", FILTER_SANITIZE_NUMBER_INT);
         $org_dados['cep'] = $cep ? $cep : "01010101";
         $org_dados['logo'] = destinoFoto($_FILES['org_photo']);
+        list($msg, $pagDestino) = inserirDados($org_dados, $conn);
 
-        echo "email válido para uso";
-        print_r($org_dados);
-        print_r($org_dados['logo']);
     } else {
-        echo "email em uso!";
+        $msg = "O email já está em uso!";
+        $pagDestino = "../views/signUp-org.php";
     }
+
+    $_SESSION['msg'] = $msg;
+    header("location: " . $pagDestino);
 
     function verificarEmail($email, $connect)
     {
@@ -49,7 +51,10 @@
         $query = "INSERT INTO `tbl_organizacao` (`nome_org`, `email_org`, `telefone_org`, `password_org`, `logo_org`, `data_fundacao`, `tipo`, `cep`) VALUES
     (?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $connect->prepare($query);
-        $stmt->bind_param("sssssssi", $objOrg['nome'], $objOrg['email'], $objOrg['tel'], $objOrg['senha_hash'], $objOrg['lo']);
+        $stmt->bind_param("sssssssi", $objOrg['nome'], $objOrg['email'], $objOrg['tel'], $objOrg['senha_hash'], $objOrg['logo'], $objOrg['data_fundacao'], $objOrg['tipo'], $objOrg['cep']);
+        $stmt->execute();
+
+        return ["Conta de organização criada com sucesso", "../views/login.php"];
     }
 
     function destinoFoto($filePhoto)
@@ -59,9 +64,10 @@
             $extensao = strtolower($info['extension']);
 
             $destino = "../../public/images/logoOrganization/" . md5(time() . $filePhoto['name']) . "." . $extensao;
+            move_uploaded_file($filePhoto['tmp_name'], $destino);
             return $destino;
         } else {
-            return "...";
+            return "../../public/images/profilePhotos/defaultPhoto.png";
         }
     }
     ?>
