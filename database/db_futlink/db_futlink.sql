@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 02/06/2025 às 21:03
+-- Tempo de geração: 02/06/2025 às 19:42
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -22,6 +22,49 @@ SET time_zone = "+00:00";
 --
 CREATE DATABASE IF NOT EXISTS `db_futlink` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 USE `db_futlink`;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `comentarios`
+--
+
+CREATE TABLE `comentarios` (
+  `id_comentario` int(11) NOT NULL,
+  `id_post` int(11) NOT NULL,
+  `id_user` int(11) NOT NULL,
+  `conteudo` text NOT NULL,
+  `criado_em` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Despejando dados para a tabela `comentarios`
+--
+
+INSERT INTO `comentarios` (`id_comentario`, `id_post`, `id_user`, `conteudo`, `criado_em`) VALUES
+(1, 2, 12, 'NOSsA THIAGHO SEU CHEOROSIIIIINHOOOOW', '2025-06-02 17:39:35'),
+(2, 2, 12, 'sd', '2025-06-02 17:40:24'),
+(3, 2, 12, 'CHEROSOOOOOOOOOO', '2025-06-02 17:40:28');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `curtidas`
+--
+
+CREATE TABLE `curtidas` (
+  `id_curtida` int(11) NOT NULL,
+  `id_post` int(11) NOT NULL,
+  `id_user` int(11) NOT NULL,
+  `criado_em` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Despejando dados para a tabela `curtidas`
+--
+
+INSERT INTO `curtidas` (`id_curtida`, `id_post`, `id_user`, `criado_em`) VALUES
+(2, 2, 12, '2025-06-02 17:40:22');
 
 -- --------------------------------------------------------
 
@@ -76,7 +119,28 @@ CREATE TABLE `posts` (
 --
 
 INSERT INTO `posts` (`id_post`, `id_user`, `conteudo`, `imagem`, `criado_em`) VALUES
-(2, 6, 'EAE SEUS ARROMBADO', '', '2025-05-23 14:24:26');
+(2, 6, 'EAE SEUS ARROMBADO', '', '2025-05-23 14:24:26'),
+(3, 12, 'alo piaozaada\r\n!', '', '2025-06-02 14:40:36');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `reposts`
+--
+
+CREATE TABLE `reposts` (
+  `id_repost` int(11) NOT NULL,
+  `id_post_original` int(11) NOT NULL,
+  `id_user` int(11) NOT NULL,
+  `criado_em` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Despejando dados para a tabela `reposts`
+--
+
+INSERT INTO `reposts` (`id_repost`, `id_post_original`, `id_user`, `criado_em`) VALUES
+(1, 2, 12, '2025-06-02 17:39:37');
 
 -- --------------------------------------------------------
 
@@ -240,6 +304,10 @@ CREATE TABLE `tbl_usuarios` (
   `bio` text DEFAULT NULL,
   `rede_social` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL CHECK (json_valid(`rede_social`)),
   `cep` varchar(20) DEFAULT NULL,
+  `rua` varchar(100) DEFAULT NULL,
+  `bairro` varchar(100) DEFAULT NULL,
+  `cidade` varchar(100) DEFAULT NULL,
+  `estado` varchar(100) DEFAULT NULL,
   `status` enum('ativo','suspenso','desativado') DEFAULT 'ativo',
   `created_at` datetime DEFAULT current_timestamp(),
   `updated_at` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp()
@@ -249,22 +317,39 @@ CREATE TABLE `tbl_usuarios` (
 -- Despejando dados para a tabela `tbl_usuarios`
 --
 
-INSERT INTO `tbl_usuarios` (`id_user`, `nome`, `email`, `senha`, `data_nasc`, `genero`, `foto_perfil`, `telefone`, `bio`, `rede_social`, `cep`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'Shandel Villasante Merlo', 'shandelvm16@gmail.com', '$2y$10$/r1NjYb6YbuPLHqEfJWoTOgC1gWW9Y2GjlYqyHuo3.hsi64xJG.7.', '2006-06-13', 'masculino', '../../public/images/profilePhotos/63f9078f50343495a705174a579c4ebb.png', '(11) 91034-6024', NULL, NULL, NULL, 'ativo', '2025-03-26 16:30:59', '2025-03-26 16:30:59'),
-(2, 'Pedro Medeiros', 'pedrosantos57@gmail.com', '$2y$10$RGBbFsjHN445mW13T1lNuuRTQKSLKmt6kn3nJLWaYtjN6p97TLvUS', '2007-10-15', 'masculino', '../../public/images/profilePhotos/4dfbdd0bab17f7db0777ebe63f252392.png', '(11) 93739-4489', NULL, NULL, NULL, 'ativo', '2025-04-22 13:49:20', '2025-04-22 13:49:20'),
-(3, 'Murilo Magalhâes', 'superonze46@gmail.com', '$2y$10$fb8mzsnbuknK1gn5vm/2pe1JCajbeI6vJqJzkXt.kc39knhw0zn72', '2007-01-18', 'masculino', '../../public/images/profilePhotos/d1174ab5ba81d29a006a8032587894a4.png', '(11) 93497-3298', NULL, NULL, NULL, 'ativo', '2025-04-22 13:51:32', '2025-04-22 13:51:32'),
-(4, 'Eduardo Fernandes', 'eduardofernandes134@gmail.com', '$2y$10$nKkdNMWtvoq/MoZT5f1AmeMxm273QzaCzGmyR31VdoqWtIkjFC8du', '2008-02-05', 'masculino', '../../public/images/profilePhotos/defaultPhoto.png', '(11) 93487-3894', NULL, NULL, NULL, 'ativo', '2025-04-22 13:54:56', '2025-05-30 14:19:28'),
-(5, 'Daniel Mattos', 'danimattos@gmail.com', '$2y$10$i8yA1OcevHfOuENccmJjW.INo46k0wvaAQzBK/keKNZO3.QZSRevK', '2007-04-08', 'masculino', '../../public/images/profilePhotos/fc6674b38f5ddc654d765bad7c410b99.png', '(11) 94597-8548', NULL, NULL, NULL, 'ativo', '2025-04-22 14:00:12', '2025-04-22 14:00:12'),
-(6, 'Thiago Ribeiro', 'thiagoribeiro23@gmail.com', '$2y$10$UcNCrhuS.GnVmewqepW0G.yKp0aV7QKI8fY5RNS/Eelxl8TXBpWLi', '2006-09-01', 'masculino', '../../public/images/profilePhotos/defaultPhoto.png', '(11) 98429-5376', NULL, NULL, NULL, 'ativo', '2025-04-22 14:05:40', '2025-05-30 14:19:28'),
-(7, 'Lucas Pereira', 'lucas.pereira95@gmail.com', '$2y$10$Z3b2BjN7siY4mPp2ZYveg.E5Ou.zYBo/kD7Xlf6F9tOgK7JK2/rh2', '1995-05-12', 'masculino', '../../public/images/profilePhotos/d221c089c6b9a3a7e30e189334e33ff3.jpg', '(11) 93498-4533', NULL, NULL, NULL, 'ativo', '2025-04-22 14:09:58', '2025-05-30 14:43:30'),
-(8, 'Mariana Costa', 'mariana.costa88@hotmail.com', '$2y$10$cakhPbUuDnw.By6Dt9qSpubJyldwC7IKbXYqU944ntLbtfqON9QdO', '1988-07-23', 'masculino', '../../public/images/profilePhotos/83bcdec6db814bfdbd59a58cd38895fd.jpg', '(11) 92349-8495', NULL, NULL, NULL, 'ativo', '2025-04-22 14:10:59', '2025-05-30 14:54:28'),
-(9, 'Gabriel Almeida', 'gabriel.almeida01@gmail.com', '$2y$10$DfFdrR5UgRiX1dHAtJbPbuv9o2xOGjW/NdqIy3LUq/LOLKO1Dsu7e', '2001-11-01', 'masculino', '../../public/images/profilePhotos/b994d42e0c2a4b54156b024f9d3b61dd.jfif', '(19) 95293-4857', NULL, NULL, NULL, 'ativo', '2025-04-22 14:11:52', '2025-05-30 15:05:12'),
-(10, 'João Oliveira', 'joao.oliveira80@gmail.com', '$2y$10$X45zxeG5Nd6re714MfqQVuArt8j4QOw1VUmaaqCFlwm88p1c6UWFy', '1980-08-04', 'masculino', '../../public/images/profilePhotos/097b1fb33cfe2100e0595ec03e14d2c5.webp', '(11) 93985-2147', NULL, NULL, NULL, 'ativo', '2025-04-22 14:12:55', '2025-05-30 15:08:56'),
-(11, 'Shandel', 'shandelvm18@gmail.etec', '$2y$10$d5IrkqQMSnRMt6nUeWmBgeSNwI.Xokm1Zaq9YjdF7IKsnTrwL4tsS', '2006-06-13', 'masculino', '../../public/images/profilePhotos/defaultPhoto.png', '(11) 91034-3903', NULL, NULL, NULL, 'ativo', '2025-05-20 14:10:05', '2025-05-30 14:19:28');
+INSERT INTO `tbl_usuarios` (`id_user`, `nome`, `email`, `senha`, `data_nasc`, `genero`, `foto_perfil`, `telefone`, `bio`, `rede_social`, `cep`, `rua`, `bairro`, `cidade`, `estado`, `status`, `created_at`, `updated_at`) VALUES
+(1, 'Shandel Villasante Merlo', 'shandelvm16@gmail.com', '$2y$10$/r1NjYb6YbuPLHqEfJWoTOgC1gWW9Y2GjlYqyHuo3.hsi64xJG.7.', '2006-06-13', 'masculino', '../../public/images/profilePhotos/63f9078f50343495a705174a579c4ebb.png', '(11) 91034-6024', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'ativo', '2025-03-26 16:30:59', '2025-03-26 16:30:59'),
+(2, 'Pedro Medeiros', 'pedrosantos57@gmail.com', '$2y$10$RGBbFsjHN445mW13T1lNuuRTQKSLKmt6kn3nJLWaYtjN6p97TLvUS', '2007-10-15', 'masculino', '../../public/images/profilePhotos/4dfbdd0bab17f7db0777ebe63f252392.png', '(11) 93739-4489', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'ativo', '2025-04-22 13:49:20', '2025-04-22 13:49:20'),
+(3, 'Murilo Magalhâes', 'superonze46@gmail.com', '$2y$10$fb8mzsnbuknK1gn5vm/2pe1JCajbeI6vJqJzkXt.kc39knhw0zn72', '2007-01-18', 'masculino', '../../public/images/profilePhotos/d1174ab5ba81d29a006a8032587894a4.png', '(11) 93497-3298', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'ativo', '2025-04-22 13:51:32', '2025-04-22 13:51:32'),
+(4, 'Eduardo Fernandes', 'eduardofernandes134@gmail.com', '$2y$10$nKkdNMWtvoq/MoZT5f1AmeMxm273QzaCzGmyR31VdoqWtIkjFC8du', '2008-02-05', 'masculino', '../../public/images/profilePhotos/defaultPhoto.png', '(11) 93487-3894', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'ativo', '2025-04-22 13:54:56', '2025-05-30 14:19:28'),
+(5, 'Daniel Mattos', 'danimattos@gmail.com', '$2y$10$i8yA1OcevHfOuENccmJjW.INo46k0wvaAQzBK/keKNZO3.QZSRevK', '2007-04-08', 'masculino', '../../public/images/profilePhotos/fc6674b38f5ddc654d765bad7c410b99.png', '(11) 94597-8548', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'ativo', '2025-04-22 14:00:12', '2025-04-22 14:00:12'),
+(6, 'Thiago Ribeiro', 'thiagoribeiro23@gmail.com', '$2y$10$UcNCrhuS.GnVmewqepW0G.yKp0aV7QKI8fY5RNS/Eelxl8TXBpWLi', '2006-09-01', 'masculino', '../../public/images/profilePhotos/defaultPhoto.png', '(11) 98429-5376', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'ativo', '2025-04-22 14:05:40', '2025-05-30 14:19:28'),
+(7, 'Lucas Pereira', 'lucas.pereira95@gmail.com', '$2y$10$Z3b2BjN7siY4mPp2ZYveg.E5Ou.zYBo/kD7Xlf6F9tOgK7JK2/rh2', '1995-05-12', 'masculino', '../../public/images/profilePhotos/d221c089c6b9a3a7e30e189334e33ff3.jpg', '(11) 93498-4533', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'ativo', '2025-04-22 14:09:58', '2025-05-30 14:43:30'),
+(8, 'Mariana Costa', 'mariana.costa88@hotmail.com', '$2y$10$cakhPbUuDnw.By6Dt9qSpubJyldwC7IKbXYqU944ntLbtfqON9QdO', '1988-07-23', 'masculino', '../../public/images/profilePhotos/83bcdec6db814bfdbd59a58cd38895fd.jpg', '(11) 92349-8495', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'ativo', '2025-04-22 14:10:59', '2025-05-30 14:54:28'),
+(9, 'Gabriel Almeida', 'gabriel.almeida01@gmail.com', '$2y$10$DfFdrR5UgRiX1dHAtJbPbuv9o2xOGjW/NdqIy3LUq/LOLKO1Dsu7e', '2001-11-01', 'masculino', '../../public/images/profilePhotos/b994d42e0c2a4b54156b024f9d3b61dd.jfif', '(19) 95293-4857', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'ativo', '2025-04-22 14:11:52', '2025-05-30 15:05:12'),
+(10, 'João Oliveira', 'joao.oliveira80@gmail.com', '$2y$10$X45zxeG5Nd6re714MfqQVuArt8j4QOw1VUmaaqCFlwm88p1c6UWFy', '1980-08-04', 'masculino', '../../public/images/profilePhotos/097b1fb33cfe2100e0595ec03e14d2c5.webp', '(11) 93985-2147', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'ativo', '2025-04-22 14:12:55', '2025-05-30 15:08:56'),
+(11, 'Shandel', 'shandelvm18@gmail.etec', '$2y$10$d5IrkqQMSnRMt6nUeWmBgeSNwI.Xokm1Zaq9YjdF7IKsnTrwL4tsS', '2006-06-13', 'masculino', '../../public/images/profilePhotos/defaultPhoto.png', '(11) 91034-3903', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'ativo', '2025-05-20 14:10:05', '2025-05-30 14:19:28'),
+(12, 'Messi da Silva Ronaldo', 'messi@gmail.com', '$2y$10$3savcBMz9aa3Vtu7W3OhjeR8F6vhmDtMNVAxbzSl4wDZxqtbWROuC', '2008-06-19', 'masculino', '../../public/images/profilePhotos/ac968177e896ec1aa7d37b7dbecf91f1.jfif', '(11) 95644-6342', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'ativo', '2025-06-02 14:39:06', '2025-06-02 14:39:06');
 
 --
 -- Índices para tabelas despejadas
 --
+
+--
+-- Índices de tabela `comentarios`
+--
+ALTER TABLE `comentarios`
+  ADD PRIMARY KEY (`id_comentario`),
+  ADD KEY `id_post` (`id_post`),
+  ADD KEY `id_user` (`id_user`);
+
+--
+-- Índices de tabela `curtidas`
+--
+ALTER TABLE `curtidas`
+  ADD PRIMARY KEY (`id_curtida`),
+  ADD UNIQUE KEY `unique_curtida` (`id_post`,`id_user`),
+  ADD KEY `id_user` (`id_user`);
 
 --
 -- Índices de tabela `peneiras`
@@ -277,6 +362,14 @@ ALTER TABLE `peneiras`
 --
 ALTER TABLE `posts`
   ADD PRIMARY KEY (`id_post`),
+  ADD KEY `id_user` (`id_user`);
+
+--
+-- Índices de tabela `reposts`
+--
+ALTER TABLE `reposts`
+  ADD PRIMARY KEY (`id_repost`),
+  ADD UNIQUE KEY `unique_repost` (`id_post_original`,`id_user`),
   ADD KEY `id_user` (`id_user`);
 
 --
@@ -344,6 +437,18 @@ ALTER TABLE `tbl_usuarios`
 --
 
 --
+-- AUTO_INCREMENT de tabela `comentarios`
+--
+ALTER TABLE `comentarios`
+  MODIFY `id_comentario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT de tabela `curtidas`
+--
+ALTER TABLE `curtidas`
+  MODIFY `id_curtida` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT de tabela `peneiras`
 --
 ALTER TABLE `peneiras`
@@ -353,7 +458,13 @@ ALTER TABLE `peneiras`
 -- AUTO_INCREMENT de tabela `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `id_post` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_post` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT de tabela `reposts`
+--
+ALTER TABLE `reposts`
+  MODIFY `id_repost` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de tabela `tbl_hist_contrato`
@@ -401,17 +512,38 @@ ALTER TABLE `tbl_time`
 -- AUTO_INCREMENT de tabela `tbl_usuarios`
 --
 ALTER TABLE `tbl_usuarios`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- Restrições para tabelas despejadas
 --
 
 --
+-- Restrições para tabelas `comentarios`
+--
+ALTER TABLE `comentarios`
+  ADD CONSTRAINT `comentarios_ibfk_1` FOREIGN KEY (`id_post`) REFERENCES `posts` (`id_post`) ON DELETE CASCADE,
+  ADD CONSTRAINT `comentarios_ibfk_2` FOREIGN KEY (`id_user`) REFERENCES `tbl_usuarios` (`id_user`) ON DELETE CASCADE;
+
+--
+-- Restrições para tabelas `curtidas`
+--
+ALTER TABLE `curtidas`
+  ADD CONSTRAINT `curtidas_ibfk_1` FOREIGN KEY (`id_post`) REFERENCES `posts` (`id_post`) ON DELETE CASCADE,
+  ADD CONSTRAINT `curtidas_ibfk_2` FOREIGN KEY (`id_user`) REFERENCES `tbl_usuarios` (`id_user`) ON DELETE CASCADE;
+
+--
 -- Restrições para tabelas `posts`
 --
 ALTER TABLE `posts`
   ADD CONSTRAINT `posts_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `tbl_usuarios` (`id_user`) ON DELETE CASCADE;
+
+--
+-- Restrições para tabelas `reposts`
+--
+ALTER TABLE `reposts`
+  ADD CONSTRAINT `reposts_ibfk_1` FOREIGN KEY (`id_post_original`) REFERENCES `posts` (`id_post`) ON DELETE CASCADE,
+  ADD CONSTRAINT `reposts_ibfk_2` FOREIGN KEY (`id_user`) REFERENCES `tbl_usuarios` (`id_user`) ON DELETE CASCADE;
 
 --
 -- Restrições para tabelas `tbl_hist_contrato`
