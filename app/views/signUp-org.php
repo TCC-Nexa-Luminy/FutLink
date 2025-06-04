@@ -25,13 +25,13 @@ include("topo.php");
                 <h2>Já tem uma conta? <a href="login.php">Entre aqui</a></h2>
                 <hr>
                 
-                <!-- Seção 1: Logo e Informações Básicas -->
+                <!-- Seção 1: Logo/Banner e Informações Básicas -->
                 <article class="content-input">
                     <h3>Informações da organização</h3>
                     <div class="form-content-info">
                         <input type="file" name="org_photo" id="logoUpload" style="display: none;" accept=".png, .jpg, .jpeg, .webp">
-                        <label for="logoUpload" class="container_photo">
-                            <span id="uploadPlaceholder" class="placeholderSpan">Logo (1:1)<br>(Opcional)</span>
+                        <label for="logoUpload" class="container_banner">
+                            <span id="uploadPlaceholder" class="placeholderSpan">Logo/Banner da Organização<br>(Será usado como banner no nosso site)</span>
                             <img src="/placeholder.svg" alt="Logo da Organização" id="logoPreview" style="display: none;">
                         </label>
                         <div class="form-label_direction">
@@ -49,9 +49,9 @@ include("topo.php");
 
                 <hr>
                 
-                <!-- Seção 2: Tipo e CNPJ -->
+                <!-- Seção 2: Tipo -->
                 <article class="content-input">
-                    <h3>Informações da Organização</h3>
+                    <h3>Tipo de Organização</h3>
                     <div class="form-label_direction">
                         <div class="form-label">
                             <label for="orgType">Tipo de Organização</label>
@@ -65,32 +65,44 @@ include("topo.php");
                                 <option value="outro">Outro</option>
                             </select>
                         </div>
+                    </div>
+                </article>
+
+                <hr>
+
+                <!-- Seção 3: Sobre -->
+                <article class="content-input">
+                    <h3>Sobre a Organização</h3>
+                    <div class="form-label_direction">
                         <div class="form-label">
-                            <label for="cnpj">CNPJ</label>
-                            <input type="text" name="org_cnpj" id="cnpj" placeholder="00.000.000/0000-00" class="input_user">
+                            <label for="bio">Bio (Resumo)</label>
+                            <input type="text" name="org_bio" id="bio" required placeholder="Ex: Clube de futebol com foco em formação de atletas..." autocomplete="off" class="input_user" maxlength="300">
+                            <small>Máximo 300 caracteres</small>
                         </div>
+                    </div>
+                    <div class="form-label_full">
+                        <label for="descricao">Descrição Completa</label>
+                        <textarea name="org_descricao" id="descricao" required placeholder="Ex: O Sport Club Internacional é uma equipe de futebol profissional com sede em Porto Alegre, no estado do Rio Grande do Sul. Fundado em 1909, o clube disputa competições nacionais e internacionais e tem como cores tradicionais o vermelho e o branco..." class="input_user textarea_input" rows="4"></textarea>
                     </div>
                 </article>
 
                 <hr>
                 
-                <!-- Seção 3: Localização -->
+                <!-- Seção 4: Localização -->
                 <article class="content-input">
                     <h3>Localização</h3>
                     <div class="form-label_direction">
-                        
                         <div class="form-label">
-                            <label for="icep">Digite seu cep: </label>
-                            <input type="number" name="org_cep" id="icep" required placeholder="Ex: 12345678" class="input_user" >
-                            <button id="btn_cep">Verificar</button>
+                            <label for="icep">CEP</label>
+                            <input type="text" name="org_cep" id="icep" required placeholder="Ex: 12345-678" class="input_user" maxlength="9">
+                            <button type="button" id="btn_cep">Verificar</button>
                         </div>
-                        
                     </div>
                 </article>
 
                 <hr>
                 
-                <!-- Seção 4: Contato -->
+                <!-- Seção 5: Contato -->
                 <article class="content-input">
                     <h3>Contato</h3>
                     <div class="form-label_direction">
@@ -107,7 +119,7 @@ include("topo.php");
 
                 <hr>
                 
-                <!-- Seção 5: Segurança -->
+                <!-- Seção 6: Segurança -->
                 <article class="content-input">
                     <h3>Segurança</h3>
                     <div class="form-label_direction">
@@ -191,8 +203,8 @@ include("topo.php");
             </div>
         </section>
     </main>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/5.0.7/jquery.inputmask.min.js"></script> <!--Biblioteca de mascara de inputs-->
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/5.0.7/jquery.inputmask.min.js"></script>
     <script src="../../public/js/signUp-Org.js"></script>
     <script src="../../public/js/signUp.js"></script>
 </body>

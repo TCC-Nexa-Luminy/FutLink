@@ -118,7 +118,36 @@ body {
   gap: 1em;
 }
 
-/* Upload de logo */
+/* Upload de logo/banner - ATUALIZADO para usar container_banner */
+.container_banner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px dashed #e5e7eb;
+  width: 100%;
+  height: 200px;
+  border-radius: 12px;
+  cursor: pointer;
+  overflow: hidden;
+  text-align: center;
+  transition: all 0.3s ease;
+  background-color: #f9fafb;
+  margin-bottom: 1rem;
+}
+
+.container_banner:hover {
+  border-color: var(--cor-secundaria-verde2);
+  background-color: #f0fdf4;
+}
+
+.container_banner > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+/* Manter container_photo para compatibilidade */
 .container_photo {
   display: flex;
   justify-content: center;
@@ -126,7 +155,7 @@ body {
   border: 2px solid #e5e7eb;
   aspect-ratio: 1 / 1;
   height: 8em;
-  border-radius: 50%; /* MUDANÇA: de "1em 0" para "50%" para ficar redondo */
+  border-radius: 50%;
   cursor: pointer;
   overflow: hidden;
   text-align: center;
@@ -143,7 +172,7 @@ body {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 50%; /* ADICIONADO: para garantir que a imagem também fique redonda */
+  border-radius: 50%;
 }
 
 .placeholderSpan {
@@ -169,7 +198,17 @@ body {
   gap: 0.3em;
 }
 
-.form-label > label {
+/* NOVO: Estilo para campos de largura total */
+.form-label_full {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 0.3em;
+  margin-bottom: 1rem;
+}
+
+.form-label > label,
+.form-label_full > label {
   font-weight: 600;
   font-size: 0.9em;
   color: var(--cor-text);
@@ -177,7 +216,9 @@ body {
 }
 
 .form-label input,
-.form-label select {
+.form-label select,
+.form-label_full input,
+.form-label_full textarea {
   background-color: white;
   border: 2px solid #e5e7eb;
   padding: 0.75em 1em;
@@ -187,11 +228,55 @@ body {
   transition: all 0.3s ease;
 }
 
+/* NOVO: Estilo específico para textarea */
+.form-label_full textarea {
+  min-height: 120px;
+  resize: vertical;
+  line-height: 1.5;
+}
+
 .form-label input:focus,
-.form-label select:focus {
+.form-label select:focus,
+.form-label_full input:focus,
+.form-label_full textarea:focus {
   outline: none;
   border-color: var(--cor-secundaria-verde2);
   box-shadow: 0 0 0 3px rgba(3, 105, 46, 0.1);
+}
+
+/* NOVO: Estilo para small (texto de ajuda) */
+.form-label small,
+.form-label_full small {
+  font-size: 0.8rem;
+  color: #6b7280;
+  margin-top: 0.25rem;
+  font-family: "Poppins", sans-serif;
+}
+
+/* NOVO: Botão de verificação de CEP */
+#btn_cep {
+  background-color: var(--cor-secundaria-verde2);
+  color: white;
+  border: none;
+  padding: 0.75em 1em;
+  border-radius: 0.5em;
+  cursor: pointer;
+  font-size: 0.9rem;
+  margin-left: 0.5em;
+  transition: all 0.3s ease;
+  font-weight: 600;
+  font-family: "Poppins", sans-serif;
+}
+
+#btn_cep:hover {
+  filter: brightness(1.1);
+  transform: translateY(-1px);
+}
+
+#btn_cep:disabled {
+  background-color: #9ca3af;
+  cursor: not-allowed;
+  transform: none;
 }
 
 /* Botões de ação */
@@ -437,14 +522,6 @@ body {
   right: 20%;
 }
 
-.container_photo {
-  border-radius: 70%; /* ← AQUI! Era "1em 0", agora é redondo */
-}
-
-.container_photo > img {
-  border-radius: 70%; /* ← E AQUI! Para a imagem também ficar redonda */
-}
-
 /* Animações */
 @keyframes fadeIn {
   from {
@@ -488,8 +565,28 @@ body {
   border-color: #10b981;
 }
 
-/* Responsividade */
-@media (max-width: 991px) {
+/* Mensagens de erro/sucesso */
+.message {
+  padding: 15px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  font-weight: 500;
+}
+
+.message.error {
+  background-color: #fee2e2;
+  color: #b91c1c;
+  border-left: 4px solid #ef4444;
+}
+
+.message.success {
+  background-color: #d1fae5;
+  color: #065f46;
+  border-left: 4px solid #10b981;
+}
+
+/* RESPONSIVIDADE MELHORADA */
+@media (max-width: 1024px) {
   .containerMain {
     grid-template-areas:
       "banner"
@@ -502,10 +599,16 @@ body {
 
   .main_banner {
     padding: 0;
+    height: auto;
   }
 
   .banner_content {
     padding: 2em 1.5em;
+    height: auto;
+  }
+
+  .banner_features {
+    display: none; /* Ocultar features em tablets */
   }
 
   .banner_msg h1 {
@@ -517,24 +620,30 @@ body {
   }
 
   .main_content {
-    padding: 4em 1.5em 2em;
+    padding: 2em 1.5em;
   }
-}
 
-@media (max-width: 767px) {
   .form-content-info {
     flex-direction: column;
     align-items: center;
   }
 
-  .container_photo {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%; /* ADICIONADO: manter redondo no mobile também */
+  .container_banner {
+    height: 150px;
+  }
+}
+
+@media (max-width: 768px) {
+  .main_content {
+    padding: 1.5em 1em;
   }
 
   .form-label_direction {
     flex-direction: column;
+  }
+
+  .form-label {
+    flex: 1 1 auto;
   }
 
   .banner_content {
@@ -545,29 +654,42 @@ body {
     font-size: 1.5rem;
   }
 
-  .feature_item {
-    padding: 0.75rem;
+  .banner_top h1 {
+    font-size: 1.75rem;
   }
 
-  .feature_icon {
-    width: 40px;
-    height: 40px;
-    min-width: 40px;
-    font-size: 1.2rem;
+  .logo_container {
+    width: 60px;
+    height: 60px;
   }
 
-  .feature_text h3 {
-    font-size: 1rem;
+  .container_banner {
+    height: 120px;
   }
 
-  .feature_text p {
-    font-size: 0.8rem;
+  /* Ajustar botão CEP para mobile */
+  #btn_cep {
+    margin-left: 0;
+    margin-top: 0.5em;
+    width: 100%;
+  }
+
+  /* Ajustar layout dos botões finais */
+  .form-label_direction:last-child {
+    flex-direction: column;
+    gap: 0.5em;
+  }
+
+  .form_back-btn,
+  .form_submit {
+    flex: none;
+    width: 100%;
   }
 }
 
 @media (max-width: 575px) {
   .main_content {
-    padding: 4em 1em 2em;
+    padding: 1em 0.75em;
   }
 
   #organizationForm h1 {
@@ -575,15 +697,47 @@ body {
   }
 
   .banner_top h1 {
-    font-size: 1.75rem;
+    font-size: 1.5rem;
   }
 
   .banner_msg h1 {
     font-size: 1.3rem;
   }
 
+  .banner_msg h2 {
+    font-size: 1rem;
+  }
+
   .form-label_direction .form_back-btn,
   .form_submit {
     padding: 0.6em 1em;
+    font-size: 0.9rem;
+  }
+
+  .container_banner {
+    height: 100px;
+  }
+
+  .placeholderSpan {
+    font-size: 0.8rem;
+    padding: 0.5rem;
+  }
+}
+
+/* Ajustes específicos para campos com botões */
+.cep-container {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+}
+
+.cep-container input {
+  flex: 1;
+}
+
+@media (max-width: 768px) {
+  .cep-container {
+    flex-direction: column;
+    align-items: stretch;
   }
 }
