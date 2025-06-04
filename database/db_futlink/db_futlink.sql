@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 02/06/2025 às 22:02
+-- Tempo de geração: 04/06/2025 às 20:06
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -219,7 +219,7 @@ CREATE TABLE `tbl_jogo` (
 CREATE TABLE `tbl_organizacao` (
   `id_org` int(11) NOT NULL,
   `nome_org` varchar(100) NOT NULL,
-  `email_org` varchar(200) NOT NULL,
+  `email` varchar(200) NOT NULL,
   `telefone_org` varchar(100) NOT NULL,
   `password_org` varchar(255) NOT NULL,
   `logo_org` varchar(255) DEFAULT NULL,
@@ -235,7 +235,7 @@ CREATE TABLE `tbl_organizacao` (
 -- Despejando dados para a tabela `tbl_organizacao`
 --
 
-INSERT INTO `tbl_organizacao` (`id_org`, `nome_org`, `email_org`, `telefone_org`, `password_org`, `logo_org`, `descricao`, `data_fundacao`, `tipo`, `cep`, `redes_sociais`, `created_at`) VALUES
+INSERT INTO `tbl_organizacao` (`id_org`, `nome_org`, `email`, `telefone_org`, `password_org`, `logo_org`, `descricao`, `data_fundacao`, `tipo`, `cep`, `redes_sociais`, `created_at`) VALUES
 (1, 'Palmeiras 2', 'palmeirasdois@gmail.com', '(11) 93040-3949', '$2y$10$/pNuAwpHwHBDPhzGiL.vUOSoKmfpMdmkD2zNvmr3aL5t1CV/ZzVGC', '../../public/images/profilePhotos/defaultPhoto.png', NULL, '2022-06-13', '', '8451360', NULL, '2025-06-02 16:02:32'),
 (2, 'Etec', 'etec@gmail.com', '(11) 90298-7234', '$2y$10$n2zjPxKK.q5dSdtqZK990OmnbWB23M90.cDU8A1XAJy2pTHHsDxt.', '../../public/images/profilePhotos/defaultPhoto.png', NULL, '2001-01-08', '', '8451360', NULL, '2025-06-02 16:26:53');
 
