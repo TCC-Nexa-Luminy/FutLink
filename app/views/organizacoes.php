@@ -81,20 +81,12 @@ include("topo.php");
                     <div class="filter-tab" data-filter="outro">Outros</div>
                 </div>
 
-                <!-- View Options -->
-                <div class="view-options">
-                    <div class="view-option active" data-view="grid">
-                        <i class="fas fa-th-large"></i>
-                    </div>
-                    <div class="view-option" data-view="list">
-                        <i class="fas fa-list"></i>
-                    </div>
-                </div>
+            
 
                 <!-- Grid View (default) -->
                 <div class="orgs-grid" id="grid-view">
                     <?php
-                    // Tentar buscar organizações do banco de dados
+                    // Buscar organizações do banco de dados
                     require("../../config/connect.php");
 
                     // Verificar se a tabela existe
@@ -112,148 +104,116 @@ include("topo.php");
                         }
                     }
 
-                    // Se não houver organizações no banco, usar dados estáticos
-                    if (empty($orgs)) {
+                    // Exibir organizações
+                    foreach ($orgs as $org) {
+                        // Determinar o badge
+                        $badge_class = 'new';
+                        $badge_icon = 'fas fa-bolt';
+                        $badge_text = 'Novo';
+
+                        if (isset($org['created_at'])) {
+                            $data_criacao = new DateTime($org['created_at']);
+                            $hoje = new DateTime();
+                            $diferenca = $hoje->diff($data_criacao)->days;
+
+                            if ($diferenca <= 7) {
+                                $badge_class = 'new';
+                                $badge_icon = 'fas fa-bolt';
+                                $badge_text = 'Novo';
+                            } elseif ($org['tipo'] === 'clube de futebol') {
+                                $badge_class = 'verified';
+                                $badge_icon = 'fas fa-check-circle';
+                                $badge_text = 'Verificado';
+                            } else {
+                                $badge_class = 'featured';
+                                $badge_icon = 'fas fa-star';
+                                $badge_text = 'Destaque';
+                            }
+                        }
+
+                        // Determinar banner (usando logo_org como banner)
+                        $banner_path = !empty($org['logo_org']) ? '../../' . $org['logo_org'] : null;
+                        $banner_style = $banner_path ? 
+                            "background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.5)), url('{$banner_path}'); background-size: cover; background-position: center;" : 
+                            "background: var(--gradiente-banner);";
                     ?>
 
+                        <div class="org-card animate-fadeInUp" data-tipo="<?php echo htmlspecialchars($org['tipo'] ?? ''); ?>">
 
-
-
-
-
-
-                        <?php
-                    } else {
-                        // Exibir organizações do banco de dados
-                        foreach ($orgs as $org) {
-                            // Determinar o badge
-                            $badge_class = 'new';
-                            $badge_icon = 'fas fa-bolt';
-                            $badge_text = 'Novo';
-
-                            if (isset($org['created_at'])) {
-                                $data_criacao = new DateTime($org['created_at']);
-                                $hoje = new DateTime();
-                                $diferenca = $hoje->diff($data_criacao)->days;
-
-                                if ($diferenca <= 7) {
-                                    $badge_class = 'new';
-                                    $badge_icon = 'fas fa-bolt';
-                                    $badge_text = 'Novo';
-                                } elseif ($org['tipo'] === 'clube de futebol') {
-                                    $badge_class = 'verified';
-                                    $badge_icon = 'fas fa-check-circle';
-                                    $badge_text = 'Verificado';
-                                } else {
-                                    $badge_class = 'featured';
-                                    $badge_icon = 'fas fa-star';
-                                    $badge_text = 'Destaque';
-                                }
-                            }
-
-                            // Determinar logo
-                            $logo_path = !empty($org['logo_org']) ? '../../' . $org['logo_org'] : '../../public/images/default-org-logo.png';
-
-                            // Calcular estatísticas (simuladas)
-                            $anos_funcionamento = isset($org['data_fundacao']) ? date('Y') - date('Y', strtotime($org['data_fundacao'])) : rand(1, 20);
-                            $avaliacao = number_format(4.0 + (rand(0, 9) / 10), 1);
-                            $atletas = rand(20, 200);
-                        ?>
-
-                            <div class="org-card animate-fadeInUp" data-tipo="<?php echo htmlspecialchars($org['tipo'] ?? ''); ?>">
-                                <div class="org-badge <?php echo $badge_class; ?>">
-                                    <i class="<?php echo $badge_icon; ?>"></i> <?php echo $badge_text; ?>
+                            <div class="org-header">
+                                <div class="org-cover" style="<?php echo $banner_style; ?>">
                                 </div>
-                                <div class="org-header">
-                                    <div class="org-cover" style="background: linear-gradient(135deg, #059669 0%, #047857 100%);"></div>
+                            </div>
+                            <div class="org-content">
+                                <h3 class="org-title"><?php echo htmlspecialchars($org['nome_org'] ?? 'Organização'); ?></h3>
+                                <div class="org-location">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    <?php
+                                    if (!empty($org['cep'])) {
+                                        $cep_formatado = strlen($org['cep']) >= 8 ? 
+                                            substr($org['cep'], 0, 5) . "-" . substr($org['cep'], 5) : 
+                                            $org['cep'];
+                                        echo "CEP: " . htmlspecialchars($cep_formatado);
+                                    } else {
+                                        echo "Localização não informada";
+                                    }
+                                    ?>
                                 </div>
-                                <div class="org-logo">
-                                    <img src="<?php echo $logo_path; ?>" alt="Logo <?php echo htmlspecialchars($org['nome_org'] ?? 'da Organização'); ?>" onerror="this.src='../../public/images/default-org-logo.png'">
+                                <p class="org-description">
+                                    <?php
+                                    // Usar bio se disponível, senão usar descrição
+                                    $texto_exibir = !empty($org['bio']) ? $org['bio'] : 
+                                        (!empty($org['descricao']) ? $org['descricao'] : 
+                                        'Organização esportiva comprometida com o desenvolvimento de talentos no futebol.');
+                                    echo htmlspecialchars(substr($texto_exibir, 0, 120)) . (strlen($texto_exibir) > 120 ? '...' : '');
+                                    ?>
+                                </p>
+                                <div class="org-tags">
+                                    <div class="org-tag"><?php echo htmlspecialchars(ucfirst($org['tipo'] ?? 'Organização')); ?></div>
+                                    <?php if (!empty($org['data_fundacao'])): ?>
+                                        <div class="org-tag">Fundada em <?php echo date('Y', strtotime($org['data_fundacao'])); ?></div>
+                                    <?php endif; ?>
                                 </div>
-                                <div class="org-content">
-                                    <h3 class="org-title"><?php echo htmlspecialchars($org['nome_org'] ?? 'Nome da Organização'); ?></h3>
-                                    <div class="org-location">
-                                        <i class="fas fa-map-marker-alt"></i>
-                                        <?php
-                                        if (!empty($org['cep'])) {
-                                            echo "CEP: " . htmlspecialchars(substr($org['cep'], 0, 5) . "-" . substr($org['cep'], 5));
-                                        } else {
-                                            echo "Localização não informada";
-                                        }
-                                        ?>
-                                    </div>
-                                    <p class="org-description">
-                                        <?php
-                                        $descricao = !empty($org['descricao']) ? $org['descricao'] : 'Organização esportiva comprometida com o desenvolvimento de talentos no futebol.';
-                                        echo htmlspecialchars(substr($descricao, 0, 120)) . '...';
-                                        ?>
-                                    </p>
-                                    <div class="org-stats">
-                                        <div class="org-stat">
-                                            <div class="org-stat-value"><?php echo $atletas; ?>+</div>
-                                            <div class="org-stat-label">Atletas</div>
-                                        </div>
-                                        <div class="org-stat">
-                                            <div class="org-stat-value"><?php echo $avaliacao; ?></div>
-                                            <div class="org-stat-label">Avaliação</div>
-                                        </div>
-                                        <div class="org-stat">
-                                            <div class="org-stat-value"><?php echo $anos_funcionamento; ?>+</div>
-                                            <div class="org-stat-label">Anos</div>
-                                        </div>
-                                    </div>
-                                    <div class="org-tags">
-                                        <div class="org-tag"><?php echo htmlspecialchars(ucfirst($org['tipo'] ?? 'Organização')); ?></div>
-                                        <?php if (!empty($org['data_fundacao'])): ?>
-                                            <div class="org-tag">Fundada em <?php echo date('Y', strtotime($org['data_fundacao'])); ?></div>
-                                        <?php endif; ?>
-                                    </div>
-                                    <div class="org-footer">
-                                        <a href="organizacao.php?id=<?php echo $org['id_org'] ?? '1'; ?>">
-                                            <button class="org-button">
-                                                Ver detalhes <i class="fas fa-arrow-right"></i>
-                                            </button>
-                                        </a>
-                                        <div class="org-actions">
-                                            <button class="action-button favorite">
-                                                <i class="far fa-heart"></i>
-                                            </button>
-                                            <button class="action-button share">
-                                                <i class="fas fa-share-alt"></i>
-                                            </button>
-                                        </div>
+                                <div class="org-footer">
+                                    <a href="organizacao.php?id=<?php echo $org['id_org'] ?? '1'; ?>">
+                                        <button class="org-button">
+                                            Ver detalhes <i class="fas fa-arrow-right"></i>
+                                        </button>
+                                    </a>
+                                    <div class="org-actions">
+                                        <button class="action-button favorite">
+                                            <i class="far fa-heart"></i>
+                                        </button>
+                                        <button class="action-button share">
+                                            <i class="fas fa-share-alt"></i>
+                                        </button>
                                     </div>
                                 </div>
                             </div>
-
-                    <?php
-                        }
-                    }
-                    ?>
+                        </div>
+                    <?php } ?>
                 </div>
 
-
-
-
-
-    <!-- CTA Section -->
-    <section class="cta-section">
-        <div class="cta-pattern"></div>
-        <div class="cta-container">
-            <h2 class="cta-title">Cadastre sua Organização</h2>
-            <p class="cta-description">Aumente sua visibilidade, encontre novos talentos e faça parte da maior rede de organizações esportivas do Brasil.</p>
-            <div class="cta-buttons">
-                <a href="signup-org.php">
-                    <button class="cta-button cta-button-primary">
-                        <i class="fas fa-building"></i> Cadastrar Organização
-                    </button>
-                </a>
-                <button class="cta-button cta-button-secondary">
-                    <i class="fas fa-info-circle"></i> Saiba Mais
-                </button>
+                <!-- CTA Section -->
+                <section class="cta-section">
+                    <div class="cta-pattern"></div>
+                    <div class="cta-container">
+                        <h2 class="cta-title">Cadastre sua Organização</h2>
+                        <p class="cta-description">Aumente sua visibilidade, encontre novos talentos e faça parte da maior rede de organizações esportivas do Brasil.</p>
+                        <div class="cta-buttons">
+                            <a href="signup-org.php">
+                                <button class="cta-button cta-button-primary">
+                                    <i class="fas fa-building"></i> Cadastrar Organização
+                                </button>
+                            </a>
+                            <button class="cta-button cta-button-secondary">
+                                <i class="fas fa-info-circle"></i> Saiba Mais
+                            </button>
+                        </div>
+                    </div>
+                </section>
             </div>
-        </div>
-    </section>
+        </section>
     </div>
 
     <script>
@@ -270,10 +230,10 @@ include("topo.php");
 
                     if (this.dataset.view === 'grid') {
                         gridView.style.display = 'grid';
-                        listView.style.display = 'none';
+                        if (listView) listView.style.display = 'none';
                     } else {
                         gridView.style.display = 'none';
-                        listView.style.display = 'flex';
+                        if (listView) listView.style.display = 'flex';
                     }
                 });
             });
@@ -313,9 +273,9 @@ include("topo.php");
                 const orgCards = document.querySelectorAll('.org-card, .list-org');
 
                 orgCards.forEach(card => {
-                    const titulo = card.querySelector('.org-title').textContent.toLowerCase();
+                    const titulo = card.querySelector('.org-title')?.textContent.toLowerCase() || '';
                     const tipo = card.dataset.tipo || '';
-                    const location = card.querySelector('.org-location').textContent.toLowerCase();
+                    const location = card.querySelector('.org-location')?.textContent.toLowerCase() || '';
 
                     let showCard = true;
 
@@ -390,3 +350,4 @@ include("topo.php");
         });
     </script>
 </body>
+</html>
