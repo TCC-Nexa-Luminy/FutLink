@@ -6,52 +6,63 @@ require("../../config/connect.php");
 
 // Pegue os dados do formulário
 $email = $_POST['user_email'];
-$senha = $_POST['user_pass'];
+$senha_input = $_POST['user_pass'];
 
 // Mensagem de erro ou sucesso
 $msg = "";
 $pagDestino = "../views/login.php";  // Página de destino em caso de erro
 
+$loginStatus = infoLogin($email, $conn);
 
+if($loginStatus['emailFound']){
+    //caso encontre o email
+    if(password_verify($senha_input, $loginStatus['password'])){
+        $_SESSION['id'] = $loginStatus['id'];
+        $_SESSION['tipoLogin'] = $loginStatus['type'];
+        $msg = "Bem-vindo ao FutLink, <span>" . $loginStatus['user_name'] . "</span>!";
+        $pagDestino = "../views/home-page.php";  // Redireciona para o dashboard
+    }else{
+        $msg = "<span>Email</span> ou <span>senha</span> incorretos!";
+    }
+}else{
+    //caso seja um email inexistente
+    $msg = "<span>Email</span> ou <span>senha</span> incorretos!";
+}
 
-function infoLogin($email, $conn){
-    
+function infoLogin($email, $conn){    
 
     // Prepare a consulta para verificar o email
     $loginUser = searchLogin($email, "tbl_usuarios", $conn);
-    
+    $loginOrg = searchLogin($email, "tbl_organizacao", $conn);
+
+    $emailFound = false;
+    $name = null;
+    $type = null;
+    $id = null;
+    $password = null;
+
+    //caso usuario
     if($loginUser['found']){
-        echo "email de usuario";
-        print_r($loginUser);
+        $emailFound = true;
+        $id = $loginUser['dados']['id_user'];
+        $name = $loginUser['dados']['nome'];
+        $password = $loginUser['dados']['senha'];
+        $type = "usuario";
     } else{
-        $loginOrg = searchLogin($email, "tbl_organizacao", $conn);
+        //caso organização
         if($loginOrg['found']){
-            echo "email de organização";
-            print_r($loginOrg);
+            $emailFound = true;
+            $id = $loginOrg['dados']['id_org'];
+            $name = $loginOrg['dados']['nome_org'];
+            $password = $loginOrg['dados']['password_org'];
+            $type = "organizacao";
         }else{
-            echo "email não encontrado!";
+            //caso o email nao seja encontrado
+            $emailFound = false;
         }
     }
+    return ["emailFound" => $emailFound, "id" => $id, "user_name" => $name, "password" =>$password, "type" => $type];
 }
-
-
-// if ($login['found']) {
-//     // Verifica se a senha fornecida corresponde à senha armazenada (usando password_verify)
-//     if (password_verify($senha, $usuario['senha'])) {
-//         // Se a senha for correta, cria a sessão para o usuário
-//         $_SESSION['usuario'] = $usuario['nome'];  // Salva o nome do usuário na sessão
-//         $_SESSION['email'] = $usuario['email'];   // Salva o email na sessão
-//         $_SESSION['id'] = $usuario['id_user'];
-//         $msg = "Bem-vindo ao FutLink, <span>" . $usuario['nome'] . "</span>!";
-//         $pagDestino = "../views/peneiras.php";  // Redireciona para o dashboard
-//     } else {
-//         // Se a senha estiver incorreta
-//         $msg = "Senha incorreta.";
-//     }
-// } else {
-//     // Se não encontrar o email no banco de dados
-//     $msg = "O email não foi encontrado.";
-// }
 
 function searchLogin($email, $table, $conn){
     $query = "SELECT * FROM `$table` WHERE `email` = ?";
@@ -61,16 +72,17 @@ function searchLogin($email, $table, $conn){
     $resultado = $stmt->get_result();  // Pega o resultado da consulta
     
     $dados = array();
-    $dados = $resultado->fetch_row();
-    $emailFound = $resultado->num_rows ? true : false;
+    $dados = $resultado->fetch_assoc();
+    $found = $resultado->num_rows ? true : false;
 
-    return ["found"=>$emailFound, "dados" => $dados];
+    return ["found"=>$found, "dados" => $dados];
 }
 
 // Salva a mensagem de erro ou sucesso na sessão
-// $_SESSION['msg'] = $msg;
+$_SESSION['tipo_login'] = $loginStatus['type'];
+$_SESSION['msg'] = $msg;
 
-// // Redireciona para a página de login ou dashboard
-// header("Location: $pagDestino");
-// exit();
+// Redireciona para a página de login ou dashboard
+header("Location: $pagDestino");
+exit();
 ?>
