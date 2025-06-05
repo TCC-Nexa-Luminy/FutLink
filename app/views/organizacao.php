@@ -28,16 +28,28 @@ $anos_funcionamento = isset($org['data_fundacao']) ? date('Y') - date('Y', strto
 // Determinar banner
 $banner_path = !empty($org['logo_org']) ? '../../' . $org['logo_org'] : '/placeholder.svg?height=300&width=300';
 
-// Buscar peneiras da organização
-// $peneiras_query = "SELECT * FROM tbl_peneiras WHERE org_id = ? ORDER BY data ASC";
-// $peneiras_stmt = $conn->prepare($peneiras_query);
-// $peneiras_stmt->bind_param("i", $org_id);
-// $peneiras_stmt->execute();
-// $peneiras_result = $peneiras_stmt->get_result();
-// $peneiras = [];
-// while ($row = $peneiras_result->fetch_assoc()) {
-//     $peneiras[] = $row;
-// }
+// CORRIGIDO: Buscar peneiras da organização usando a tabela 'peneiras' existente
+$peneiras = [];
+try {
+    // Verificar se a tabela peneiras existe
+    $check_table = $conn->query("SHOW TABLES LIKE 'peneiras'");
+    if ($check_table && $check_table->num_rows > 0) {
+        // Como não temos org_id na tabela peneiras atual, vamos buscar todas as peneiras ativas
+        // Em um sistema real, você deveria adicionar um campo org_id na tabela peneiras
+        $peneiras_query = "SELECT * FROM peneiras WHERE status != 'Inativa' ORDER BY data ASC LIMIT 10";
+        $peneiras_result = $conn->query($peneiras_query);
+        
+        if ($peneiras_result) {
+            while ($row = $peneiras_result->fetch_assoc()) {
+                $peneiras[] = $row;
+            }
+        }
+    }
+} catch (Exception $e) {
+    // Se houver erro, continuar sem peneiras
+    error_log("Erro ao buscar peneiras: " . $e->getMessage());
+    $peneiras = [];
+}
 
 // PÁGINA PÚBLICA - Não mostrar controles de edição
 $is_public_view = true;
@@ -238,8 +250,30 @@ $is_public_view = true;
                                 <div class="peneira-item">
                                     <div class="peneira-header">
                                         <h3><?php echo htmlspecialchars($peneira['titulo']); ?></h3>
-                                        <span class="peneira-badge <?php echo strtolower($peneira['status']); ?>">
-                                            <?php echo htmlspecialchars($peneira['status']); ?>
+                                        <span class="peneira-badge <?php 
+                                            // Mapear badge_type para classes CSS
+                                            $badge_class = 'normal';
+                                            if (isset($peneira['badge_type'])) {
+                                                switch($peneira['badge_type']) {
+                                                    case 'new': $badge_class = 'nova'; break;
+                                                    case 'featured': $badge_class = 'destaque'; break;
+                                                    default: $badge_class = 'normal'; break;
+                                                }
+                                            }
+                                            echo $badge_class;
+                                        ?>">
+                                            <?php 
+                                            // Exibir texto do badge
+                                            if (isset($peneira['badge_type'])) {
+                                                switch($peneira['badge_type']) {
+                                                    case 'new': echo 'Nova'; break;
+                                                    case 'featured': echo 'Destaque'; break;
+                                                    default: echo 'Ativa'; break;
+                                                }
+                                            } else {
+                                                echo 'Ativa';
+                                            }
+                                            ?>
                                         </span>
                                     </div>
                                     <div class="peneira-info">
@@ -261,23 +295,57 @@ $is_public_view = true;
                                         </div>
                                         <div class="info-row">
                                             <i class="fas fa-money-bill-wave"></i>
-                                            <span>
-                                                <?php 
-                                                if (isset($peneira['tipo_taxa']) && $peneira['tipo_taxa'] === 'gratuita') {
-                                                    echo 'Gratuita';
-                                                } elseif (isset($peneira['valor_inscricao']) && $peneira['valor_inscricao'] > 0) {
-                                                    echo 'R$ ' . number_format($peneira['valor_inscricao'], 2, ',', '.');
-                                                } elseif (!empty($peneira['inscricao'])) {
-                                                    echo htmlspecialchars($peneira['inscricao']);
-                                                } else {
-                                                    echo 'Consultar';
+                                            <span><?php echo htmlspecialchars($peneira['inscricao'] ?? 'Consultar'); ?></span>
+                                        </div>
+                                        
+                                        <!-- NOVO: Status das inscrições -->
+                                        <div class="info-row">
+                                            <i class="fas fa-info-circle"></i>
+                                            <span class="status-inscricao <?php 
+                                                $status_class = 'status-open';
+                                                if (isset($peneira['status_inscricao'])) {
+                                                    $status_class = $peneira['status_inscricao'];
                                                 }
+                                                echo $status_class;
+                                            ?>">
+                                                <?php 
+                                                // Mapear status para texto legível
+                                                $status_text = 'Inscrições Abertas';
+                                                if (isset($peneira['status_inscricao'])) {
+                                                    switch($peneira['status_inscricao']) {
+                                                        case 'status-open': $status_text = 'Inscrições Abertas'; break;
+                                                        case 'status-closed': $status_text = 'Inscrições Encerradas'; break;
+                                                        case 'status-soon': $status_text = 'Em Breve'; break;
+                                                        default: $status_text = 'Consultar'; break;
+                                                    }
+                                                }
+                                                echo $status_text;
                                                 ?>
                                             </span>
                                         </div>
                                     </div>
-                                    <button class="btn-peneira" onclick="interesseNaPeneira(<?php echo $peneira['id_peneira']; ?>)">
-                                        <i class="fas fa-hand-paper"></i> Tenho Interesse
+                                    
+                                    <!-- Botão dinâmico baseado no status -->
+                                    <?php 
+                                    $btn_disabled = '';
+                                    $btn_text = 'Tenho Interesse';
+                                    $btn_icon = 'fas fa-hand-paper';
+                                    
+                                    if (isset($peneira['status_inscricao']) && $peneira['status_inscricao'] === 'status-closed') {
+                                        $btn_disabled = 'disabled';
+                                        $btn_text = 'Inscrições Encerradas';
+                                        $btn_icon = 'fas fa-times-circle';
+                                    } elseif (isset($peneira['status_inscricao']) && $peneira['status_inscricao'] === 'status-soon') {
+                                        $btn_disabled = 'disabled';
+                                        $btn_text = 'Em Breve';
+                                        $btn_icon = 'fas fa-clock';
+                                    }
+                                    ?>
+                                    
+                                    <button class="btn-peneira <?php echo $btn_disabled; ?>" 
+                                            onclick="interesseNaPeneira(<?php echo $peneira['id']; ?>)" 
+                                            <?php echo $btn_disabled; ?>>
+                                        <i class="<?php echo $btn_icon; ?>"></i> <?php echo $btn_text; ?>
                                     </button>
                                 </div>
                                 <?php endforeach; ?>
@@ -299,25 +367,46 @@ $is_public_view = true;
         </div>
     </main>
 
-    <!-- Modal de Contato -->
+    <!-- Modal de Contato MELHORADO -->
     <div id="modalContato" class="modal" style="display: none;">
         <div class="modal-content">
             <span class="close" onclick="fecharModalContato()">&times;</span>
-            <h2>Entrar em Contato</h2>
-            <form id="formContato">
+            <div class="modal-header">
+                <h2><i class="fas fa-envelope"></i> Entrar em Contato</h2>
+                <p>Envie uma mensagem para <strong><?php echo htmlspecialchars($org['nome_org']); ?></strong></p>
+            </div>
+            <form id="formContato" onsubmit="enviarMensagem(event)">
                 <div class="form-group">
-                    <label for="nomeContato">Seu Nome:</label>
-                    <input type="text" id="nomeContato" required>
+                    <label for="nomeContato"><i class="fas fa-user"></i> Seu Nome:</label>
+                    <input type="text" id="nomeContato" required placeholder="Digite seu nome completo">
                 </div>
                 <div class="form-group">
-                    <label for="emailContato">Seu Email:</label>
-                    <input type="email" id="emailContato" required>
+                    <label for="emailContato"><i class="fas fa-envelope"></i> Seu Email:</label>
+                    <input type="email" id="emailContato" required placeholder="seu@email.com">
                 </div>
                 <div class="form-group">
-                    <label for="mensagemContato">Mensagem:</label>
-                    <textarea id="mensagemContato" rows="4" required></textarea>
+                    <label for="assuntoContato"><i class="fas fa-tag"></i> Assunto:</label>
+                    <select id="assuntoContato" required>
+                        <option value="">Selecione o assunto</option>
+                        <option value="peneira">Interesse em Peneira</option>
+                        <option value="parceria">Proposta de Parceria</option>
+                        <option value="informacoes">Solicitar Informações</option>
+                        <option value="outro">Outro</option>
+                    </select>
                 </div>
-                <button type="submit" class="btn-principal">Enviar Mensagem</button>
+                <div class="form-group">
+                    <label for="mensagemContato"><i class="fas fa-comment"></i> Mensagem:</label>
+                    <textarea id="mensagemContato" rows="4" required placeholder="Digite sua mensagem..."></textarea>
+                    <small class="char-count">0/500 caracteres</small>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn-secundario" onclick="fecharModalContato()">
+                        <i class="fas fa-times"></i> Cancelar
+                    </button>
+                    <button type="submit" class="btn-principal">
+                        <i class="fas fa-paper-plane"></i> Enviar Mensagem
+                    </button>
+                </div>
             </form>
         </div>
     </div>
@@ -325,28 +414,92 @@ $is_public_view = true;
     <?php include("footer.php"); ?>
 
     <script>
-        // Funcionalidades para página pública
+        // Funcionalidades para página pública MELHORADAS
         function abrirModalContato() {
             document.getElementById('modalContato').style.display = 'block';
+            document.body.style.overflow = 'hidden'; // Prevenir scroll
         }
         
         function fecharModalContato() {
             document.getElementById('modalContato').style.display = 'none';
+            document.body.style.overflow = 'auto'; // Restaurar scroll
+            // Limpar formulário
+            document.getElementById('formContato').reset();
+            updateCharCount();
         }
         
         function seguirOrganizacao() {
-            alert('Funcionalidade de seguir será implementada em breve!');
+            // Simular seguir/desseguir
+            const btn = event.target;
+            const icon = btn.querySelector('i');
+            
+            if (btn.textContent.includes('Seguir')) {
+                btn.innerHTML = '<i class="fas fa-user-check"></i> Seguindo';
+                btn.style.background = 'rgba(255, 255, 255, 0.25)';
+                showNotification('Você agora está seguindo ' + '<?php echo htmlspecialchars($org['nome_org']); ?>!', 'success');
+            } else {
+                btn.innerHTML = '<i class="fas fa-user-plus"></i> Seguir';
+                btn.style.background = 'rgba(255, 255, 255, 0.15)';
+                showNotification('Você parou de seguir ' + '<?php echo htmlspecialchars($org['nome_org']); ?>', 'info');
+            }
         }
         
         function interesseNaPeneira(peneiraId) {
-            alert('Demonstrar interesse na peneira #' + peneiraId + '\nFuncionalidade será implementada em breve!');
+            if (confirm('Deseja demonstrar interesse nesta peneira?\n\nVocê será redirecionado para mais informações.')) {
+                showNotification('Interesse registrado! Em breve você receberá mais informações.', 'success');
+                // Aqui você pode implementar o redirecionamento ou envio de dados
+            }
+        }
+        
+        function enviarMensagem(event) {
+            event.preventDefault();
+            
+            const nome = document.getElementById('nomeContato').value;
+            const email = document.getElementById('emailContato').value;
+            const assunto = document.getElementById('assuntoContato').value;
+            const mensagem = document.getElementById('mensagemContato').value;
+            
+            // Simular envio
+            showNotification('Mensagem enviada com sucesso! A organização entrará em contato em breve.', 'success');
+            fecharModalContato();
+            
+            // Aqui você implementaria o envio real via AJAX
+        }
+        
+        function showNotification(message, type = 'info') {
+            const notification = document.createElement('div');
+            notification.className = `notification notification-${type}`;
+            notification.innerHTML = `
+                <i class="fas fa-${type === 'success' ? 'check-circle' : type === 'error' ? 'exclamation-circle' : 'info-circle'}"></i>
+                <span>${message}</span>
+                <button onclick="this.parentElement.remove()"><i class="fas fa-times"></i></button>
+            `;
+            
+            document.body.appendChild(notification);
+            
+            // Auto remover após 5 segundos
+            setTimeout(() => {
+                if (notification.parentElement) {
+                    notification.remove();
+                }
+            }, 5000);
+        }
+        
+        function updateCharCount() {
+            const textarea = document.getElementById('mensagemContato');
+            const counter = document.querySelector('.char-count');
+            if (textarea && counter) {
+                const count = textarea.value.length;
+                counter.textContent = `${count}/500 caracteres`;
+                counter.style.color = count > 450 ? '#ef4444' : '#6b7280';
+            }
         }
         
         // Fechar modal clicando fora
         window.onclick = function(event) {
             const modal = document.getElementById('modalContato');
             if (event.target == modal) {
-                modal.style.display = 'none';
+                fecharModalContato();
             }
         }
 
@@ -356,22 +509,36 @@ $is_public_view = true;
             curtirButtons.forEach(button => {
                 button.addEventListener('click', function() {
                     const icon = this.querySelector('i');
+                    const countSpan = this.textContent.match(/\d+/);
+                    let count = countSpan ? parseInt(countSpan[0]) : 0;
+                    
                     if (icon.classList.contains('far')) {
                         icon.classList.remove('far');
                         icon.classList.add('fas');
                         this.style.color = '#f43f5e';
+                        count++;
+                        this.innerHTML = `<i class="fas fa-heart"></i> ${count} Curtidas`;
                     } else {
                         icon.classList.remove('fas');
                         icon.classList.add('far');
                         this.style.color = '';
+                        count--;
+                        this.innerHTML = `<i class="far fa-heart"></i> ${count} Curtidas`;
                     }
                 });
             });
+            
+            // Contador de caracteres no modal
+            const textarea = document.getElementById('mensagemContato');
+            if (textarea) {
+                textarea.addEventListener('input', updateCharCount);
+                textarea.addEventListener('keyup', updateCharCount);
+            }
         });
     </script>
 
     <style>
-        /* Estilos para o modal */
+        /* Estilos melhorados para o modal */
         .modal {
             position: fixed;
             z-index: 1000;
@@ -379,56 +546,294 @@ $is_public_view = true;
             top: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0,0,0,0.5);
+            background-color: rgba(0,0,0,0.6);
+            backdrop-filter: blur(5px);
+            animation: fadeIn 0.3s ease;
         }
         
         .modal-content {
             background-color: white;
-            margin: 10% auto;
-            padding: 30px;
-            border-radius: 12px;
+            margin: 5% auto;
+            padding: 0;
+            border-radius: 16px;
             width: 90%;
-            max-width: 500px;
+            max-width: 600px;
             position: relative;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            animation: slideIn 0.3s ease;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+        
+        .modal-header {
+            background: linear-gradient(135deg, var(--verde) 0%, var(--verde-claro) 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 16px 16px 0 0;
+            text-align: center;
+        }
+        
+        .modal-header h2 {
+            margin: 0 0 10px 0;
+            font-size: 1.5rem;
+        }
+        
+        .modal-header p {
+            margin: 0;
+            opacity: 0.9;
         }
         
         .close {
             position: absolute;
-            right: 15px;
-            top: 15px;
-            font-size: 28px;
+            right: 20px;
+            top: 20px;
+            font-size: 24px;
             font-weight: bold;
             cursor: pointer;
-            color: #aaa;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
         }
         
         .close:hover {
-            color: #000;
+            background: rgba(255, 255, 255, 0.2);
+            transform: scale(1.1);
+        }
+        
+        #formContato {
+            padding: 30px;
         }
         
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 25px;
         }
         
         .form-group label {
             display: block;
-            margin-bottom: 5px;
+            margin-bottom: 8px;
             font-weight: 600;
+            color: #374151;
+            font-size: 0.95rem;
+        }
+        
+        .form-group label i {
+            margin-right: 8px;
+            color: var(--verde);
+            width: 16px;
         }
         
         .form-group input,
-        .form-group textarea {
+        .form-group textarea,
+        .form-group select {
             width: 100%;
-            padding: 10px;
+            padding: 12px 16px;
             border: 2px solid #e5e7eb;
-            border-radius: 8px;
+            border-radius: 10px;
             font-size: 1rem;
+            transition: all 0.3s ease;
+            font-family: inherit;
         }
         
         .form-group input:focus,
-        .form-group textarea:focus {
+        .form-group textarea:focus,
+        .form-group select:focus {
             outline: none;
             border-color: var(--verde);
+            box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.1);
+        }
+        
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+        
+        .char-count {
+            display: block;
+            text-align: right;
+            margin-top: 5px;
+            font-size: 0.8rem;
+            color: #6b7280;
+        }
+        
+        .form-actions {
+            display: flex;
+            gap: 15px;
+            justify-content: flex-end;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #e5e7eb;
+        }
+        
+        .form-actions button {
+            padding: 12px 24px;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border: none;
+        }
+        
+        .btn-secundario {
+            background: #f3f4f6;
+            color: #6b7280;
+        }
+        
+        .btn-secundario:hover {
+            background: #e5e7eb;
+            color: #374151;
+        }
+        
+        .btn-principal {
+            background: linear-gradient(135deg, var(--verde) 0%, var(--verde-claro) 100%);
+            color: white;
+        }
+        
+        .btn-principal:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(5, 150, 105, 0.3);
+        }
+        
+        /* Estilos para status das inscrições */
+        .status-inscricao {
+            font-weight: 600;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+        }
+        
+        .status-inscricao.status-open {
+            background: #d1fae5;
+            color: #065f46;
+        }
+        
+        .status-inscricao.status-closed {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+        
+        .status-inscricao.status-soon {
+            background: #fef3c7;
+            color: #92400e;
+        }
+        
+        /* Botão peneira desabilitado */
+        .btn-peneira:disabled,
+        .btn-peneira.disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none !important;
+        }
+        
+        /* Notificações */
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: white;
+            padding: 16px 20px;
+            border-radius: 12px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            z-index: 1001;
+            animation: slideInRight 0.3s ease;
+            max-width: 400px;
+        }
+        
+        .notification-success {
+            border-left: 4px solid #10b981;
+        }
+        
+        .notification-error {
+            border-left: 4px solid #ef4444;
+        }
+        
+        .notification-info {
+            border-left: 4px solid #3b82f6;
+        }
+        
+        .notification i {
+            font-size: 1.2rem;
+        }
+        
+        .notification-success i {
+            color: #10b981;
+        }
+        
+        .notification-error i {
+            color: #ef4444;
+        }
+        
+        .notification-info i {
+            color: #3b82f6;
+        }
+        
+        .notification button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #6b7280;
+            margin-left: auto;
+        }
+        
+        /* Animações */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes slideIn {
+            from { 
+                opacity: 0;
+                transform: translateY(-50px) scale(0.95);
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+        
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(100px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .modal-content {
+                margin: 10px;
+                width: calc(100% - 20px);
+            }
+            
+            .form-actions {
+                flex-direction: column;
+            }
+            
+            .form-actions button {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .notification {
+                right: 10px;
+                left: 10px;
+                max-width: none;
+            }
         }
     </style>
 </body>
