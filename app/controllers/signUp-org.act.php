@@ -2,7 +2,7 @@
 session_start();
 require("../../config/connect.php");
 
-// Função para upload de logo
+// Função para upload de logo/banner
 function uploadLogo($file) {
     $upload_dir = '../../public/uploads/logos/';
     
@@ -27,14 +27,14 @@ function uploadLogo($file) {
     }
     
     $file_extension = pathinfo($file['name'], PATHINFO_EXTENSION);
-    $new_filename = 'org_' . uniqid() . '.' . $file_extension;
+    $new_filename = 'org_logo_' . uniqid() . '.' . $file_extension;
     $upload_path = $upload_dir . $new_filename;
     
     if (move_uploaded_file($file['tmp_name'], $upload_path)) {
         return 'public/uploads/logos/' . $new_filename;
     }
     
-    throw new Exception('Erro ao fazer upload da logo.');
+    throw new Exception('Erro ao fazer upload da imagem.');
 }
 
 try {
@@ -74,6 +74,14 @@ try {
         $erros[] = 'Data de fundação é obrigatória';
     }
     
+    if (empty($_POST['org_bio'])) {
+        $erros[] = 'Bio é obrigatória';
+    }
+    
+    if (empty($_POST['org_descricao'])) {
+        $erros[] = 'Descrição é obrigatória';
+    }
+    
     if (!empty($erros)) {
         $_SESSION['msg'] = implode('<br>', $erros);
         header('Location: ../views/signup-org.php');
@@ -81,7 +89,7 @@ try {
     }
     
     // Verificar se email já existe
-    $check_email = $conn->prepare("SELECT id_org FROM tbl_organizacao WHERE email_org = ?");
+    $check_email = $conn->prepare("SELECT id_org FROM tbl_organizacao WHERE email = ?");
     if ($check_email) {
         $check_email->bind_param("s", $_POST['org_email']);
         $check_email->execute();
@@ -94,7 +102,7 @@ try {
         }
     }
     
-    // Upload da logo se fornecida
+    // Upload da logo/banner se fornecida
     $logo_path = null;
     if (isset($_FILES['org_photo']) && $_FILES['org_photo']['error'] !== UPLOAD_ERR_NO_FILE) {
         try {
@@ -122,45 +130,17 @@ try {
     $nome_org = mysqli_real_escape_string($conn, $_POST['org_nome']);
     $email_org = mysqli_real_escape_string($conn, $_POST['org_email']);
     $telefone_org = mysqli_real_escape_string($conn, $_POST['org_tel']);
+    $bio_org = mysqli_real_escape_string($conn, $_POST['org_bio']);
+    $descricao_org = mysqli_real_escape_string($conn, $_POST['org_descricao']);
     $password_hash = password_hash($_POST['org_pass'], PASSWORD_BCRYPT);
     $data_fundacao = $_POST['org_data_fund'];
     $cep = isset($_POST['org_cep']) ? $_POST['org_cep'] : '';
     
-    // Verificar se a tabela existe
-    $check_table = $conn->query("SHOW TABLES LIKE 'tbl_organizacao'");
-    $table_exists = $check_table->num_rows > 0;
-    
-    // Se a tabela não existir, criá-la
-    if (!$table_exists) {
-        $create_table = "CREATE TABLE tbl_organizacao (
-            id_org INT AUTO_INCREMENT PRIMARY KEY,
-            nome_org VARCHAR(100) NOT NULL,
-            email_org VARCHAR(200) NOT NULL UNIQUE,
-            telefone_org VARCHAR(100) NOT NULL,
-            password_org VARCHAR(255) NOT NULL,
-            logo_org VARCHAR(255) NULL,
-            descricao TEXT NULL,
-            data_fundacao DATE NOT NULL,
-            tipo ENUM('clube de futebol', 'escola de futebol', 'academia', 'federacao', 'empresa', 'outro') NOT NULL,
-            cep VARCHAR(20) NULL,
-            redes_sociais LONGTEXT NULL,
-            created_at DATETIME DEFAULT CURRENT_TIMESTAMP
-        )";
-        
-        if (!$conn->query($create_table)) {
-            throw new Exception('Erro ao criar tabela de organizações: ' . $conn->error);
-        }
-    }
-    
-    // Criar descrição automática baseada no tipo
-    $descricao = "Organização esportiva especializada em " . $tipo_db . ". ";
-    $descricao .= "Fundada em " . date('Y', strtotime($data_fundacao)) . ".";
-    
-    // Inserir organização no banco
+    // Inserir organização no banco usando a estrutura existente
     $query = "INSERT INTO tbl_organizacao 
-          (nome_org, email_org, telefone_org, password_org, logo_org, descricao, 
+          (nome_org, email, telefone_org, password_org, logo_org, bio, descricao, 
            data_fundacao, tipo, cep, created_at) 
-          VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, NOW())";
+          VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW())";
     
     $stmt = $conn->prepare($query);
     
@@ -168,9 +148,9 @@ try {
         throw new Exception('Erro ao preparar consulta: ' . $conn->error);
     }
     
-    $stmt->bind_param("sssssssss", 
+    $stmt->bind_param("ssssssssss", 
         $nome_org, $email_org, $telefone_org, $password_hash, 
-        $logo_path, $descricao, $data_fundacao, $tipo_db, $cep
+        $logo_path, $bio_org, $descricao_org, $data_fundacao, $tipo_db, $cep
     );
     
     if ($stmt->execute()) {

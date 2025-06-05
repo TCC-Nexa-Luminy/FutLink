@@ -3,7 +3,12 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
+
 -- Tempo de geração: 05/06/2025 às 22:30
+
+-- Tempo de geração: 04/06/2025 às 22:48
+
+
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -205,10 +210,11 @@ CREATE TABLE `tbl_jogo` (
 CREATE TABLE `tbl_organizacao` (
   `id_org` int(11) NOT NULL,
   `nome_org` varchar(100) NOT NULL,
-  `email_org` varchar(200) NOT NULL,
+  `email` varchar(200) NOT NULL,
   `telefone_org` varchar(100) NOT NULL,
   `password_org` varchar(255) NOT NULL,
   `logo_org` varchar(255) DEFAULT NULL,
+  `bio` varchar(300) DEFAULT NULL,
   `descricao` text DEFAULT NULL,
   `data_fundacao` date NOT NULL DEFAULT current_timestamp(),
   `tipo` enum('clube de futebol','escola de futebol','academia','federação','empresa','outro') NOT NULL,
@@ -221,9 +227,9 @@ CREATE TABLE `tbl_organizacao` (
 -- Despejando dados para a tabela `tbl_organizacao`
 --
 
-INSERT INTO `tbl_organizacao` (`id_org`, `nome_org`, `email_org`, `telefone_org`, `password_org`, `logo_org`, `descricao`, `data_fundacao`, `tipo`, `cep`, `redes_sociais`, `created_at`) VALUES
-(1, 'Palmeiras 2', 'palmeirasdois@gmail.com', '(11) 93040-3949', '$2y$10$/pNuAwpHwHBDPhzGiL.vUOSoKmfpMdmkD2zNvmr3aL5t1CV/ZzVGC', '../../public/images/profilePhotos/defaultPhoto.png', NULL, '2022-06-13', '', '8451360', NULL, '2025-06-02 16:02:32'),
-(2, 'Etec', 'etec@gmail.com', '(11) 90298-7234', '$2y$10$n2zjPxKK.q5dSdtqZK990OmnbWB23M90.cDU8A1XAJy2pTHHsDxt.', '../../public/images/profilePhotos/defaultPhoto.png', NULL, '2001-01-08', '', '8451360', NULL, '2025-06-02 16:26:53');
+INSERT INTO `tbl_organizacao` (`id_org`, `nome_org`, `email`, `telefone_org`, `password_org`, `logo_org`, `bio`, `descricao`, `data_fundacao`, `tipo`, `cep`, `redes_sociais`, `created_at`) VALUES
+(4, 'São Paulo Futebol Clube', 'contato@saopaulofc.net', '(11) 40032-000', '$2y$10$a7vCce4eu1DWbn6mtG.PwOKoCBQLQ5iQI3H0acLi38Uwn9CaVCRG2', 'public/uploads/logos/org_logo_6840ae72f0d00.jpg', 'Clube profissional de futebol com sede em São Paulo, reconhecido nacional e internacionalmente.', 'O São Paulo Futebol Clube é uma das principais equipes de futebol do Brasil, fundado em 25 de janeiro de 1930. Com sede no estádio do Morumbi, o clube conquistou diversos títulos nacionais e internacionais, incluindo a Copa Libertadores da América e o Mundial de Clubes da FIFA. Suas cores tradicionais são vermelho, preto e branco, e seu mascote é o \\\"São Paulinho\\\".', '1930-01-25', 'clube de futebol', '05653-070', NULL, '2025-06-04 17:37:07');
+
 
 -- --------------------------------------------------------
 
@@ -490,7 +496,7 @@ ALTER TABLE `tbl_jogo`
 -- AUTO_INCREMENT de tabela `tbl_organizacao`
 --
 ALTER TABLE `tbl_organizacao`
-  MODIFY `id_org` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_org` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de tabela `tbl_profissional`
