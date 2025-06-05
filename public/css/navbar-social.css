@@ -319,4 +319,65 @@
   }
   
   
-  
+  /* 🆕 CONTADOR DE NOTIFICAÇÕES */
+.notificacoes-contador {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+  color: white;
+  font-size: 11px;
+  min-width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  border: 2px solid #fff;
+  box-shadow: 0 2px 8px rgba(239, 68, 68, 0.3);
+  z-index: 10;
+  animation: pulseNotification 2s infinite;
+}
+
+.nav-link {
+  position: relative;
+  display: inline-block;
+}
+
+/* Animação para o contador */
+@keyframes pulseNotification {
+  0% {
+      box-shadow: 0 2px 8px rgba(239, 68, 68, 0.3);
+      transform: scale(1);
+  }
+  50% {
+      box-shadow: 0 2px 15px rgba(239, 68, 68, 0.5);
+      transform: scale(1.05);
+  }
+  100% {
+      box-shadow: 0 2px 8px rgba(239, 68, 68, 0.3);
+      transform: scale(1);
+  }
+}
+
+/* Responsividade para o contador */
+@media (max-width: 768px) {
+  .notificacoes-contador {
+      font-size: 10px;
+      min-width: 16px;
+      height: 16px;
+      top: -6px;
+      right: -6px;
+      border: 1px solid #fff;
+  }
+}
+
+/* Ajuste para quando o menu está aberto no mobile */
+@media (max-width: 768px) {
+  .barra-navegacao.aberta .notificacoes-contador {
+      position: absolute;
+      top: -6px;
+      right: 10px;
+  }
+}

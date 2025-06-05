@@ -35,6 +35,30 @@ switch ($action) {
             $count_result = $conn->query($count_sql);
             $total_curtidas = $count_result->fetch_assoc()['total'];
             
+            // 🆕 CRIAR NOTIFICAÇÃO PARA CURTIDAS
+            if ($curtido) {
+                // Buscar o dono do post
+                $owner_sql = "SELECT id_user FROM posts WHERE id_post = '$id_post'";
+                $owner_result = $conn->query($owner_sql);
+                
+                if ($owner_result && $owner_result->num_rows > 0) {
+                    $post_owner = $owner_result->fetch_assoc()['id_user'];
+                    
+                    // Não notificar se a pessoa curtiu o próprio post
+                    if ($post_owner != $id_user) {
+                        // Buscar conteúdo do post (primeiros 100 caracteres)
+                        $post_sql = "SELECT SUBSTRING(conteudo, 1, 100) as preview FROM posts WHERE id_post = '$id_post'";
+                        $post_result = $conn->query($post_sql);
+                        $post_preview = $post_result->fetch_assoc()['preview'];
+                        
+                        // Criar notificação
+                        $notif_sql = "INSERT INTO notificacoes (id_user_destino, id_user_origem, tipo, id_referencia, conteudo) 
+                              VALUES ('$post_owner', '$id_user', 'curtida', '$id_post', '$post_preview')";
+                        $conn->query($notif_sql);
+                    }
+                }
+            }
+            
             echo json_encode([
                 'success' => true, 
                 'curtido' => $curtido, 
@@ -61,6 +85,23 @@ switch ($action) {
             $user_result = $conn->query($user_sql);
             $user_data = $user_result->fetch_assoc();
             
+            // 🆕 CRIAR NOTIFICAÇÃO PARA COMENTÁRIOS
+            // Buscar o dono do post
+            $owner_sql = "SELECT id_user FROM posts WHERE id_post = '$id_post'";
+            $owner_result = $conn->query($owner_sql);
+            
+            if ($owner_result && $owner_result->num_rows > 0) {
+                $post_owner = $owner_result->fetch_assoc()['id_user'];
+                
+                // Não notificar se a pessoa comentou no próprio post
+                if ($post_owner != $id_user) {
+                    // Criar notificação
+                    $notif_sql = "INSERT INTO notificacoes (id_user_destino, id_user_origem, tipo, id_referencia, conteudo) 
+                          VALUES ('$post_owner', '$id_user', 'comentario', '$id_post', '$conteudo')";
+                    $conn->query($notif_sql);
+                }
+            }
+            
             echo json_encode([
                 'success' => true,
                 'comentario' => [
@@ -86,6 +127,28 @@ switch ($action) {
             $sql = "INSERT INTO reposts (id_post_original, id_user) VALUES ('$id_post', '$id_user')";
             
             if ($conn->query($sql)) {
+                // 🆕 CRIAR NOTIFICAÇÃO PARA REPOSTS
+                // Buscar o dono do post
+                $owner_sql = "SELECT id_user FROM posts WHERE id_post = '$id_post'";
+                $owner_result = $conn->query($owner_sql);
+                
+                if ($owner_result && $owner_result->num_rows > 0) {
+                    $post_owner = $owner_result->fetch_assoc()['id_user'];
+                    
+                    // Não notificar se a pessoa repostou o próprio post
+                    if ($post_owner != $id_user) {
+                        // Buscar conteúdo do post (primeiros 100 caracteres)
+                        $post_sql = "SELECT SUBSTRING(conteudo, 1, 100) as preview FROM posts WHERE id_post = '$id_post'";
+                        $post_result = $conn->query($post_sql);
+                        $post_preview = $post_result->fetch_assoc()['preview'];
+                        
+                        // Criar notificação
+                        $notif_sql = "INSERT INTO notificacoes (id_user_destino, id_user_origem, tipo, id_referencia, conteudo) 
+                                      VALUES ('$post_owner', '$id_user', 'repost', '$id_post', '$post_preview')";
+                        $conn->query($notif_sql);
+                    }
+                }
+                
                 echo json_encode(['success' => true, 'message' => 'Post repostado com sucesso!']);
             } else {
                 echo json_encode(['success' => false, 'message' => 'Erro ao repostar']);
