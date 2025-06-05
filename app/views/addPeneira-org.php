@@ -1,5 +1,12 @@
 <?php
 @session_start();
+
+// Verificar se é uma organização logada usando o sistema de login atual
+if (!isset($_SESSION['id']) || !isset($_SESSION['tipoLogin']) || $_SESSION['tipoLogin'] !== 'organizacao') {
+    header('Location: login.php');
+    exit();
+}
+
 include("topo.php");
 ?>
 <link rel="stylesheet" href="../../public/css/addPeneira-org.css">
@@ -12,7 +19,7 @@ include("topo.php");
     
     <div class="container-site">
         <!-- Botão de voltar -->
-        <a href="javascript:history.back()" class="back-button">
+        <a href="organizacao.php?id=<?php echo $_SESSION['id']; ?>" class="back-button">
             <i class="fas fa-arrow-left"></i>
         </a>
         
@@ -528,3 +535,4 @@ include("topo.php");
         }
     </style>
 </body>
+</html>

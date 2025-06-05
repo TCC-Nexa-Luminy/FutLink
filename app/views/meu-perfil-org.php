@@ -1,8 +1,8 @@
 <?php
 @session_start();
 
-// Verificar se é uma organização logada
-if (!isset($_SESSION['org_id'])) {
+// Verificar se é uma organização logada usando o sistema de login atual
+if (!isset($_SESSION['id']) || !isset($_SESSION['tipoLogin']) || $_SESSION['tipoLogin'] !== 'organizacao') {
     header('Location: login.php');
     exit();
 }
@@ -12,7 +12,7 @@ include('topo.php');
 // Buscar dados da organização logada
 require("../../config/connect.php");
 
-$org_id = $_SESSION['org_id'];
+$org_id = $_SESSION['id']; // Usar o ID da sessão atual
 
 // Buscar organização do banco
 $query = "SELECT * FROM tbl_organizacao WHERE id_org = ?";
@@ -36,16 +36,28 @@ $anos_funcionamento = isset($org['data_fundacao']) ? date('Y') - date('Y', strto
 // Determinar banner
 $banner_path = !empty($org['logo_org']) ? '../../' . $org['logo_org'] : '/placeholder.svg?height=300&width=300';
 
-// Buscar peneiras da organização
-// $peneiras_query = "SELECT * FROM tbl_peneiras WHERE org_id = ? ORDER BY data ASC";
-// $peneiras_stmt = $conn->prepare($peneiras_query);
-// $peneiras_stmt->bind_param("i", $org_id);
-// $peneiras_stmt->execute();
-// $peneiras_result = $peneiras_stmt->get_result();
-// $peneiras = [];
-// while ($row = $peneiras_result->fetch_assoc()) {
-//     $peneiras[] = $row;
-// }
+// Buscar peneiras da organização (usando a tabela 'peneiras' existente)
+$peneiras = [];
+try {
+    // Verificar se a tabela peneiras existe
+    $check_table = $conn->query("SHOW TABLES LIKE 'peneiras'");
+    if ($check_table && $check_table->num_rows > 0) {
+        // Como não temos org_id na tabela peneiras, vamos buscar todas as peneiras por enquanto
+        // Em um sistema real, você precisaria adicionar um campo org_id na tabela peneiras
+        $peneiras_query = "SELECT * FROM peneiras ORDER BY data ASC LIMIT 10";
+        $peneiras_result = $conn->query($peneiras_query);
+        
+        if ($peneiras_result) {
+            while ($row = $peneiras_result->fetch_assoc()) {
+                $peneiras[] = $row;
+            }
+        }
+    }
+} catch (Exception $e) {
+    // Se houver erro, continuar sem peneiras
+    error_log("Erro ao buscar peneiras: " . $e->getMessage());
+    $peneiras = [];
+}
 
 // DASHBOARD DA ORGANIZAÇÃO - Mostrar controles de edição
 $is_own_org = true;
@@ -320,15 +332,22 @@ if (isset($_GET['success']) && $_GET['success'] == 1) {
                                 <div class="peneira-item">
                                     <div class="peneira-header">
                                         <h3><?php echo htmlspecialchars($peneira['titulo']); ?></h3>
-                                        <span class="peneira-badge <?php echo strtolower($peneira['status']); ?>">
-                                            <?php echo htmlspecialchars($peneira['status']); ?>
+                                        <span class="peneira-badge <?php echo strtolower($peneira['badge_type'] ?? 'normal'); ?>">
+                                            <?php 
+                                            $badge_map = [
+                                                'new' => 'Nova',
+                                                'featured' => 'Destaque', 
+                                                'normal' => 'Ativa'
+                                            ];
+                                            echo $badge_map[$peneira['badge_type']] ?? 'Ativa';
+                                            ?>
                                         </span>
                                         <!-- DASHBOARD: Botões de edição da peneira -->
                                         <div class="peneira-actions">
-                                            <button onclick="editarPeneira(<?php echo $peneira['id_peneira']; ?>)">
+                                            <button onclick="editarPeneira(<?php echo $peneira['id']; ?>)">
                                                 <i class="fas fa-edit"></i>
                                             </button>
-                                            <button onclick="excluirPeneira(<?php echo $peneira['id_peneira']; ?>)">
+                                            <button onclick="excluirPeneira(<?php echo $peneira['id']; ?>)">
                                                 <i class="fas fa-trash"></i>
                                             </button>
                                         </div>
@@ -352,19 +371,7 @@ if (isset($_GET['success']) && $_GET['success'] == 1) {
                                         </div>
                                         <div class="info-row">
                                             <i class="fas fa-money-bill-wave"></i>
-                                            <span>
-                                                <?php 
-                                                if (isset($peneira['tipo_taxa']) && $peneira['tipo_taxa'] === 'gratuita') {
-                                                    echo 'Gratuita';
-                                                } elseif (isset($peneira['valor_inscricao']) && $peneira['valor_inscricao'] > 0) {
-                                                    echo 'R$ ' . number_format($peneira['valor_inscricao'], 2, ',', '.');
-                                                } elseif (!empty($peneira['inscricao'])) {
-                                                    echo htmlspecialchars($peneira['inscricao']);
-                                                } else {
-                                                    echo 'Consultar';
-                                                }
-                                                ?>
-                                            </span>
+                                            <span><?php echo htmlspecialchars($peneira['inscricao'] ?? 'Consultar'); ?></span>
                                         </div>
                                         <!-- DASHBOARD: Estatísticas da peneira -->
                                         <div class="info-row">
@@ -376,7 +383,7 @@ if (isset($_GET['success']) && $_GET['success'] == 1) {
                                             <span>23 interessados</span>
                                         </div>
                                     </div>
-                                    <button class="btn-peneira" onclick="gerenciarPeneira(<?php echo $peneira['id_peneira']; ?>)">
+                                    <button class="btn-peneira" onclick="gerenciarPeneira(<?php echo $peneira['id']; ?>)">
                                         <i class="fas fa-cog"></i> Gerenciar
                                     </button>
                                 </div>
