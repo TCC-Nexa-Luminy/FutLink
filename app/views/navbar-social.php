@@ -28,9 +28,10 @@
                 </a>
             </li>
             <li>
-                <a href="notificacoes.php" class="item-menu">
+                <a href="notificacoes.php" class="item-menu nav-link">
                     <i class="fas fa-bell"></i>
                     <span class="texto-nav">Notificações</span>
+                    <span class="notificacoes-contador" id="notificacoes-contador" style="display: none;">0</span>
                 </a>
             </li>
             <li>
@@ -119,6 +120,39 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // verifica o tamanho da tela ao carregar
   verificarTamanhoTela();
+
+  // 🆕 VERIFICAR NOTIFICAÇÕES NÃO LIDAS
+  function verificarNotificacoes() {
+    fetch('../controllers/notificacoes.act.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: 'action=contar_nao_lidas'
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            const contador = document.getElementById('notificacoes-contador');
+            if (contador) {
+                if (data.total > 0) {
+                    contador.textContent = data.total;
+                    contador.style.display = 'inline-flex';
+                } else {
+                    contador.style.display = 'none';
+                }
+            }
+        }
+    })
+    .catch(error => {
+        console.log('Erro ao verificar notificações:', error);
+    });
+  }
+
+  // Verificar notificações ao carregar a página
+  verificarNotificacoes();
+  
+  // Verificar notificações a cada 30 segundos
+  setInterval(verificarNotificacoes, 30000);
 });
 </script>
-

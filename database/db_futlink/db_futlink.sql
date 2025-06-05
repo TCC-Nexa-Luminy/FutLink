@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 02/06/2025 às 22:02
+-- Tempo de geração: 05/06/2025 às 22:30
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -37,15 +37,6 @@ CREATE TABLE `comentarios` (
   `criado_em` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Despejando dados para a tabela `comentarios`
---
-
-INSERT INTO `comentarios` (`id_comentario`, `id_post`, `id_user`, `conteudo`, `criado_em`) VALUES
-(1, 2, 12, 'NOSsA THIAGHO SEU CHEOROSIIIIINHOOOOW', '2025-06-02 17:39:35'),
-(2, 2, 12, 'sd', '2025-06-02 17:40:24'),
-(3, 2, 12, 'CHEROSOOOOOOOOOO', '2025-06-02 17:40:28');
-
 -- --------------------------------------------------------
 
 --
@@ -59,12 +50,22 @@ CREATE TABLE `curtidas` (
   `criado_em` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+-- --------------------------------------------------------
+
 --
--- Despejando dados para a tabela `curtidas`
+-- Estrutura para tabela `notificacoes`
 --
 
-INSERT INTO `curtidas` (`id_curtida`, `id_post`, `id_user`, `criado_em`) VALUES
-(2, 2, 12, '2025-06-02 17:40:22');
+CREATE TABLE `notificacoes` (
+  `id` int(11) NOT NULL,
+  `id_user_destino` int(11) NOT NULL,
+  `id_user_origem` int(11) NOT NULL,
+  `tipo` enum('curtida','comentario','repost') NOT NULL,
+  `id_referencia` int(11) NOT NULL,
+  `conteudo` text DEFAULT NULL,
+  `lida` tinyint(1) DEFAULT 0,
+  `criado_em` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -115,14 +116,6 @@ CREATE TABLE `posts` (
   `criado_em` datetime DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Despejando dados para a tabela `posts`
---
-
-INSERT INTO `posts` (`id_post`, `id_user`, `conteudo`, `imagem`, `criado_em`) VALUES
-(2, 6, 'EAE SEUS ARROMBADO', '', '2025-05-23 14:24:26'),
-(3, 12, 'alo piaozaada\r\n!', '', '2025-06-02 14:40:36');
-
 -- --------------------------------------------------------
 
 --
@@ -135,13 +128,6 @@ CREATE TABLE `reposts` (
   `id_user` int(11) NOT NULL,
   `criado_em` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Despejando dados para a tabela `reposts`
---
-
-INSERT INTO `reposts` (`id_repost`, `id_post_original`, `id_user`, `criado_em`) VALUES
-(1, 2, 12, '2025-06-02 17:39:37');
 
 -- --------------------------------------------------------
 
@@ -354,6 +340,14 @@ ALTER TABLE `curtidas`
   ADD KEY `id_user` (`id_user`);
 
 --
+-- Índices de tabela `notificacoes`
+--
+ALTER TABLE `notificacoes`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `idx_user_destino` (`id_user_destino`),
+  ADD KEY `idx_lida` (`lida`);
+
+--
 -- Índices de tabela `peneiras`
 --
 ALTER TABLE `peneiras`
@@ -442,13 +436,19 @@ ALTER TABLE `tbl_usuarios`
 -- AUTO_INCREMENT de tabela `comentarios`
 --
 ALTER TABLE `comentarios`
-  MODIFY `id_comentario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_comentario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT de tabela `curtidas`
 --
 ALTER TABLE `curtidas`
-  MODIFY `id_curtida` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id_curtida` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+
+--
+-- AUTO_INCREMENT de tabela `notificacoes`
+--
+ALTER TABLE `notificacoes`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT de tabela `peneiras`
