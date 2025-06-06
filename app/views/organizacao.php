@@ -36,7 +36,7 @@ try {
     if ($check_table && $check_table->num_rows > 0) {
         // Como não temos org_id na tabela peneiras atual, vamos buscar todas as peneiras ativas
         // Em um sistema real, você deveria adicionar um campo org_id na tabela peneiras
-        $peneiras_query = "SELECT * FROM peneiras WHERE status != 'Inativa' ORDER BY data ASC LIMIT 10";
+        $peneiras_query = "SELECT * FROM peneiras WHERE `id_org` = '$org_id' ORDER BY data ASC LIMIT 10";
         $peneiras_result = $conn->query($peneiras_query);
         
         if ($peneiras_result) {
