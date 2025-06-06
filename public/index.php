@@ -1,7 +1,13 @@
-<?php include("../app/views/topo.php") ?>
+<?php
+@session_start();
+include("../app/views/topo.php");
+?>
 <link rel="stylesheet" href="./css/index.css">
 
 <body>
+    <?php
+    include_once("../app/views/message.php");
+    ?>
     <nav class="navbar">
         <div class="logo">
             <a href="home.php">
@@ -162,7 +168,8 @@
     </div>
 
     <?php include("../app/views/footer.php"); ?>
-</html>
-<script src="../public/js/index.js"></script>
+
+    </html>
+    <script src="../public/js/index.js"></script>
 
 </body>
