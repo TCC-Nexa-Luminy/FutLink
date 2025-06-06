@@ -2,14 +2,13 @@
 <title>Perfil do Jogador - FutLink</title>
 <link rel="stylesheet" href="../../public/css/perfilJogador.css">
 
-
 <?php include 'navbar-social.php'?>
 
 <section class="banner">
   <div class="banner-overlay"></div>
   <div class="banner-container">
     <div class="banner-img">
-      <img src="../../public/images/profilePhotos/default" alt="Foto do Jogador" id="photo_user" />
+      <img src="../../public/images/profilePhotos/defaultPhoto.png" alt="Foto do Jogador" id="photo_user" />
       <div class="status-badge" id="status_user">Disponível</div>
     </div>
     <div class="banner-info">
@@ -20,22 +19,20 @@
           <a href="#" title="YouTube"><i class="fab fa-youtube"></i></a>
           <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
         </div>
-
       </div>
-      <p class="bio">Atacante com foco em finalização e velocidade. Buscando oportunidades para crescer profissionalmente.</p>
+      <p class="bio" id="bio_user">Carregando informações...</p>
       <div class="contato-info">
         <div class="contato-item">
           <i class="fas fa-envelope"></i>
-          <span id="email_user">robsonbambu@gmail.com</span>
+          <span id="email_user">carregando@email.com</span>
         </div>
         <div class="contato-item">
           <i class="fas fa-phone"></i>
-          <span id="tel_user">(11) 99999-9999</span>
+          <span id="tel_user">(00) 00000-0000</span>
         </div>
         <div class="contato-item">
           <i class="fas fa-map-marker-alt"></i>
           <span>São Paulo, SP</span>
-
         </div>
       </div>
       <div class="acoes">
@@ -47,200 +44,13 @@
 </section>
 
 <div class="container">
-  <section class="card galeria-expandida destaque-midia">
-    <h2><i class="fas fa-photo-film"></i> Portfólio de Mídia</h2>
-    <div class="galeria-tabs">
-      <button class="tab-btn ativo" data-tab="fotos">Fotos</button>
-      <button class="tab-btn" data-tab="videos">Vídeos</button>
-    </div>
-
-    <div class="tab-content ativo" id="fotos">
-      <div class="galeria-grid-expandida">
-        <div class="galeria-item destaque">
-          <img src="campeao.png" alt="Lance decisivo">
-          <div class="galeria-overlay">
-            <span>Lance decisivo - Final do Campeonato</span>
-          </div>
-        </div>
-        <div class="galeria-item medio">
-          <img src="https://via.placeholder.com/400x300" alt="Drible">
-          <div class="galeria-overlay">
-            <span>Drible em partida oficial</span>
-          </div>
-        </div>
-        <div class="galeria-item medio">
-          <img src="https://via.placeholder.com/400x300" alt="Comemoração">
-          <div class="galeria-overlay">
-            <span>Comemoração após gol</span>
-          </div>
-        </div>
-        <div class="galeria-item">
-          <img src="https://via.placeholder.com/300x200" alt="Treino">
-          <div class="galeria-overlay">
-            <span>Treino físico</span>
-          </div>
-        </div>
-        <div class="galeria-item">
-          <img src="https://via.placeholder.com/300x200" alt="Aquecimento">
-          <div class="galeria-overlay">
-            <span>Aquecimento pré-jogo</span>
-          </div>
-        </div>
-        <div class="galeria-item">
-          <img src="https://via.placeholder.com/300x200" alt="Passe">
-          <div class="galeria-overlay">
-            <span>Passe decisivo</span>
-          </div>
-        </div>
-        <div class="galeria-item">
-          <img src="https://via.placeholder.com/300x200" alt="Cabeceio">
-          <div class="galeria-overlay">
-            <span>Cabeceio</span>
-          </div>
-        </div>
-        <div class="galeria-item">
-          <img src="https://via.placeholder.com/300x200" alt="Finalização">
-          <div class="galeria-overlay">
-            <span>Finalização</span>
-          </div>
-        </div>
-        <div class="galeria-item">
-          <img src="https://via.placeholder.com/300x200" alt="Marcação">
-          <div class="galeria-overlay">
-            <span>Marcação</span>
-          </div>
-        </div>
-        <div class="galeria-item">
-          <img src="https://via.placeholder.com/300x200" alt="Jogada individual">
-          <div class="galeria-overlay">
-            <span>Jogada individual</span>
-          </div>
-        </div>
-        <div class="galeria-item">
-          <img src="https://via.placeholder.com/300x200" alt="Cobrança de falta">
-          <div class="galeria-overlay">
-            <span>Cobrança de falta</span>
-          </div>
-        </div>
-        <div class="galeria-item">
-          <img src="https://via.placeholder.com/300x200" alt="Disputa de bola">
-          <div class="galeria-overlay">
-            <span>Disputa de bola</span>
-          </div>
-        </div>
-      </div>
-      <button class="btn-mais">Ver mais fotos</button>
-    </div>
-
-    <div class="tab-content" id="videos">
-      <div class="videos-lista-expandida">
-        <div class="video-item">
-          <div class="video-container">
-            <video controls poster="https://via.placeholder.com/800x450">
-              <source src="#" type="video/mp4">
-              Seu navegador não suporta a tag de vídeo.
-            </video>
-            <div class="video-overlay">
-              <i class="fas fa-play-circle"></i>
-            </div>
-          </div>
-          <div class="video-info">
-            <h3>Melhores momentos - Campeonato Regional 2023</h3>
-            <span>Duração: 2:45 • 1.2K visualizações</span>
-          </div>
-        </div>
-
-        <div class="video-item">
-          <div class="video-container">
-            <video controls poster="https://via.placeholder.com/800x450">
-              <source src="#" type="video/mp4">
-              Seu navegador não suporta a tag de vídeo.
-            </video>
-            <div class="video-overlay">
-              <i class="fas fa-play-circle"></i>
-            </div>
-          </div>
-          <div class="video-info">
-            <h3>Gol decisivo na final do campeonato</h3>
-            <span>Duração: 0:48 • 3.5K visualizações</span>
-          </div>
-        </div>
-
-        <div class="video-item">
-          <div class="video-container">
-            <video controls poster="https://via.placeholder.com/800x450">
-              <source src="#" type="video/mp4">
-              Seu navegador não suporta a tag de vídeo.
-            </video>
-            <div class="video-overlay">
-              <i class="fas fa-play-circle"></i>
-            </div>
-          </div>
-          <div class="video-info">
-            <h3>Treino de finalização - Preparação para o campeonato</h3>
-            <span>Duração: 1:32 • 856 visualizações</span>
-          </div>
-        </div>
-
-        <div class="video-item">
-          <div class="video-container">
-            <video controls poster="https://via.placeholder.com/800x450">
-              <source src="#" type="video/mp4">
-              Seu navegador não suporta a tag de vídeo.
-            </video>
-            <div class="video-overlay">
-              <i class="fas fa-play-circle"></i>
-            </div>
-          </div>
-          <div class="video-info">
-            <h3>Entrevista pós-jogo - Semifinal do Campeonato</h3>
-            <span>Duração: 3:15 • 742 visualizações</span>
-          </div>
-        </div>
-
-        <div class="video-item">
-          <div class="video-container">
-            <video controls poster="https://via.placeholder.com/800x450">
-              <source src="#" type="video/mp4">
-              Seu navegador não suporta a tag de vídeo.
-            </video>
-            <div class="video-overlay">
-              <i class="fas fa-play-circle"></i>
-            </div>
-          </div>
-          <div class="video-info">
-            <h3>Compilação de dribles e finalizações - Temporada 2023</h3>
-            <span>Duração: 4:27 • 2.1K visualizações</span>
-          </div>
-        </div>
-
-        <div class="video-item">
-          <div class="video-container">
-            <video controls poster="https://via.placeholder.com/800x450">
-              <source src="#" type="video/mp4">
-              Seu navegador não suporta a tag de vídeo.
-            </video>
-            <div class="video-overlay">
-              <i class="fas fa-play-circle"></i>
-            </div>
-          </div>
-          <div class="video-info">
-            <h3>Treinamento específico - Aprimorando a finalização</h3>
-            <span>Duração: 2:18 • 635 visualizações</span>
-          </div>
-        </div>
-      </div>
-      <button class="btn-mais">Ver mais vídeos</button>
-    </div>
-  </section>
-
   <div class="grid-flex">
     <div class="coluna-flex">
       <section class="card sobre">
         <h2><i class="fas fa-user"></i> Sobre Mim</h2>
         <div class="texto-sobre">
           <p id="descricao_user">
-            Sou um jogador dedicado e apaixonado por futebol, sempre em busca de novos desafios e oportunidades para crescer e melhorar. Tenho uma forte ética de trabalho, e minha mentalidade de equipe sempre se destaca dentro e fora de campo.
+            Carregando descrição do jogador...
           </p>
         </div>
       </section>
@@ -252,49 +62,49 @@
             <i class="fas fa-user-tag"></i>
             <div class="info-content">
               <span class="info-label">Apelido</span>
-              <span class="info-valor" id="apelido_user">Juninho</span>
+              <span class="info-valor" id="apelido_user">-</span>
             </div>
           </div>
           <div class="info-item">
             <i class="fas fa-birthday-cake"></i>
             <div class="info-content">
               <span class="info-label">Idade</span>
-              <span class="info-valor" id="idade_user">17 anos</span>
+              <span class="info-valor" id="idade_user">- anos</span>
             </div>
           </div>
           <div class="info-item">
             <i class="fas fa-weight"></i>
             <div class="info-content">
               <span class="info-label">Peso</span>
-              <span class="info-valor" id="peso_user">68 kg</span>
+              <span class="info-valor" id="peso_user">- kg</span>
             </div>
           </div>
           <div class="info-item">
             <i class="fas fa-ruler-vertical"></i>
             <div class="info-content">
               <span class="info-label">Altura</span>
-              <span class="info-valor" id="altura_user">1.78 m</span>
+              <span class="info-valor" id="altura_user">- m</span>
             </div>
           </div>
           <div class="info-item">
             <i class="fas fa-fire"></i>
             <div class="info-content">
               <span class="info-label">Estilo</span>
-              <span class="info-valor" id="estilo_user">Raçudo 1</span>
+              <span class="info-valor" id="estilo_user">-</span>
             </div>
           </div>
           <div class="info-item">
             <i class="fas fa-shoe-prints"></i>
             <div class="info-content">
               <span class="info-label">Pé dominante</span>
-              <span class="info-valor" id="pe_user">Direito1</span>
+              <span class="info-valor" id="pe_user">-</span>
             </div>
           </div>
           <div class="info-item">
             <i class="fas fa-futbol"></i>
             <div class="info-content">
               <span class="info-label">Posição</span>
-              <span class="info-valor" id="posicao_user">Atacante</span>
+              <span class="info-valor" id="posicao_user">-</span>
             </div>
           </div>
         </div>
@@ -302,75 +112,23 @@
 
       <section class="card caracteristicas">
         <h2><i class="fas fa-list-check"></i> Características de Jogo</h2>
-        <div class="tags-container">
-          <span class="tag">Velocidade</span>
-          <span class="tag">Finalização</span>
-          <span class="tag">Drible</span>
-          <span class="tag">Cabeceio</span>
-          <span class="tag">Passe curto</span>
-          <span class="tag">Resistência</span>
-          <span class="tag">Posicionamento</span>
-          <span class="tag">Visão de jogo</span>
-          <span class="tag">Marcação</span>
-          <span class="tag">Cruzamento</span>
+        <div class="tags-container" id="caracteristicas-container">
+          <span class="tag">Carregando...</span>
         </div>
       </section>
     </div>
 
     <div class="coluna-flex">
-      <section class="card disponibilidade">
-        <h2><i class="fas fa-calendar-check"></i> Disponibilidade para Testes</h2>
-        <div class="disponibilidade-info">
-          <div class="disponibilidade-item">
-            <i class="fas fa-check-circle"></i>
-            <span>Disponível para testes em São Paulo e região</span>
-          </div>
-          <div class="disponibilidade-item">
-            <i class="fas fa-check-circle"></i>
-            <span>Disponível para viagens nacionais</span>
-          </div>
-          <div class="disponibilidade-item">
-            <i class="fas fa-check-circle"></i>
-            <span>Preferência por testes aos finais de semana</span>
-          </div>
-          <div class="disponibilidade-item">
-            <i class="fas fa-info-circle"></i>
-            <span>Atualmente sem vínculo contratual</span>
-          </div>
-        </div>
-      </section>
-
       <section class="card conquistas">
         <h2><i class="fas fa-medal"></i> Conquistas e Títulos</h2>
-        <div class="conquistas-lista">
+        <div class="conquistas-lista" id="conquistas-container">
           <div class="conquista-item">
             <div class="conquista-icone">
               <i class="fas fa-trophy"></i>
             </div>
             <div class="conquista-info">
-              <h3>Campeão Regional Sub-17</h3>
-              <span>2023 • Juventude FC</span>
-              <p>Artilheiro da competição com 8 gols em 10 jogos.</p>
-            </div>
-          </div>
-          <div class="conquista-item">
-            <div class="conquista-icone">
-              <i class="fas fa-medal"></i>
-            </div>
-            <div class="conquista-info">
-              <h3>Vice-Campeão Estadual Sub-15</h3>
-              <span>2021 • Escolinha Craques do Futuro</span>
-              <p>Eleito revelação da competição.</p>
-            </div>
-          </div>
-          <div class="conquista-item">
-            <div class="conquista-icone">
-              <i class="fas fa-award"></i>
-            </div>
-            <div class="conquista-info">
-              <h3>Melhor Jogador do Torneio Escolar</h3>
-              <span>2019 • Colégio São Francisco</span>
-              <p>5 gols e 3 assistências durante a competição.</p>
+              <h3>Carregando conquistas...</h3>
+              <span>Aguarde</span>
             </div>
           </div>
         </div>
@@ -378,29 +136,12 @@
 
       <section class="card historico">
         <h2><i class="fas fa-history"></i> Histórico de Clubes</h2>
-        <div class="timeline">
+        <div class="timeline" id="historico-container">
           <div class="timeline-item">
             <div class="timeline-dot"></div>
             <div class="timeline-content">
-              <h3>Juventude FC</h3>
-              <span class="timeline-periodo">2023 - Atual</span>
-              <p>Atacante titular no time sub-17, participando do campeonato estadual.</p>
-            </div>
-          </div>
-          <div class="timeline-item">
-            <div class="timeline-dot"></div>
-            <div class="timeline-content">
-              <h3>Escolinha Craques do Futuro</h3>
-              <span class="timeline-periodo">2020 - 2022</span>
-              <p>Formação nas categorias de base, com destaque no campeonato regional.</p>
-            </div>
-          </div>
-          <div class="timeline-item">
-            <div class="timeline-dot"></div>
-            <div class="timeline-content">
-              <h3>Início no Futebol</h3>
-              <span class="timeline-periodo">2018 - 2020</span>
-              <p>Primeiros passos no futebol amador e participação em torneios escolares.</p>
+              <h3>Carregando histórico...</h3>
+              <span class="timeline-periodo">Aguarde</span>
             </div>
           </div>
         </div>
@@ -415,7 +156,7 @@
         <div class="post-header">
           <img src="https://via.placeholder.com/50" alt="Foto de perfil">
           <div class="post-info">
-            <h3>Robson Bambu</h3>
+            <h3 id="post-name">Nome do Jogador</h3>
             <span class="post-data">Publicado há 1 hora</span>
           </div>
         </div>
@@ -429,81 +170,32 @@
           <button class="compartilhar"><i class="far fa-share-square"></i> Compartilhar</button>
         </div>
       </div>
-
-      <div class="post">
-        <div class="post-header">
-          <img src="https://via.placeholder.com/50" alt="Foto de perfil">
-          <div class="post-info">
-            <h3>Robson Bambu</h3>
-            <span class="post-data">Publicado há 2 horas</span>
-          </div>
-        </div>
-        <div class="post-conteudo">
-          <p>Treino de finalização de hoje. Foco total!</p>
-          <div class="video-container">
-            <video controls poster="https://via.placeholder.com/600x300">
-              <source src="#" type="video/mp4">
-              Seu navegador não suporta a tag de vídeo.
-            </video>
-          </div>
-        </div>
-        <div class="post-acoes">
-          <button class="curtir"><i class="far fa-heart"></i> 38 Curtidas</button>
-          <button class="comentar"><i class="far fa-comment"></i> 5 Comentários</button>
-          <button class="compartilhar"><i class="far fa-share-square"></i> Compartilhar</button>
-        </div>
-      </div>
-
-      <div class="post">
-        <div class="post-header">
-          <img src="https://via.placeholder.com/50" alt="Foto de perfil">
-          <div class="post-info">
-            <h3>Robson Bambu</h3>
-            <span class="post-data">Publicado há 3 horas</span>
-          </div>
-        </div>
-        <div class="post-conteudo">
-          <p>Momento de descontração após o jogo com a galera!</p>
-          <img src="https://via.placeholder.com/600x300" alt="Descontração">
-        </div>
-        <div class="post-acoes">
-          <button class="curtir"><i class="far fa-heart"></i> 56 Curtidas</button>
-          <button class="comentar"><i class="far fa-comment"></i> 12 Comentários</button>
-          <button class="compartilhar"><i class="far fa-share-square"></i> Compartilhar</button>
-        </div>
-      </div>
     </div>
     <button class="btn-mais">Carregar mais posts</button>
   </section>
 </div>
 
-
 <script src="../../public/js/perfilJogador.js"></script>
 
 <script>
   document.addEventListener("DOMContentLoaded", function() {
-    // codigo para as abas da galeria expandida
+    // Código para as abas da galeria expandida
     const tabBtns = document.querySelectorAll('.tab-btn');
     const tabContents = document.querySelectorAll('.tab-content');
 
     tabBtns.forEach(btn => {
       btn.addEventListener('click', () => {
-        // remove a classe ativo de todos os botões e conteúdos
         tabBtns.forEach(b => b.classList.remove('ativo'));
         tabContents.forEach(c => c.classList.remove('ativo'));
 
-        // adiciona a classe ativo ao botão clicado
         btn.classList.add('ativo');
-
-        // adiciona a classe ativo ao conteúdo correspondente
         const tabId = btn.getAttribute('data-tab');
         document.getElementById(tabId).classList.add('ativo');
       });
     });
 
-    // efeito de hover nas galerias
+    // Efeito de hover nas galerias
     const galeriaItems = document.querySelectorAll('.galeria-item');
-
     galeriaItems.forEach(item => {
       item.addEventListener('mouseenter', () => {
         const overlay = item.querySelector('.galeria-overlay');
@@ -519,8 +211,214 @@
         }
       });
     });
-  });
-</script>
-</body>
 
+    // Carregar dados do perfil
+    carregarPerfilJogador();
+  });
+
+  function carregarPerfilJogador() {
+    fetch('../controllers/getPlayerProfile.php')
+      .then(response => response.json())
+      .then(data => {
+        console.log('Dados recebidos:', data);
+        
+        // Atualizar informações básicas do usuário
+        if (data.user) {
+          document.getElementById('name_user').textContent = data.user.nome || 'Nome não informado';
+          document.getElementById('email_user').textContent = data.user.email || 'Email não informado';
+          document.getElementById('tel_user').textContent = data.user.telefone || 'Telefone não informado';
+          
+          if (data.user.foto_perfil && data.user.foto_perfil !== '../../public/images/profilePhotos/defaultPhoto') {
+            document.getElementById('photo_user').src = data.user.foto_perfil;
+          }
+        }
+
+        // Atualizar informações do jogador
+        if (data.player) {
+          document.getElementById('descricao_user').textContent = data.player.descricao || 'Descrição não informada';
+          document.getElementById('apelido_user').textContent = data.player.apelido || 'Não informado';
+          document.getElementById('peso_user').textContent = data.player.peso ? data.player.peso + ' kg' : 'Não informado';
+          document.getElementById('altura_user').textContent = data.player.altura ? data.player.altura + ' m' : 'Não informado';
+          document.getElementById('estilo_user').textContent = data.player.estiloJogo || 'Não informado';
+          document.getElementById('pe_user').textContent = data.player.pe_dominante || 'Não informado';
+          document.getElementById('posicao_user').textContent = data.player.posicao || 'Não informado';
+          document.getElementById('status_user').textContent = data.player.status || 'Disponível';
+          
+          // Atualizar bio no banner
+          document.getElementById('bio_user').textContent = data.player.descricao || 'Jogador em busca de oportunidades.';
+        }
+
+        // Atualizar idade
+        if (data.idade) {
+          document.getElementById('idade_user').textContent = data.idade + ' anos';
+        }
+
+        // Atualizar características
+        atualizarCaracteristicas(data.caracteristicas || []);
+        
+        // Atualizar conquistas
+        atualizarConquistas(data.conquistas || []);
+        
+        // Atualizar histórico de clubes
+        atualizarHistoricoClubes(data.historico_clubes || []);
+      })
+      .catch(error => {
+        console.error('Erro ao carregar perfil:', error);
+      });
+  }
+
+  function atualizarCaracteristicas(caracteristicas) {
+    const container = document.getElementById('caracteristicas-container');
+    
+    if (caracteristicas.length === 0) {
+      container.innerHTML = '<span class="tag">Nenhuma característica cadastrada</span>';
+      return;
+    }
+
+    container.innerHTML = '';
+    caracteristicas.forEach(carac => {
+      const tag = document.createElement('span');
+      tag.className = 'tag';
+      tag.textContent = `${carac.caracteristica} (${carac.nivel})`;
+      container.appendChild(tag);
+    });
+  }
+
+  function atualizarConquistas(conquistas) {
+    const container = document.getElementById('conquistas-container');
+    
+    if (conquistas.length === 0) {
+      container.innerHTML = `
+        <div class="conquista-item">
+          <div class="conquista-icone">
+            <i class="fas fa-info-circle"></i>
+          </div>
+          <div class="conquista-info">
+            <h3>Nenhuma conquista cadastrada</h3>
+            <span>Adicione suas conquistas no formulário de perfil</span>
+          </div>
+        </div>
+      `;
+      return;
+    }
+
+    container.innerHTML = '';
+    conquistas.forEach(conquista => {
+      const item = document.createElement('div');
+      item.className = 'conquista-item';
+      
+      const icone = getIconeConquista(conquista.posicao);
+      
+      item.innerHTML = `
+        <div class="conquista-icone">
+          <i class="${icone}"></i>
+        </div>
+        <div class="conquista-info">
+          <h3>${conquista.titulo}</h3>
+          <span>${conquista.ano}${conquista.clube ? ' • ' + conquista.clube : ''}</span>
+          ${conquista.descricao ? `<p>${conquista.descricao}</p>` : ''}
+        </div>
+      `;
+      
+      container.appendChild(item);
+    });
+  }
+
+  function atualizarHistoricoClubes(historico) {
+    const container = document.getElementById('historico-container');
+    
+    if (historico.length === 0) {
+      container.innerHTML = `
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <h3>Nenhum histórico cadastrado</h3>
+            <span class="timeline-periodo">Adicione seu histórico no formulário</span>
+          </div>
+        </div>
+      `;
+      return;
+    }
+
+    container.innerHTML = '';
+    historico.forEach(clube => {
+      const item = document.createElement('div');
+      item.className = 'timeline-item';
+      
+      const dataInicio = new Date(clube.data_inicio).getFullYear();
+      const dataFim = clube.data_fim ? new Date(clube.data_fim).getFullYear() : 'Atual';
+      const periodo = `${dataInicio} - ${dataFim}`;
+      
+      item.innerHTML = `
+        <div class="timeline-dot ${clube.ativo ? 'ativo' : ''}"></div>
+        <div class="timeline-content">
+          <h3>${clube.nome_clube}</h3>
+          <span class="timeline-periodo">${periodo}</span>
+          ${clube.posicao ? `<p><strong>Posição:</strong> ${clube.posicao}</p>` : ''}
+          ${clube.descricao ? `<p>${clube.descricao}</p>` : ''}
+        </div>
+      `;
+      
+      container.appendChild(item);
+    });
+  }
+
+  function getIconeConquista(posicao) {
+    switch(posicao) {
+      case 'campeao':
+        return 'fas fa-trophy';
+      case 'vice':
+        return 'fas fa-medal';
+      case 'terceiro':
+        return 'fas fa-award';
+      case 'destaque':
+        return 'fas fa-star';
+      default:
+        return 'fas fa-certificate';
+    }
+  }
+</script>
+
+<style>
+  .tag {
+    background: #e3f2fd;
+    color: #1976d2;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 14px;
+    margin: 5px;
+    display: inline-block;
+  }
+  
+  .timeline-dot.ativo {
+    background: #4CAF50;
+    box-shadow: 0 0 0 4px rgba(76, 175, 80, 0.3);
+  }
+  
+  .conquista-icone i {
+    font-size: 24px;
+  }
+  
+  .conquista-icone .fa-trophy {
+    color: #FFD700;
+  }
+  
+  .conquista-icone .fa-medal {
+    color: #C0C0C0;
+  }
+  
+  .conquista-icone .fa-award {
+    color: #CD7F32;
+  }
+  
+  .conquista-icone .fa-star {
+    color: #FF6B35;
+  }
+  
+  .conquista-icone .fa-certificate {
+    color: #4CAF50;
+  }
+</style>
+
+</body>
 </html>
