@@ -2,6 +2,7 @@
 session_start();
 require("../../config/connect.php");
 
+
 // Verificar se é uma organização logada usando o sistema de login atual
 if (!isset($_SESSION['id']) || !isset($_SESSION['tipoLogin']) || $_SESSION['tipoLogin'] !== 'organizacao') {
     $_SESSION['msg'] = 'Você precisa estar logado como organização para criar peneiras.';
@@ -174,6 +175,7 @@ try {
     }
     
     // Preparar dados para inserção
+    $id = $_SESSION['id'];
     $titulo = mysqli_real_escape_string($conn, $_POST['titulo']);
     $clube = mysqli_real_escape_string($conn, $_POST['clube']);
     $descricao = mysqli_real_escape_string($conn, $_POST['descricao']);
@@ -205,10 +207,10 @@ try {
     
     // CORRIGIDO: Inserir na tabela 'peneiras' (não 'tbl_peneiras') com os campos corretos
     $query = "INSERT INTO peneiras 
-              (titulo, clube, foto_peneira, descricao, localizacao, data, horario, 
+              (id_org, titulo, clube, foto_peneira, descricao, localizacao, data, horario, 
                inscricao, status, faixa_etaria, caminho_foto, caminho_documento, 
                badge_type, status_inscricao, fotos, documentos) 
-              VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+              VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
     
     $stmt = $conn->prepare($query);
     
@@ -219,8 +221,8 @@ try {
     // Usar o primeiro documento como caminho_documento (compatibilidade)
     $primeiro_documento = !empty($documentos) ? $documentos[0] : null;
     
-    $stmt->bind_param("ssssssssssssssss", 
-        $titulo, $clube, $foto_peneira_path, $descricao, $localizacao, 
+    $stmt->bind_param("issssssssssssssss",
+        $id, $titulo, $clube, $foto_peneira_path, $descricao, $localizacao, 
         $data, $horario, $taxa_inscricao, $_POST['status'], $faixa_etaria,
         $foto_peneira_path, $primeiro_documento, $badge_type, $status_inscricao_db,
         $fotos_json, $documentos_json
