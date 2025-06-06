@@ -32,32 +32,6 @@ include("topo.php");
                             </div>
                         </div>
                     </div>
-
-                    <fieldset>
-                        <legend><i class="fa-solid fa-venus-mars"></i> Gênero </legend>
-                        <span>
-                            <input type="radio" name="genero" id="imasc" value="masculino" checked>
-                            <label for="imasc">Masculino</label>
-
-                        </span>
-                        <span>
-                            <input type="radio" name="genero" id="ifem" value="feminino">
-                            <label for="ifem">Feminino</label>
-
-                        </span>
-                        <span>
-                            <input type="radio" name="genero" id="ioutro" value="outro">
-                            <label for="ioutro">Outro</label>
-
-                        </span>
-                        <span>
-                            <input type="radio" name="genero" id="iprefiro" value="prefiro não dizer">
-                            <label for="iprefiro">Prefiro não dizer</label>
-                        </span>
-
-
-
-                    </fieldset>
                 </article>
 
                 <hr>
