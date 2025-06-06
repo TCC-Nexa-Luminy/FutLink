@@ -176,6 +176,80 @@ switch ($action) {
         
         echo json_encode(['success' => true, 'comentarios' => $comentarios]);
         break;
+
+    // 🆕 NOVA FUNÇÃO: EDITAR POST
+    case 'editar':
+        $conteudo = mysqli_real_escape_string($conn, $_POST['conteudo']);
+        
+        if (empty($conteudo)) {
+            echo json_encode(['success' => false, 'message' => 'Conteúdo não pode estar vazio']);
+            break;
+        }
+        
+        // Verificar se o post pertence ao usuário logado
+        $check_sql = "SELECT id_user FROM posts WHERE id_post = '$id_post'";
+        $check_result = $conn->query($check_sql);
+        
+        if ($check_result->num_rows > 0) {
+            $post_owner = $check_result->fetch_assoc()['id_user'];
+            
+            if ($post_owner == $id_user) {
+                $sql = "UPDATE posts SET conteudo = '$conteudo' WHERE id_post = '$id_post'";
+                
+                if ($conn->query($sql)) {
+                    echo json_encode(['success' => true, 'message' => 'Post editado com sucesso!']);
+                } else {
+                    echo json_encode(['success' => false, 'message' => 'Erro ao editar post']);
+                }
+            } else {
+                echo json_encode(['success' => false, 'message' => 'Você não pode editar este post']);
+            }
+        } else {
+            echo json_encode(['success' => false, 'message' => 'Post não encontrado']);
+        }
+        break;
+
+    // 🆕 NOVA FUNÇÃO: EXCLUIR POST
+    case 'excluir_post':
+        // Verificar se o post pertence ao usuário logado
+        $check_sql = "SELECT id_user FROM posts WHERE id_post = '$id_post'";
+        $check_result = $conn->query($check_sql);
+        
+        if ($check_result->num_rows > 0) {
+            $post_owner = $check_result->fetch_assoc()['id_user'];
+            
+            if ($post_owner == $id_user) {
+                // Excluir comentários do post primeiro
+                $delete_comments = "DELETE FROM comentarios WHERE id_post = '$id_post'";
+                $conn->query($delete_comments);
+                
+                // Excluir curtidas do post
+                $delete_likes = "DELETE FROM curtidas WHERE id_post = '$id_post'";
+                $conn->query($delete_likes);
+                
+                // Excluir reposts do post
+                $delete_reposts = "DELETE FROM reposts WHERE id_post_original = '$id_post'";
+                $conn->query($delete_reposts);
+                
+                // Excluir notificações do post
+                $delete_notifications = "DELETE FROM notificacoes WHERE id_referencia = '$id_post'";
+                $conn->query($delete_notifications);
+                
+                // Excluir o post
+                $sql = "DELETE FROM posts WHERE id_post = '$id_post'";
+                
+                if ($conn->query($sql)) {
+                    echo json_encode(['success' => true, 'message' => 'Post excluído com sucesso!']);
+                } else {
+                    echo json_encode(['success' => false, 'message' => 'Erro ao excluir post']);
+                }
+            } else {
+                echo json_encode(['success' => false, 'message' => 'Você não pode excluir este post']);
+            }
+        } else {
+            echo json_encode(['success' => false, 'message' => 'Post não encontrado']);
+        }
+        break;
         
     default:
         echo json_encode(['success' => false, 'message' => 'Ação inválida']);

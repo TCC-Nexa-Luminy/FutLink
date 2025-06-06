@@ -595,3 +595,9 @@ form button[type="submit"] i {
         font-size: 13px;
     }
 }
+
+.card-header { display: flex; justify-content: space-between; align-items: center; }
+.post-actions-owner { display: flex; gap: 8px; }
+.btn-editar-post, .btn-excluir-post { background: #f8f9fa; border: none; width: 32px; height: 32px; border-radius: 50%; cursor: pointer; color: #6c757d; }
+.btn-editar-post:hover { background: #007bff; color: white; }
+.btn-excluir-post:hover { background: #dc3545; color: white; }
