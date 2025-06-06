@@ -79,7 +79,6 @@ function searchLogin($email, $table, $conn){
 }
 
 // Salva a mensagem de erro ou sucesso na sessão
-$_SESSION['tipo_login'] = $loginStatus['type'];
 $_SESSION['msg'] = $msg;
 
 // Redireciona para a página de login ou dashboard
