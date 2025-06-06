@@ -3,7 +3,8 @@
 
 require_once("../../config/connect.php");
 
-$id = $_SESSION['id'];
+// Verificar se foi passado um ID específico na URL
+$id = isset($_GET['id']) ? intval($_GET['id']) : $_SESSION['id'];
 
 // Query para obter os dados do usuário
 $query = "SELECT data_nasc, email, foto_perfil, genero, nome, `status`, `telefone` FROM `tbl_usuarios` WHERE id_user = ?";
