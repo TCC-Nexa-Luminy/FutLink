@@ -10,14 +10,13 @@
     if (verificarEmail($email, $conn)) {
         $nome = filter_input(INPUT_POST, "user_nome", FILTER_SANITIZE_SPECIAL_CHARS);
         $data_nasc = filter_input(INPUT_POST, "user_data_nasc", FILTER_SANITIZE_EMAIL);
-        $genero = filter_input(INPUT_POST, "genero", FILTER_SANITIZE_SPECIAL_CHARS);
         $telefone = filter_input(INPUT_POST, "user_tel", FILTER_SANITIZE_SPECIAL_CHARS);
         $senha = $_POST["user_pass"];
         $senha_hash = password_hash($senha, PASSWORD_BCRYPT);
 
         $fotoDestino = destinoFoto("user_photo");
 
-        list($msg, $pagDestino) = inserirDados($conn, $nome, $email, $senha_hash, $data_nasc, $genero, $fotoDestino, $telefone);
+        list($msg, $pagDestino) = inserirDados($conn, $nome, $email, $senha_hash, $data_nasc, $fotoDestino, $telefone);
     } else{
         $msg = "O email informado já esta em uso!";
         $pagDestino = "../views/signUp.php";
@@ -52,11 +51,11 @@
         }
     }
 
-    function inserirDados($connect, $nome, $email, $senha, $data_nasc, $genero, $foto, $telefone)
+    function inserirDados($connect, $nome, $email, $senha, $data_nasc, $foto, $telefone)
     {
         $query = "INSERT INTO `tbl_usuarios`
-        (`nome`, `email`, `senha`, `data_nasc`, `genero`, `foto_perfil`, `telefone`) VALUES
-        ('$nome', '$email', '$senha', '$data_nasc', '$genero', '$foto', '$telefone');";
+        (`nome`, `email`, `senha`, `data_nasc`, `foto_perfil`, `telefone`) VALUES
+        ('$nome', '$email', '$senha', '$data_nasc', '$foto', '$telefone');";
 
         if (mysqli_query($connect, $query)) {
             return ["Conta criada com sucesso", "../views/login.php"];
