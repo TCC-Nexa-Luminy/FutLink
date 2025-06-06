@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 06/06/2025 às 19:42
+-- Tempo de geração: 06/06/2025 às 22:34
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -75,6 +75,7 @@ CREATE TABLE `notificacoes` (
 
 CREATE TABLE `peneiras` (
   `id` int(11) NOT NULL,
+  `id_org` int(11) DEFAULT NULL,
   `titulo` varchar(255) NOT NULL,
   `clube` varchar(255) NOT NULL,
   `foto_peneira` text NOT NULL,
@@ -99,8 +100,10 @@ CREATE TABLE `peneiras` (
 -- Despejando dados para a tabela `peneiras`
 --
 
-INSERT INTO `peneiras` (`id`, `titulo`, `clube`, `foto_peneira`, `descricao`, `localizacao`, `data`, `horario`, `inscricao`, `status`, `faixa_etaria`, `caminho_foto`, `caminho_documento`, `badge_type`, `status_inscricao`, `fotos`, `documentos`, `data_criacao`, `data_atualizacao`) VALUES
-(4, 'Peneira Ofc Sub 14', 'Santos Futebol Clube', 'uploads/peneiras/peneira_683e02c12c3ef.jpg', 'O Santos Futebol Clube, também conhecido como Santos, é um clube brasileiro de futebol com sede na cidade de Santos, no estado de São Paulo. Foi fundado em 14 de abril de 1912 e é um dos clubes mais históricos e vitoriosos do Brasil, com um legado que inclui a revelação de grandes talentos, como Pelé. ', 'Rua Pelé Silveiro', '2025-09-19', '15:30:00', 'Gratuita', 'Ativa', '14', NULL, NULL, 'normal', '', '[\"uploads\\/peneiras\\/extra_683e02c12c57b.png\",\"uploads\\/peneiras\\/extra_683e02c12c6b0.png\",\"uploads\\/peneiras\\/extra_683e02c12c7d7.png\"]', '[\"uploads\\/documentos\\/doc_683e02c12c96a.png\"]', '2025-06-02 20:00:01', '2025-06-02 20:00:01');
+INSERT INTO `peneiras` (`id`, `id_org`, `titulo`, `clube`, `foto_peneira`, `descricao`, `localizacao`, `data`, `horario`, `inscricao`, `status`, `faixa_etaria`, `caminho_foto`, `caminho_documento`, `badge_type`, `status_inscricao`, `fotos`, `documentos`, `data_criacao`, `data_atualizacao`) VALUES
+(4, NULL, 'Peneira Ofc Sub 14', 'Santos Futebol Clube', 'uploads/peneiras/peneira_683e02c12c3ef.jpg', 'O Santos Futebol Clube, também conhecido como Santos, é um clube brasileiro de futebol com sede na cidade de Santos, no estado de São Paulo. Foi fundado em 14 de abril de 1912 e é um dos clubes mais históricos e vitoriosos do Brasil, com um legado que inclui a revelação de grandes talentos, como Pelé. ', 'Rua Pelé Silveiro', '2025-09-19', '15:30:00', 'Gratuita', 'Ativa', '14', NULL, NULL, 'normal', '', '[\"uploads\\/peneiras\\/extra_683e02c12c57b.png\",\"uploads\\/peneiras\\/extra_683e02c12c6b0.png\",\"uploads\\/peneiras\\/extra_683e02c12c7d7.png\"]', '[\"uploads\\/documentos\\/doc_683e02c12c96a.png\"]', '2025-06-02 23:00:01', '2025-06-02 23:00:01'),
+(5, 5, 'Bragantino Peneira (Sub-8 a Sub-13)', 'Bragantino Futebol Clube', 'uploads/peneiras/peneira_6843405c58289.jpeg', 'O Red Bull Bragantino realiza seletivas periódicas para integrar novos talentos às suas categorias de base. Essas peneiras são gratuitas e abertas a jogadores nascidos entre 2011 e 2016 (Sub-8 a Sub-13).', 'Campo do Nóbrega – Rua Inhambu, 343, Vila Padre Manoel de Nóbrega, Campinas-SP', '2025-06-07', '14:30:00', 'Gratuita', 'Ativa', '8-13', 'uploads/peneiras/peneira_6843405c58289.jpeg', NULL, 'normal', 'status-open', '[\"uploads\\/peneiras\\/extra_6843405c584e6.webp\",\"uploads\\/peneiras\\/extra_6843405c5869a.webp\",\"uploads\\/peneiras\\/extra_6843405c58875.webp\"]', '[]', '2025-06-06 22:24:12', '2025-06-06 22:37:45'),
+(6, 5, 'Bragantino Peneira (Sub-18)', 'RB Bragantino', 'uploads/peneiras/peneira_68434bdc46320.jpeg', 'Red Bull Bragantino é um clube de futebol de Bragança Paulista, que une tradição e inovação. Desde 2019 sob gestão da Red Bull, o time se destaca pelo foco em jovens talentos e pelo futebol moderno e competitivo.', 'Campo do Nóbrega – Rua Inhambu, 343, Vila Padre Manoel de Nóbrega, Campinas-SP', '2025-06-15', '13:00:00', 'Gratuita', 'Ativa', '18', 'uploads/peneiras/peneira_68434bdc46320.jpeg', NULL, 'normal', 'status-open', '[\"uploads\\/peneiras\\/extra_68434bdc4656e.webp\",\"uploads\\/peneiras\\/extra_68434bdc4673b.webp\",\"uploads\\/peneiras\\/extra_68434bdc468bc.webp\"]', '[]', '2025-06-06 23:13:16', '2025-06-06 23:13:16');
 
 -- --------------------------------------------------------
 
@@ -299,7 +302,8 @@ CREATE TABLE `tbl_organizacao` (
 --
 
 INSERT INTO `tbl_organizacao` (`id_org`, `nome_org`, `email`, `telefone_org`, `password_org`, `logo_org`, `bio`, `descricao`, `data_fundacao`, `tipo`, `cep`, `redes_sociais`, `created_at`) VALUES
-(4, 'São Paulo Futebol Clube', 'contato@saopaulofc.net', '(11) 40032-000', '$2y$10$a7vCce4eu1DWbn6mtG.PwOKoCBQLQ5iQI3H0acLi38Uwn9CaVCRG2', 'public/uploads/logos/org_logo_6840ae72f0d00.jpg', 'Clube profissional de futebol com sede em São Paulo, reconhecido nacional e internacionalmente.', 'O São Paulo Futebol Clube é uma das principais equipes de futebol do Brasil, fundado em 25 de janeiro de 1930. Com sede no estádio do Morumbi, o clube conquistou diversos títulos nacionais e internacionais, incluindo a Copa Libertadores da América e o Mundial de Clubes da FIFA. Suas cores tradicionais são vermelho, preto e branco, e seu mascote é o \\\"São Paulinho\\\".', '1930-01-25', 'clube de futebol', '05653-070', NULL, '2025-06-04 17:37:07');
+(4, 'São Paulo Futebol Clube', 'contato@saopaulofc.net', '(11) 40032-000', '$2y$10$a7vCce4eu1DWbn6mtG.PwOKoCBQLQ5iQI3H0acLi38Uwn9CaVCRG2', 'public/uploads/logos/org_logo_6840ae72f0d00.jpg', 'Clube profissional de futebol com sede em São Paulo, reconhecido nacional e internacionalmente.', 'O São Paulo Futebol Clube é uma das principais equipes de futebol do Brasil, fundado em 25 de janeiro de 1930. Com sede no estádio do Morumbi, o clube conquistou diversos títulos nacionais e internacionais, incluindo a Copa Libertadores da América e o Mundial de Clubes da FIFA. Suas cores tradicionais são vermelho, preto e branco, e seu mascote é o \\\"São Paulinho\\\".', '1930-01-25', 'clube de futebol', '05653-070', NULL, '2025-06-04 17:37:07'),
+(5, 'RB Bragantino', 'bragantinorb@gmail.com', '(11) 22771-036', '$2y$10$aBITw3uCIeB89po9/6z.PujnF0eD0XHcWnfTUSQ8IkA.N.eEvh0Xa', 'public/uploads/logos/org_logo_68433e1ce64b9.jpeg', 'Red Bull Bragantino é um clube de futebol de Bragança Paulista, que une tradição e inovação. Desde 2019 sob gestão da Red Bull, o time se destaca pelo foco em jovens talentos e pelo futebol moderno e competitivo.', 'Red Bull Bragantino é um clube de futebol brasileiro com sede em Bragança Paulista, São Paulo, fundado originalmente em 1928. Em 2019, passou por uma reestruturação após parceria com a Red Bull, tornando-se parte do grupo global da marca, que investe em clubes ao redor do mundo.\\r\\n\\r\\nO projeto une a tradição do antigo Clube Atlético Bragantino com uma gestão moderna, voltada para dados, desempenho e formação de jovens atletas. Desde então, o clube vem se consolidando como uma força emergente no futebol brasileiro, com participações expressivas na Série A, na Copa do Brasil e em torneios internacionais como a Copa Sul-Americana.', '1928-01-08', 'clube de futebol', '12914-410', NULL, '2025-06-06 16:14:36');
 
 -- --------------------------------------------------------
 
@@ -428,7 +432,8 @@ ALTER TABLE `notificacoes`
 -- Índices de tabela `peneiras`
 --
 ALTER TABLE `peneiras`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_organizacao_cria` (`id_org`);
 
 --
 -- Índices de tabela `posts`
@@ -555,7 +560,7 @@ ALTER TABLE `notificacoes`
 -- AUTO_INCREMENT de tabela `peneiras`
 --
 ALTER TABLE `peneiras`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de tabela `posts`
@@ -609,7 +614,7 @@ ALTER TABLE `tbl_jogo`
 -- AUTO_INCREMENT de tabela `tbl_organizacao`
 --
 ALTER TABLE `tbl_organizacao`
-  MODIFY `id_org` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_org` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de tabela `tbl_profissional`
@@ -652,6 +657,12 @@ ALTER TABLE `comentarios`
 ALTER TABLE `curtidas`
   ADD CONSTRAINT `curtidas_ibfk_1` FOREIGN KEY (`id_post`) REFERENCES `posts` (`id_post`) ON DELETE CASCADE,
   ADD CONSTRAINT `curtidas_ibfk_2` FOREIGN KEY (`id_user`) REFERENCES `tbl_usuarios` (`id_user`) ON DELETE CASCADE;
+
+--
+-- Restrições para tabelas `peneiras`
+--
+ALTER TABLE `peneiras`
+  ADD CONSTRAINT `fk_organizacao_cria` FOREIGN KEY (`id_org`) REFERENCES `tbl_organizacao` (`id_org`);
 
 --
 -- Restrições para tabelas `posts`
