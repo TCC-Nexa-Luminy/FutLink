@@ -35,7 +35,7 @@ include("topo.php");
             include('../../config/connect.php');
             $id_user_logado = $_SESSION['id'] ?? 0;
 
-            $sql = "SELECT p.id_post, p.conteudo, p.imagem, p.criado_em, u.nome,
+            $sql = "SELECT p.id_post, p.conteudo, p.imagem, p.criado_em, p.id_user, u.nome, u.foto_perfil,
                            (SELECT COUNT(*) FROM curtidas WHERE id_post = p.id_post) as total_curtidas,
                            (SELECT COUNT(*) FROM curtidas WHERE id_post = p.id_post AND id_user = '$id_user_logado') as usuario_curtiu,
                            (SELECT COUNT(*) FROM comentarios WHERE id_post = p.id_post) as total_comentarios
@@ -46,22 +46,45 @@ include("topo.php");
 
             if ($result->num_rows > 0) {
                 while ($post = $result->fetch_assoc()) {
-                    $primeiraLetra = strtoupper(substr($post['nome'], 0, 1));
                     $curtido = $post['usuario_curtiu'] > 0;
+                    $isOwner = $post['id_user'] == $id_user_logado; // Verificar se é o dono do post
 
                     echo '<div class="card-post" data-post-id="' . $post['id_post'] . '">';
                     echo '<div class="card-header">';
                     echo '<div class="user-info">';
-                    echo '<div class="user-avatar">' . $primeiraLetra . '</div>';
+                    
+                    // Avatar com foto de perfil
+                    if (!empty($post['foto_perfil']) && file_exists('../../public/images/perfil/' . $post['foto_perfil'])) {
+                        echo '<div class="user-avatar">';
+                        echo '<img src="../../public/images/perfil/' . $post['foto_perfil'] . '" alt="' . htmlspecialchars($post['nome']) . '">';
+                        echo '</div>';
+                    } else {
+                        $primeiraLetra = strtoupper(substr($post['nome'], 0, 1));
+                        echo '<div class="user-avatar avatar-letra">' . $primeiraLetra . '</div>';
+                    }
+                    
                     echo '<div class="user-details">';
                     echo '<span class="user">@' . htmlspecialchars($post['nome']) . '</span>';
                     echo '<span class="time">' . date('d/m/Y H:i', strtotime($post['criado_em'])) . '</span>';
                     echo '</div>';
                     echo '</div>';
+                    
+                    // 🆕 BOTÕES DE EDITAR E EXCLUIR (só para o dono do post)
+                    if ($isOwner) {
+                        echo '<div class="post-actions-owner">';
+                        echo '<button class="btn-editar-post" data-post-id="' . $post['id_post'] . '" title="Editar post">';
+                        echo '<i class="fas fa-edit"></i>';
+                        echo '</button>';
+                        echo '<button class="btn-excluir-post" data-post-id="' . $post['id_post'] . '" title="Excluir post">';
+                        echo '<i class="fas fa-trash"></i>';
+                        echo '</button>';
+                        echo '</div>';
+                    }
+                    
                     echo '</div>';
 
                     echo '<div class="card-content">';
-                    echo '<p>' . htmlspecialchars($post['conteudo']) . '</p>';
+                    echo '<p class="post-conteudo" data-post-id="' . $post['id_post'] . '">' . htmlspecialchars($post['conteudo']) . '</p>';
                     echo '</div>';
 
                     if ($post['imagem']) {
@@ -116,6 +139,75 @@ include("topo.php");
                 const fileButton = document.querySelector('.file-input-button span');
                 fileButton.textContent = fileName.length > 20 ? fileName.substring(0, 20) + '...' : fileName;
             }
+        });
+
+        // 🆕 FUNÇÃO PARA EDITAR POST
+        document.querySelectorAll('.btn-editar-post').forEach(button => {
+            button.addEventListener('click', function() {
+                const postId = this.dataset.postId;
+                const conteudoElement = document.querySelector(`.post-conteudo[data-post-id="${postId}"]`);
+                const conteudoAtual = conteudoElement.textContent;
+                
+                const novoConteudo = prompt('Editar post:', conteudoAtual);
+                
+                if (novoConteudo !== null && novoConteudo.trim() !== '') {
+                    fetch('../controllers/post-actions.act.php', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/x-www-form-urlencoded',
+                        },
+                        body: `action=editar&id_post=${postId}&conteudo=${encodeURIComponent(novoConteudo)}`
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            conteudoElement.textContent = novoConteudo;
+                            alert('Post editado com sucesso!');
+                        } else {
+                            alert(data.message);
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Erro:', error);
+                        alert('Erro ao editar post');
+                    });
+                }
+            });
+        });
+
+        // 🆕 FUNÇÃO PARA EXCLUIR POST
+        document.querySelectorAll('.btn-excluir-post').forEach(button => {
+            button.addEventListener('click', function() {
+                const postId = this.dataset.postId;
+                
+                if (confirm('Tem certeza que deseja excluir este post? Esta ação não pode ser desfeita.')) {
+                    fetch('../controllers/post-actions.act.php', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/x-www-form-urlencoded',
+                        },
+                        body: `action=excluir_post&id_post=${postId}`
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            // Remover o post da tela com animação
+                            const postElement = document.querySelector(`.card-post[data-post-id="${postId}"]`);
+                            postElement.style.animation = 'fadeOut 0.3s ease';
+                            setTimeout(() => {
+                                postElement.remove();
+                            }, 300);
+                            alert('Post excluído com sucesso!');
+                        } else {
+                            alert(data.message);
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Erro:', error);
+                        alert('Erro ao excluir post');
+                    });
+                }
+            });
         });
 
         // Função para curtir/descurtir
