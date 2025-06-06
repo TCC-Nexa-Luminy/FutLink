@@ -2,7 +2,25 @@
 <title>Perfil do Jogador - FutLink</title>
 <link rel="stylesheet" href="../../public/css/perfilJogador.css">
 
-<?php include 'navbar-social.php'?>
+<?php 
+include 'navbar-social.php';
+
+// Verificar se há um parâmetro de ID na URL (para visualizar perfil de outro jogador)
+$perfil_id = isset($_GET['id']) ? intval($_GET['id']) : $_SESSION['id'];
+
+// Flag para verificar se o usuário está visualizando seu próprio perfil
+$proprio_perfil = ($perfil_id == $_SESSION['id']);
+
+// Verificar se o usuário atual é um jogador
+require_once("../../config/connect.php");
+$query = "SELECT COUNT(*) as is_player FROM tbl_jogador WHERE id_user = ?";
+$stmt = $conn->prepare($query);
+$stmt->bind_param("i", $_SESSION['id']);
+$stmt->execute();
+$result = $stmt->get_result();
+$row = $result->fetch_assoc();
+$is_current_user_player = ($row['is_player'] > 0);
+?>
 
 <section class="banner">
   <div class="banner-overlay"></div>
@@ -36,8 +54,16 @@
         </div>
       </div>
       <div class="acoes">
-        <button class="btn-principal"><i class="fas fa-paper-plane"></i> Enviar Mensagem</button>
-        <button class="btn-secundario"><i class="fas fa-user-plus"></i> Seguir</button>
+        <?php if ($proprio_perfil): ?>
+          <!-- Botão de Editar Perfil - só aparece se for o próprio perfil -->
+          <a href="editarPerfilJogador.php" class="btn-principal">
+            <i class="fas fa-edit"></i> Editar Perfil
+          </a>
+        <?php else: ?>
+          <!-- Botões para interagir com outros jogadores -->
+          <button class="btn-principal"><i class="fas fa-paper-plane"></i> Enviar Mensagem</button>
+          <button class="btn-secundario"><i class="fas fa-user-plus"></i> Seguir</button>
+        <?php endif; ?>
       </div>
     </div>
   </div>
@@ -217,7 +243,12 @@
   });
 
   function carregarPerfilJogador() {
-    fetch('../controllers/getPlayerProfile.php')
+    // Verificar se há um ID na URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const perfilId = urlParams.get('id') || '<?php echo $_SESSION['id']; ?>';
+    
+    // Passar o ID como parâmetro para a API
+    fetch('../controllers/getPlayerProfile.php?id=' + perfilId)
       .then(response => response.json())
       .then(data => {
         console.log('Dados recebidos:', data);
@@ -417,6 +448,47 @@
   
   .conquista-icone .fa-certificate {
     color: #4CAF50;
+  }
+  
+  /* Estilo para o botão de editar perfil */
+  .btn-principal {
+    display: inline-block;
+    background: linear-gradient(135deg, #00c853, #00a843);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .btn-principal:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    background: linear-gradient(135deg, #00b84d, #00973d);
+  }
+  
+  .btn-secundario {
+    display: inline-block;
+    background: linear-gradient(135deg, #2196f3, #1976d2);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .btn-secundario:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    background: linear-gradient(135deg, #1e88e5, #1565c0);
   }
 </style>
 

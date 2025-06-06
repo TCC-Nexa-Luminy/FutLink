@@ -27,7 +27,7 @@ include("../app/views/topo.php");
             <div class="dropdown-cadastrar" id="dropdownCadastrar">
                 <a href="#" id="buttoncadastrar">Cadastrar <i class="fa-solid fa-angle-down"></i></a>
                 <div class="dropdown-menu-cadastrar">
-                    <a href="../app/views/signUp.php">Cadastrar como Jogador</a>
+                    <a href="../app/views/signUp.php">Cadastrar-se</a>
                     <a href="../app/views/signUp-org.php">Cadastrar como Organização</a>
                 </div>
             </div>

@@ -11,7 +11,7 @@ if (!isset($_SESSION['id']) || !isset($_SESSION['tipoLogin'])) {
 }
 
 // Determinar o tipo de usuário e link do perfil baseado no sistema de login atual
-$perfil_link = "perfilJogador.php"; // padrão para jogador
+$perfil_link = "perfil.php"; // ALTERAÇÃO: Usar o novo redirecionador automático
 $perfil_texto = "Perfil";
 $tipo_usuario = $_SESSION['tipoLogin']; // 'usuario' ou 'organizacao'
 
@@ -20,8 +20,8 @@ if ($tipo_usuario === 'organizacao') {
    $perfil_link = "meu-perfil-org.php";
    $perfil_texto = "Meu Perfil";
 } elseif ($tipo_usuario === 'usuario') {
-   // Usuário é um jogador
-   $perfil_link = "perfilJogador.php";
+   // ALTERAÇÃO: Usuário comum - usar redirecionador que verifica se é jogador
+   $perfil_link = "perfil.php";
    $perfil_texto = "Perfil";
 }
 ?>
