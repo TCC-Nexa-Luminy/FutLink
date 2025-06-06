@@ -3,12 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
-
--- Tempo de geração: 05/06/2025 às 22:30
-
--- Tempo de geração: 04/06/2025 às 22:48
-
-
+-- Tempo de geração: 06/06/2025 às 19:42
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -137,6 +132,80 @@ CREATE TABLE `reposts` (
 -- --------------------------------------------------------
 
 --
+-- Estrutura para tabela `tbl_caracteristicas_jogador`
+--
+
+CREATE TABLE `tbl_caracteristicas_jogador` (
+  `id_caracteristica` int(11) NOT NULL,
+  `id_jogador` int(11) NOT NULL,
+  `caracteristica` varchar(100) NOT NULL,
+  `nivel` enum('iniciante','intermediario','avancado','expert') DEFAULT 'intermediario',
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Despejando dados para a tabela `tbl_caracteristicas_jogador`
+--
+
+INSERT INTO `tbl_caracteristicas_jogador` (`id_caracteristica`, `id_jogador`, `caracteristica`, `nivel`, `created_at`) VALUES
+(1, 6, 'Rápido', 'intermediario', '2025-06-06 17:35:27'),
+(2, 6, 'Passes Precisos', 'avancado', '2025-06-06 17:35:27'),
+(3, 6, 'Driblador', 'expert', '2025-06-06 17:35:27');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `tbl_conquistas_jogador`
+--
+
+CREATE TABLE `tbl_conquistas_jogador` (
+  `id_conquista` int(11) NOT NULL,
+  `id_jogador` int(11) NOT NULL,
+  `titulo` varchar(255) NOT NULL,
+  `ano` year(4) NOT NULL,
+  `clube` varchar(255) DEFAULT NULL,
+  `descricao` text DEFAULT NULL,
+  `tipo` enum('campeonato','torneio','individual','reconhecimento') DEFAULT 'campeonato',
+  `posicao` enum('campeao','vice','terceiro','participacao','destaque') DEFAULT 'participacao',
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Despejando dados para a tabela `tbl_conquistas_jogador`
+--
+
+INSERT INTO `tbl_conquistas_jogador` (`id_conquista`, `id_jogador`, `titulo`, `ano`, `clube`, `descricao`, `tipo`, `posicao`, `created_at`) VALUES
+(1, 6, 'Libertadores', '2013', 'Santos FC', 'Mvp', 'campeonato', 'campeao', '2025-06-06 17:35:27'),
+(2, 6, 'Champions', '2015', 'Barcelona', 'Carreguei Geral', 'campeonato', 'campeao', '2025-06-06 17:35:27');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `tbl_historico_clubes`
+--
+
+CREATE TABLE `tbl_historico_clubes` (
+  `id_historico` int(11) NOT NULL,
+  `id_jogador` int(11) NOT NULL,
+  `nome_clube` varchar(255) NOT NULL,
+  `data_inicio` date NOT NULL,
+  `data_fim` date DEFAULT NULL,
+  `posicao` varchar(100) DEFAULT NULL,
+  `descricao` text DEFAULT NULL,
+  `ativo` tinyint(1) DEFAULT 0,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Despejando dados para a tabela `tbl_historico_clubes`
+--
+
+INSERT INTO `tbl_historico_clubes` (`id_historico`, `id_jogador`, `nome_clube`, `data_inicio`, `data_fim`, `posicao`, `descricao`, `ativo`, `created_at`) VALUES
+(1, 6, 'Santos FC', '2010-04-12', '2013-02-04', 'Ponta', 'Joguei mt', 0, '2025-06-06 17:35:27');
+
+-- --------------------------------------------------------
+
+--
 -- Estrutura para tabela `tbl_hist_contrato`
 --
 
@@ -168,19 +237,21 @@ CREATE TABLE `tbl_jogador` (
   `pe_dominante` varchar(100) NOT NULL,
   `descricao` varchar(1000) NOT NULL,
   `data_inicio_time` date DEFAULT NULL,
-  `status` enum('sem time','ativo','lesionado','suspenso') DEFAULT 'sem time'
+  `status` enum('sem time','ativo','lesionado','suspenso') DEFAULT 'sem time',
+  `redes_sociais` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL COMMENT 'Redes sociais do jogador em formato JSON' CHECK (json_valid(`redes_sociais`))
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Despejando dados para a tabela `tbl_jogador`
 --
 
-INSERT INTO `tbl_jogador` (`id_jogador`, `id_user`, `id_time`, `apelido`, `altura`, `peso`, `posicao`, `estiloJogo`, `pe_dominante`, `descricao`, `data_inicio_time`, `status`) VALUES
-(1, 11, NULL, 'Shand', 1.70, 55.30, 'Zagueiro', 'Estratégico', 'Direito', 'Sou apenas um aluno da etec com o desejo de competir na Champions', NULL, 'sem time'),
-(2, 7, NULL, 'Luquinhas', 1.82, 68.00, 'Volante', 'Técnico', 'Direito', 'Sou um atleta dedicado, atuando como jogador de futebol na categoria sub-20. Tenho paixão pelo esporte desde a infância e busco constantemente evoluir técnica, tática e fisicamente. Comprometido com o trabalho em equipe e com o desempenho em campo, meu objetivo é alcançar o profissionalismo e representar com orgulho o clube e a camisa que visto.', NULL, 'sem time'),
-(3, 8, NULL, 'Mary', 1.70, 55.60, 'Meia', 'Agressivo', 'Esquerdo', 'Sou Mariana, jogadora de futebol com uma paixão imensa pelo esporte e uma dedicação constante em melhorar a cada treino. Meu jogo é focado em agilidade e intensidade, sempre buscando contribuir para o time, seja criando jogadas ou finalizando com precisão. Acredito no poder do trabalho em equipe e estou sempre pronta para enfrentar novos desafios, buscando evolução tanto técnica quanto mental. Futebol é minha vida, e minha missão é dar o meu melhor em cada partida!', NULL, 'sem time'),
-(4, 9, NULL, '', 1.74, 79.00, 'Atacante', 'Agressivo', 'Direito', 'Sou Gabriel Almeida, tenho 20 anos e venho das categorias de base. Meu foco é evoluir a cada dia, dando o máximo em cada treino e jogo. Em campo, sou rápido e técnico, sempre buscando ajudar o time a conquistar os objetivos. Estou pronto para os desafios e para mostrar meu potencial!', NULL, 'sem time'),
-(5, 10, NULL, 'Muralha', 1.86, 80.00, 'Goleiro', 'Defensivo', 'Direito', 'Sou um goleiro mirim apaixonado por futebol desde pequeno. Adoro estar embaixo das traves, fazendo defesas difíceis e ajudando meu time com garra e dedicação. Estou sempre treinando para melhorar meus reflexos, posicionamento e coragem, porque sei que o goleiro é a última linha de defesa. Sonho em um dia jogar profissionalmente e vestir a camisa de um grande clube, mas por enquanto, meu maior prazer é jogar com os amigos e dar o meu melhor em cada partida.', NULL, 'sem time');
+INSERT INTO `tbl_jogador` (`id_jogador`, `id_user`, `id_time`, `apelido`, `altura`, `peso`, `posicao`, `estiloJogo`, `pe_dominante`, `descricao`, `data_inicio_time`, `status`, `redes_sociais`) VALUES
+(1, 11, NULL, 'Shand', 1.70, 55.30, 'Zagueiro', 'Estratégico', 'Direito', 'Sou apenas um aluno da etec com o desejo de competir na Champions', NULL, 'sem time', NULL),
+(2, 7, NULL, 'Luquinhas', 1.82, 68.00, 'Volante', 'Técnico', 'Direito', 'Sou um atleta dedicado, atuando como jogador de futebol na categoria sub-20. Tenho paixão pelo esporte desde a infância e busco constantemente evoluir técnica, tática e fisicamente. Comprometido com o trabalho em equipe e com o desempenho em campo, meu objetivo é alcançar o profissionalismo e representar com orgulho o clube e a camisa que visto.', NULL, 'sem time', NULL),
+(3, 8, NULL, 'Mary', 1.70, 55.60, 'Meia', 'Agressivo', 'Esquerdo', 'Sou Mariana, jogadora de futebol com uma paixão imensa pelo esporte e uma dedicação constante em melhorar a cada treino. Meu jogo é focado em agilidade e intensidade, sempre buscando contribuir para o time, seja criando jogadas ou finalizando com precisão. Acredito no poder do trabalho em equipe e estou sempre pronta para enfrentar novos desafios, buscando evolução tanto técnica quanto mental. Futebol é minha vida, e minha missão é dar o meu melhor em cada partida!', NULL, 'sem time', NULL),
+(4, 9, NULL, '', 1.74, 79.00, 'Atacante', 'Agressivo', 'Direito', 'Sou Gabriel Almeida, tenho 20 anos e venho das categorias de base. Meu foco é evoluir a cada dia, dando o máximo em cada treino e jogo. Em campo, sou rápido e técnico, sempre buscando ajudar o time a conquistar os objetivos. Estou pronto para os desafios e para mostrar meu potencial!', NULL, 'sem time', NULL),
+(5, 10, NULL, 'Muralha', 1.86, 80.00, 'Goleiro', 'Defensivo', 'Direito', 'Sou um goleiro mirim apaixonado por futebol desde pequeno. Adoro estar embaixo das traves, fazendo defesas difíceis e ajudando meu time com garra e dedicação. Estou sempre treinando para melhorar meus reflexos, posicionamento e coragem, porque sei que o goleiro é a última linha de defesa. Sonho em um dia jogar profissionalmente e vestir a camisa de um grande clube, mas por enquanto, meu maior prazer é jogar com os amigos e dar o meu melhor em cada partida.', NULL, 'sem time', NULL),
+(6, 13, NULL, 'Sosia do Neymar', 1.75, 78.50, 'Ponta', 'Ousadia e Alegria', 'Ambos', 'Sou o Neymar sósia e me interesso muito por futebol, quero crescer muito na área. Obrigado FutLink.', NULL, 'sem time', NULL);
 
 -- --------------------------------------------------------
 
@@ -229,7 +300,6 @@ CREATE TABLE `tbl_organizacao` (
 
 INSERT INTO `tbl_organizacao` (`id_org`, `nome_org`, `email`, `telefone_org`, `password_org`, `logo_org`, `bio`, `descricao`, `data_fundacao`, `tipo`, `cep`, `redes_sociais`, `created_at`) VALUES
 (4, 'São Paulo Futebol Clube', 'contato@saopaulofc.net', '(11) 40032-000', '$2y$10$a7vCce4eu1DWbn6mtG.PwOKoCBQLQ5iQI3H0acLi38Uwn9CaVCRG2', 'public/uploads/logos/org_logo_6840ae72f0d00.jpg', 'Clube profissional de futebol com sede em São Paulo, reconhecido nacional e internacionalmente.', 'O São Paulo Futebol Clube é uma das principais equipes de futebol do Brasil, fundado em 25 de janeiro de 1930. Com sede no estádio do Morumbi, o clube conquistou diversos títulos nacionais e internacionais, incluindo a Copa Libertadores da América e o Mundial de Clubes da FIFA. Suas cores tradicionais são vermelho, preto e branco, e seu mascote é o \\\"São Paulinho\\\".', '1930-01-25', 'clube de futebol', '05653-070', NULL, '2025-06-04 17:37:07');
-
 
 -- --------------------------------------------------------
 
@@ -323,7 +393,8 @@ INSERT INTO `tbl_usuarios` (`id_user`, `nome`, `email`, `senha`, `data_nasc`, `g
 (9, 'Gabriel Almeida', 'gabriel.almeida01@gmail.com', '$2y$10$DfFdrR5UgRiX1dHAtJbPbuv9o2xOGjW/NdqIy3LUq/LOLKO1Dsu7e', '2001-11-01', 'masculino', '../../public/images/profilePhotos/b994d42e0c2a4b54156b024f9d3b61dd.jfif', '(19) 95293-4857', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'ativo', '2025-04-22 14:11:52', '2025-05-30 15:05:12'),
 (10, 'João Oliveira', 'joao.oliveira80@gmail.com', '$2y$10$X45zxeG5Nd6re714MfqQVuArt8j4QOw1VUmaaqCFlwm88p1c6UWFy', '1980-08-04', 'masculino', '../../public/images/profilePhotos/097b1fb33cfe2100e0595ec03e14d2c5.webp', '(11) 93985-2147', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'ativo', '2025-04-22 14:12:55', '2025-05-30 15:08:56'),
 (11, 'Shandel', 'shandelvm18@gmail.etec', '$2y$10$d5IrkqQMSnRMt6nUeWmBgeSNwI.Xokm1Zaq9YjdF7IKsnTrwL4tsS', '2006-06-13', 'masculino', '../../public/images/profilePhotos/defaultPhoto.png', '(11) 91034-3903', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'ativo', '2025-05-20 14:10:05', '2025-05-30 14:19:28'),
-(12, 'Messi da Silva Ronaldo', 'messi@gmail.com', '$2y$10$3savcBMz9aa3Vtu7W3OhjeR8F6vhmDtMNVAxbzSl4wDZxqtbWROuC', '2008-06-19', 'masculino', '../../public/images/profilePhotos/ac968177e896ec1aa7d37b7dbecf91f1.jfif', '(11) 95644-6342', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'ativo', '2025-06-02 14:39:06', '2025-06-02 14:39:06');
+(12, 'Messi da Silva Ronaldo', 'messi@gmail.com', '$2y$10$3savcBMz9aa3Vtu7W3OhjeR8F6vhmDtMNVAxbzSl4wDZxqtbWROuC', '2008-06-19', 'masculino', '../../public/images/profilePhotos/ac968177e896ec1aa7d37b7dbecf91f1.jfif', '(11) 95644-6342', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'ativo', '2025-06-02 14:39:06', '2025-06-02 14:39:06'),
+(13, 'Pedro', 'medeirosantosph@gmail.com', '$2y$10$bGbauKRlKzi8WOX3606HLOUEo0aO/jFk6ewO5DGrbXVcByzjaltxq', '2007-12-03', 'masculino', '../../public/images/profilePhotos/defaultPhoto.png', '(11) 91444-1937', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'ativo', '2025-06-06 14:26:34', '2025-06-06 14:26:34');
 
 --
 -- Índices para tabelas despejadas
@@ -373,6 +444,30 @@ ALTER TABLE `reposts`
   ADD PRIMARY KEY (`id_repost`),
   ADD UNIQUE KEY `unique_repost` (`id_post_original`,`id_user`),
   ADD KEY `id_user` (`id_user`);
+
+--
+-- Índices de tabela `tbl_caracteristicas_jogador`
+--
+ALTER TABLE `tbl_caracteristicas_jogador`
+  ADD PRIMARY KEY (`id_caracteristica`),
+  ADD KEY `id_jogador` (`id_jogador`),
+  ADD KEY `idx_jogador_caracteristicas` (`id_jogador`,`caracteristica`);
+
+--
+-- Índices de tabela `tbl_conquistas_jogador`
+--
+ALTER TABLE `tbl_conquistas_jogador`
+  ADD PRIMARY KEY (`id_conquista`),
+  ADD KEY `id_jogador` (`id_jogador`),
+  ADD KEY `idx_jogador_conquistas` (`id_jogador`,`ano`);
+
+--
+-- Índices de tabela `tbl_historico_clubes`
+--
+ALTER TABLE `tbl_historico_clubes`
+  ADD PRIMARY KEY (`id_historico`),
+  ADD KEY `id_jogador` (`id_jogador`),
+  ADD KEY `idx_jogador_historico` (`id_jogador`,`data_inicio`);
 
 --
 -- Índices de tabela `tbl_hist_contrato`
@@ -475,6 +570,24 @@ ALTER TABLE `reposts`
   MODIFY `id_repost` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+-- AUTO_INCREMENT de tabela `tbl_caracteristicas_jogador`
+--
+ALTER TABLE `tbl_caracteristicas_jogador`
+  MODIFY `id_caracteristica` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT de tabela `tbl_conquistas_jogador`
+--
+ALTER TABLE `tbl_conquistas_jogador`
+  MODIFY `id_conquista` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT de tabela `tbl_historico_clubes`
+--
+ALTER TABLE `tbl_historico_clubes`
+  MODIFY `id_historico` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT de tabela `tbl_hist_contrato`
 --
 ALTER TABLE `tbl_hist_contrato`
@@ -484,7 +597,7 @@ ALTER TABLE `tbl_hist_contrato`
 -- AUTO_INCREMENT de tabela `tbl_jogador`
 --
 ALTER TABLE `tbl_jogador`
-  MODIFY `id_jogador` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_jogador` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de tabela `tbl_jogo`
@@ -520,7 +633,7 @@ ALTER TABLE `tbl_time`
 -- AUTO_INCREMENT de tabela `tbl_usuarios`
 --
 ALTER TABLE `tbl_usuarios`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- Restrições para tabelas despejadas
@@ -552,6 +665,24 @@ ALTER TABLE `posts`
 ALTER TABLE `reposts`
   ADD CONSTRAINT `reposts_ibfk_1` FOREIGN KEY (`id_post_original`) REFERENCES `posts` (`id_post`) ON DELETE CASCADE,
   ADD CONSTRAINT `reposts_ibfk_2` FOREIGN KEY (`id_user`) REFERENCES `tbl_usuarios` (`id_user`) ON DELETE CASCADE;
+
+--
+-- Restrições para tabelas `tbl_caracteristicas_jogador`
+--
+ALTER TABLE `tbl_caracteristicas_jogador`
+  ADD CONSTRAINT `tbl_caracteristicas_jogador_ibfk_1` FOREIGN KEY (`id_jogador`) REFERENCES `tbl_jogador` (`id_jogador`) ON DELETE CASCADE;
+
+--
+-- Restrições para tabelas `tbl_conquistas_jogador`
+--
+ALTER TABLE `tbl_conquistas_jogador`
+  ADD CONSTRAINT `tbl_conquistas_jogador_ibfk_1` FOREIGN KEY (`id_jogador`) REFERENCES `tbl_jogador` (`id_jogador`) ON DELETE CASCADE;
+
+--
+-- Restrições para tabelas `tbl_historico_clubes`
+--
+ALTER TABLE `tbl_historico_clubes`
+  ADD CONSTRAINT `tbl_historico_clubes_ibfk_1` FOREIGN KEY (`id_jogador`) REFERENCES `tbl_jogador` (`id_jogador`) ON DELETE CASCADE;
 
 --
 -- Restrições para tabelas `tbl_hist_contrato`
