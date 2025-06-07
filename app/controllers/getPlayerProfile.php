@@ -3,11 +3,35 @@
 
 require_once("../../config/connect.php");
 
-// Verificar se foi passado um ID específico na URL
-$id = isset($_GET['id']) ? intval($_GET['id']) : $_SESSION['id'];
+// Verificar se foi passado um ID ou apelido específico na URL
+$id = null;
+
+if (isset($_GET['id']) && !empty($_GET['id'])) {
+    $id = intval($_GET['id']);
+} elseif (isset($_GET['apelido']) && !empty($_GET['apelido'])) {
+    // Buscar o ID do usuário pelo apelido do jogador
+    $apelido = $_GET['apelido'];
+    $queryId = "SELECT j.id_user FROM tbl_jogador j WHERE j.apelido = ?";
+    $stmtId = $conn->prepare($queryId);
+    $stmtId->bind_param("s", $apelido);
+    $stmtId->execute();
+    $resultId = $stmtId->get_result();
+    $rowId = $resultId->fetch_assoc();
+    
+    if ($rowId) {
+        $id = $rowId['id_user'];
+    }
+} else {
+    $id = $_SESSION['id'];
+}
+
+// Se não encontrou ID válido, usar o da sessão
+if (!$id) {
+    $id = $_SESSION['id'];
+}
 
 // Query para obter os dados do usuário
-$query = "SELECT data_nasc, email, foto_perfil, genero, nome, `status`, `telefone` FROM `tbl_usuarios` WHERE id_user = ?";
+$query = "SELECT data_nasc, email, foto_perfil, genero, nome, `status`, `telefone`, bio, created_at FROM `tbl_usuarios` WHERE id_user = ?";
 $stmt = $conn->prepare($query);
 $stmt->bind_param("i", $id);
 $stmt->execute();
@@ -30,6 +54,7 @@ $player = $resultPlayer->fetch_assoc();
 $caracteristicas = [];
 $conquistas = [];
 $historicoClubes = [];
+$posts = [];
 
 if ($player) {
     $id_jogador = $player['id_jogador'];
@@ -68,6 +93,25 @@ if ($player) {
     }
 }
 
+// Buscar posts do jogador/usuário
+$queryPosts = "SELECT p.id_post, p.conteudo, p.imagem, p.video_url, p.criado_em, u.nome, u.foto_perfil,
+                      (SELECT COUNT(*) FROM curtidas WHERE id_post = p.id_post) as total_curtidas,
+                      (SELECT COUNT(*) FROM comentarios WHERE id_post = p.id_post) as total_comentarios
+               FROM posts p 
+               JOIN tbl_usuarios u ON p.id_user = u.id_user
+               WHERE p.id_user = ? 
+               ORDER BY p.criado_em DESC
+               LIMIT 20";
+
+$stmtPosts = $conn->prepare($queryPosts);
+$stmtPosts->bind_param("i", $id);
+$stmtPosts->execute();
+$resultPosts = $stmtPosts->get_result();
+
+while ($row = $resultPosts->fetch_assoc()) {
+    $posts[] = $row;
+}
+
 // Calcular idade se data de nascimento existir
 $idade = null;
 if ($user['data_nasc']) {
@@ -83,6 +127,7 @@ $response = array(
     'caracteristicas' => $caracteristicas,
     'conquistas' => $conquistas,
     'historico_clubes' => $historicoClubes,
+    'posts' => $posts,
     'idade' => $idade
 );
 

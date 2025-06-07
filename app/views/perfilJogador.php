@@ -5,14 +5,40 @@
 <?php 
 include 'navbar-social.php';
 
-// Verificar se há um parâmetro de ID na URL (para visualizar perfil de outro jogador)
-$perfil_id = isset($_GET['id']) ? intval($_GET['id']) : $_SESSION['id'];
+// IMPORTANTE: Incluir a conexão ANTES de usar $conn
+require_once("../../config/connect.php");
+
+// Verificar se há um parâmetro de ID ou apelido na URL
+$perfil_id = null;
+
+if (isset($_GET['id']) && !empty($_GET['id'])) {
+    $perfil_id = intval($_GET['id']);
+} elseif (isset($_GET['apelido']) && !empty($_GET['apelido'])) {
+    // Buscar o ID do usuário pelo apelido do jogador
+    $apelido = $_GET['apelido'];
+    $queryId = "SELECT j.id_user FROM tbl_jogador j WHERE j.apelido = ?";
+    $stmtId = $conn->prepare($queryId);
+    $stmtId->bind_param("s", $apelido);
+    $stmtId->execute();
+    $resultId = $stmtId->get_result();
+    $rowId = $resultId->fetch_assoc();
+    
+    if ($rowId) {
+        $perfil_id = $rowId['id_user'];
+    }
+} else {
+    $perfil_id = $_SESSION['id'];
+}
+
+// Se não encontrou ID válido, usar o da sessão
+if (!$perfil_id) {
+    $perfil_id = $_SESSION['id'];
+}
 
 // Flag para verificar se o usuário está visualizando seu próprio perfil
 $proprio_perfil = ($perfil_id == $_SESSION['id']);
 
 // Verificar se o usuário atual é um jogador
-require_once("../../config/connect.php");
 $query = "SELECT COUNT(*) as is_player FROM tbl_jogador WHERE id_user = ?";
 $stmt = $conn->prepare($query);
 $stmt->bind_param("i", $_SESSION['id']);
@@ -177,27 +203,14 @@ $is_current_user_player = ($row['is_player'] > 0);
 
   <section class="card posts">
     <h2><i class="fas fa-stream"></i> Minhas Postagens</h2>
-    <div class="posts-lista">
-      <div class="post">
-        <div class="post-header">
-          <img src="https://via.placeholder.com/50" alt="Foto de perfil">
-          <div class="post-info">
-            <h3 id="post-name">Nome do Jogador</h3>
-            <span class="post-data">Publicado há 1 hora</span>
-          </div>
-        </div>
-        <div class="post-conteudo">
-          <p>Gol na final do campeonato! Me dediquei bastante para esse momento.</p>
-          <img src="https://via.placeholder.com/600x300" alt="Gol">
-        </div>
-        <div class="post-acoes">
-          <button class="curtir"><i class="far fa-heart"></i> 42 Curtidas</button>
-          <button class="comentar"><i class="far fa-comment"></i> 8 Comentários</button>
-          <button class="compartilhar"><i class="far fa-share-square"></i> Compartilhar</button>
-        </div>
+    <div class="posts-lista" id="posts-container">
+      <!-- Posts serão carregados aqui via JavaScript -->
+      <div class="loading-posts">
+        <i class="fas fa-spinner fa-spin"></i>
+        <p>Carregando posts...</p>
       </div>
     </div>
-    <button class="btn-mais">Carregar mais posts</button>
+    <button class="btn-mais" id="load-more-posts" style="display: none;">Carregar mais posts</button>
   </section>
 </div>
 
@@ -243,12 +256,25 @@ $is_current_user_player = ($row['is_player'] > 0);
   });
 
   function carregarPerfilJogador() {
-    // Verificar se há um ID na URL
+    // Verificar se há um ID ou apelido na URL
     const urlParams = new URLSearchParams(window.location.search);
-    const perfilId = urlParams.get('id') || '<?php echo $_SESSION['id']; ?>';
+    const perfilId = urlParams.get('id');
+    const perfilApelido = urlParams.get('apelido');
     
-    // Passar o ID como parâmetro para a API
-    fetch('../controllers/getPlayerProfile.php?id=' + perfilId)
+    let apiUrl = '../controllers/getPlayerProfile.php';
+    
+    if (perfilId) {
+        apiUrl += '?id=' + perfilId;
+    } else if (perfilApelido) {
+        apiUrl += '?apelido=' + encodeURIComponent(perfilApelido);
+    } else {
+        apiUrl += '?id=<?php echo $_SESSION['id']; ?>';
+    }
+    
+    console.log('Carregando perfil da URL:', apiUrl);
+    
+    // Fazer a requisição para a API
+    fetch(apiUrl)
       .then(response => response.json())
       .then(data => {
         console.log('Dados recebidos:', data);
@@ -292,10 +318,96 @@ $is_current_user_player = ($row['is_player'] > 0);
         
         // Atualizar histórico de clubes
         atualizarHistoricoClubes(data.historico_clubes || []);
+
+        // Carregar posts do jogador
+        carregarPosts(data.posts || []);
       })
       .catch(error => {
         console.error('Erro ao carregar perfil:', error);
+        alert('Erro ao carregar o perfil do jogador. Tente novamente.');
       });
+  }
+
+  function carregarPosts(posts) {
+    const container = document.getElementById('posts-container');
+    
+    if (posts.length === 0) {
+      container.innerHTML = `
+        <div class="empty-posts">
+          <i class="fas fa-newspaper"></i>
+          <h3>Nenhum post ainda</h3>
+          <p>Este jogador ainda não fez nenhuma postagem.</p>
+        </div>
+      `;
+      return;
+    }
+
+    container.innerHTML = '';
+    
+    posts.forEach(post => {
+      const postElement = document.createElement('div');
+      postElement.className = 'post';
+      
+      // Calcular tempo decorrido
+      const timeAgo = calcularTempoDecorrido(post.criado_em);
+      
+      postElement.innerHTML = `
+        <div class="post-header">
+          <img src="${post.foto_perfil || '../../public/images/profilePhotos/defaultPhoto.png'}" alt="Foto de perfil" id="post-avatar">
+          <div class="post-info">
+            <h3 id="post-name">${post.nome}</h3>
+            <span class="post-data">${timeAgo}</span>
+          </div>
+        </div>
+        <div class="post-conteudo">
+          <p>${post.conteudo}</p>
+          ${post.imagem ? `<img src="${post.imagem}" alt="Imagem do post" class="post-image">` : ''}
+          ${post.video_url ? createVideoEmbed(post.video_url) : ''}
+        </div>
+        <div class="post-acoes">
+          <button class="curtir"><i class="far fa-heart"></i> ${post.total_curtidas} Curtidas</button>
+          <button class="comentar"><i class="far fa-comment"></i> ${post.total_comentarios} Comentários</button>
+          <button class="compartilhar"><i class="far fa-share-square"></i> Compartilhar</button>
+        </div>
+      `;
+      
+      container.appendChild(postElement);
+    });
+  }
+
+  function calcularTempoDecorrido(dataPost) {
+    const agora = new Date();
+    const post = new Date(dataPost);
+    const diff = Math.floor((agora - post) / 1000);
+    
+    if (diff < 60) return 'agora';
+    if (diff < 3600) return Math.floor(diff / 60) + 'm';
+    if (diff < 86400) return Math.floor(diff / 3600) + 'h';
+    return Math.floor(diff / 86400) + 'd';
+  }
+
+  function createVideoEmbed(url) {
+    // YouTube
+    const youtubeMatch = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([a-zA-Z0-9_-]+)/);
+    if (youtubeMatch) {
+      return `<div class="video-container">
+        <iframe width="100%" height="315" src="https://www.youtube.com/embed/${youtubeMatch[1]}" frameborder="0" allowfullscreen></iframe>
+      </div>`;
+    }
+    
+    // Vimeo
+    const vimeoMatch = url.match(/vimeo\.com\/(\d+)/);
+    if (vimeoMatch) {
+      return `<div class="video-container">
+        <iframe width="100%" height="315" src="https://player.vimeo.com/video/${vimeoMatch[1]}" frameborder="0" allowfullscreen></iframe>
+      </div>`;
+    }
+    
+    return `<div class="video-link">
+      <a href="${url}" target="_blank">
+        <i class="fas fa-play-circle"></i> Ver vídeo
+      </a>
+    </div>`;
   }
 
   function atualizarCaracteristicas(caracteristicas) {
@@ -411,6 +523,122 @@ $is_current_user_player = ($row['is_player'] > 0);
 </script>
 
 <style>
+  .video-input {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 1rem;
+  }
+
+  .video-url-input {
+    flex: 1;
+    padding: 0.75rem 1rem;
+    border: 2px solid var(--cor-primaria);
+    border-radius: 10px;
+    font-size: 0.9rem;
+    transition: var(--transicao);
+  }
+
+  .video-url-input:focus {
+    outline: none;
+    border-color: var(--verde);
+    box-shadow: 0 0 0 3px rgba(0, 200, 83, 0.1);
+  }
+
+  .remove-video-btn {
+    background: #ff4757;
+    color: white;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: var(--transicao);
+  }
+
+  .remove-video-btn:hover {
+    background: #ff3742;
+    transform: scale(1.1);
+  }
+
+  .media-btn.active {
+    background: var(--verde-claro);
+    color: var(--branco);
+    border-color: var(--verde);
+  }
+
+  .video-container {
+    margin: 1rem 0;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  .video-container iframe {
+    width: 100%;
+    height: 315px;
+    border: none;
+  }
+
+  .video-link {
+    margin: 1rem 0;
+    text-align: center;
+  }
+
+  .video-link a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--gradiente-verde);
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: var(--transicao);
+  }
+
+  .video-link a:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--sombra-media);
+  }
+
+  .loading-posts {
+    text-align: center;
+    padding: 2rem;
+    color: var(--cinza);
+  }
+
+  .loading-posts i {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: var(--verde);
+  }
+
+  .empty-posts {
+    text-align: center;
+    padding: 3rem;
+    color: var(--cinza);
+  }
+
+  .empty-posts i {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    color: var(--verde-claro);
+  }
+
+  .empty-posts h3 {
+    color: var(--cor-secundaria);
+    margin-bottom: 0.5rem;
+  }
+
+  .post-image {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin-top: 1rem;
+  }
+
   .tag {
     background: #e3f2fd;
     color: #1976d2;
@@ -463,6 +691,7 @@ $is_current_user_player = ($row['is_player'] > 0);
     border: none;
     cursor: pointer;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-right: 10px;
   }
   
   .btn-principal:hover {
@@ -491,6 +720,8 @@ $is_current_user_player = ($row['is_player'] > 0);
     background: linear-gradient(135deg, #1e88e5, #1565c0);
   }
 </style>
+
+<?php include("footer.php"); ?>
 
 </body>
 </html>
