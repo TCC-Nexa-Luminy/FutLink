@@ -50,7 +50,7 @@ INSERT INTO `livros` (`id`, `titulo`, `autor`, `anoPublicacao`) VALUES
 (7, 'O Senhor dos Anéis', 'J.R.R. Tolkien', 1954),
 (8, 'Harry Potter e a Pedra Filosofal', 'J.K. Rowling', 1997),
 (9, 'O Código Da Vinci', 'Dan Brown', 2003),
-(10, 'O Alquimista', 'Paulo Coelho', 1988),
+(10, 'O Alquimista', 'Paulo Coelho', 1988), 
 (11, 'Memórias Póstumas de Brás Cubas', 'Machado de Assis', 1881),
 (12, 'Vidas Secas', 'Graciliano Ramos', 1938),
 (13, 'A Hora da Estrela', 'Clarice Lispector', 1977),
