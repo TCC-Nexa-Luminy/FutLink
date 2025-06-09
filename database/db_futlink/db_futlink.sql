@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 09/06/2025 às 19:24
+-- Tempo de geração: 09/06/2025 às 19:54
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -116,6 +116,7 @@ CREATE TABLE `posts` (
   `id_user` int(11) NOT NULL,
   `conteudo` text NOT NULL,
   `imagem` varchar(255) DEFAULT NULL,
+  `video_url` varchar(250) DEFAULT NULL,
   `criado_em` datetime DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
