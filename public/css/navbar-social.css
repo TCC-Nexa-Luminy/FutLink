@@ -19,8 +19,8 @@
     position: fixed;
     top: 0;
     left: 0;
-    height: 100vh;
-    width: 280px;
+    width: 280px; /* Largura fixa */
+    height: 100vh; /* Altura de 100% da tela */
     background: var(--gradiente-navbar);
     color: var(--branco);
     z-index: 1000;
