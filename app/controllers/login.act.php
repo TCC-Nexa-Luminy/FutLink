@@ -30,7 +30,8 @@ if($loginStatus['emailFound']){
 }
 
 function infoLogin($email, $conn){    
-    // Verifica nas duas tabelas
+
+    // Prepare a consulta para verificar o email
     $loginUser = searchLogin($email, "tbl_usuarios", $conn);
     $loginOrg = searchLogin($email, "tbl_organizacao", $conn);
 
@@ -40,33 +41,37 @@ function infoLogin($email, $conn){
     $id = null;
     $password = null;
 
+    //caso usuario
     if($loginUser['found']){
         $emailFound = true;
         $id = $loginUser['dados']['id_user'];
         $name = $loginUser['dados']['nome'];
         $password = $loginUser['dados']['senha'];
         $type = "usuario";
-    } else if($loginOrg['found']){
-        $emailFound = true;
-        $id = $loginOrg['dados']['id_org'];
-        $name = $loginOrg['dados']['nome_org'];
-        $password = $loginOrg['dados']['password_org'];
-        $type = "organizacao";
+    } else{
+        //caso organização
+        if($loginOrg['found']){
+            $emailFound = true;
+            $id = $loginOrg['dados']['id_org'];
+            $name = $loginOrg['dados']['nome_org'];
+            $password = $loginOrg['dados']['password_org'];
+            $type = "organizacao";
+        }else{
+            //caso o email nao seja encontrado
+            $emailFound = false;
+        }
     }
-
     return ["emailFound" => $emailFound, "id" => $id, "user_name" => $name, "password" =>$password, "type" => $type];
 }
 
 function searchLogin($email, $table, $conn){
-    // Define o nome da coluna de e-mail dependendo da tabela
-    $colunaEmail = $table === "tbl_organizacao" ? "email_org" : "email";
-
-    $query = "SELECT * FROM `$table` WHERE `$colunaEmail` = ?";
+    $query = "SELECT * FROM `$table` WHERE `email` = ?";
     $stmt = $conn->prepare($query);
     $stmt->bind_param("s", $email);  // Bind o parâmetro (s = string)
     $stmt->execute();  // Executa a consulta
     $resultado = $stmt->get_result();  // Pega o resultado da consulta
     
+    $dados = array();
     $dados = $resultado->fetch_assoc();
     $found = $resultado->num_rows ? true : false;
 
@@ -74,6 +79,7 @@ function searchLogin($email, $table, $conn){
 }
 
 // Salva a mensagem de erro ou sucesso na sessão
+$_SESSION['tipo_login'] = $loginStatus['type'];
 $_SESSION['msg'] = $msg;
 
 // Redireciona para a página de login ou dashboard
