@@ -16,97 +16,8 @@ body {
   line-height: 1.6;
 }
 
-/* Hero Section */
-.hero-section {
-  background: var(--gradiente-navbar);
-  padding: 60px 0;
-  text-align: center;
-  color: var(--branco);
-  margin-left: 280px;
-  position: relative;
-  overflow: hidden;
-}
-
-.hero-section::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="2" fill="white" opacity="0.1"/></svg>')
-    repeat;
-  animation: float 20s ease-in-out infinite;
-}
-
-@keyframes float {
-  0%,
-  100% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-20px);
-  }
-}
-
-.hero-content h1 {
-  font-size: 3rem;
-  font-weight: 700;
-  margin-bottom: 1rem;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-  font-family: var(--fonte-titulo-moderna);
-}
-
-.hero-content p {
-  font-size: 1.2rem;
-  opacity: 0.9;
-  max-width: 600px;
-  margin: 0 auto 2rem;
-}
-
-.hero-stats {
-  display: flex;
-  justify-content: center;
-  gap: 3rem;
-  margin-top: 2rem;
-}
-
-.stat-item {
-  text-align: center;
-  padding: 1rem;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: var(--borda-radius);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  transition: var(--transicao);
-}
-
-.stat-item:hover {
-  transform: translateY(-5px);
-  background: rgba(255, 255, 255, 0.15);
-}
-
-.stat-item i {
-  font-size: 2rem;
-  margin-bottom: 0.5rem;
-  display: block;
-  color: var(--verde-claro);
-}
-
-.stat-number {
-  display: block;
-  font-size: 1.5rem;
-  font-weight: 700;
-}
-
-.stat-label {
-  font-size: 0.9rem;
-  opacity: 0.8;
-}
-
 /* Container principal - CENTRALIZADO */
 .container {
-  margin-left: 280px;
   padding: 2rem;
   display: flex;
   flex-direction: column;
@@ -117,7 +28,7 @@ body {
 /* Caixa de post - CENTRALIZADA */
 .caixa-post {
   width: 100%;
-  max-width: 700px;
+  max-width: 1000px;
   margin-bottom: 2rem;
 }
 
@@ -320,7 +231,7 @@ body {
 /* Feed de posts - CENTRALIZADO */
 .posts-feed {
   width: 100%;
-  max-width: 700px;
+  max-width: 1000px;
   background: var(--branco);
   border-radius: 20px;
   overflow: hidden;
@@ -532,9 +443,10 @@ body {
 
 .post-image {
   width: 100%;
-  height: auto;
+  max-height:50vh;
   display: block;
   transition: var(--transicao);
+  object-fit: contain; /*a imagem se ajusta sem distorcer */
 }
 
 .post-image:hover {

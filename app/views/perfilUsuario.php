@@ -31,7 +31,7 @@ $proprio_perfil = ($perfil_id == $_SESSION['id']);
           <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
         </div>
       </div>
-      <p class="bio" id="bio_user">Carregando informações...</p>
+      <p class="bio" id="bio_user">Aguardando informações</p>
       <div class="contato-info">
         <div class="contato-item">
           <i class="fas fa-envelope"></i>
@@ -48,7 +48,7 @@ $proprio_perfil = ($perfil_id == $_SESSION['id']);
       </div>
       <div class="acoes">
         <?php if ($proprio_perfil): ?>
-          <a href="#" class="btn-principal">
+          <a href="editarPerfilUsuario.php" class="btn-principal">
             <i class="fas fa-edit"></i> Editar Perfil
           </a>
           <a href="playerForm.php" class="btn-secundario">
