@@ -172,11 +172,6 @@ include("topo.php");
                         echo '<i class="far fa-comment"></i>';
                         echo '<span>' . $post['total_comentarios'] . '</span>';
                         echo '</button>';
-
-                        echo '<button class="action-btn btn-compartilhar" data-post-id="' . $post['id_post'] . '">';
-                        echo '<i class="far fa-share-square"></i>';
-                        echo '<span>Compartilhar</span>';
-                        echo '</button>';
                         
                         echo '</div>';
                         echo '</footer>';
