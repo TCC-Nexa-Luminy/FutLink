@@ -47,7 +47,7 @@ include("../app/views/topo.php");
                     </div>
                 </div>
                 <div class="imagem-equipe">
-                    <img src="./images/equipe/equipe-nexa-luminy.jpg" alt="Equipe Nexa Luminy" class="foto-equipe">
+                    <img src="./images/equipe/NEXA.png" alt="Equipe Nexa Luminy" class="foto-equipe">
                     <div class="overlay-equipe">
                         <div class="logo-etec">
                             <i class="fa-solid fa-graduation-cap"></i>
@@ -66,32 +66,6 @@ include("../app/views/topo.php");
             <!-- Grid de Membros -->
             <div class="grid-membros">
                 
-                <!-- Pedro -->
-                <div class="card-membro">
-                    <div class="foto-membro">
-                        <img src="./images/equipe/pedro.jpg" alt="Pedro" class="imagem-membro">
-                        <div class="overlay-membro">
-                            <div class="icones-tech">
-                                <i class="fa-brands fa-html5"></i>
-                                <i class="fa-brands fa-js"></i>
-                                <i class="fa-brands fa-php"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="info-membro">
-                        <h4 class="nome-membro">Pedro</h4>
-                        <p class="cargo-membro">Full Stack Developer</p>
-                        <p class="descricao-membro">
-                            Responsável pelo desenvolvimento Front-end e Back-end, 
-                            garantindo a integração perfeita entre interface e servidor.
-                        </p>
-                        <div class="skills-membro">
-                            <span class="skill">Frontend</span>
-                            <span class="skill">Backend</span>
-                            <span class="skill">API</span>
-                        </div>
-                    </div>
-                </div>
 
                 <!-- Daniel -->
                 <div class="card-membro">
@@ -143,6 +117,33 @@ include("../app/views/topo.php");
                             <span class="skill">Frontend</span>
                             <span class="skill">Backend</span>
                             <span class="skill">UI/UX</span>
+                        </div>
+                    </div>
+                </div>
+
+                 <!-- Pedro -->
+                <div class="card-membro">
+                    <div class="foto-membro">
+                        <img src="./images/equipe/pedro.jpg" alt="Pedro" class="imagem-membro">
+                        <div class="overlay-membro">
+                            <div class="icones-tech">
+                                <i class="fa-brands fa-html5"></i>
+                                <i class="fa-brands fa-js"></i>
+                                <i class="fa-brands fa-php"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="info-membro">
+                        <h4 class="nome-membro">Pedro</h4>
+                        <p class="cargo-membro">Full Stack Developer</p>
+                        <p class="descricao-membro">
+                            Responsável pelo desenvolvimento Front-end e Back-end, 
+                            garantindo a integração perfeita entre interface e servidor.
+                        </p>
+                        <div class="skills-membro">
+                            <span class="skill">Frontend</span>
+                            <span class="skill">Backend</span>
+                            <span class="skill">API</span>
                         </div>
                     </div>
                 </div>
@@ -204,7 +205,7 @@ include("../app/views/topo.php");
                 <!-- Thiago -->
                 <div class="card-membro">
                     <div class="foto-membro">
-                        <img src="./images/equipe/thiago.jpg" alt="Thiago" class="imagem-membro">
+                        <img src="./images/equipe/thiago.jpeg"alt="Thiago" class="imagem-membro">
                         <div class="overlay-membro">
                             <div class="icones-tech">
                                 <i class="fa-solid fa-laptop-code"></i>
@@ -239,7 +240,7 @@ include("../app/views/topo.php");
                         <i class="fa-solid fa-rocket"></i>
                         Começar Agora
                     </a>
-                    <a href="#contato" class="botao-cta-equipe secundario">
+                    <a href="https://github.com/TCC-Nexa-Luminy/FutLink" class="botao-cta-equipe secundario">
                         <i class="fa-solid fa-envelope"></i>
                         Entre em Contato
                     </a>

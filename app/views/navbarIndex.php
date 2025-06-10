@@ -9,7 +9,7 @@
         <li><a href="../public/index.php">Início</a></li>
             <li><a href="sobre-nos.php">Sobre nós</a></li>
             <li><a href="servicos.php">Serviços</a></li>
-            <li><a href="">Contato</a></li>
+            <li><a href="contato.php">Contato</a></li>
         </ul>
 
         <div class="buttons">

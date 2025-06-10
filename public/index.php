@@ -4,6 +4,7 @@ include("../app/views/topo.php");
 ?>
 <link rel="stylesheet" href="./css/index.css">
 
+
 <body>
     <?php
     include_once("../app/views/navbarIndex.php");
@@ -11,7 +12,6 @@ include("../app/views/topo.php");
     <?php
     include_once("../app/views/message.php");
     ?>
-
 
     <div class="navbar-container">
         <div class="img-banner">
@@ -40,33 +40,17 @@ include("../app/views/topo.php");
         <div class="banner-phone-text">
             <h1>Somos a FutLink,<br> seu talento no <br> caminho certo.</h1>
             <ul>
-                <li>
-                    Somos uma ponte entre atletas e oportunidades reais.
-                </li>
-                <li>
-                    Somos pessoas que acreditam no poder do esporte.
-                </li>
-                <li>
-                    Somos uma rede de conexões, sem barreiras ou burocracia.
-                </li>
-                <li>
-                    Somos a chance de visibilidade para quem vem da quebrada ou do interior.
-                </li>
-                <li>
-                    Somos uma plataforma feita exclusivamente para o futebol brasileiro.
-                </li>
-                <li>
-                    Somos acesso fácil, rápido e direto ao seu futuro no esporte.
-                </li>
+                <li>Somos uma ponte entre atletas e oportunidades reais.</li>
+                <li>Somos pessoas que acreditam no poder do esporte.</li>
+                <li>Somos uma rede de conexões, sem barreiras ou burocracia.</li>
+                <li>Somos a chance de visibilidade para quem vem da quebrada ou do interior.</li>
+                <li>Somos uma plataforma feita exclusivamente para o futebol brasileiro.</li>
+                <li>Somos acesso fácil, rápido e direto ao seu futuro no esporte.</li>
             </ul>
-
             <button id="buttonbannerphone">
                 Saiba Mais <i class="fa-solid fa-angle-right"></i>
             </button>
-
         </div>
-
-
     </div>
 
     <div class="box-three">
@@ -75,7 +59,6 @@ include("../app/views/topo.php");
             <p>Conecte-se com oportunidades, mostre seu talento e conquiste seu espaço no mundo dos esportes.</p>
         </div>
         <div class="cards-container">
-
             <div class="cards">
                 <i class="fa-solid fa-futbol" style="color: #06b850;"></i>
                 <div class="written-cards">
@@ -137,18 +120,61 @@ include("../app/views/topo.php");
         </div>
     </div>
 
+    <!-- SEÇÃO ORGANIZAÇÃO - VERSÃO CORRIGIDA -->
     <div class="box-org">
-        <h1>Crie seu clube. Conquiste respeito. Vire lenda no Footlink.</h1>
-        <p>Monte seu clube do zero e desafie outras equipes no Footlink. Mostre que seu nome tem peso.</p>
+        <!-- Elementos decorativos -->
+        <div class="org-decoration org-ball-1"></div>
+        <div class="org-decoration org-ball-2"></div>
+        <div class="org-decoration org-ball-3"></div>
 
-        <a id="buttonorg" href="../app/views/signUp-org.php">
-            Criar Organização <i class="fa-solid fa-angle-right"></i>
-        </a>
+        <!-- Ícones flutuantes -->
+        <div class="org-floating-icons">
+            <i class="fa-solid fa-trophy"></i>
+            <i class="fa-solid fa-futbol"></i>
+            <i class="fa-solid fa-medal"></i>
+            <i class="fa-solid fa-users"></i>
+            <i class="fa-solid fa-star"></i>
+        </div>
+
+        <!-- Conteúdo principal -->
+        <div class="org-content">
+            <div class="org-badge">
+                <i class="fa-solid fa-building"></i>
+                <span>Organizações</span>
+            </div>
+
+            <h1>Crie seu clube. Conquiste respeito. <span class="text-highlight">Vire lenda</span> no FutLink.</h1>
+
+            <p>Monte seu clube do zero e desafie outras equipes no FutLink. Mostre que seu nome tem peso e descubra os melhores talentos para sua equipe.</p>
+
+            <!-- Lista de benefícios -->
+            <div class="org-benefits">
+                <div class="org-benefit">
+                    <i class="fa-solid fa-check"></i>
+                    <span>Acesso a jogadores talentosos</span>
+                </div>
+                <div class="org-benefit">
+                    <i class="fa-solid fa-check"></i>
+                    <span>Organize peneiras e seletivas</span>
+                </div>
+                <div class="org-benefit">
+                    <i class="fa-solid fa-check"></i>
+                    <span>Gerencie seu clube profissionalmente</span>
+                </div>
+            </div>
+
+            <!-- Botão -->
+            <div class="org-cta">
+                <a id="buttonorg" href="../app/views/signUp-org.php">
+                    <span class="btn-text">Criar Organização</span>
+                    <i class="fa-solid fa-angle-right"></i>
+                </a>
+            </div>
+        </div>
     </div>
 
     <?php include("../app/views/footer.php"); ?>
 
-    </html>
     <script src="../public/js/index.js"></script>
-
 </body>
+</html>
