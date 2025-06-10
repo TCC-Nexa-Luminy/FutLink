@@ -64,12 +64,12 @@ if ($tipo_usuario === 'organizacao') {
                        <span class="texto-nav">Notificações</span>
                    </a>
                </li>
-               <li>
+               <!-- <li>
                    <a href="mensagens.php" class="item-menu">
                        <i class="fas fa-envelope"></i>
                        <span class="texto-nav">Mensagens</span>
                    </a>
-               </li>
+               </li> -->
                <li>
                    <a href="organizacoes.php" class="item-menu">
                        <i class="fas fa-briefcase"></i>
@@ -110,11 +110,11 @@ if ($tipo_usuario === 'organizacao') {
                    </a>
                </li>
                <li>
-                   <a href="mensagens.php" class="item-menu">
+                   <!-- <a href="mensagens.php" class="item-menu">
                        <i class="fas fa-envelope"></i>
                        <span class="texto-nav">Mensagens</span>
                    </a>
-               </li>
+               </li> -->
                <li>
                    <a href="organizacoes.php" class="item-menu">
                        <i class="fas fa-briefcase"></i>
