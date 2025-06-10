@@ -329,7 +329,7 @@ if (isset($_GET['success']) && $_GET['success'] == 1) {
                         <div class="lista-peneiras">
                             <?php if (count($peneiras) > 0): ?>
                                 <?php foreach ($peneiras as $peneira): ?>
-                                <div class="peneira-item">
+                                <div class="peneira-item" data-id="<?php echo $peneira['id']; ?>">
                                     <div class="peneira-header">
                                         <h3><?php echo htmlspecialchars($peneira['titulo']); ?></h3>
                                         <span class="peneira-badge <?php echo strtolower($peneira['badge_type'] ?? 'normal'); ?>">
@@ -383,9 +383,6 @@ if (isset($_GET['success']) && $_GET['success'] == 1) {
                                             <span>23 interessados</span>
                                         </div>
                                     </div>
-                                    <button class="btn-peneira" onclick="gerenciarPeneira(<?php echo $peneira['id']; ?>)">
-                                        <i class="fas fa-cog"></i> Gerenciar
-                                    </button>
                                 </div>
                                 <?php endforeach; ?>
                             <?php else: ?>
@@ -442,25 +439,49 @@ if (isset($_GET['success']) && $_GET['success'] == 1) {
             alert('Editar post #' + postId);
         }
         
-        function excluirPost(postId) {
-            if (confirm('Tem certeza que deseja excluir este post?')) {
-                alert('Post #' + postId + ' excluído!');
-            }
-        }
-        
         function editarPeneira(peneiraId) {
-            alert('Editar peneira #' + peneiraId);
-        }
-        
+    // Redirecionar para a página de edição
+    window.location.href = 'editarPeneira.php?id=' + peneiraId;
+}
+
         function excluirPeneira(peneiraId) {
-            if (confirm('Tem certeza que deseja excluir esta peneira?')) {
-                alert('Peneira #' + peneiraId + ' excluída!');
+            if (confirm('Tem certeza que deseja excluir esta peneira? Esta ação não pode ser desfeita.')) {
+                // Fazer uma requisição AJAX para excluir a peneira
+                fetch('excluirPeneira.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: 'id=' + peneiraId
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        alert('Peneira excluída com sucesso!');
+                        // Remover o elemento da peneira do DOM
+                        document.querySelector(`.peneira-item[data-id="${peneiraId}"]`).remove();
+                        // Se não houver mais peneiras, mostrar o estado vazio
+                        if (document.querySelectorAll('.peneira-item').length === 0) {
+                            const emptyState = `
+                                <div class="empty-state">
+                                    <i class="fas fa-search"></i>
+                                    <h3>Nenhuma peneira cadastrada</h3>
+                                    <p>Crie sua primeira peneira para começar a atrair talentos!</p>
+                                </div>
+                            `;
+                            document.querySelector('.lista-peneiras').innerHTML = emptyState;
+                        }
+                    } else {
+                        alert('Erro ao excluir peneira: ' + data.message);
+                    }
+                })
+                .catch(error => {
+                    console.error('Erro:', error);
+                    alert('Ocorreu um erro ao tentar excluir a peneira.');
+                });
             }
         }
         
-        function gerenciarPeneira(peneiraId) {
-            alert('Gerenciar peneira #' + peneiraId + '\n- Ver inscritos\n- Editar detalhes\n- Alterar status');
-        }
 
         document.addEventListener("DOMContentLoaded", function() {
             // Funcionalidade dos botões de ação dos posts
