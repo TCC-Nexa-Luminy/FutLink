@@ -17,7 +17,10 @@ include("topo.php");
                 <article class="content-input">
                     <h3>Informações pessoais</h3>
                     <div class="form-content-info">
-                        
+                        <label for="iprofile" class="container_photo">
+                            <span class="placeholderSpan">Foto(1:1)<br>(Opcional)</span>
+                            <img src="" alt="Foto de Perfil" id="iphoto" style="display: none;">
+                        </label>
                         <div class="form-label_direction">
                             <div class="form-label">
                                 <label for="inome">Nome</i></label>
