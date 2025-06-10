@@ -6,7 +6,7 @@ require_once("../../config/connect.php");
 $id_user = $_SESSION['id'];
 
 // Buscar dados do usuário
-$queryUser = "SELECT nome, email, telefone, foto_perfil FROM tbl_usuarios WHERE id_user = ?";
+$queryUser = "SELECT nome, email, telefone, foto_perfil, data_nasc, bio FROM tbl_usuarios WHERE id_user = ?";
 $stmtUser = $conn->prepare($queryUser);
 $stmtUser->bind_param("i", $id_user);
 $stmtUser->execute();
@@ -368,6 +368,43 @@ body {
                 </div>
             </div>
 
+            <!-- Informações Básicas do Usuário -->
+            <div class="card">
+                <h2><i class="fas fa-user"></i> Informações Pessoais</h2>
+                
+                <div class="form-group">
+                    <label for="nome">Nome Completo:</label>
+                    <input type="text" id="nome" name="nome" value="<?= htmlspecialchars($user['nome']) ?>" 
+                           placeholder="Insira seu nome completo" required>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" name="email" value="<?= htmlspecialchars($user['email']) ?>" 
+                           placeholder="seuemail@email.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="telefone">Telefone:</label>
+                        <input type="tel" id="telefone" name="telefone" value="<?= htmlspecialchars($user['telefone']) ?>" 
+                           placeholder="(xx) 12345-6789" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="data_nasc">Data de Nascimento:</label>
+                    <input type="date" id="data_nasc" name="data_nasc" 
+                           value="<?= $user['data_nasc'] ?>" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="bio">Sobre Mim:</label>
+                    <textarea id="bio" name="bio" rows="4" 
+                  placeholder="Conte um pouco sobre você..."><?= htmlspecialchars($user['bio'] ?? '') ?></textarea>
+        <small>Máximo 500 caracteres</small>
+                </div>
+            </div>
+
             <!-- Informações Básicas -->
             <div class="card">
                 <h2><i class="fas fa-user"></i> Informações Básicas</h2>
@@ -556,6 +593,32 @@ body {
                 </button>
             </div>
 
+            <!-- Alterar Senha -->
+            <div class="card">
+                <h2><i class="fas fa-lock"></i> Alterar Senha</h2>
+                <p>Deixe os campos em branco para manter a senha atual</p>
+                
+                <div class="form-group">
+                    <label for="senha_atual">Senha Atual:</label>
+                    <input type="password" id="senha_atual" name="senha_atual" 
+                           placeholder="Digite sua senha atual">
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="nova_senha">Nova Senha:</label>
+                        <input type="password" id="nova_senha" name="nova_senha" 
+                           placeholder="Digite sua nova senha">
+                        <small>Mínimo 6 caracteres</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="confirmar_senha">Confirmar Nova Senha:</label>
+                        <input type="password" id="confirmar_senha" name="confirmar_senha" 
+                           placeholder="Confirme sua nova senha">
+                    </div>
+                </div>
+            </div>
+
             <!-- Botões de Ação -->
             <div class="actions">
                 <button type="submit" class="btn btn-primary">
@@ -697,6 +760,65 @@ body {
                     contador.textContent = selecionadas;
                 });
             });
+        });
+
+        // Validação de senha
+        document.getElementById('confirmar_senha').addEventListener('input', function() {
+            const novaSenha = document.getElementById('nova_senha').value;
+            const confirmarSenha = this.value;
+            
+            if (novaSenha !== confirmarSenha && confirmarSenha !== '') {
+                this.setCustomValidity('As senhas não coincidem');
+            } else {
+                this.setCustomValidity('');
+            }
+        });
+
+        // Máscara para telefone
+        document.getElementById('telefone').addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            value = value.replace(/(\d{2})(\d)/, '($1) $2');
+            value = value.replace(/(\d{5})(\d)/, '$1-$2');
+            e.target.value = value;
+        });
+
+        // Contador de caracteres para bio
+        const bioTextarea = document.getElementById('bio');
+        const maxLength = 500;
+
+        bioTextarea.addEventListener('input', function() {
+            const remaining = maxLength - this.value.length;
+            const small = this.nextElementSibling;
+            
+            if (remaining < 0) {
+                small.textContent = `Excedeu ${Math.abs(remaining)} caracteres do limite`;
+                small.style.color = '#dc3545';
+            } else {
+                small.textContent = `${remaining} caracteres restantes`;
+                small.style.color = '#6c757d';
+            }
+        });
+
+        // Validação do formulário
+        document.querySelector('form').addEventListener('submit', function(e) {
+            const novaSenha = document.getElementById('nova_senha').value;
+            const senhaAtual = document.getElementById('senha_atual').value;
+            
+            // Se está tentando alterar senha, deve informar a atual
+            if (novaSenha && !senhaAtual) {
+                e.preventDefault();
+                alert('Para alterar a senha, você deve informar sua senha atual.');
+                document.getElementById('senha_atual').focus();
+                return false;
+            }
+            
+            // Validar tamanho da nova senha
+            if (novaSenha && novaSenha.length < 6) {
+                e.preventDefault();
+                alert('A nova senha deve ter pelo menos 6 caracteres.');
+                document.getElementById('nova_senha').focus();
+                return false;
+            }
         });
     </script>
 </body>

@@ -1,5 +1,80 @@
 @import url(root.css);
 
+/* CSS DE CORREÇÕES ESPECÍFICAS - ADICIONAR APÓS O index.css */
+
+/* Correção para remover linha branca no topo */
+body {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Correção para centralizar texto na versão desktop */
+@media (min-width: 1025px) {
+  .box-org .org-content {
+    text-align: center !important;
+    margin: 0 auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  .box-org h1 {
+    text-align: center !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  .box-org p {
+    text-align: center !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+}
+
+/* Correção para o footer aparecer corretamente */
+.box-org {
+  margin-bottom: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+/* Garantir que não há espaços em branco extras */
+.box-org:last-child {
+  margin-bottom: 0 !important;
+}
+
+/* Correção para evitar conflitos de CSS duplicado */
+.box-org .box-org {
+  display: none !important;
+}
+
+/* Remover qualquer margem ou padding extra que possa estar causando linha branca */
+html {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Garantir que o footer cole na seção anterior */
+footer {
+  margin-top: 0 !important;
+}
+
+/* Correção específica para desktop - centralização perfeita */
+@media (min-width: 1025px) {
+  .org-badge,
+  .org-benefits,
+  .org-cta {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+  }
+
+  .org-benefits {
+    flex-wrap: wrap !important;
+  }
+}
+
+
 * {
     box-sizing: border-box;
 }
@@ -824,6 +899,347 @@ html {
     }
 
 }
+
+/* CSS APRIMORADO PARA A SEÇÃO BOX-ORG - FUNDO BRANCO */
+
+.box-org {
+  min-height: 100vh;
+  background: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 80px 20px;
+  position: relative;
+  overflow: hidden;
+  color: #333333;
+  z-index: 1;
+}
+
+/* Elementos decorativos */
+.org-decoration {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.08;
+  z-index: -1;
+}
+
+.org-ball-1 {
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, #06b850 0%, transparent 70%);
+  top: -100px;
+  right: -100px;
+  animation: float 15s ease-in-out infinite;
+}
+
+.org-ball-2 {
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, #06b850 0%, transparent 70%);
+  bottom: -50px;
+  left: -50px;
+  animation: float 12s ease-in-out infinite reverse;
+}
+
+.org-ball-3 {
+  width: 150px;
+  height: 150px;
+  background: radial-gradient(circle, #06b850 0%, transparent 70%);
+  top: 60%;
+  right: 10%;
+  animation: float 10s ease-in-out infinite 2s;
+}
+
+/* Ícones flutuantes */
+.org-floating-icons {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+}
+
+.org-floating-icons i {
+  position: absolute;
+  color: rgba(6, 163, 72, 0.1);
+  font-size: 2rem;
+}
+
+.org-floating-icons i:nth-child(1) {
+  top: 20%;
+  left: 15%;
+  animation: floatIcon 8s ease-in-out infinite;
+}
+
+.org-floating-icons i:nth-child(2) {
+  top: 70%;
+  left: 20%;
+  animation: floatIcon 12s ease-in-out infinite 1s;
+}
+
+.org-floating-icons i:nth-child(3) {
+  top: 30%;
+  right: 15%;
+  animation: floatIcon 9s ease-in-out infinite 2s;
+}
+
+.org-floating-icons i:nth-child(4) {
+  top: 80%;
+  right: 20%;
+  animation: floatIcon 10s ease-in-out infinite 3s;
+}
+
+.org-floating-icons i:nth-child(5) {
+  top: 50%;
+  left: 50%;
+  animation: floatIcon 15s ease-in-out infinite 1.5s;
+}
+
+/* Conteúdo principal */
+.org-content {
+  max-width: 900px;
+  text-align: center;
+  z-index: 2;
+}
+
+/* Badge */
+.org-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(6, 163, 72, 0.1);
+  border: 1px solid rgba(6, 163, 72, 0.2);
+  padding: 8px 16px;
+  border-radius: 50px;
+  margin-bottom: 25px;
+}
+
+.org-badge i {
+  color: #06b850;
+}
+
+.org-badge span {
+  font-weight: 600;
+  font-size: 0.9rem;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: #06b850;
+}
+
+/* Título */
+.box-org h1 {
+  font-size: 3.5rem;
+  font-weight: 800;
+  margin-bottom: 25px;
+  line-height: 1.2;
+  color: #333333;
+}
+
+.text-highlight {
+  color: #06b850;
+  position: relative;
+  display: inline-block;
+}
+
+.text-highlight::after {
+  content: "";
+  position: absolute;
+  bottom: 5px;
+  left: 0;
+  width: 100%;
+  height: 8px;
+  background: rgba(6, 163, 72, 0.2);
+  z-index: -1;
+  border-radius: 4px;
+}
+
+/* Parágrafo */
+.box-org p {
+  font-size: 1.3rem;
+  line-height: 1.6;
+  margin-bottom: 30px;
+  color: #666666;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Lista de benefícios */
+.org-benefits {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 40px;
+}
+
+.org-benefit {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(6, 163, 72, 0.05);
+  border: 1px solid rgba(6, 163, 72, 0.1);
+  padding: 12px 20px;
+  border-radius: 50px;
+}
+
+.org-benefit i {
+  color: #06b850;
+  font-size: 0.9rem;
+}
+
+.org-benefit span {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #333333;
+}
+
+/* CTA */
+.org-cta {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Botão */
+#buttonorg {
+  position: relative;
+  border-radius: 50px;
+  border: none;
+  padding: 18px 40px;
+  background: linear-gradient(135deg, #06b850 0%, #048d3c 100%);
+  font-weight: 600;
+  color: white;
+  cursor: pointer;
+  font-size: 1.2rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  text-decoration: none;
+  box-shadow: 0 10px 30px rgba(6, 163, 72, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  overflow: hidden;
+}
+
+#buttonorg::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.6s ease;
+}
+
+#buttonorg:hover::before {
+  left: 100%;
+}
+
+#buttonorg:hover {
+  transform: translateY(-5px) scale(1.05);
+  box-shadow: 0 20px 50px rgba(6, 163, 72, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  background: linear-gradient(135deg, #08db60 0%, #06a348 100%);
+}
+
+#buttonorg:active {
+  transform: translateY(-2px) scale(1.02);
+}
+
+#buttonorg i {
+  font-size: 1.1rem;
+  transition: transform 0.3s ease;
+}
+
+#buttonorg:hover i {
+  transform: translateX(5px);
+}
+
+/* Animações */
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-20px) rotate(5deg);
+  }
+}
+
+@keyframes floatIcon {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
+}
+
+/* RESPONSIVIDADE */
+@media (max-width: 767px) {
+  .box-org {
+    padding: 60px 15px;
+  }
+
+  .box-org h1 {
+    font-size: 2.2rem;
+  }
+
+  .box-org p {
+    font-size: 1.1rem;
+  }
+
+  .org-benefits {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .org-benefit {
+    width: 100%;
+    max-width: 300px;
+  }
+
+  #buttonorg {
+    width: 100%;
+    max-width: 300px;
+    justify-content: center;
+    padding: 15px 30px;
+    font-size: 1.1rem;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  .box-org h1 {
+    font-size: 2.8rem;
+  }
+
+  .box-org p {
+    font-size: 1.2rem;
+  }
+}
+
+@media (min-width: 1025px) and (max-width: 1440px) {
+  .box-org h1 {
+    font-size: 3.2rem;
+  }
+
+  .box-org p {
+    font-size: 1.3rem;
+  }
+}
+
+@media (min-width: 1441px) {
+  .box-org h1 {
+    font-size: 4rem;
+  }
+
+  .box-org p {
+    font-size: 1.4rem;
+  }
+}
+
 
 /* para desktops maiores */
 @media (min-width: 1024px) and (max-width: 1440px) {

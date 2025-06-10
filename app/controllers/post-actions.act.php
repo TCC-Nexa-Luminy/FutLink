@@ -35,7 +35,7 @@ switch ($action) {
             $count_result = $conn->query($count_sql);
             $total_curtidas = $count_result->fetch_assoc()['total'];
             
-            // 🆕 CRIAR NOTIFICAÇÃO PARA CURTIDAS
+            // CRIAR NOTIFICAÇÃO PARA CURTIDAS
             if ($curtido) {
                 // Buscar o dono do post
                 $owner_sql = "SELECT id_user FROM posts WHERE id_post = '$id_post'";
@@ -85,7 +85,7 @@ switch ($action) {
             $user_result = $conn->query($user_sql);
             $user_data = $user_result->fetch_assoc();
             
-            // 🆕 CRIAR NOTIFICAÇÃO PARA COMENTÁRIOS
+            // CRIAR NOTIFICAÇÃO PARA COMENTÁRIOS
             // Buscar o dono do post
             $owner_sql = "SELECT id_user FROM posts WHERE id_post = '$id_post'";
             $owner_result = $conn->query($owner_sql);
@@ -127,7 +127,7 @@ switch ($action) {
             $sql = "INSERT INTO reposts (id_post_original, id_user) VALUES ('$id_post', '$id_user')";
             
             if ($conn->query($sql)) {
-                // 🆕 CRIAR NOTIFICAÇÃO PARA REPOSTS
+                // CRIAR NOTIFICAÇÃO PARA REPOSTS
                 // Buscar o dono do post
                 $owner_sql = "SELECT id_user FROM posts WHERE id_post = '$id_post'";
                 $owner_result = $conn->query($owner_sql);
@@ -157,7 +157,7 @@ switch ($action) {
         break;
         
     case 'buscar_comentarios':
-        $sql = "SELECT c.conteudo, c.criado_em, u.nome 
+        $sql = "SELECT c.id_comentario, c.conteudo, c.criado_em, c.id_user, u.nome 
                 FROM comentarios c 
                 JOIN tbl_usuarios u ON c.id_user = u.id_user 
                 WHERE c.id_post = '$id_post' 
@@ -168,16 +168,87 @@ switch ($action) {
         
         while ($row = $result->fetch_assoc()) {
             $comentarios[] = [
+                'id_comentario' => $row['id_comentario'],
                 'conteudo' => $row['conteudo'],
                 'nome_usuario' => $row['nome'],
-                'criado_em' => date('d/m/Y H:i', strtotime($row['criado_em']))
+                'id_user' => $row['id_user'],
+                'criado_em' => date('d/m/Y H:i', strtotime($row['criado_em'])),
+                'is_owner' => ($row['id_user'] == $id_user)
             ];
         }
         
         echo json_encode(['success' => true, 'comentarios' => $comentarios]);
         break;
 
-    // 🆕 NOVA FUNÇÃO: EDITAR POST
+    case 'editar_comentario':
+        $id_comentario = $_POST['id_comentario'] ?? '';
+        $conteudo = mysqli_real_escape_string($conn, $_POST['conteudo']);
+        
+        if (empty($conteudo)) {
+            echo json_encode(['success' => false, 'message' => 'Comentário não pode estar vazio']);
+            break;
+        }
+        
+        // Verificar se o comentário pertence ao usuário logado
+        $check_sql = "SELECT id_user FROM comentarios WHERE id_comentario = '$id_comentario'";
+        $check_result = $conn->query($check_sql);
+        
+        if ($check_result->num_rows > 0) {
+            $comment_owner = $check_result->fetch_assoc()['id_user'];
+            
+            if ($comment_owner == $id_user) {
+                $sql = "UPDATE comentarios SET conteudo = '$conteudo' WHERE id_comentario = '$id_comentario'";
+                
+                if ($conn->query($sql)) {
+                    echo json_encode(['success' => true, 'message' => 'Comentário editado com sucesso!']);
+                } else {
+                    echo json_encode(['success' => false, 'message' => 'Erro ao editar comentário']);
+                }
+            } else {
+                echo json_encode(['success' => false, 'message' => 'Você não pode editar este comentário']);
+            }
+        } else {
+            echo json_encode(['success' => false, 'message' => 'Comentário não encontrado']);
+        }
+        break;
+
+    case 'excluir_comentario':
+        $id_comentario = $_POST['id_comentario'] ?? '';
+        
+        // Verificar se o comentário pertence ao usuário logado
+        $check_sql = "SELECT id_user, id_post FROM comentarios WHERE id_comentario = '$id_comentario'";
+        $check_result = $conn->query($check_sql);
+        
+        if ($check_result->num_rows > 0) {
+            $comment_data = $check_result->fetch_assoc();
+            $comment_owner = $comment_data['id_user'];
+            $post_id = $comment_data['id_post'];
+            
+            if ($comment_owner == $id_user) {
+                $sql = "DELETE FROM comentarios WHERE id_comentario = '$id_comentario'";
+                
+                if ($conn->query($sql)) {
+                    // Contar comentários restantes
+                    $count_sql = "SELECT COUNT(*) as total FROM comentarios WHERE id_post = '$post_id'";
+                    $count_result = $conn->query($count_sql);
+                    $total_comentarios = $count_result->fetch_assoc()['total'];
+                    
+                    echo json_encode([
+                        'success' => true, 
+                        'message' => 'Comentário excluído com sucesso!',
+                        'total_comentarios' => $total_comentarios
+                    ]);
+                } else {
+                    echo json_encode(['success' => false, 'message' => 'Erro ao excluir comentário']);
+                }
+            } else {
+                echo json_encode(['success' => false, 'message' => 'Você não pode excluir este comentário']);
+            }
+        } else {
+            echo json_encode(['success' => false, 'message' => 'Comentário não encontrado']);
+        }
+        break;
+
     case 'editar':
         $conteudo = mysqli_real_escape_string($conn, $_POST['conteudo']);
         
@@ -209,7 +280,6 @@ switch ($action) {
         }
         break;
 
-    // 🆕 NOVA FUNÇÃO: EXCLUIR POST
     case 'excluir_post':
         // Verificar se o post pertence ao usuário logado
         $check_sql = "SELECT id_user FROM posts WHERE id_post = '$id_post'";
