@@ -1,0 +1,474 @@
+/* Seção Contato */
+.secao-contato {
+  width: 100%;
+  padding: 80px 0;
+  background: linear-gradient(135deg, #f8fdf9 0%, #ffffff 50%, #f0faf2 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.secao-contato::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(6, 163, 72, 0.03) 0%, transparent 70%);
+  animation: rotate 20s linear infinite;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.container-contato {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  position: relative;
+  z-index: 2;
+}
+
+/* Cabeçalho */
+.cabecalho-contato {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.titulo-contato {
+  font-size: 3.5rem;
+  font-weight: bold;
+  color: #06a348;
+  margin-bottom: 10px;
+  font-family: var(--fonte-titulo-moderna);
+}
+
+.subtitulo-contato {
+  font-size: 1.5rem;
+  color: #03692e;
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+
+.descricao-contato {
+  font-size: 1.1rem;
+  color: #666;
+  max-width: 700px;
+  margin: 0 auto;
+  line-height: 1.7;
+  font-family: var(--fonte-apagada-clean);
+}
+
+/* Grid de Contatos */
+.grid-contatos {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 60px;
+}
+
+/* Card de Contato */
+.card-contato {
+  background: white;
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+  position: relative;
+  overflow: hidden;
+}
+
+.card-contato::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  transition: left 0.5s ease;
+}
+
+.card-contato:hover::before {
+  left: 100%;
+}
+
+.card-contato:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+}
+
+/* Cores específicas para cada rede */
+.card-contato.linkedin:hover {
+  border-color: #0077b5;
+}
+
+.card-contato.instagram:hover {
+  border-color: #e4405f;
+}
+
+.card-contato.github:hover {
+  border-color: #333;
+}
+
+/* Ícone do Contato */
+.icone-contato {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  transition: all 0.3s ease;
+}
+
+.linkedin .icone-contato {
+  background: linear-gradient(135deg, #0077b5, #005885);
+}
+
+.instagram .icone-contato {
+  background: linear-gradient(135deg, #e4405f, #fd1d1d, #fcb045);
+}
+
+.github .icone-contato {
+  background: linear-gradient(135deg, #333, #24292e);
+}
+
+.icone-contato i {
+  font-size: 2.5rem;
+  color: white;
+}
+
+.card-contato:hover .icone-contato {
+  transform: scale(1.1) rotate(5deg);
+}
+
+/* Info do Contato */
+.info-contato h3 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.info-contato p {
+  color: #666;
+  margin-bottom: 15px;
+  line-height: 1.5;
+}
+
+.handle {
+  display: inline-block;
+  background: #f8f9fa;
+  color: #06a348;
+  padding: 5px 15px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  font-family: monospace;
+}
+
+/* Botão do Contato */
+.botao-contato {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #06a348;
+  color: white;
+  padding: 12px 25px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 600;
+  margin-top: 20px;
+  transition: all 0.3s ease;
+}
+
+.botao-contato:hover {
+  background: #03692e;
+  transform: translateX(5px);
+}
+
+/* Seção ETEC */
+.secao-etec {
+  margin-bottom: 60px;
+}
+
+.card-etec {
+  background: linear-gradient(135deg, #06a348, #03692e);
+  color: white;
+  border-radius: 20px;
+  padding: 40px;
+  text-align: center;
+  box-shadow: 0 15px 35px rgba(6, 163, 72, 0.3);
+}
+
+.icone-etec {
+  width: 100px;
+  height: 100px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 25px;
+  backdrop-filter: blur(10px);
+}
+
+.icone-etec i {
+  font-size: 3rem;
+  color: white;
+}
+
+.info-etec h3 {
+  font-size: 2rem;
+  margin-bottom: 15px;
+  font-weight: bold;
+}
+
+.info-etec p {
+  font-size: 1.1rem;
+  margin-bottom: 25px;
+  opacity: 0.9;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.badges-etec {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.badge {
+  background: rgba(255, 255, 255, 0.2);
+  padding: 8px 20px;
+  border-radius: 25px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  backdrop-filter: blur(10px);
+}
+
+/* CTA Contato */
+.cta-contato {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 50px;
+  align-items: center;
+  background: white;
+  border-radius: 25px;
+  padding: 50px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+  margin-bottom: 40px;
+}
+
+.conteudo-cta h3 {
+  font-size: 2.2rem;
+  color: #03692e;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+.conteudo-cta p {
+  font-size: 1.1rem;
+  color: #666;
+  line-height: 1.6;
+  margin-bottom: 30px;
+}
+
+.botoes-cta-contato {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.botao-cta-principal {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: linear-gradient(135deg, #333, #24292e);
+  color: white;
+  padding: 15px 30px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.botao-cta-principal:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(51, 51, 51, 0.4);
+}
+
+.botao-cta-secundario {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: transparent;
+  color: #06a348;
+  padding: 15px 30px;
+  border: 2px solid #06a348;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.botao-cta-secundario:hover {
+  background: #06a348;
+  color: white;
+  transform: translateY(-3px);
+}
+
+/* Ilustração CTA */
+.ilustracao-cta {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 300px;
+}
+
+.circulo-animado {
+  position: absolute;
+  border-radius: 50%;
+  border: 2px solid #06a348;
+  opacity: 0.3;
+}
+
+.circulo-1 {
+  width: 100px;
+  height: 100px;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.circulo-2 {
+  width: 150px;
+  height: 150px;
+  animation: pulse 2s ease-in-out infinite 0.5s;
+}
+
+.circulo-3 {
+  width: 200px;
+  height: 200px;
+  animation: pulse 2s ease-in-out infinite 1s;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.3;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.1;
+  }
+}
+
+.icone-central {
+  font-size: 4rem;
+  color: #06a348;
+  z-index: 5;
+}
+
+/* Footer da Seção */
+.footer-contato {
+  text-align: center;
+  padding: 30px 0;
+  border-top: 1px solid #eee;
+}
+
+.footer-contato p {
+  color: #666;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.footer-contato i {
+  color: #06a348;
+}
+
+/* Responsividade */
+@media (max-width: 992px) {
+  .cta-contato {
+    grid-template-columns: 1fr;
+    gap: 30px;
+    text-align: center;
+  }
+
+  .ilustracao-cta {
+    height: 200px;
+  }
+}
+
+@media (max-width: 768px) {
+  .secao-contato {
+    padding: 60px 0;
+  }
+
+  .container-contato {
+    padding: 0 15px;
+  }
+
+  .titulo-contato {
+    font-size: 2.5rem;
+  }
+
+  .grid-contatos {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .card-etec {
+    padding: 30px 20px;
+  }
+
+  .cta-contato {
+    padding: 30px 20px;
+  }
+
+  .botoes-cta-contato {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .botao-cta-principal,
+  .botao-cta-secundario {
+    width: 100%;
+    max-width: 300px;
+    justify-content: center;
+  }
+
+  .badges-etec {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .titulo-contato {
+    font-size: 2rem;
+  }
+
+  .card-contato {
+    padding: 20px;
+  }
+
+  .footer-contato p {
+    flex-direction: column;
+    gap: 5px;
+  }
+}

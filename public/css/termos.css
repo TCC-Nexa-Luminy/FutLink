@@ -1,0 +1,228 @@
+/* Seção Termos e Privacidade */
+.secao-termos {
+  width: 100%;
+  padding: 80px 0;
+  background: linear-gradient(135deg, #f8fdf9 0%, #ffffff 100%);
+  min-height: 100vh;
+}
+
+.container-termos {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Cabeçalho */
+.cabecalho-termos {
+  text-align: center;
+  margin-bottom: 60px;
+  padding: 40px 0;
+  background: linear-gradient(135deg, #06a348, #03692e);
+  color: white;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(6, 163, 72, 0.3);
+}
+
+.titulo-termos {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+  font-family: var(--fonte-titulo-moderna);
+}
+
+.subtitulo-termos {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  opacity: 0.9;
+}
+
+.data-atualizacao {
+  font-size: 0.9rem;
+  opacity: 0.8;
+  font-style: italic;
+}
+
+/* Conteúdo */
+.conteudo-termos {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+/* Seção do Documento */
+.secao-documento {
+  background: white;
+  border-radius: 15px;
+  padding: 30px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+  border-left: 5px solid #06a348;
+}
+
+.icone-secao {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  background: #06a348;
+  color: white;
+  border-radius: 50%;
+  margin-bottom: 20px;
+}
+
+.icone-secao i {
+  font-size: 1.5rem;
+}
+
+.secao-documento h2 {
+  font-size: 2rem;
+  color: #03692e;
+  margin-bottom: 25px;
+  font-weight: bold;
+}
+
+/* Item do Termo */
+.item-termo {
+  margin-bottom: 25px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.item-termo:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+}
+
+.item-termo h3 {
+  font-size: 1.3rem;
+  color: #333;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.item-termo p {
+  color: #666;
+  line-height: 1.6;
+  margin-bottom: 10px;
+}
+
+.item-termo ul {
+  color: #666;
+  line-height: 1.6;
+  padding-left: 20px;
+}
+
+.item-termo ul li {
+  margin-bottom: 5px;
+}
+
+/* Seção de Contato nos Termos */
+.secao-contato-termos {
+  margin-top: 40px;
+}
+
+.card-contato-termos {
+  background: linear-gradient(135deg, #f8fdf9, #e8f5e8);
+  border: 2px solid #06a348;
+  border-radius: 15px;
+  padding: 30px;
+  text-align: center;
+}
+
+.card-contato-termos h3 {
+  font-size: 1.5rem;
+  color: #03692e;
+  margin-bottom: 15px;
+  font-weight: bold;
+}
+
+.card-contato-termos p {
+  color: #666;
+  margin-bottom: 20px;
+  line-height: 1.6;
+}
+
+.info-contato-termos {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.item-contato-termos {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: white;
+  padding: 10px 20px;
+  border-radius: 25px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+.item-contato-termos i {
+  color: #06a348;
+  font-size: 1.1rem;
+}
+
+.item-contato-termos span,
+.item-contato-termos a {
+  color: #333;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.item-contato-termos a:hover {
+  color: #06a348;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .secao-termos {
+    padding: 60px 0;
+  }
+
+  .container-termos {
+    padding: 0 15px;
+  }
+
+  .titulo-termos {
+    font-size: 2rem;
+  }
+
+  .cabecalho-termos {
+    padding: 30px 20px;
+  }
+
+  .secao-documento {
+    padding: 20px;
+  }
+
+  .secao-documento h2 {
+    font-size: 1.5rem;
+  }
+
+  .item-termo h3 {
+    font-size: 1.1rem;
+  }
+
+  .info-contato-termos {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .item-contato-termos {
+    width: 100%;
+    max-width: 300px;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .titulo-termos {
+    font-size: 1.8rem;
+  }
+
+  .card-contato-termos {
+    padding: 20px;
+  }
+}
