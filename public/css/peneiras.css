@@ -31,7 +31,7 @@ body {
 /* Header e Hero Section */
 .hero-section {
   position: relative;
-  background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
+  background: #02471f;
   padding: 80px 0;
   overflow: hidden;
   display: flex;
