@@ -3,7 +3,7 @@
 # FutLink
 ### *Conectando talentos ao futuro do futebol brasileiro*
 
-![FutLink Banner](public/images/banners/BannerDeviceMockup)
+![FutLink Banner](public/images/banners/BannerDeviceMockup.png)
 
 </div>
 
@@ -65,7 +65,7 @@ Uma plataforma digital completa onde jogadores podem:
 ### Interface da Plataforma
 
 <div align="center">
-  <img src="public/images/prints-site/inicio-futlink" alt="Tela Inicio" width="400">
+  <img src="public/images/prints-site/inicio-futlink.jpg" alt="Tela Inicial FutLink" width="800">
 </div>
 
 ### Telas do Sistema
