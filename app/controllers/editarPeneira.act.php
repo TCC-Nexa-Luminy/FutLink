@@ -324,4 +324,4 @@ try {
     header('Location: ../views/editarPeneira.php?id=' . $id_peneira);
     exit();
 }
-?>
+?>      
