@@ -16,9 +16,7 @@
 - [Demonstração](#demonstração)
 - [Tecnologias](#tecnologias)
 - [Nossa Equipe](#nossa-equipe)
-- [Estrutura do Projeto](#estrutura-do-projeto)
 - [Links Importantes](#links-importantes)
-- [Licença](#licença)
 
 ---
 
@@ -151,7 +149,7 @@ Uma plataforma digital completa onde jogadores podem:
         <img src="https://github.com/Shandel-dev.png" width="100px;" alt="Shandel Villasante"/><br>
         <sub><b>Shandel Villasante</b></sub>
       </a><br>
-      <sub>Database Architect & Backend Dev</sub>
+      <sub>Database Architect & Full Stack Developer</sub>
     </td>
   </tr>
 </table>
@@ -164,25 +162,25 @@ Uma plataforma digital completa onde jogadores podem:
 
 ---
 
-## Estrutura do Projeto
+## 📁 Estrutura do Projeto
 
 \`\`\`
 📦 FutLink/
-├── 📂 app/                          # Lógica da aplicação
-│   ├── 📂 controllers/              # Controladores PHP
-│   └── 📂 views/                    # Páginas e componentes
-├── 📂 config/                       # Configurações do sistema
-├── 📂 database/                     # Scripts e estrutura do banco
-│   └── 📂 db_futlink/              # Banco de dados principal
-├── 📂 public/                       # Arquivos públicos
-│   ├── 📂 css/                     # Estilos CSS
-│   ├── 📂 js/                      # Scripts JavaScript
-│   ├── 📂 images/                  # Imagens e assets
-│   │   └── 📂 prints-site/         # Screenshots da plataforma
-│   └── 📄 index.php                # Página inicial
-├── 📂 storage/                      # Arquivos gerados
-│   └── 📂 perfilIcons/             # Ícones de perfil dos usuários
-└── 📄 README.md                     # Este arquivo
+├── 📂 app/                          # Lógica da aplicação 🧠
+│   ├── 📂 controllers/              # Controladores PHP ⚙️
+│   └── 📂 views/                    # Páginas e componentes 🎨
+├── 📂 config/                       # Configurações do sistema ⚙️
+├── 📂 database/                     # Scripts e estrutura do banco 🗄️
+│   └── 📂 db_futlink/              # Banco de dados principal 💾
+├── 📂 public/                       # Arquivos públicos 🌐
+│   ├── 📂 css/                     # Estilos CSS 🎨
+│   ├── 📂 js/                      # Scripts JavaScript ⚡
+│   ├── 📂 images/                  # Imagens e assets 🖼️
+│   │   └── 📂 prints-site/         # Screenshots da plataforma 📸
+│   └── 📄 index.php                # Página inicial 🏠
+├── 📂 storage/                      # Arquivos gerados 📦
+│   └── 📂 perfilIcons/             # Ícones de perfil dos usuários 👤
+└── 📄 README.md                     # Este arquivo 📖
 \`\`\`
 
 ---
