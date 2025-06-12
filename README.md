@@ -1,45 +1,41 @@
 <div align="center">
 
-# ⚽ FutLink
+# FutLink
 ### *Conectando talentos ao futuro do futebol brasileiro*
 
-![FutLink Banner](https://via.placeholder.com/800x300/06a348/ffffff?text=FutLink+-+Sua+chance+de+brilhar+no+futebol+começa+aqui!)
-
-[![GitHub stars](https://img.shields.io/github/stars/TCC-Nexa-Luminy/FutLink?style=social)](https://github.com/TCC-Nexa-Luminy/FutLink/stargazers)
-[![GitHub forks](https://img.shields.io/github/forks/TCC-Nexa-Luminy/FutLink?style=social)](https://github.com/TCC-Nexa-Luminy/FutLink/network)
-[![GitHub issues](https://img.shields.io/github/issues/TCC-Nexa-Luminy/FutLink)](https://github.com/TCC-Nexa-Luminy/FutLink/issues)
+![FutLink Banner](public/images/prints-site/futlink.banner.png)
 
 </div>
 
 ---
 
-## 📋 Sumário
+## Sumário
 
-- [🎯 Sobre o Projeto](#-sobre-o-projeto)
-- [✨ Funcionalidades](#-funcionalidades)
-- [🖼️ Demonstração](#️-demonstração)
-- [🚀 Tecnologias](#-tecnologias)
-- [👥 Nossa Equipe](#-nossa-equipe)
-- [📁 Estrutura do Projeto](#-estrutura-do-projeto)
-- [🔗 Links Importantes](#-links-importantes)
-- [📄 Licença](#-licença)
+- [Sobre o Projeto](#sobre-o-projeto)
+- [Funcionalidades](#funcionalidades)
+- [Demonstração](#demonstração)
+- [Tecnologias](#tecnologias)
+- [Nossa Equipe](#nossa-equipe)
+- [Estrutura do Projeto](#estrutura-do-projeto)
+- [Links Importantes](#links-importantes)
+- [Licença](#licença)
 
 ---
 
-## 🎯 Sobre o Projeto
+## Sobre o Projeto
 
-O **FutLink** é uma plataforma inovadora que revoluciona a forma como jogadores de futebol se conectam com clubes e organizações esportivas no Brasil. 
+O **FutLink** é uma plataforma inovadora que revoluciona a forma como jogadores de futebol se conectam com clubes e organizações esportivas no Brasil.
 
-### 🌟 **Nossa Missão**
+### Nossa Missão
 Democratizar o acesso às oportunidades no futebol, eliminando barreiras geográficas e sociais que impedem talentos de serem descobertos.
 
-### 🎪 **O Problema que Resolvemos**
+### O Problema que Resolvemos
 - Jogadores talentosos sem visibilidade
 - Clubes com dificuldade para encontrar novos talentos
 - Falta de uma plataforma centralizada para o futebol brasileiro
 - Processos burocráticos e caros para descoberta de talentos
 
-### 💡 **Nossa Solução**
+### Nossa Solução
 Uma plataforma digital completa onde jogadores podem:
 - Criar perfis profissionais detalhados
 - Compartilhar vídeos e estatísticas
@@ -48,7 +44,7 @@ Uma plataforma digital completa onde jogadores podem:
 
 ---
 
-## ✨ Funcionalidades
+## Funcionalidades
 
 <div align="center">
 
@@ -64,37 +60,38 @@ Uma plataforma digital completa onde jogadores podem:
 
 ---
 
-## 🖼️ Demonstração
+## Demonstração
 
-### 📱 **Design Responsivo**
+### Interface da Plataforma
 
-![BannerDeviceMockup](https://github.com/user-attachments/assets/eb3e9aa8-546a-464d-9821-7cb7084a8dac)
+<div align="left">
+  <img src="public/images/prints-site/design futlink.png" alt="Design FutLink Mobile" width="400">
+</div>
 
-
-![Mockup Responsivo](https://via.placeholder.com/800x500/f8fdf9/06a348?text=Mockup+Responsivo+-+Desktop+%7C+Tablet+%7C+Mobile)
-
-### 🎨 **Interface Moderna**
-*[Adicione aqui suas imagens de design bonitas]*
+### Telas do Sistema
 
 <div align="center">
-  <img src="https://via.placeholder.com/380x250/06a348/ffffff?text=Tela+de+Login" alt="Tela de Login" width="380">
-  <img src="https://via.placeholder.com/380x250/03692e/ffffff?text=Dashboard+Jogador" alt="Dashboard" width="380">
+  <img src="public/images/prints-site/print-login-futlink.jpg" alt="Tela de Login" width="600">
+  <br><br>
+  <img src="public/images/prints-site/cadastrar-user-futlink.jpg" alt="Cadastro de Usuário" width="600">
+  <br><br>
+  <img src="public/images/prints-site/cadastrar-org-futlink.jpg" alt="Cadastro de Organização" width="600">
 </div>
 
 ---
 
-## 🚀 Tecnologias
+## Tecnologias
 
-### **Backend**
+### Backend
 ![PHP](https://img.shields.io/badge/PHP-777BB4?style=for-the-badge&logo=php&logoColor=white)
 ![MySQL](https://img.shields.io/badge/MySQL-00000F?style=for-the-badge&logo=mysql&logoColor=white)
 
-### **Frontend**
+### Frontend
 ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
 ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
 
-### **Ferramentas de Desenvolvimento**
+### Ferramentas de Desenvolvimento
 ![Visual Studio Code](https://img.shields.io/badge/Visual_Studio_Code-0078D4?style=for-the-badge&logo=visual%20studio%20code&logoColor=white)
 ![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)
 ![Figma](https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white)
@@ -102,11 +99,11 @@ Uma plataforma digital completa onde jogadores podem:
 
 ---
 
-## 👥 Nossa Equipe
+## Nossa Equipe
 
 <div align="center">
 
-### 🎓 **Equipe Nexa Luminy - ETEC de Itaquera**
+### Equipe Nexa Luminy - ETEC de Itaquera
 
 </div>
 
@@ -117,21 +114,21 @@ Uma plataforma digital completa onde jogadores podem:
         <img src="https://github.com/DanielHMF.png" width="100px;" alt="Daniel Mattos"/><br>
         <sub><b>Daniel Mattos</b></sub>
       </a><br>
-      <sub>📋 Documentation & Design Lead</sub>
+      <sub>Documentation & Design Lead</sub>
     </td>
     <td align="center">
       <a href="https://github.com/edudausp">
         <img src="https://github.com/edudausp.png" width="100px;" alt="Eduardo Fernandes"/><br>
         <sub><b>Eduardo Fernandes</b></sub>
       </a><br>
-      <sub>🎨 Full Stack & UI/UX Designer</sub>
+      <sub>Full Stack & UI/UX Designer</sub>
     </td>
     <td align="center">
       <a href="https://github.com/thiagoConsta">
         <img src="https://github.com/thiagoConsta.png" width="100px;" alt="Thiago Ribeiro"/><br>
         <sub><b>Thiago Ribeiro</b></sub>
       </a><br>
-      <sub>💻 Full Stack & UX/UI Designer</sub>
+      <sub>Full Stack & UX/UI Designer</sub>
     </td>
   </tr>
   <tr>
@@ -140,34 +137,34 @@ Uma plataforma digital completa onde jogadores podem:
         <img src="https://github.com/murimbo.png" width="100px;" alt="Murilo Magalhães"/><br>
         <sub><b>Murilo Magalhães</b></sub>
       </a><br>
-      <sub>⚙️ Backend Developer & ABNT Specialist</sub>
+      <sub>Backend Developer & ABNT Specialist</sub>
     </td>
     <td align="center">
       <a href="https://github.com/phmsantostts">
         <img src="https://github.com/phmsantostts.png" width="100px;" alt="Pedro Medeiros"/><br>
         <sub><b>Pedro Medeiros</b></sub>
       </a><br>
-      <sub>🔧 Full Stack Developer</sub>
+      <sub>Full Stack Developer</sub>
     </td>
     <td align="center">
       <a href="https://github.com/Shandel-dev">
         <img src="https://github.com/Shandel-dev.png" width="100px;" alt="Shandel Villasante"/><br>
         <sub><b>Shandel Villasante</b></sub>
       </a><br>
-      <sub>🗄️ Database Architect & Backend Dev</sub>
+      <sub>Database Architect & Backend Dev</sub>
     </td>
   </tr>
 </table>
 
 <div align="center">
 
-*Estudantes apaixonados por tecnologia e futebol, unidos para transformar o esporte brasileiro* ⚽💚
+*Estudantes apaixonados por tecnologia e futebol, unidos para transformar o esporte brasileiro*
 
 </div>
 
 ---
 
-## 📁 Estrutura do Projeto
+## Estrutura do Projeto
 
 \`\`\`
 📦 FutLink/
@@ -181,14 +178,16 @@ Uma plataforma digital completa onde jogadores podem:
 │   ├── 📂 css/                     # Estilos CSS
 │   ├── 📂 js/                      # Scripts JavaScript
 │   ├── 📂 images/                  # Imagens e assets
+│   │   └── 📂 prints-site/         # Screenshots da plataforma
 │   └── 📄 index.php                # Página inicial
 ├── 📂 storage/                      # Arquivos gerados
+│   └── 📂 perfilIcons/             # Ícones de perfil dos usuários
 └── 📄 README.md                     # Este arquivo
 \`\`\`
 
 ---
 
-## 🔗 Links Importantes
+## Links Importantes
 
 <div align="center">
 
@@ -202,7 +201,7 @@ Uma plataforma digital completa onde jogadores podem:
 
 ---
 
-## 📄 Licença
+## Licença
 
 <div align="center">
 
@@ -210,8 +209,8 @@ Este projeto está licenciado sob a **Licença MIT** - veja o arquivo [LICENSE](
 
 ---
 
-### 💚 **Feito com muito amor e café pela Equipe Nexa Luminy** ☕
+### **Feito com muito amor e café pela Equipe Nexa Luminy**
 
-**⭐ Se você gostou do projeto, não esqueça de dar uma estrela!**
+**Se você gostou do projeto, não esqueça de dar uma estrela!**
 
 </div>
