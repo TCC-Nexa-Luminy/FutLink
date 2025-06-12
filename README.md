@@ -164,24 +164,24 @@ Uma plataforma digital completa onde jogadores podem:
 
 ## 📁 Estrutura do Projeto
 
-\`\`\`
-📦 FutLink/
-├── 📂 app/                          # Lógica da aplicação 🧠
-│   ├── 📂 controllers/              # Controladores PHP ⚙️
-│   └── 📂 views/                    # Páginas e componentes 🎨
-├── 📂 config/                       # Configurações do sistema ⚙️
-├── 📂 database/                     # Scripts e estrutura do banco 🗄️
-│   └── 📂 db_futlink/              # Banco de dados principal 💾
-├── 📂 public/                       # Arquivos públicos 🌐
-│   ├── 📂 css/                     # Estilos CSS 🎨
-│   ├── 📂 js/                      # Scripts JavaScript ⚡
-│   ├── 📂 images/                  # Imagens e assets 🖼️
-│   │   └── 📂 prints-site/         # Screenshots da plataforma 📸
-│   └── 📄 index.php                # Página inicial 🏠
-├── 📂 storage/                      # Arquivos gerados 📦
-│   └── 📂 perfilIcons/             # Ícones de perfil dos usuários 👤
-└── 📄 README.md                     # Este arquivo 📖
-\`\`\`
+```plaintext
+FutLink/
+├── app/                      # Lógica da aplicação 🧠
+│   ├── controllers/          # Controladores PHP ⚙️
+│   └── views/                # Páginas e componentes 🎨
+├── config/                   # Configurações do sistema ⚙️
+├── database/                 # Scripts e estrutura do banco 🗄️
+│   └── db_futlink/           # Banco de dados principal 💾
+├── public/                   # Arquivos públicos 🌐
+│   ├── css/                  # Estilos CSS 🎨
+│   ├── js/                   # Scripts JavaScript ⚡
+│   ├── images/               # Imagens e assets 🖼️
+│   │   └── prints-site/      # Screenshots da plataforma 📸
+│   └── index.php             # Página inicial 🏠
+├── storage/                  # Arquivos gerados 📦
+│   └── perfilIcons/          # Ícones de perfil dos usuários 👤
+└── README.md                 # Este arquivo 📖
+```
 
 ---
 
