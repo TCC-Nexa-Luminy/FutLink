@@ -85,7 +85,7 @@ include("topo.php");
         </section>
     </main>
     <script src="../../public/js/signUp.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/5.0.7/jquery.inputmask.min.js"></script> <!--Biblioteca de mascara de inputs-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/5.0.7/jquery.inputmask.min.js"></script> 
 </body>
 
 </html>

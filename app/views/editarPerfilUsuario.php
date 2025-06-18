@@ -5,7 +5,6 @@ require_once("../../config/connect.php");
 
 $id_user = $_SESSION['id'];
 
-// Buscar dados do usuário
 $queryUser = "SELECT * FROM tbl_usuarios WHERE id_user = ?";
 $stmtUser = $conn->prepare($queryUser);
 $stmtUser->bind_param("i", $id_user);
@@ -54,7 +53,7 @@ if ($user['data_nasc']) {
 
         <form action="../controllers/editarPerfilUsuario.act.php" method="POST" enctype="multipart/form-data">
             
-            <!-- Foto de Perfil -->
+>
             <div class="card">
                 <h2><i class="fas fa-camera"></i> Foto de Perfil</h2>
                 <div class="foto-section">
@@ -68,7 +67,7 @@ if ($user['data_nasc']) {
                 </div>
             </div>
 
-            <!-- Informações Pessoais -->
+
             <div class="card">
                 <h2><i class="fas fa-user"></i> Informações Pessoais</h2>
                 
@@ -97,7 +96,7 @@ if ($user['data_nasc']) {
                 </div>
             </div>
 
-            <!-- Informações de Contato -->
+
             <div class="card">
                 <h2><i class="fas fa-envelope"></i> Informações de Contato</h2>
                 
@@ -115,7 +114,7 @@ if ($user['data_nasc']) {
                 </div>
             </div>
 
-            <!-- Alterar Senha -->
+
             <div class="card">
                 <h2><i class="fas fa-lock"></i> Alterar Senha</h2>
                 <p>Deixe os campos em branco para manter a senha atual</p>
@@ -141,7 +140,7 @@ if ($user['data_nasc']) {
                 </div>
             </div>
 
-            <!-- Botões de Ação -->
+
             <div class="actions">
                 <button type="submit" class="btn btn-primary">
                     <i class="fas fa-save"></i> Salvar Alterações
@@ -166,7 +165,7 @@ if ($user['data_nasc']) {
             }
         }
 
-        // Validação de senha
+
         document.getElementById('confirmar_senha').addEventListener('input', function() {
             const novaSenha = document.getElementById('nova_senha').value;
             const confirmarSenha = this.value;
@@ -178,7 +177,7 @@ if ($user['data_nasc']) {
             }
         });
 
-        // Máscara para telefone
+
         document.getElementById('telefone').addEventListener('input', function(e) {
             let value = e.target.value.replace(/\D/g, '');
             value = value.replace(/(\d{2})(\d)/, '($1) $2');
@@ -186,7 +185,6 @@ if ($user['data_nasc']) {
             e.target.value = value;
         });
 
-        // Contador de caracteres para bio
         const bioTextarea = document.getElementById('bio');
         const maxLength = 500;
         
@@ -203,7 +201,7 @@ if ($user['data_nasc']) {
             }
         });
 
-        // Validação do formulário
+
         document.querySelector('form').addEventListener('submit', function(e) {
             const novaSenha = document.getElementById('nova_senha').value;
             const senhaAtual = document.getElementById('senha_atual').value;
@@ -216,7 +214,7 @@ if ($user['data_nasc']) {
                 return false;
             }
             
-            // Validar tamanho da nova senha
+
             if (novaSenha && novaSenha.length < 6) {
                 e.preventDefault();
                 alert('A nova senha deve ter pelo menos 6 caracteres.');

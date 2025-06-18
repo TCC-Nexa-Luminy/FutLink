@@ -33,16 +33,14 @@ if ($check_result->num_rows === 0) {
     exit();
 }
 
-// Excluir a peneira
+
 $delete_query = "DELETE FROM peneiras WHERE id = ? AND id_org = ?";
 $delete_stmt = $conn->prepare($delete_query);
 $delete_stmt->bind_param("ii", $peneira_id, $org_id);
 
 if ($delete_stmt->execute()) {
-    // Verificar se há arquivos associados à peneira para excluir
-    // Isso depende de como você armazena os arquivos, mas aqui está um exemplo
     
-    // Obter informações da peneira antes de excluí-la
+
     $files_query = "SELECT foto_peneira, fotos, documentos FROM peneiras WHERE id = ?";
     $files_stmt = $conn->prepare($files_query);
     $files_stmt->bind_param("i", $peneira_id);

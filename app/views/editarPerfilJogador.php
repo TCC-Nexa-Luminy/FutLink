@@ -5,7 +5,6 @@ require_once("../../config/connect.php");
 
 $id_user = $_SESSION['id'];
 
-// Buscar dados do usuário
 $queryUser = "SELECT nome, email, telefone, foto_perfil, data_nasc, bio FROM tbl_usuarios WHERE id_user = ?";
 $stmtUser = $conn->prepare($queryUser);
 $stmtUser->bind_param("i", $id_user);
@@ -13,7 +12,7 @@ $stmtUser->execute();
 $resultUser = $stmtUser->get_result();
 $user = $resultUser->fetch_assoc();
 
-// Buscar dados do jogador
+
 $queryPlayer = "SELECT * FROM tbl_jogador WHERE id_user = ?";
 $stmtPlayer = $conn->prepare($queryPlayer);
 $stmtPlayer->bind_param("i", $id_user);
@@ -28,7 +27,6 @@ if (!$player) {
 
 $id_jogador = $player['id_jogador'];
 
-// Buscar características existentes
 $queryCarac = "SELECT * FROM tbl_caracteristicas_jogador WHERE id_jogador = ?";
 $stmtCarac = $conn->prepare($queryCarac);
 $stmtCarac->bind_param("i", $id_jogador);
@@ -39,7 +37,6 @@ while ($row = $resultCarac->fetch_assoc()) {
     $caracteristicasExistentes[] = $row;
 }
 
-// Buscar conquistas existentes
 $queryConq = "SELECT * FROM tbl_conquistas_jogador WHERE id_jogador = ? ORDER BY ano DESC";
 $stmtConq = $conn->prepare($queryConq);
 $stmtConq->bind_param("i", $id_jogador);
@@ -50,7 +47,7 @@ while ($row = $resultConq->fetch_assoc()) {
     $conquistasExistentes[] = $row;
 }
 
-// Buscar histórico de clubes
+
 $queryHist = "SELECT * FROM tbl_historico_clubes WHERE id_jogador = ? ORDER BY data_inicio DESC";
 $stmtHist = $conn->prepare($queryHist);
 $stmtHist->bind_param("i", $id_jogador);
@@ -355,7 +352,7 @@ body {
 
         <form action="../controllers/editarPerfilJogador.act.php" method="POST" enctype="multipart/form-data">
             
-            <!-- Foto de Perfil -->
+
             <div class="card">
                 <h2><i class="fas fa-camera"></i> Foto de Perfil</h2>
                 <div class="foto-section">
@@ -368,7 +365,7 @@ body {
                 </div>
             </div>
 
-            <!-- Informações Básicas do Usuário -->
+
             <div class="card">
                 <h2><i class="fas fa-user"></i> Informações Pessoais</h2>
                 
@@ -405,7 +402,7 @@ body {
                 </div>
             </div>
 
-            <!-- Informações Básicas -->
+
             <div class="card">
                 <h2><i class="fas fa-user"></i> Informações Básicas</h2>
                 
@@ -466,7 +463,7 @@ body {
                 </div>
             </div>
 
-            <!-- Características -->
+
             <div class="card">
                 <h2><i class="fas fa-list-check"></i> Características de Jogo</h2>
                 <p>Selecione suas principais características:</p>
@@ -489,7 +486,7 @@ body {
                 </div>
             </div>
 
-            <!-- Conquistas -->
+
             <div class="card">
                 <h2><i class="fas fa-trophy"></i> Conquistas e Títulos</h2>
                 
@@ -544,7 +541,7 @@ body {
                 </button>
             </div>
 
-            <!-- Histórico de Clubes -->
+
             <div class="card">
                 <h2><i class="fas fa-history"></i> Histórico de Clubes</h2>
                 
@@ -593,7 +590,7 @@ body {
                 </button>
             </div>
 
-            <!-- Alterar Senha -->
+
             <div class="card">
                 <h2><i class="fas fa-lock"></i> Alterar Senha</h2>
                 <p>Deixe os campos em branco para manter a senha atual</p>
@@ -619,7 +616,6 @@ body {
                 </div>
             </div>
 
-            <!-- Botões de Ação -->
             <div class="actions">
                 <button type="submit" class="btn btn-primary">
                     <i class="fas fa-save"></i> Salvar Alterações
@@ -731,14 +727,14 @@ body {
             item.style.opacity = '0.5';
             item.style.textDecoration = 'line-through';
             
-            // Criar input hidden para marcar exclusão
+
             const input = document.createElement('input');
             input.type = 'hidden';
             input.name = `excluir_${tipo}s[]`;
             input.value = id;
             item.appendChild(input);
             
-            // Alterar botão
+
             button.innerHTML = '<i class="fas fa-undo"></i> Desfazer';
             button.onclick = function() {
                 item.style.opacity = '1';
@@ -804,7 +800,7 @@ body {
             const novaSenha = document.getElementById('nova_senha').value;
             const senhaAtual = document.getElementById('senha_atual').value;
             
-            // Se está tentando alterar senha, deve informar a atual
+
             if (novaSenha && !senhaAtual) {
                 e.preventDefault();
                 alert('Para alterar a senha, você deve informar sua senha atual.');
@@ -812,7 +808,7 @@ body {
                 return false;
             }
             
-            // Validar tamanho da nova senha
+
             if (novaSenha && novaSenha.length < 6) {
                 e.preventDefault();
                 alert('A nova senha deve ter pelo menos 6 caracteres.');

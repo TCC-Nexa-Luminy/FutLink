@@ -2,14 +2,14 @@
 @session_start();
 include("topo.php");
 
-// CÓDIGO CORRIGIDO: Sempre verificar se o nome na sessão corresponde ao usuário atual
+
 $nomeUsuario = 'Jogador'; // Fallback padrão
 
 if (isset($_SESSION['id'])) {
     include_once('../../config/connect.php');
     $id_user = $_SESSION['id'];
     
-    // Buscar o nome atual do usuário no banco
+
     $sql_user = "SELECT nome FROM tbl_usuarios WHERE id_user = '$id_user'";
     $result_user = $conn->query($sql_user);
     
@@ -17,7 +17,7 @@ if (isset($_SESSION['id'])) {
         $user_data = $result_user->fetch_assoc();
         $nomeUsuario = $user_data['nome'];
         
-        // Atualizar a sessão com o nome correto
+
         $_SESSION['nome'] = $nomeUsuario;
     }
 }
@@ -35,7 +35,7 @@ $primeiroNome = explode(' ', trim($nomeUsuario))[0];
     ?>
 
     <div class="container">
-        <!-- Caixa de Post Melhorada -->
+
         <div class="caixa-post">
             <div class="post-creator">
                 <div class="creator-header">
@@ -45,7 +45,7 @@ $primeiroNome = explode(' ', trim($nomeUsuario))[0];
     $fotoPerfilLogado = '';
     
     if (isset($_SESSION['id'])) {
-        // Buscar foto de perfil atualizada do banco
+
         $id_user = $_SESSION['id'];
         $sql_foto = "SELECT foto_perfil FROM tbl_usuarios WHERE id_user = '$id_user'";
         $result_foto = $conn->query($sql_foto);
@@ -59,13 +59,13 @@ $primeiroNome = explode(' ', trim($nomeUsuario))[0];
     $caminhoFotoLogado = '';
     
     if (!empty($fotoPerfilLogado)) {
-        // Verificar diferentes possíveis caminhos
+
         $possiveisCaminhos = [
             '../../public/images/perfil/' . $fotoPerfilLogado,
             '../public/images/perfil/' . $fotoPerfilLogado,
             './public/images/perfil/' . $fotoPerfilLogado,
             'public/images/perfil/' . $fotoPerfilLogado,
-            $fotoPerfilLogado // Caso já seja o caminho completo
+            $fotoPerfilLogado 
         ];
         
         foreach ($possiveisCaminhos as $caminho) {
@@ -126,7 +126,7 @@ $primeiroNome = explode(' ', trim($nomeUsuario))[0];
             </div>
         </div>
 
-        <!-- Feed de Posts -->
+
         <div class="posts-feed">
             <div class="feed-header">
                 <h2><i class="fas fa-stream"></i> Feed de Atividades</h2>
@@ -158,18 +158,18 @@ $primeiroNome = explode(' ', trim($nomeUsuario))[0];
                         echo '<header class="post-header">';
                         echo '<div class="author-info">';
                         
-                        // CORREÇÃO PRINCIPAL: Verificar múltiplos caminhos para a foto de perfil
+
                         $fotoPerfilPost = $post['foto_perfil'] ?? '';
                         $caminhoFotoPost = '';
                         
                         if (!empty($fotoPerfilPost)) {
-                            // Verificar diferentes possíveis caminhos
+
                             $possiveisCaminhos = [
                                 '../../public/images/perfil/' . $fotoPerfilPost,
                                 '../public/images/perfil/' . $fotoPerfilPost,
                                 './public/images/perfil/' . $fotoPerfilPost,
                                 'public/images/perfil/' . $fotoPerfilPost,
-                                $fotoPerfilPost // Caso já seja o caminho completo
+                                $fotoPerfilPost 
                             ];
                             
                             foreach ($possiveisCaminhos as $caminho) {
@@ -211,19 +211,18 @@ $primeiroNome = explode(' ', trim($nomeUsuario))[0];
                         
                         echo '</header>';
 
-                        // Conteúdo do post
+
                         echo '<div class="post-content">';
                         echo '<p class="post-text" data-post-id="' . $post['id_post'] . '">' . htmlspecialchars($post['conteudo']) . '</p>';
                         echo '</div>';
 
-                        // Imagem do post
                         if ($post['imagem']) {
                             echo '<div class="post-media">';
                             echo '<img src="' . htmlspecialchars($post['imagem']) . '" alt="Imagem do post" class="post-image" loading="lazy">';
                             echo '</div>';
                         }
 
-                        // Vídeo do post
+
                         if ($post['video_url']) {
                             echo '<div class="post-media">';
                             echo '<div class="video-container">';
@@ -241,7 +240,7 @@ $primeiroNome = explode(' ', trim($nomeUsuario))[0];
                             echo '</div>';
                         }
 
-                        // Ações do post
+
                         echo '<footer class="post-actions">';
                         echo '<div class="action-buttons">';
                         
@@ -320,7 +319,7 @@ $primeiroNome = explode(' ', trim($nomeUsuario))[0];
     </div>
 
     <script>
-        // Script para mostrar o nome do arquivo selecionado
+
         document.querySelector('input[type="file"]').addEventListener('change', function(e) {
             const fileName = e.target.files[0]?.name;
             if (fileName) {
@@ -331,7 +330,7 @@ $primeiroNome = explode(' ', trim($nomeUsuario))[0];
             }
         });
 
-        // Script para mostrar/ocultar campo de vídeo
+
         document.getElementById('video-btn').addEventListener('click', function() {
             const videoInput = document.querySelector('.video-input');
             const isVisible = videoInput.style.display !== 'none';
@@ -346,7 +345,6 @@ $primeiroNome = explode(' ', trim($nomeUsuario))[0];
             }
         });
 
-        // Script para remover campo de vídeo
         document.querySelector('.remove-video-btn').addEventListener('click', function() {
             const videoInput = document.querySelector('.video-input');
             const videoBtn = document.getElementById('video-btn');
@@ -356,7 +354,7 @@ $primeiroNome = explode(' ', trim($nomeUsuario))[0];
             document.querySelector('.video-url-input').value = '';
         });
 
-        // Função para editar post
+
         document.querySelectorAll('.btn-editar-post').forEach(button => {
             button.addEventListener('click', function() {
                 const postId = this.dataset.postId;
@@ -390,7 +388,6 @@ $primeiroNome = explode(' ', trim($nomeUsuario))[0];
             });
         });
 
-        // Função para excluir post
         document.querySelectorAll('.btn-excluir-post').forEach(button => {
             button.addEventListener('click', function() {
                 const postId = this.dataset.postId;
@@ -424,7 +421,7 @@ $primeiroNome = explode(' ', trim($nomeUsuario))[0];
             });
         });
 
-        // Função para curtir/descurtir
+
         document.querySelectorAll('.btn-curtir').forEach(button => {
             button.addEventListener('click', function() {
                 const postId = this.dataset.postId;
@@ -537,15 +534,15 @@ $primeiroNome = explode(' ', trim($nomeUsuario))[0];
                             lista.appendChild(div);
                         });
 
-                        // Adicionar event listeners para os novos botões
+
                         adicionarEventListenersComentarios();
                     }
                 });
         }
 
-        // NOVA FUNÇÃO: Adicionar event listeners para comentários
+
         function adicionarEventListenersComentarios() {
-            // Editar comentário
+
             document.querySelectorAll('.btn-editar-comentario').forEach(button => {
                 button.addEventListener('click', function() {
                     const commentId = this.dataset.commentId;
@@ -647,7 +644,7 @@ $primeiroNome = explode(' ', trim($nomeUsuario))[0];
                             input.value = '';
                             carregarComentarios(postId);
 
-                            // Atualizar contador de comentários
+
                             const btnComentar = document.querySelector(`.btn-comentar[data-post-id="${postId}"] span`);
                             const currentCount = parseInt(btnComentar.textContent) + 1;
                             btnComentar.textContent = currentCount;
@@ -664,7 +661,7 @@ $primeiroNome = explode(' ', trim($nomeUsuario))[0];
             });
         });
 
-        // Permitir enviar comentário com Enter
+
         document.querySelectorAll('.comment-input').forEach(input => {
             input.addEventListener('keypress', function(e) {
                 if (e.key === 'Enter') {
@@ -674,7 +671,7 @@ $primeiroNome = explode(' ', trim($nomeUsuario))[0];
             });
         });
 
-        // Sistema de notificações
+
         function showNotification(message, type = 'info') {
             const notification = document.createElement('div');
             notification.className = `notification notification-${type}`;

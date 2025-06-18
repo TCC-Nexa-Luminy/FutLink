@@ -61,7 +61,6 @@ function getStatusColor($status) {
     }
 }
 
-// ADICIONADO: Obter o nome correto do arquivo atual
 $current_file = basename($_SERVER['PHP_SELF']);
 ?>
 
@@ -72,12 +71,12 @@ $current_file = basename($_SERVER['PHP_SELF']);
 <div class="jogadores-page">
     <div class="container">
 
-        <!-- Se há resultados de busca por nome, mostrar seção de resultados -->
+
         <?php if ($mostrar_resultados_busca): ?>
             <div class="resultado-busca-section">
                 <div class="page-header">
                     <div class="header-content">
-                        <!-- OPÇÃO 1: Usando o nome do arquivo atual -->
+>
                         <button onclick="window.location.href='<?= $current_file ?>'" class="btn-voltar">
                             <i class="fas fa-arrow-left"></i>
                             Nova Busca
@@ -102,7 +101,6 @@ $current_file = basename($_SERVER['PHP_SELF']);
                     </div>
                 </div>
 
-                <!-- Resultados da busca por nome -->
                 <?php if (count($jogadores_busca) > 0): ?>
                     <div class="jogadores-grid">
                         <?php foreach ($jogadores_busca as $jogador): ?>
@@ -181,7 +179,7 @@ $current_file = basename($_SERVER['PHP_SELF']);
                                 <li>Use termos mais gerais na busca</li>
                             </ul>
                         </div>
-                        <!-- OPÇÃO 2: Usando link direto -->
+
                         <button onclick="window.location.href='<?= $current_file ?>'" class="btn-nova-busca">
                             <i class="fas fa-search"></i>
                             Fazer nova busca
@@ -191,7 +189,7 @@ $current_file = basename($_SERVER['PHP_SELF']);
             </div>
 
         <?php else: ?>
-            <!-- Seção de busca e filtros (quando não há busca por nome) -->
+
             <div class="barraPesquisa">
                 <div class="pesquisaContainer">
                     <form method="GET" action="">
@@ -255,7 +253,7 @@ $current_file = basename($_SERVER['PHP_SELF']);
                             <i class="fas fa-search"></i>
                             Aplicar Filtros
                         </button>
-                        <!-- OPÇÃO 3: Usando apenas o nome do arquivo -->
+
                         <button type="button" onclick="window.location.href='<?= $current_file ?>';">
                             <i class="fas fa-times"></i>
                             Limpar
@@ -265,7 +263,7 @@ $current_file = basename($_SERVER['PHP_SELF']);
             </div>
 
             <?php
-            // Processar filtros avançados
+
             $where = [];
             if (!empty($_GET['posicao'])) {
                 $posicao = mysqli_real_escape_string($conn, $_GET['posicao']);
@@ -384,7 +382,7 @@ $current_file = basename($_SERVER['PHP_SELF']);
     </div>
 </div>
 
-<!-- ADICIONADO: Script de debug para ver qual arquivo está sendo chamado -->
+
 <script>
 console.log('Arquivo atual:', '<?= $current_file ?>');
 console.log('URL atual:', window.location.href);

@@ -9,10 +9,10 @@ include("topo.php");
     include("navbar-social.php");
     include_once("message.php");
     
-    // Conecta ao banco de dados
+
     require("../../config/connect.php");
     
-    // Busca peneiras do banco de dados
+
     $sql = "SELECT * FROM peneiras ORDER BY data DESC";
     $result = $conn->query($sql);
     
@@ -35,12 +35,12 @@ include("topo.php");
     ?>
     
     <div class="container-site">
-        <!-- Botão de voltar -->
+
         <a href="javascript:history.back()" class="back-button">
             <i class="fas fa-arrow-left"></i>
         </a>
 
-        <!-- Hero Section -->
+
         <section class="hero-section">
             <div class="hero-bg"></div>
             <div class="hero-content">
@@ -51,7 +51,6 @@ include("topo.php");
             </div>
         </section>
 
-        <!-- Search Section -->
         <div class="search-container">
             <div class="search-box animate-fadeInUp delay-100">
                 <div class="search-input">
@@ -84,9 +83,9 @@ include("topo.php");
             </div>
         </div>
 
-        <!-- Main Content -->
+
         <div class="main-content">
-            <!-- Featured Section -->
+
             <section class="animate-fadeInUp delay-200">
                 <div class="section-header">
                     <h2 class="section-title">Peneiras Disponíveis</h2>
@@ -100,12 +99,12 @@ include("topo.php");
                     </div>
                 </div>
 
-                <!-- Grid View (default) -->
+
                 <div class="cards-grid" id="grid-view">
                     <?php
                     if ($result && $result->num_rows > 0) {
                         while($row = $result->fetch_assoc()) {
-                            // Determina o badge baseado na data e status
+
                             $data_peneira = new DateTime($row['data']);
                             $hoje = new DateTime();
                             $diferenca = $hoje->diff($data_peneira)->days;
@@ -124,7 +123,7 @@ include("topo.php");
                                 $badge_icon = 'fas fa-star';
                             }
                             
-                            // Determina o status
+
                             $status_class = '';
                             $status_text = '';
                             
@@ -143,7 +142,7 @@ include("topo.php");
                             $foto_principal = '';
                             
                             if (!empty($row['foto_peneira'])) {
-                                // Verificar se o arquivo existe
+
                                 $possible_paths = [
                                     '../../controllers/' . $row['foto_peneira'],
                                     '../controllers/' . $row['foto_peneira'],
@@ -164,7 +163,7 @@ include("topo.php");
                                     $foto_principal = '../../controllers/' . $row['foto_peneira'];
                                 }
                             } else {
-                                // Foto padrão se não houver foto principal
+
                                 $foto_principal = '../../public/images/default-peneira.jpg';
                             }
                             
@@ -263,12 +262,12 @@ include("topo.php");
                     ?>
                 </div>
 
-                <!-- List View (hidden by default) -->
+
                 <div class="cards-list" id="list-view" style="display: none;">
-                    <!-- O conteúdo da lista será gerado dinamicamente via JavaScript -->
+
                 </div>
 
-                <!-- Pagination -->
+
                 <div class="pagination animate-fadeInUp delay-400">
                     <div class="page-item disabled">
                         <i class="fas fa-chevron-left"></i>
@@ -282,7 +281,7 @@ include("topo.php");
                 </div>
             </section>
 
-            <!-- CTA Section -->
+
             <section class="cta-section animate-fadeInUp delay-400">
                 <h2 class="cta-title">Pronto para iniciar sua carreira?</h2>
                 <p class="cta-description">Cadastre-se agora e receba alertas sobre novas peneiras próximas a você. Não perca nenhuma oportunidade de mostrar seu talento!</p>
@@ -300,7 +299,7 @@ include("topo.php");
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Toggle entre visualização em grid e lista
+
             const viewOptions = document.querySelectorAll('.view-option');
             const gridView = document.getElementById('grid-view');
             const listView = document.getElementById('list-view');
@@ -320,7 +319,7 @@ include("topo.php");
                 });
             });
 
-            // Funcionalidade de favoritar
+
             const favoriteButtons = document.querySelectorAll('.action-button.favorite');
             favoriteButtons.forEach(button => {
                 button.addEventListener('click', function() {
@@ -335,7 +334,7 @@ include("topo.php");
                 });
             });
 
-            // Funcionalidade de compartilhamento
+
             const shareButtons = document.querySelectorAll('.action-button.share');
             shareButtons.forEach(button => {
                 button.addEventListener('click', function() {
@@ -343,7 +342,7 @@ include("topo.php");
                 });
             });
             
-            // Animação de entrada dos elementos
+
             const animatedElements = document.querySelectorAll('.animate-fadeInUp');
 
             function checkScroll() {

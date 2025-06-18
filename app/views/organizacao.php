@@ -2,12 +2,12 @@
 @session_start();
 include('topo.php');
 
-// Buscar dados da organização
+
 require("../../config/connect.php");
 
 $org_id = isset($_GET['id']) ? (int)$_GET['id'] : 1;
 
-// Buscar organização do banco
+
 $query = "SELECT * FROM tbl_organizacao WHERE id_org = ?";
 $stmt = $conn->prepare($query);
 $stmt->bind_param("i", $org_id);
@@ -17,25 +17,24 @@ $result = $stmt->get_result();
 if ($result->num_rows > 0) {
     $org = $result->fetch_assoc();
 } else {
-    // Redirecionar se não encontrar a organização
+
     header('Location: organizacoes.php');
     exit();
 }
 
-// Calcular anos de funcionamento
+
 $anos_funcionamento = isset($org['data_fundacao']) ? date('Y') - date('Y', strtotime($org['data_fundacao'])) : 0;
 
-// Determinar banner
+
 $banner_path = !empty($org['logo_org']) ? '../../' . $org['logo_org'] : '/placeholder.svg?height=300&width=300';
 
-// CORRIGIDO: Buscar peneiras da organização usando a tabela 'peneiras' existente
+
 $peneiras = [];
 try {
-    // Verificar se a tabela peneiras existe
+
     $check_table = $conn->query("SHOW TABLES LIKE 'peneiras'");
     if ($check_table && $check_table->num_rows > 0) {
-        // Como não temos org_id na tabela peneiras atual, vamos buscar todas as peneiras ativas
-        // Em um sistema real, você deveria adicionar um campo org_id na tabela peneiras
+
         $peneiras_query = "SELECT * FROM peneiras WHERE `id_org` = '$org_id' ORDER BY data ASC LIMIT 10";
         $peneiras_result = $conn->query($peneiras_query);
         
@@ -137,7 +136,7 @@ $is_public_view = true;
                     <?php endif; ?>
 
                     <?php 
-                    // Só mostrar seção de informações se tiver dados relevantes
+
                     $has_info = !empty($org['data_fundacao']) || !empty($org['tipo']) || $anos_funcionamento > 0 || !empty($org['email']) || !empty($org['telefone_org']);
                     if ($has_info): 
                     ?>

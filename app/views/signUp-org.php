@@ -16,7 +16,7 @@ include("topo.php");
     <?php include("message.php"); ?>
     
     <main class="containerMain">
-        <!-- Formulário de Cadastro -->
+
         <section class="main_content">
             <a href="../../public/index.php" class="back_btn"><i class="fa-solid fa-circle-left"></i></a>
             
@@ -25,7 +25,7 @@ include("topo.php");
                 <h2>Já tem uma conta? <a href="login.php">Entre aqui</a></h2>
                 <hr>
                 
-                <!-- Seção 1: Logo/Banner e Informações Básicas -->
+
                 <article class="content-input">
                     <h3>Informações da organização</h3>
                     <div class="form-content-info">
@@ -136,7 +136,7 @@ include("topo.php");
 
                 <hr>
                 
-                <!-- Botões de Ação -->
+
                 <div class="form-label_direction">
                     <a href="../../public/index.php" class="form_back-btn"><i class="fa-solid fa-arrow-left"></i> Voltar</a>
                     <input type="submit" value="Finalizar cadastro" class="form_submit">
@@ -144,7 +144,7 @@ include("topo.php");
             </form>
         </section>
 
-        <!-- Banner Lateral -->
+
         <section class="main_banner">
             <div class="banner_content">
                 <div class="banner_top">

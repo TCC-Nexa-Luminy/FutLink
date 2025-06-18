@@ -5,13 +5,13 @@
 <?php 
 include 'navbar-social.php';
 
-// Incluir conexão com banco ANTES de usar $conn
+
 require_once("../../config/connect.php");
 
 // Verificar se há um parâmetro de ID na URL (para visualizar perfil de outro usuário)
 $perfil_id = isset($_GET['id']) ? intval($_GET['id']) : $_SESSION['id'];
 
-// Flag para verificar se o usuário está visualizando seu próprio perfil
+
 $proprio_perfil = ($perfil_id == $_SESSION['id']);
 ?>
 
@@ -116,7 +116,7 @@ $proprio_perfil = ($perfil_id == $_SESSION['id']);
   <section class="card posts">
     <h2><i class="fas fa-stream"></i> Minhas Postagens</h2>
     <div class="posts-lista" id="posts-container">
-      <!-- Posts serão carregados aqui via JavaScript -->
+
       <div class="loading-posts">
         <i class="fas fa-spinner fa-spin"></i>
         <p>Carregando posts...</p>
@@ -140,7 +140,7 @@ $proprio_perfil = ($perfil_id == $_SESSION['id']);
       .then(data => {
         console.log('Dados recebidos:', data);
         
-        // Atualizar informações básicas do usuário
+
         if (data.user) {
           document.getElementById('name_user').textContent = data.user.nome || 'Nome não informado';
           document.getElementById('email_user').textContent = data.user.email || 'Email não informado';

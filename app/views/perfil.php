@@ -7,11 +7,10 @@ if (!isset($_SESSION['id'])) {
     exit;
 }
 
-// Redirecionar para o script que verifica o tipo de usuário
+
 require_once("../controllers/checkUserType.php");
 
-// O script checkUserType.php retorna um JSON com a informação se o usuário é jogador ou não
-// e para qual página redirecionar
+
 $response = json_decode(ob_get_clean(), true);
 
 if ($response['success']) {

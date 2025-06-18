@@ -13,3 +13,4 @@ mysqli_query($conn, "SET NAMES utf8");
 // }else{
 //     echo "Conectado ao banco de dados";
 // }
+// arrumado

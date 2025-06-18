@@ -3,8 +3,7 @@
 include("topo.php");
 ?>
 <link rel="stylesheet" href="../../public/css/mensagens.css">
-<!-- Adicione Font Awesome para ícones -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
 
 <body>
     <?php
@@ -13,7 +12,7 @@ include("topo.php");
     // include("components/back-button.php");
     ?>
     
-    <!-- Botão de voltar -->
+
 
     
     <div class="container-site">
@@ -28,10 +27,10 @@ include("topo.php");
             </div>
         </section>
 
-        <!-- Main Content -->
+
         <div class="main-content">
             <div class="messages-container">
-                <!-- Sidebar de Conversas -->
+
                 <div class="conversations-sidebar">
                     <div class="sidebar-header">
                         <h2>Conversas</h2>
@@ -46,7 +45,7 @@ include("topo.php");
                     </div>
                     
                     <div class="conversations-list">
-                        <!-- Conversa 1 - Ativa -->
+
                         <div class="conversation-item active">
                             <div class="conversation-avatar">
                                 <img src="../../public/images/corinthians-logo.png" alt="Corinthians">
@@ -64,7 +63,7 @@ include("topo.php");
                             </div>
                         </div>
                         
-                        <!-- Conversa 2 -->
+
                         <div class="conversation-item">
                             <div class="conversation-avatar">
                                 <img src="../../public/images/palmeiras-logo.png" alt="Palmeiras">
@@ -80,7 +79,7 @@ include("topo.php");
                             </div>
                         </div>
                         
-                        <!-- Conversa 3 -->
+
                         <div class="conversation-item">
                             <div class="conversation-avatar">
                                 <img src="../../public/images/santos-logo.png" alt="Santos">
@@ -98,7 +97,7 @@ include("topo.php");
                             </div>
                         </div>
                         
-                        <!-- Conversa 4 -->
+
                         <div class="conversation-item">
                             <div class="conversation-avatar">
                                 <img src="../../public/images/sao-paulo-logo.png" alt="São Paulo">
@@ -114,7 +113,7 @@ include("topo.php");
                             </div>
                         </div>
                         
-                        <!-- Conversa 5 -->
+
                         <div class="conversation-item">
                             <div class="conversation-avatar">
                                 <div class="avatar-placeholder">CF</div>
@@ -133,7 +132,7 @@ include("topo.php");
                     </div>
                 </div>
                 
-                <!-- Área de Chat -->
+
                 <div class="chat-area">
                     <div class="chat-header">
                         <div class="chat-user-info">
@@ -149,7 +148,7 @@ include("topo.php");
                     </div>
                     
                     <div class="chat-messages">
-                        <!-- Mensagem recebida -->
+
                         <div class="message received">
                             <div class="message-avatar">
                                 <img src="../../public/images/corinthians-logo.png" alt="Corinthians">
@@ -162,7 +161,7 @@ include("topo.php");
                             </div>
                         </div>
                         
-                        <!-- Mensagem recebida -->
+
                         <div class="message received">
                             <div class="message-avatar">
                                 <img src="../../public/images/corinthians-logo.png" alt="Corinthians">
@@ -175,7 +174,7 @@ include("topo.php");
                             </div>
                         </div>
                         
-                        <!-- Mensagem enviada -->
+
                         <div class="message sent">
                             <div class="message-content">
                                 <div class="message-bubble">
@@ -185,7 +184,7 @@ include("topo.php");
                             </div>
                         </div>
                         
-                        <!-- Mensagem recebida -->
+
                         <div class="message received">
                             <div class="message-avatar">
                                 <img src="../../public/images/corinthians-logo.png" alt="Corinthians">
@@ -198,7 +197,7 @@ include("topo.php");
                             </div>
                         </div>
                         
-                        <!-- Mensagem enviada -->
+
                         <div class="message sent">
                             <div class="message-content">
                                 <div class="message-bubble">
@@ -227,14 +226,14 @@ include("topo.php");
 
     <script>
 document.addEventListener('DOMContentLoaded', function() {
-    // Elementos
+
     const conversationItems = document.querySelectorAll('.conversation-item');
     const conversationsSidebar = document.querySelector('.conversations-sidebar');
     const chatArea = document.querySelector('.chat-area');
     const messageInput = document.getElementById('messageInput');
     const sendBtn = document.querySelector('.send-btn');
     
-    // Criar botão de voltar mobile
+
     const chatHeader = document.querySelector('.chat-header');
     const chatUserInfo = document.querySelector('.chat-user-info');
     
@@ -245,7 +244,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     chatHeader.insertBefore(mobileBackBtn, chatUserInfo);
     
-    // Função para mostrar chat (mobile)
+
     function showChat() {
         if (window.innerWidth <= 768) {
             conversationsSidebar.classList.add('hidden');
@@ -253,7 +252,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     
-    // Função para mostrar conversas (mobile)
+
     function showConversations() {
         if (window.innerWidth <= 768) {
             conversationsSidebar.classList.remove('hidden');
@@ -261,15 +260,14 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     
-    // Seleção de conversa
+
     conversationItems.forEach(item => {
         item.addEventListener('click', function() {
-            // Remove active de todos
+
             conversationItems.forEach(i => i.classList.remove('active'));
-            // Adiciona active no clicado
+
             this.classList.add('active');
-            
-            // Remove badge de não lida
+
             const unreadBadge = this.querySelector('.unread-count');
             if (unreadBadge) {
                 unreadBadge.remove();
@@ -280,12 +278,12 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // Botão voltar mobile
+
     mobileBackBtn.addEventListener('click', function() {
         showConversations();
     });
     
-    // Enviar mensagem
+
     function sendMessage() {
         const message = messageInput.value.trim();
         if (message) {
@@ -306,13 +304,13 @@ document.addEventListener('DOMContentLoaded', function() {
     const chatMessages = document.querySelector('.chat-messages');
     chatMessages.scrollTop = chatMessages.scrollHeight;
     
-    // Controle de redimensionamento
+
     window.addEventListener('resize', function() {
         if (window.innerWidth > 768) {
             conversationsSidebar.classList.remove('hidden');
             mobileBackBtn.style.display = 'none';
         } else {
-            // Se estiver no mobile e não tiver conversa ativa, mostra lista
+
             const activeConversation = document.querySelector('.conversation-item.active');
             if (!activeConversation) {
                 showConversations();
@@ -322,7 +320,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
     
-    // Inicialização mobile
+
     if (window.innerWidth <= 768) {
         showConversations();
     }

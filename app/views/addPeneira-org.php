@@ -18,7 +18,7 @@ include("topo.php");
     ?>
     
     <div class="container-site">
-        <!-- Botão de voltar -->
+
         <a href="organizacao.php?id=<?php echo $_SESSION['id']; ?>" class="back-button">
             <i class="fas fa-arrow-left"></i>
         </a>
@@ -90,7 +90,7 @@ include("topo.php");
                     </div>
                 </div>
                 
-                <!-- NOVA SEÇÃO: TAXA DE INSCRIÇÃO -->
+
                 <div class="form-group">
                     <label class="form-label">Taxa de Inscrição</label>
                     <div class="form-hint">Defina se a peneira é gratuita ou paga</div>
@@ -207,7 +207,7 @@ include("topo.php");
     </div>
     
     <script>
-        // NOVA FUNÇÃO: Alternar campo de valor
+
         function toggleTaxaInput() {
             const valorContainer = document.getElementById('valorContainer');
             const valorInput = document.getElementById('valor_inscricao');
@@ -223,7 +223,7 @@ include("topo.php");
             }
         }
         
-        // Preview da foto principal
+
         function previewMainImage(input) {
             const preview = document.getElementById('mainImagePreview');
             const uploadLabel = document.querySelector('.foto-peneira-upload');
@@ -296,7 +296,7 @@ include("topo.php");
             }
         }
         
-        // Animação de entrada dos elementos
+
         document.addEventListener('DOMContentLoaded', function() {
             const animatedElements = document.querySelectorAll('.animate-fadeInUp');
             
@@ -312,17 +312,17 @@ include("topo.php");
                 });
             }
             
-            // Inicialmente, definir os elementos como invisíveis
+
             animatedElements.forEach(element => {
                 element.style.opacity = '0';
                 element.style.transform = 'translateY(20px)';
                 element.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
             });
             
-            // Verificar posição inicial
+
             checkScroll();
             
-            // Verificar ao rolar
+
             window.addEventListener('scroll', checkScroll);
         });
     </script>

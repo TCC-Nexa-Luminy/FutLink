@@ -45,7 +45,7 @@ include("../app/views/topo.php");
 
 </div>
 
-            <!-- Seção ETEC -->
+
             <div class="secao-etec">
                 <div class="card-etec">
                     <div class="icone-etec">
@@ -62,7 +62,7 @@ include("../app/views/topo.php");
                 </div>
             </div>
 
-            <!-- Call to Action -->
+
             <div class="cta-contato">
                 <div class="conteudo-cta">
                     <h3>Vamos Conversar?</h3>

@@ -2,7 +2,7 @@
 include("topo.php");
 require("../../config/connect.php");
 
-// Verificar se foi passado um ID
+
 if (!isset($_GET['id']) || empty($_GET['id'])) {
     header("Location: peneiras.php");
     exit();
@@ -10,7 +10,7 @@ if (!isset($_GET['id']) || empty($_GET['id'])) {
 
 $peneira_id = (int)$_GET['id'];
 
-// Buscar dados da peneira específica
+
 $sql = "SELECT * FROM peneiras WHERE id = ? AND status != 'Inativa'";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("i", $peneira_id);
@@ -24,11 +24,11 @@ if ($result->num_rows == 0) {
 
 $peneira = $result->fetch_assoc();
 
-// Processar dados da peneira com os campos corretos
+
 $fotos_extras = json_decode($peneira['fotos'], true);
 $documentos = json_decode($peneira['documentos'], true);
 
-// Função para verificar se arquivo existe e retornar caminho correto
+
 function getImagePath($filename) {
     if (empty($filename)) return '../../public/images/default-peneira.jpg';
     
@@ -59,7 +59,7 @@ $status_class = '';
 $status_text = '';
 $status_icon = 'fas fa-circle';
 
-// Verificar se existe o campo status_inscricao, senão usar o campo inscricao
+
 $status_inscricao = isset($peneira['status_inscricao']) ? $peneira['status_inscricao'] : 'Aberta';
 
 if ($status_inscricao == 'Aberta' && $peneira['status'] == 'Ativa') {
@@ -73,11 +73,11 @@ if ($status_inscricao == 'Aberta' && $peneira['status'] == 'Ativa') {
     $status_text = 'Em Breve';
 }
 
-// Formatar data e horário
+
 $data_formatada = date('d \d\e F \d\e Y', strtotime($peneira['data']));
 $horario_formatado = date('H:i', strtotime($peneira['horario']));
 
-// Meses em português
+
 $meses = [
     'January' => 'Janeiro', 'February' => 'Fevereiro', 'March' => 'Março',
     'April' => 'Abril', 'May' => 'Maio', 'June' => 'Junho',
@@ -89,8 +89,8 @@ foreach ($meses as $en => $pt) {
     $data_formatada = str_replace($en, $pt, $data_formatada);
 }
 
-// NOVA LÓGICA: Processar taxa de inscrição
-$taxa_inscricao = $peneira['inscricao']; // O campo inscricao agora contém a taxa
+
+$taxa_inscricao = $peneira['inscricao']; 
 $taxa_icon = 'fas fa-gift';
 $taxa_class = 'taxa-gratuita';
 
@@ -109,7 +109,7 @@ if (strpos(strtolower($taxa_inscricao), 'gratuita') !== false) {
 <body>
     <?php include("navbar-social.php"); ?>
     <main>
-        <!-- Hero Banner -->
+
         <section class="hero-banner">
             <img src="<?php echo $foto_principal; ?>" alt="<?php echo htmlspecialchars($peneira['titulo']); ?>" class="hero-image" onerror="this.src='../../public/images/default-peneira.jpg'">
             <div class="hero-overlay"></div>
@@ -130,12 +130,12 @@ if (strpos(strtolower($taxa_inscricao), 'gratuita') !== false) {
             </div>
         </section>
 
-        <!-- Content Section -->
+
         <section class="content-section">
             <div class="content-grid">
-                <!-- Main Content -->
+
                 <div class="main-content">
-                    <!-- Description Card -->
+
                     <div class="content-card animate-fadeInUp">
                         <div class="card-header">
                             <div class="card-icon">
@@ -176,7 +176,7 @@ if (strpos(strtolower($taxa_inscricao), 'gratuita') !== false) {
                                         <div class="info-value"><?php echo $horario_formatado; ?></div>
                                     </div>
                                 </div>
-                                <!-- NOVA SEÇÃO: Taxa de Inscrição -->
+
                                 <div class="info-item">
                                     <div class="info-icon">
                                         <i class="<?php echo $taxa_icon; ?>"></i>
@@ -192,7 +192,7 @@ if (strpos(strtolower($taxa_inscricao), 'gratuita') !== false) {
                         </div>
                     </div>
 
-                    <!-- Requirements Card -->
+
                     <div class="content-card animate-fadeInUp delay-100">
                         <div class="card-header">
                             <div class="card-icon">
@@ -241,7 +241,7 @@ if (strpos(strtolower($taxa_inscricao), 'gratuita') !== false) {
                         </div>
                     </div>
 
-                    <!-- Age Requirements Card -->
+
                     <div class="content-card animate-fadeInUp delay-200">
                         <div class="card-header">
                             <div class="card-icon">
@@ -262,7 +262,6 @@ if (strpos(strtolower($taxa_inscricao), 'gratuita') !== false) {
                         </div>
                     </div>
 
-                    <!-- Photos Card -->
                     <div class="content-card animate-fadeInUp delay-300">
                         <div class="card-header">
                             <div class="card-icon">
@@ -312,7 +311,7 @@ if (strpos(strtolower($taxa_inscricao), 'gratuita') !== false) {
                     </div>
                 </div>
 
-                <!-- Sidebar -->
+
                 <div class="sidebar">
                     <div class="action-card animate-fadeInUp delay-100">
                         <h3 class="action-title">Informações da Peneira</h3>
@@ -348,7 +347,7 @@ if (strpos(strtolower($taxa_inscricao), 'gratuita') !== false) {
                             </div>
                         </div>
 
-                        <!-- ATUALIZADA: Taxa de Inscrição -->
+
                         <div class="action-info">
                             <div class="action-icon">
                                 <i class="<?php echo $taxa_icon; ?>"></i>
@@ -408,7 +407,7 @@ if (strpos(strtolower($taxa_inscricao), 'gratuita') !== false) {
         </section>
     </main>
 
-    <!-- Modal para visualizar fotos -->
+
     <div id="photoModal" class="photo-modal" onclick="closePhotoModal()">
         <div class="photo-modal-content">
             <span class="photo-modal-close" onclick="closePhotoModal()">&times;</span>

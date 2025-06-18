@@ -12,7 +12,7 @@ include('topo.php');
 // Buscar dados da organização logada
 require("../../config/connect.php");
 
-$org_id = $_SESSION['id']; // Usar o ID da sessão atual
+$org_id = $_SESSION['id']; 
 
 // Buscar organização do banco
 $query = "SELECT * FROM tbl_organizacao WHERE id_org = ?";
