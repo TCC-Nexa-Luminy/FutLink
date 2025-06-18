@@ -1,13 +1,13 @@
 <?php
 @session_start();
 
-// Verificar se é uma organização logada
+
 if (!isset($_SESSION['id']) || !isset($_SESSION['tipoLogin']) || $_SESSION['tipoLogin'] !== 'organizacao') {
     header('Location: login.php');
     exit();
 }
 
-// Verificar se o ID da peneira foi fornecido
+
 if (!isset($_GET['id']) || empty($_GET['id'])) {
     $_SESSION['msg'] = 'ID da peneira não fornecido.';
     header('Location: meu-perfil-org.php');
@@ -19,7 +19,7 @@ $id_org = $_SESSION['id'];
 
 require("../../config/connect.php");
 
-// Buscar dados da peneira
+
 $query = "SELECT * FROM peneiras WHERE id = ? LIMIT 1";
 $stmt = $conn->prepare($query);
 $stmt->bind_param("i", $id_peneira);
@@ -34,25 +34,24 @@ if ($result->num_rows === 0) {
 
 $peneira = $result->fetch_assoc();
 
-// Verificar se a peneira pertence à organização logada
+
 if ($peneira['id_org'] != $id_org) {
     $_SESSION['msg'] = 'Você não tem permissão para editar esta peneira.';
     header('Location: meu-perfil-org.php');
     exit();
 }
 
-// Processar dados para exibição
 $tipo_taxa = (strpos($peneira['inscricao'], 'Gratuita') !== false) ? 'gratuita' : 'paga';
 $valor_inscricao = '';
 if ($tipo_taxa === 'paga') {
-    // Extrair valor numérico da string "R$ XX,XX"
+
     preg_match('/R\$ ([0-9,.]+)/', $peneira['inscricao'], $matches);
     if (isset($matches[1])) {
         $valor_inscricao = str_replace(',', '.', $matches[1]);
     }
 }
 
-// Mapear status de inscrição para o formato do formulário
+
 $status_inscricao_map_reverse = [
     'status-open' => 'Aberta',
     'status-closed' => 'Fechada',
@@ -60,7 +59,7 @@ $status_inscricao_map_reverse = [
 ];
 $status_inscricao = $status_inscricao_map_reverse[$peneira['status_inscricao']] ?? 'Em Breve';
 
-// Mapear badge type para o formato do formulário
+
 $badge_type_map_reverse = [
     'new' => 'Nova',
     'featured' => 'Destaque',
@@ -86,7 +85,7 @@ include("topo.php");
     ?>
     
     <div class="container-site">
-        <!-- Botão de voltar -->
+
         <a href="organizacao.php?id=<?php echo $_SESSION['id']; ?>" class="back-button">
             <i class="fas fa-arrow-left"></i>
         </a>
@@ -178,7 +177,7 @@ include("topo.php");
                     </div>
                 </div>
                 
-                <!-- TAXA DE INSCRIÇÃO -->
+
                 <div class="form-group">
                     <label class="form-label">Taxa de Inscrição</label>
                     <div class="form-hint">Defina se a peneira é gratuita ou paga</div>
@@ -251,7 +250,7 @@ include("topo.php");
                     </div>
                 </div>
                 
-                <!-- IMAGENS ADICIONAIS -->
+
                 <div class="form-group">
                     <label class="form-label">Imagens Adicionais da Peneira</label>
                     <div class="form-hint">Adicione até 3 imagens extras para ilustrar a peneira (máx. 2MB cada)</div>
@@ -283,7 +282,7 @@ include("topo.php");
                     </div>
                 </div>
                 
-                <!-- DOCUMENTOS -->
+
                 <div class="form-group">
                     <label for="documentos" class="form-label">Documentos Obrigatórios</label>
                     <div class="form-hint">Adicione documentos necessários para a inscrição (PDF ou imagens)</div>
@@ -322,7 +321,7 @@ include("topo.php");
     </div>
     
     <script>
-        // Alternar campo de valor
+
         function toggleTaxaInput() {
             const valorContainer = document.getElementById('valorContainer');
             const valorInput = document.getElementById('valor_inscricao');
@@ -338,7 +337,6 @@ include("topo.php");
             }
         }
         
-        // Remover imagem principal
         function removeMainImage() {
             const input = document.getElementById('foto_peneira');
             const preview = document.getElementById('mainImagePreview');
@@ -351,7 +349,7 @@ include("topo.php");
             hiddenInput.value = '';
         }
         
-        // Preview da foto principal
+
         function previewMainImage(input) {
             const preview = document.getElementById('mainImagePreview');
             const uploadLabel = document.querySelector('.foto-peneira-upload');
@@ -389,7 +387,7 @@ include("topo.php");
             }
         }
         
-        // Remover imagem extra
+
         function removeExtraImage(index, previewId) {
             const preview = document.getElementById(previewId);
             const removerInput = document.getElementById('remover_foto_' + index);
@@ -400,17 +398,17 @@ include("topo.php");
             }
         }
         
-        // Preview de imagem extra
+
         function previewImage(input, previewId) {
             const preview = document.getElementById(previewId);
             const existingImage = preview.querySelector('.existing-image');
             
-            // Se já existe uma imagem e está marcada para remoção, não faça nada
+
             if (existingImage && existingImage.style.display === 'none') {
                 return;
             }
             
-            // Se já existe uma imagem, esconda-a
+
             if (existingImage) {
                 existingImage.style.display = 'none';
                 const removerInput = existingImage.querySelector('input[name="remover_fotos[]"]');
@@ -438,7 +436,7 @@ include("topo.php");
             }
         }
         
-        // Remover documento
+
         function removeDocument(index) {
             const removerInput = document.getElementById('remover_doc_' + index);
             const docItem = removerInput.parentElement;
@@ -447,7 +445,7 @@ include("topo.php");
             docItem.style.display = 'none';
         }
         
-        // Atualizar lista de arquivos
+
         function updateFileList(input) {
             const fileList = document.getElementById('fileList');
             fileList.innerHTML = '';
@@ -466,8 +464,7 @@ include("topo.php");
                 fileList.appendChild(list);
             }
         }
-        
-        // Animação de entrada dos elementos
+
         document.addEventListener('DOMContentLoaded', function() {
             const animatedElements = document.querySelectorAll('.animate-fadeInUp');
             
@@ -483,23 +480,23 @@ include("topo.php");
                 });
             }
             
-            // Inicialmente, definir os elementos como invisíveis
+
             animatedElements.forEach(element => {
                 element.style.opacity = '0';
                 element.style.transform = 'translateY(20px)';
                 element.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
             });
             
-            // Verificar posição inicial
+
             checkScroll();
             
-            // Verificar ao rolar
+
             window.addEventListener('scroll', checkScroll);
         });
     </script>
 
     <style>
-        /* Estilos para documentos existentes */
+
         .existing-documents {
             margin-bottom: 1rem;
             padding: 1rem;

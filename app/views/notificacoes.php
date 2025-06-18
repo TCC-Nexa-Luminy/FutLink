@@ -3,7 +3,7 @@
 include("topo.php");
 ?>
 <link rel="stylesheet" href="../../public/css/notificacoes.css">
-<!-- Adicione Font Awesome para ícones -->
+
 
 <body>
     <?php
@@ -12,11 +12,11 @@ include("topo.php");
     // include("components/back-button.php");
     ?>
     
-    <!-- Botão de voltar -->
+
 
     
     <div class="container-site">
-        <!-- Hero Section -->
+
         <section class="hero-section">
             <div class="hero-content">
                 <h1 class="hero-title">Notificações</h1>
@@ -24,10 +24,10 @@ include("topo.php");
             </div>
         </section>
 
-        <!-- Main Content -->
+
         <div class="main-content">
             <div class="notifications-container">
-                <!-- Header com ações simples -->
+
                 <div class="notifications-header">
                     <h2>Suas Notificações</h2>
                     <button class="marcar-todas-lidas">
@@ -35,12 +35,12 @@ include("topo.php");
                     </button>
                 </div>
                 
-                <!-- Lista de notificações -->
+
                 <div class="notifications-list">
-                    <!-- As notificações hardcoded serão substituídas pelo JavaScript -->
+
                 </div>
                 
-                <!-- Estado vazio -->
+
                 <div class="empty-state" style="display: none;">
                     <div class="empty-icon">
                         <i class="far fa-bell-slash"></i>
@@ -54,10 +54,10 @@ include("topo.php");
 
     <script>
 document.addEventListener('DOMContentLoaded', function() {
-    // Carregar notificações reais do banco de dados
+
     carregarNotificacoesReais();
     
-    // Marcar todas como lidas (conectar com o banco)
+
     const marcarTodasLidas = document.querySelector('.marcar-todas-lidas');
     
     marcarTodasLidas.addEventListener('click', function() {
@@ -71,7 +71,7 @@ document.addEventListener('DOMContentLoaded', function() {
         .then(response => response.json())
         .then(data => {
             if (data.success) {
-                // Remover classe nao-lida de todos os elementos
+
                 document.querySelectorAll('.notificacao.nao-lida').forEach(el => {
                     el.classList.remove('nao-lida');
                     const botaoMarcar = el.querySelector('.marcar-lida');
@@ -80,13 +80,13 @@ document.addEventListener('DOMContentLoaded', function() {
                     }
                 });
                 
-                // Atualizar contador no navbar
+
                 atualizarContadorNavbar();
             }
         });
     });
     
-    // Animação de entrada dos elementos (mantém sua animação original)
+
     const animatedElements = document.querySelectorAll('.animate-fadeInUp');
     
     function checkScroll() {
@@ -101,21 +101,21 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // Inicialmente, definir os elementos como invisíveis
+
     animatedElements.forEach(element => {
         element.style.opacity = '0';
         element.style.transform = 'translateY(20px)';
         element.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
     });
     
-    // Verificar posição inicial
+
     checkScroll();
     
-    // Verificar ao rolar
+
     window.addEventListener('scroll', checkScroll);
 });
 
-// Função para carregar notificações reais
+
 function carregarNotificacoesReais() {
     const notificationsList = document.querySelector('.notifications-list');
     const emptyState = document.querySelector('.empty-state');
@@ -131,25 +131,25 @@ function carregarNotificacoesReais() {
     .then(data => {
         if (data.success) {
             if (data.notificacoes.length === 0) {
-                // Mostrar estado vazio
+
                 notificationsList.innerHTML = '';
                 emptyState.style.display = 'block';
                 return;
             }
             
-            // Esconder estado vazio
+
             emptyState.style.display = 'none';
             
-            // Limpar lista atual
+
             notificationsList.innerHTML = '';
             
-            // Adicionar notificações reais
+
             data.notificacoes.forEach(notif => {
                 const notifElement = document.createElement('div');
                 notifElement.className = `notificacao ${notif.lida ? '' : 'nao-lida'} animate-fadeInUp`;
                 notifElement.dataset.id = notif.id;
                 
-                // Determinar avatar
+
                 let avatarContent;
                 if (notif.foto_perfil && notif.foto_perfil !== '') {
                     avatarContent = `<img src="../../public/images/perfil/${notif.foto_perfil}" alt="${notif.nome}">`;
@@ -182,7 +182,7 @@ function carregarNotificacoesReais() {
                 
                 notificationsList.appendChild(notifElement);
                 
-                // Adicionar evento de clique para marcar como lida
+
                 if (!notif.lida) {
                     const botaoMarcar = notifElement.querySelector('.marcar-lida');
                     if (botaoMarcar) {
@@ -203,7 +203,7 @@ function carregarNotificacoesReais() {
                 }
             });
             
-            // Inicializar animações
+
             setTimeout(() => {
                 document.querySelectorAll('.animate-fadeInUp').forEach(element => {
                     element.style.opacity = '1';
@@ -229,7 +229,7 @@ function carregarNotificacoesReais() {
     });
 }
 
-// Função para marcar notificação como lida
+
 function marcarComoLida(id) {
     fetch('../controllers/notificacoes.act.php', {
         method: 'POST',
@@ -250,7 +250,7 @@ function marcarComoLida(id) {
                 }
             }
             
-            // Atualizar contador no navbar
+
             atualizarContadorNavbar();
         }
     });
@@ -284,7 +284,7 @@ function excluirNotificacao(id) {
                     }, 300);
                 }
                 
-                // Atualizar contador no navbar
+
                 atualizarContadorNavbar();
             } else {
                 alert('Erro ao excluir notificação');
@@ -293,7 +293,7 @@ function excluirNotificacao(id) {
     }
 }
 
-// Função para atualizar contador no navbar
+
 function atualizarContadorNavbar() {
     fetch('../controllers/notificacoes.act.php', {
         method: 'POST',

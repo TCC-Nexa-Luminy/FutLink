@@ -19,14 +19,14 @@ if (ini_get("session.use_cookies")) {
     );
 }
 
-// Finalmente, destruir a sessão
+
 session_destroy();
 
-// Adicionar mensagem de sucesso (opcional)
+
 session_start();
 $_SESSION['logout_success'] = 'Você foi desconectado com sucesso!';
 
-// Redirecionar para a página inicial
+
 header('Location: ../../public/index.php');
 exit();
 ?>

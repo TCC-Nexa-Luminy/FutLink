@@ -71,7 +71,7 @@
       <h2><i class="fas fa-user-plus"></i> Criar Perfil do Jogador</h2>
       <form action="../controllers/playerForm.act.php" method="POST" class="form-grid" enctype="multipart/form-data">
         
-        <!-- Seção de Foto -->
+
         <div class="campo-foto">
           <div class="foto-preview">
             <div class="foto-placeholder">
@@ -88,7 +88,7 @@
           </div>
         </div>
 
-        <!-- Informações Básicas -->
+
         <div class="campo-completo">
           <label for="apelido"><i class="fas fa-user-tag"></i> Apelido (Opcional):</label>
           <input type="text" id="apelido" name="apelido" placeholder="Como você é conhecido no futebol" />
@@ -140,7 +140,7 @@
           <textarea id="sobre_mim" name="sobre_mim" rows="5" placeholder="Fale um pouco sobre você como jogador, suas habilidades e objetivos..." required></textarea>
         </div>
 
-        <!-- Seção de Características -->
+
         <div class="section-divider">
           <h3><i class="fas fa-list-check"></i> Características de Jogo</h3>
         </div>
@@ -161,7 +161,7 @@
           <input type="hidden" id="caracteristicas_json" name="caracteristicas" />
         </div>
 
-        <!-- Seção de Conquistas -->
+
         <div class="section-divider">
           <h3><i class="fas fa-trophy"></i> Conquistas e Títulos</h3>
         </div>
@@ -207,7 +207,7 @@
           </button>
         </div>
 
-        <!-- Seção de Histórico de Clubes -->
+
         <div class="section-divider">
           <h3><i class="fas fa-history"></i> Histórico de Clubes</h3>
         </div>

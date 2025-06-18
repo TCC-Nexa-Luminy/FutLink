@@ -25,7 +25,7 @@
     function verificarEmail($email, $connect)
     {
         $stmt = $connect->prepare("SELECT * FROM `tbl_usuarios`WHERE `email` = ?");     //prepara uma consulta, mas sem executar ainda
-        $stmt->bind_param("s", $email);     //"s" de String
+        $stmt->bind_param("s", $email);   
         $stmt->execute();   //executa a consulta
         $resultado = $stmt->get_result();   //adquire os resultados
 

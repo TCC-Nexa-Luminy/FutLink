@@ -12,7 +12,7 @@ function uploadLogo($file) {
     }
     
     $allowed_types = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp'];
-    $max_size = 5 * 1024 * 1024; // 5MB
+    $max_size = 5 * 1024 * 1024; 
     
     if ($file['error'] !== UPLOAD_ERR_OK) {
         return null;

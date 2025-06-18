@@ -9,7 +9,7 @@ include("topo.php");
     include("navbar-social.php");
     include_once("message.php");
 
-    // Verificar se há mensagem de sucesso do cadastro
+
     if (isset($_GET['success']) && $_GET['success'] == 1) {
         echo "<script>
             document.addEventListener('DOMContentLoaded', function() {
@@ -20,14 +20,13 @@ include("topo.php");
     ?>
 
     <div class="container-site">
-        <!-- Hero Section -->
+
         <section class="hero-section">
             <div class="hero-pattern"></div>
             <div class="hero-container">
                 <h1 class="hero-title animate-fadeInUp">Encontre as Melhores Organizações Esportivas</h1>
                 <p class="hero-description animate-fadeInUp delay-100">Conecte-se com clubes, escolinhas e academias de futebol que podem impulsionar sua carreira ou oferecer as melhores oportunidades para seu desenvolvimento.</p>
 
-                <!-- Search Box -->
                 <div class="search-container animate-fadeInUp delay-200">
                     <div class="search-box">
                         <div class="search-input">
@@ -64,7 +63,6 @@ include("topo.php");
             </div>
         </section>
 
-        <!-- Main Content -->
         <section class="main-content">
             <div class="container">
                 <div class="section-header">
@@ -72,7 +70,7 @@ include("topo.php");
                     <p class="section-description">Conheça as organizações mais bem avaliadas e com maior número de atletas formados em nossa plataforma.</p>
                 </div>
 
-                <!-- Filter Tabs -->
+
                 <div class="filter-tabs">
                     <div class="filter-tab active" data-filter="all">Todos</div>
                     <div class="filter-tab" data-filter="clube de futebol">Clubes Profissionais</div>
@@ -83,17 +81,14 @@ include("topo.php");
 
             
 
-                <!-- Grid View (default) -->
                 <div class="orgs-grid" id="grid-view">
                     <?php
-                    // Buscar organizações do banco de dados
+
                     require("../../config/connect.php");
 
-                    // Verificar se a tabela existe
                     $check_table = $conn->query("SHOW TABLES LIKE 'tbl_organizacao'");
                     $table_exists = $check_table->num_rows > 0;
 
-                    // Se a tabela existir, buscar organizações
                     $orgs = [];
                     if ($table_exists) {
                         $result = $conn->query("SELECT * FROM tbl_organizacao ORDER BY created_at DESC");
@@ -104,9 +99,8 @@ include("topo.php");
                         }
                     }
 
-                    // Exibir organizações
                     foreach ($orgs as $org) {
-                        // Determinar o badge
+
                         $badge_class = 'new';
                         $badge_icon = 'fas fa-bolt';
                         $badge_text = 'Novo';
@@ -131,7 +125,7 @@ include("topo.php");
                             }
                         }
 
-                        // Determinar banner (usando logo_org como banner)
+
                         $banner_path = !empty($org['logo_org']) ? '../../' . $org['logo_org'] : null;
                         $banner_style = $banner_path ? 
                             "background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.5)), url('{$banner_path}'); background-size: cover; background-position: center;" : 
@@ -194,7 +188,7 @@ include("topo.php");
                     <?php } ?>
                 </div>
 
-                <!-- CTA Section -->
+
                 <section class="cta-section">
                     <div class="cta-pattern"></div>
                     <div class="cta-container">
@@ -218,7 +212,7 @@ include("topo.php");
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Toggle entre visualização em grid e lista
+
             const viewOptions = document.querySelectorAll('.view-option');
             const gridView = document.getElementById('grid-view');
             const listView = document.getElementById('list-view');
@@ -238,7 +232,7 @@ include("topo.php");
                 });
             });
 
-            // Funcionalidade de filtro por tabs
+
             const filterTabs = document.querySelectorAll('.filter-tab');
 
             filterTabs.forEach(tab => {
@@ -251,7 +245,7 @@ include("topo.php");
                 });
             });
 
-            // Função para filtrar por tipo
+
             function filtrarPorTipo(tipo) {
                 const orgCards = document.querySelectorAll('.org-card, .list-org');
 

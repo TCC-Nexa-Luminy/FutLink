@@ -20,14 +20,13 @@ include_once("topo.php")
     
     <div class="page-container">
         <div class="container-login">
-            <!-- Banner Lateral -->
+
             <div class="banner-left">
-                <!-- Banner para Desktop (com imagem) -->
+
                 <div class="desktop-banner">
                     <img src="../../public/images/bannerLogin.png" alt="Banner do Futlink">
                 </div>
                 
-                <!-- Banner para Mobile (sem imagem, só verde com conteúdo) -->
                 <div class="mobile-banner">
                     <div class="mobile-banner-content">
                         <div class="logo-section">
@@ -72,7 +71,7 @@ include_once("topo.php")
                 </div>
             </div>
             
-            <!-- Formulário de Login -->
+
             <div class="login-form">
                 <div class="form-container">
                     <div class="form-header">
@@ -80,7 +79,7 @@ include_once("topo.php")
                         <p>Informe seus dados para acessar sua conta</p>
                     </div>
 
-                    <!-- Formulário de login -->
+
                     <form action="../controllers/login.act.php" method="POST">
                         <div class="input-group">
                             <div class="input-wrapper">
@@ -114,7 +113,7 @@ include_once("topo.php")
                         <span>Ou continue com</span>
                     </div>
 
-                    <!-- Login Social -->
+
                     <div class="social-login">
                         <button class="social-btn google-btn">
                             <i class="fab fa-google"></i>
@@ -122,7 +121,7 @@ include_once("topo.php")
                         </button>
                     </div>
 
-                    <!-- Footer do Form -->
+
                     <div class="form-footer">
                         <p>Não tem uma conta? <a href="signup.php">Cadastre-se gratuitamente</a></p>
                     </div>
@@ -132,7 +131,7 @@ include_once("topo.php")
     </div>
 
     <script>
-        // Toggle password visibility
+
         function togglePassword() {
             const passwordField = document.getElementById('password');
             const passwordIcon = document.getElementById('password-icon');
@@ -148,7 +147,7 @@ include_once("topo.php")
             }
         }
 
-        // Google Sign-In
+
         window.onload = function() {
             google.accounts.id.initialize({
                 client_id: "YOUR_GOOGLE_CLIENT_ID",
@@ -161,8 +160,7 @@ include_once("topo.php")
                     size: "large"
                 }
             );
-            
-            // Animações de entrada
+
             const formElements = document.querySelectorAll('.input-group, #button-continue, .social-login');
             formElements.forEach((element, index) => {
                 setTimeout(() => {

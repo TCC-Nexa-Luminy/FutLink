@@ -15,7 +15,6 @@ document.addEventListener("DOMContentLoaded", () => {
     })
   }, observerOptions)
 
-  // Observar cards de contato
   const cardsContato = document.querySelectorAll(".card-contato")
   cardsContato.forEach((card, index) => {
     card.style.opacity = "0"

@@ -1,19 +1,19 @@
 <?php 
-// Verificar se há sessão ativa
+
 if (session_status() == PHP_SESSION_NONE) {
    session_start();
 }
 
-// Verificar se usuário está logado - se não estiver, redirecionar
+
 if (!isset($_SESSION['id']) || !isset($_SESSION['tipoLogin'])) {
     header('Location: login.php');
     exit();
 }
 
-// Determinar o tipo de usuário e link do perfil baseado no sistema de login atual
-$perfil_link = "perfil.php"; // ALTERAÇÃO: Usar o novo redirecionador automático
+
+$perfil_link = "perfil.php"; 
 $perfil_texto = "Perfil";
-$tipo_usuario = $_SESSION['tipoLogin']; // 'usuario' ou 'organizacao'
+$tipo_usuario = $_SESSION['tipoLogin']; 
 
 if ($tipo_usuario === 'organizacao') {
    // Usuário é uma organização

@@ -8,13 +8,13 @@ include 'navbar-social.php';
 // IMPORTANTE: Incluir a conexão ANTES de usar $conn
 require_once("../../config/connect.php");
 
-// Verificar se há um parâmetro de ID ou apelido na URL
+
 $perfil_id = null;
 
 if (isset($_GET['id']) && !empty($_GET['id'])) {
     $perfil_id = intval($_GET['id']);
 } elseif (isset($_GET['apelido']) && !empty($_GET['apelido'])) {
-    // Buscar o ID do usuário pelo apelido do jogador
+
     $apelido = $_GET['apelido'];
     $queryId = "SELECT j.id_user FROM tbl_jogador j WHERE j.apelido = ?";
     $stmtId = $conn->prepare($queryId);
@@ -30,7 +30,7 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
     $perfil_id = $_SESSION['id'];
 }
 
-// Se não encontrou ID válido, usar o da sessão
+
 if (!$perfil_id) {
     $perfil_id = $_SESSION['id'];
 }
@@ -81,12 +81,12 @@ $is_current_user_player = ($row['is_player'] > 0);
       </div>
       <div class="acoes">
         <?php if ($proprio_perfil): ?>
-          <!-- Botão de Editar Perfil - só aparece se for o próprio perfil -->
+
           <a href="editarPerfilJogador.php" class="btn-principal">
             <i class="fas fa-edit"></i> Editar Perfil
           </a>
         <?php else: ?>
-          <!-- Botões para interagir com outros jogadores -->
+
         <?php endif; ?>
       </div>
     </div>
@@ -199,14 +199,14 @@ $is_current_user_player = ($row['is_player'] > 0);
     </div>
   </div>
 
-  <!-- Feed de Posts - IGUAL DA HOME-PAGE -->
+
   <div class="posts-feed">
     <div class="feed-header">
       <h2><i class="fas fa-stream"></i> Minhas Postagens</h2>
     </div>
 
     <div class="posts" id="posts-container">
-      <!-- Posts serão carregados aqui via JavaScript -->
+
       <div class="loading-posts">
         <i class="fas fa-spinner fa-spin"></i>
         <p>Carregando posts...</p>
@@ -219,7 +219,7 @@ $is_current_user_player = ($row['is_player'] > 0);
 
 <script>
   document.addEventListener("DOMContentLoaded", function() {
-    // Código para as abas da galeria expandida
+
     const tabBtns = document.querySelectorAll('.tab-btn');
     const tabContents = document.querySelectorAll('.tab-content');
 
@@ -234,7 +234,7 @@ $is_current_user_player = ($row['is_player'] > 0);
       });
     });
 
-    // Efeito de hover nas galerias
+
     const galeriaItems = document.querySelectorAll('.galeria-item');
     galeriaItems.forEach(item => {
       item.addEventListener('mouseenter', () => {
@@ -252,12 +252,12 @@ $is_current_user_player = ($row['is_player'] > 0);
       });
     });
 
-    // Carregar dados do perfil
+
     carregarPerfilJogador();
   });
 
   function carregarPerfilJogador() {
-    // Verificar se há um ID ou apelido na URL
+
     const urlParams = new URLSearchParams(window.location.search);
     const perfilId = urlParams.get('id');
     const perfilApelido = urlParams.get('apelido');
@@ -471,7 +471,7 @@ $is_current_user_player = ($row['is_player'] > 0);
 
   // EVENT LISTENERS - COPIADOS DA HOME-PAGE
   function adicionarEventListeners() {
-    // Função para editar post
+
     document.querySelectorAll('.btn-editar-post').forEach(button => {
       button.addEventListener('click', function() {
         const postId = this.dataset.postId;
@@ -505,7 +505,7 @@ $is_current_user_player = ($row['is_player'] > 0);
       });
     });
 
-    // Função para excluir post
+    // excluir post
     document.querySelectorAll('.btn-excluir-post').forEach(button => {
       button.addEventListener('click', function() {
         const postId = this.dataset.postId;
@@ -544,7 +544,7 @@ $is_current_user_player = ($row['is_player'] > 0);
       button.addEventListener('click', function() {
         const postId = this.dataset.postId;
 
-        // Animação imediata
+
         this.style.transform = "scale(1.2)";
         setTimeout(() => {
           this.style.transform = "scale(1)";
@@ -641,7 +641,7 @@ $is_current_user_player = ($row['is_player'] > 0);
       });
     });
 
-    // Permitir enviar comentário com Enter
+
     document.querySelectorAll('.comment-input').forEach(input => {
       input.addEventListener('keypress', function(e) {
         if (e.key === 'Enter') {
@@ -651,9 +651,9 @@ $is_current_user_player = ($row['is_player'] > 0);
       });
     });
 
-    // Menus dropdown
+
     document.addEventListener('click', (e) => {
-      // Fechar todos os menus quando clicar fora
+
       if (!e.target.closest('.post-menu')) {
         document.querySelectorAll('.menu-dropdown').forEach(menu => {
           menu.style.opacity = '0';
@@ -664,7 +664,7 @@ $is_current_user_player = ($row['is_player'] > 0);
     });
   }
 
-  // Função para carregar comentários
+
   function carregarComentarios(postId) {
     fetch('../controllers/post-actions.act.php', {
       method: 'POST',
@@ -850,7 +850,7 @@ $is_current_user_player = ($row['is_player'] > 0);
 </script>
 
 <style>
-/* CSS DOS POSTS - COPIADO DA HOME-PAGE */
+
 
 /* Feed de posts - CENTRALIZADO */
 .posts-feed {
