@@ -3,7 +3,7 @@
 # FutLink
 ### *Conectando talentos ao futuro do futebol brasileiro*
 
-![FutLink Banner](public/images/banners/BannerDeviceMockup.png)
+![FutLink Banner]()
 
 </div>
 
