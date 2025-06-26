@@ -18,7 +18,7 @@ include("topo.php");
     <main class="containerMain">
 
         <section class="main_content">
-            <a href="../../public/index.php" class="back_btn"><i class="fa-solid fa-circle-left"></i></a>
+            <a href="javascript:history.go(-1)" class="back_btn"><i class="fa-solid fa-circle-left"></i></a>
             
             <form action="../controllers/signUp-org.act.php" method="post" id="organizationForm" enctype="multipart/form-data">
                 <h1>Cadastro da Organização</h1>

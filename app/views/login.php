@@ -24,7 +24,7 @@ include_once("topo.php")
             <div class="banner-left">
 
                 <div class="desktop-banner">
-                    <img src="../../public/images/bannerLogin.png" alt="Banner do Futlink">
+                    <img src="../../public/images/banners/bannerLogin.png" alt="Banner do Futlink">
                 </div>
                 
                 <div class="mobile-banner">
@@ -109,17 +109,17 @@ include_once("topo.php")
                         </button>
                     </form>
 
-                    <div class="separator">
+                    <!-- <div class="separator">
                         <span>Ou continue com</span>
-                    </div>
+                    </div> -->
 
 
-                    <div class="social-login">
+                    <!-- <div class="social-login">
                         <button class="social-btn google-btn">
                             <i class="fab fa-google"></i>
                             <span>Google</span>
                         </button>
-                    </div>
+                    </div> -->
 
 
                     <div class="form-footer">

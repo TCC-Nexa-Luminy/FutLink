@@ -94,8 +94,8 @@
     border-radius: 0.5em 0;
 }
 .form-label input:focus{
-    outline: 1px solid var(--cor-purple-light);
-    border: 2px solid var(--cor-purple-light);
+    outline: 1px solid var(--cor-secundaria-verde2);
+    border: 2px solid var(--cor-secundaria-verde2);
 }
 
 .form-label_direction .form_back-btn, .form_submit{
