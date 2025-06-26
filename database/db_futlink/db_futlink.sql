@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 10/06/2025 às 16:50
+-- Tempo de geração: 26/06/2025 às 13:58
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -18,7 +18,6 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
-
 -- Banco de dados: `db_futlink`
 --
 CREATE DATABASE IF NOT EXISTS `db_futlink` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
@@ -474,7 +473,8 @@ INSERT INTO `tbl_usuarios` (`id_user`, `nome`, `email`, `senha`, `data_nasc`, `g
 (12, 'Messi da Silva Ronaldo', 'messi@gmail.com', '$2y$10$3savcBMz9aa3Vtu7W3OhjeR8F6vhmDtMNVAxbzSl4wDZxqtbWROuC', '2008-06-19', 'masculino', '../../public/images/profilePhotos/2519c58e040f6e012d28f32858ee9f93.webp', '(11) 95644-6342', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'ativo', '2025-06-02 14:39:06', '2025-06-10 11:09:35'),
 (13, 'Pedro', 'medeirosantosph@gmail.com', '$2y$10$bGbauKRlKzi8WOX3606HLOUEo0aO/jFk6ewO5DGrbXVcByzjaltxq', '2007-12-03', 'masculino', '../../public/images/profilePhotos/defaultPhoto.png', '(11) 91444-1937', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'ativo', '2025-06-06 14:26:34', '2025-06-06 14:26:34'),
 (14, 'André Camilo', 'carrillo@gmail.com', '$2y$10$V27xcdOYA2YXhjFR3enP2./jqxG6fousKdYsv807FDCtUno0PU/yW', '2007-02-18', NULL, '../../public/images/profilePhotos/967b62e4ad5048af8d16f85dc2218f0f.jpeg', '(11) 98848-9353', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'ativo', '2025-06-10 11:16:28', '2025-06-10 11:19:44'),
-(15, 'Lamine Yamal', 'yamal@gmail.com', '$2y$10$7EU4b..Fmdq.RDbeFawJYOaOrCv4MBONE.iudoRi5xQleabveWlzW', '2008-01-11', NULL, '../../public/images/profilePhotos/cad18adf85752a22a92939c9f9a90932.jpg', '(11) 91076-4724', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'ativo', '2025-06-10 11:25:29', '2025-06-10 11:28:41');
+(15, 'Lamine Yamal', 'yamal@gmail.com', '$2y$10$7EU4b..Fmdq.RDbeFawJYOaOrCv4MBONE.iudoRi5xQleabveWlzW', '2008-01-11', NULL, '../../public/images/profilePhotos/cad18adf85752a22a92939c9f9a90932.jpg', '(11) 91076-4724', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'ativo', '2025-06-10 11:25:29', '2025-06-10 11:28:41'),
+(16, 'Shandel', 'shandelvm17@gmail.com', '$2y$10$x7LQlJosYTRn3np/7e66HuXBcTZx9WtDv4VC6t/9QfOs5xzUT3Thq', '2006-06-13', NULL, '../../public/images/profilePhotos/defaultPhoto.png', '(11) 93833-4030', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'ativo', '2025-06-26 08:55:40', '2025-06-26 08:55:40');
 
 --
 -- Índices para tabelas despejadas
@@ -659,7 +659,7 @@ ALTER TABLE `tbl_time`
 -- AUTO_INCREMENT de tabela `tbl_usuarios`
 --
 ALTER TABLE `tbl_usuarios`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- Restrições para tabelas despejadas

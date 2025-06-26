@@ -8,7 +8,7 @@ include("topo.php");
     <?php include("message.php"); ?>
     <main class="containerMain">
         <section class="main_content">
-            <a href="../../public/index.php" class="back_btn"><i class="fa-solid fa-circle-left"></i></a>
+            <a href="javascript:history.go(-1)" class="back_btn"><i class="fa-solid fa-circle-left"></i></a>
             <form action="../controllers/signUp.act.php" method="post" id="form_cadastro" enctype="multipart/form-data">
                 <input type="file" name="user_photo" id="iprofile" style="display: none;" accept=".png, .jpg, .jpeg, .webp">
                 <h1>Cadastro</h1>
