@@ -189,16 +189,27 @@ FutLink/
 
 <div align="center">
 
-[![Apresentação Futlink]([[https://img.shields.io/badge/Manual_de_Identidade-00C4CC?style=for-the-badge&logo=canva&logoColor=white)](https://www.canva.com/design/DAGg-Y4reM4/T_IS_sypto5E-pHfEgOKJg/edit?utm_content=DAGg-Y4reM4&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton](https://www.canva.com/design/DAGp7eee-co/r9iGfK6-W5BSu52B8nP7Uw/view?utm_content=DAGp7eee-co&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=hd0df16f471)](https://www.canva.com/design/DAGp7eee-co/FK1933sPONSvEkvqr3vaJw/edit?utm_content=DAGp7eee-co&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton))
+<!-- Apresentação Futlink -->
+<a href="https://www.canva.com/design/DAGp7eee-co/FK1933sPONSvEkvqr3vaJw/edit?utm_content=DAGp7eee-co&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton" target="_blank">
+  <img src="https://img.shields.io/badge/Apresentação_Futlink-00C4CC?style=for-the-badge&logo=canva&logoColor=white" alt="Apresentação Futlink">
+</a>
 
-[![Manual de Identidade]([https://img.shields.io/badge/Manual_de_Identidade-00C4CC?style=for-the-badge&logo=canva&logoColor=white)](https://www.canva.com/design/DAGg-Y4reM4/T_IS_sypto5E-pHfEgOKJg/edit?utm_content=DAGg-Y4reM4&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton](https://www.canva.com/design/DAGg-Y4reM4/T_IS_sypto5E-pHfEgOKJg/edit?utm_content=DAGg-Y4reM4&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton))
+<!-- Manual de Identidade -->
+<a href="https://www.canva.com/design/DAGg-Y4reM4/T_IS_sypto5E-pHfEgOKJg/edit?utm_content=DAGg-Y4reM4&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton" target="_blank">
+  <img src="https://img.shields.io/badge/Manual_de_Identidade-009BA3?style=for-the-badge&logo=canva&logoColor=white" alt="Manual de Identidade">
+</a>
 
-[![Wireframe](https://img.shields.io/badge/Wireframe-F24E1E?style=for-the-badge&logo=figma&logoColor=white)](https://www.figma.com/team_invite/redeem/H3JK4LlmFJqc35eOC3tkah)
+<!-- Wireframe -->
+<a href="https://www.figma.com/team_invite/redeem/H3JK4LlmFJqc35eOC3tkah" target="_blank">
+  <img src="https://img.shields.io/badge/Wireframe-F24E1E?style=for-the-badge&logo=figma&logoColor=white" alt="Wireframe">
+</a>
 
-[![Trello](https://img.shields.io/badge/Quadro_de_Tarefas-0079BF?style=for-the-badge&logo=trello&logoColor=white)](https://trello.com/invite/b/68140ada8b0d94fb14350a11/ATTI677de3d642dd87ce822d09ac22e11f1b0E25560C/futlink)
+<!-- Trello -->
+<a href="https://trello.com/invite/b/68140ada8b0d94fb14350a11/ATTI677de3d642dd87ce822d09ac22e11f1b0E25560C/futlink" target="_blank">
+  <img src="https://img.shields.io/badge/Quadro_de_Tarefas-0079BF?style=for-the-badge&logo=trello&logoColor=white" alt="Trello">
+</a>
 
 </div>
-
 ---
 
 ## Licença
