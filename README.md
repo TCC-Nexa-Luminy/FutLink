@@ -4,8 +4,8 @@
 ### *Conectando talentos ao futuro do futebol brasileiro*
 
 ![FutLink Banner](public/images/banners/BannerDeviceMockup.png)
-
-</div>
+## Design Mockup Principal do Site
+ </div>
 
 ---
 
@@ -48,11 +48,11 @@ Uma plataforma digital completa onde jogadores podem:
 
 | 👤 **Para Jogadores** | 🏢 **Para Organizações** | 👥 **Para Usuários** |
 |:---:|:---:|:---:|
-| 📝 Perfil profissional completo | 🔍 Busca avançada de talentos | 🌐 Exploração da plataforma |
-| 🎥 Portfólio de vídeos | 📅 Criação de peneiras | 👀 Acompanhamento de jogadores |
-| 🏆 Registro de conquistas | 📊 Relatórios detalhados | 💬 Interação com a comunidade |
-| 📍 Oportunidades locais | 💬 Contato direto com jogadores | 📱 Conteúdo exclusivo |
-| 🔔 Alertas personalizados | 🏆 Divulgação do clube | 🔗 Compartilhamento de perfis |
+| Perfil profissional completo | Busca avançada de talentos | Exploração da plataforma |
+| Portfólio de vídeos | Criação de peneiras | Acompanhamento de jogadores |
+| Registro de conquistas | Relatórios detalhados | Interação com a comunidade |
+| Oportunidades locais | Contato direto com jogadores | Conteúdo exclusivo |
+| Alertas personalizados | Divulgação do clube | Compartilhamento de perfis |
 
 </div>
 
@@ -110,7 +110,7 @@ Uma plataforma digital completa onde jogadores podem:
     <td align="center">
       <a href="https://github.com/DanielHMF">
         <img src="https://github.com/DanielHMF.png" width="100px;" alt="Daniel Mattos"/><br>
-        <sub><b>Daniel Mattos</b></sub>
+        <sub><b>Daniel   Henrique Mattos</b></sub>
       </a><br>
       <sub>Documentation & Design Lead</sub>
     </td>
@@ -166,21 +166,21 @@ Uma plataforma digital completa onde jogadores podem:
 
 ```plaintext
 FutLink/
-├── app/                      # Lógica da aplicação 🧠
-│   ├── controllers/          # Controladores PHP ⚙️
-│   └── views/                # Páginas e componentes 🎨
-├── config/                   # Configurações do sistema ⚙️
-├── database/                 # Scripts e estrutura do banco 🗄️
-│   └── db_futlink/           # Banco de dados principal 💾
-├── public/                   # Arquivos públicos 🌐
-│   ├── css/                  # Estilos CSS 🎨
-│   ├── js/                   # Scripts JavaScript ⚡
-│   ├── images/               # Imagens e assets 🖼️
-│   │   └── prints-site/      # Screenshots da plataforma 📸
-│   └── index.php             # Página inicial 🏠
-├── storage/                  # Arquivos gerados 📦
-│   └── perfilIcons/          # Ícones de perfil dos usuários 👤
-└── README.md                 # Este arquivo 📖
+├── app/                      # Lógica da aplicação 
+│   ├── controllers/          # Controladores PHP 
+│   └── views/                # Páginas e componentes 
+├── config/                   # Configurações do sistema 
+├── database/                 # Scripts e estrutura do banco 
+│   └── db_futlink/           # Banco de dados principal
+├── public/                   # Arquivos públicos 
+│   ├── css/                  # Estilos CSS 
+│   ├── js/                   # Scripts JavaScript 
+│   ├── images/               # Imagens e assets
+│   │   └── prints-site/      # Screenshots da plataforma
+│   └── index.php             # Página inicial
+├── storage/                  # Arquivos gerados
+│   └── perfilIcons/          # Ícones de perfil dos usuários
+└── README.md                 # Este arquivo
 ```
 
 ---
@@ -189,22 +189,21 @@ FutLink/
 
 <div align="center">
 
-<!-- Apresentação Futlink -->
 <a href="https://www.canva.com/design/DAGp7eee-co/FK1933sPONSvEkvqr3vaJw/edit?utm_content=DAGp7eee-co&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton" target="_blank">
   <img src="https://img.shields.io/badge/Apresentação_Futlink-00C4CC?style=for-the-badge&logo=canva&logoColor=white" alt="Apresentação Futlink">
 </a>
 
-<!-- Manual de Identidade -->
+
 <a href="https://www.canva.com/design/DAGg-Y4reM4/T_IS_sypto5E-pHfEgOKJg/edit?utm_content=DAGg-Y4reM4&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton" target="_blank">
   <img src="https://img.shields.io/badge/Manual_de_Identidade-009BA3?style=for-the-badge&logo=canva&logoColor=white" alt="Manual de Identidade">
 </a>
 
-<!-- Wireframe -->
+
 <a href="https://www.figma.com/team_invite/redeem/H3JK4LlmFJqc35eOC3tkah" target="_blank">
   <img src="https://img.shields.io/badge/Wireframe-F24E1E?style=for-the-badge&logo=figma&logoColor=white" alt="Wireframe">
 </a>
 
-<!-- Trello -->
+
 <a href="https://trello.com/invite/b/68140ada8b0d94fb14350a11/ATTI677de3d642dd87ce822d09ac22e11f1b0E25560C/futlink" target="_blank">
   <img src="https://img.shields.io/badge/Quadro_de_Tarefas-0079BF?style=for-the-badge&logo=trello&logoColor=white" alt="Trello">
 </a>
@@ -220,8 +219,8 @@ Este projeto está licenciado sob a **Licença MIT** - veja o arquivo [LICENSE](
 
 ---
 
-### **Feito com muito amor e café pela Equipe Nexa Luminy**
+### **Feito com muito fut e bol pela equipe nexa luminy**
 
-**Se você gostou do projeto, não esqueça de dar uma estrela!**
+**Se você gostou do projeto, não esqueça de dar uma estrela!!!**
 
 </div>
